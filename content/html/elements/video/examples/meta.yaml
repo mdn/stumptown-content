@@ -1,1 +1,13 @@
-I am a yaml file
+examples:
+
+    - name: simple-video-example
+        title: Simple video example
+        size:
+            width: 640
+            height: 370
+
+    - name: multiple-sources-example
+      title: Multiple sources Example
+      size:
+          width: 640
+          height: 370
