@@ -1,13 +1,13 @@
 examples:
 
     - name: simple-video-example
-        title: Simple video example
-        size:
-            width: 640
-            height: 370
+      title: Simple video example
+      size:
+          width: 640
+          height: 370
 
     - name: multiple-sources-example
-      title: Multiple sources Example
+      title: Multiple sources example
       size:
           width: 640
           height: 370
