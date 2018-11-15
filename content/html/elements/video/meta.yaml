@@ -6,7 +6,7 @@ recipe:
             - link: https://html.spec.whatwg.org/multipage/embedded-content.html#the-video-element
               status: Living Standard
         browser-compatibility: html.elements.video
-        live-examples:
+        examples:
             - title: Simple video example
               html-source: live-examples/simple-video-example/example.html
               description: live-examples/simple-video-example/description.md
@@ -14,7 +14,7 @@ recipe:
                   width: 640
                   height: 370
             - title: Multiple sources Example
-              html-source: multiple-sources-example
+              html-source: live-examples/multiple-sources-example/example.html
               description: live-examples/multiple-sources-example/description.md
               size:
                   width: 640

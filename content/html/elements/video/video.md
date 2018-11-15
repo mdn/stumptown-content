@@ -59,7 +59,7 @@ beginner's tutorial.
 <!-- </prose.overview> -->
 
 <!-- <prose.attributes> -->
-Attributes {#Attributes}
+Attributes
 ----------
 
 Like all other HTML elements, this element supports the [global
@@ -130,10 +130,10 @@ attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes)
 <!-- </prose.attributes> -->
 
 <!-- <prose.usage-notes> -->
-Usage notes {#Usage_notes}
+Usage notes
 -----------
 
-### Styling with CSS {#Styling_with_CSS}
+### Styling with CSS
 
 The `<video>` element is a replaced element — its `display`
 value is `inline` by default, but its default width and height in the
@@ -146,7 +146,7 @@ required. [Video player styling
 basics](https://developer.mozilla.org/en-US/docs/Web/Apps/Fundamentals/Audio_and_video_delivery/Video_player_styling_basics)
 provides some useful styling techniques.
 
-### Server support for video {#Server_support_for_video}
+### Server support for video
 
 If the MIME type for the video is not set correctly on the server, the
 video may not show or show a gray box containing an X (if JavaScript is
@@ -159,7 +159,7 @@ MIME type. The most common video file type extensions are ".ogm",
 "/etc/apache" or use the `"AddType"` configuration directive in
 `httpd.conf`.
 
-``` {.eval}
+```
 AddType video/ogg .ogm
 AddType video/ogg .ogv
 AddType video/ogg .ogg
@@ -171,7 +171,7 @@ Apache Web Server by adding the extension used by your video files
 "mime.types" file in "/etc/apache" or via the "AddType" configuration
 directive in `httpd.conf`.
 
-``` {.eval}
+```
 AddType video/webm .webm
 ```
 
@@ -179,7 +179,7 @@ Your web host may provide an easy interface to MIME type configuration
 changes for new technologies until a global update naturally occurs.
 
 <!-- <prose.accessibility-concerns> -->
-Accessibility concerns {#Accessibility_concerns}
+Accessibility concerns
 ----------------------
 
 Videos should provide both captions and transcripts that accurately
@@ -198,7 +198,7 @@ In addition to spoken dialog, subtitles and transcripts should also
 identify music and sound effects that communicate important information.
 This includes emotion and tone:
 
-``` {.eval}
+```
 14
 00:03:14 --> 00:03:18
 [Dramatic rock music]
@@ -235,7 +235,7 @@ setting](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API#Cue_setting
 <!-- </prose.accessibility-concerns> -->
 
 <!-- <prose.see-also> -->
-See also {#See_also}
+See also
 --------
 
 -   [Media formats supported by the audio and video

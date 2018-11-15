@@ -4,8 +4,9 @@ items:
 - prose.overview
 - prose.attributes
 - prose.usage-notes
+- prose.*
 - prose.accessibility-concerns
-- meta.live-examples
+- meta.examples
 - meta.technical-summary
 - meta.specifications
 - meta.browser-compatibility
