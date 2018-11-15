@@ -1,0 +1,12 @@
+items:
+- prose.short-description
+- meta.interactive-example
+- prose.overview
+- prose.attributes
+- prose.usage-notes
+- prose.accessibility-concerns
+- meta.live-examples
+- meta.technical-summary
+- meta.specifications
+- meta.browser-compatibility
+- prose.see-also
