@@ -1,7 +1,21 @@
-type: html-element
-items:
-    interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/video.html
-    specifications:
-        - link: https://html.spec.whatwg.org/multipage/embedded-content.html#the-video-element
-          status: Living Standard
-    browser-compatibility: html.elements.video
+recipe:
+    name: html-element
+    references:
+        interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/video.html
+        specifications:
+            - link: https://html.spec.whatwg.org/multipage/embedded-content.html#the-video-element
+              status: Living Standard
+        browser-compatibility: html.elements.video
+        live-examples:
+            - title: Simple video example
+              html-source: live-examples/simple-video-example/example.html
+              description: live-examples/simple-video-example/description.md
+              size:
+                  width: 640
+                  height: 370
+            - title: Multiple sources Example
+              html-source: multiple-sources-example
+              description: live-examples/multiple-sources-example/description.md
+              size:
+                  width: 640
+                  height: 370
