@@ -13,7 +13,7 @@ recipe:
               size:
                   width: 640
                   height: 370
-            - title: Multiple sources Example
+            - title: Multiple sources example
               html-source: live-examples/multiple-sources-example/example.html
               description: live-examples/multiple-sources-example/description.md
               size:
