@@ -1,3 +1,7 @@
+title: '<video>: The Video Embed element'
+mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/video
+tags:
+    group: Image and multimedia
 recipe:
     name: html-element
     references:
