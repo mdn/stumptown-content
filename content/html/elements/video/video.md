@@ -58,77 +58,6 @@ content](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embe
 beginner's tutorial.
 <!-- </prose.overview> -->
 
-<!-- <prose.attributes> -->
-Attributes
-----------
-
-Like all other HTML elements, this element supports the [global
-attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes).
-
-<dl>
- <dt><code>autoplay</code></dt>
- <dd>A Boolean attribute; if specified, the video automatically begins to play back as soon as it can do so without stopping to finish loading the data.</dd>
- <dd>
- <p class="note"><strong>Note</strong>: Sites that automatically play audio (or video with an audio track) can be an unpleasant experience for users, so it should be avoided when possible. If you must offer autoplay functionality, you should make it opt-in (requiring a user to specifically enable it). However, this can be useful when creating media elements whose source will be set at a later time, under user control.</p>
-
- <p class="note">To disable video autoplay, <code>autoplay="false"</code> will not work; the video will autoplay if the attribute is there in the <code>&lt;video&gt;</code> tag at all. To remove autoplay the attribute needs to be removed altogether.</p>
- </dd>
-</dl>
-
-<dl>
- <dt><code>buffered</code></dt>
- <dd>An attribute you can read to determine the time ranges of the buffered media. This attribute contains a <code>TimeRanges</code> object.</dd>
- <dt><code>controls</code></dt>
- <dd>If this attribute is present, the browser will offer controls to allow the user to control video playback, including volume, seeking, and pause/resume playback.</dd>
- <dt><code>crossorigin</code></dt>
- <dd>This enumerated attribute indicates whether to use CORS to fetch the related image. <a href="/en-US/docs/CORS_Enabled_Image">CORS-enabled resources</a> can be reused in the <code>&lt;canvas&gt;</code> element without being <em>tainted</em>. The allowed values are:
- <dl>
-  <dt><code>anonymous</code></dt>
-  <dd>Sends a cross-origin request without a credential. In other words, it sends the <code>Origin:</code> HTTP header without a cookie, X.509 certificate, or performing HTTP Basic authentication. If the server does not give credentials to the origin site (by not setting the <code>Access-Control-Allow-Origin:</code> HTTP header), the image will be <em>tainted</em>, and its usage restricted.</dd>
-  <dt><code>use-credentials</code></dt>
-  <dd>Sends a cross-origin request with a credential. In other words, it sends the <code>Origin:</code> HTTP header with a cookie, a certificate, or performing HTTP Basic authentication. If the server does not give credentials to the origin site (through <code>Access-Control-Allow-Credentials:</code> HTTP header), the image will be <em>tainted</em> and its usage restricted.</dd>
- </dl>
- When not present, the resource is fetched without a CORS request (i.e. without sending the <code>Origin:</code> HTTP header), preventing its non-tainted used in <code>&lt;canvas&gt;</code> elements. If invalid, it is handled as if the enumerated keyword <code>anonymous</code> was used. See <a href="/en-US/docs/HTML/CORS_settings_attributes">CORS settings attributes</a> for additional information.</dd>
- <dt><code>height</code></dt>
- <dd>The height of the video's display area, in <a href="https://drafts.csswg.org/css-values/#px">CSS pixels</a> (absolute values only; <a href="https://html.spec.whatwg.org/multipage/embedded-content.html#dimension-attributes">no percentages</a>.)</dd>
- <dt><code>loop</code></dt>
- <dd>A Boolean attribute; if specified, the browser will automatically seek back to the start upon reaching the end of the video.</dd>
- <dt><code>muted</code></dt>
- <dd>A Boolean attribute that indicates the default setting of the audio contained in the video. If set, the audio will be initially silenced. Its default value is <code>false</code>, meaning that the audio will be played when the video is played.</dd>
- <dt><code>preload</code></dt>
- <dd>This enumerated attribute is intended to provide a hint to the browser about what the author thinks will lead to the best user experience with regards to what content is loaded before the video is played. It may have one of the following values:
- <ul>
-  <li><code>none</code>: Indicates that the video should not be preloaded.</li>
-  <li><code>metadata</code>: Indicates that only video metadata (e.g. length) is fetched.</li>
-  <li><code>auto</code>: Indicates that the whole video file can be downloaded, even if the user is not expected to use it.</li>
-  <li><em>empty string</em>: Synonym of the <code>auto</code> value.</li>
- </ul>
-
- <p>If not set, its default value is browser-defined (i.e. each browser may have its own default value). The spec advises it to be set to <code>metadata</code>.</p>
-
- <div class="note"><strong>Notes:</strong>
-
- <ul>
-  <li>The <code>autoplay</code> attribute has precedence over <code>preload</code>. If <code>autoplay</code> is specified, the browser would obviously need to start downloading the video for playback.</li>
-  <li>The specification does not force the browser to follow the value of this attribute; it is a mere hint.</li>
- </ul>
- </div>
- </dd>
- <dt>&nbsp;</dt>
- <dt><code>intrinsicsize</code></dt>
- <dd>This attribute tells the browser to ignore the actual intrinsic size of the image and pretend it’s the size specified in the attribute. Specifically, the image would raster at these dimensions and <code>naturalWidth</code>/<code>naturalHeight</code> on images would return the values specified in this attribute. <a href="https://github.com/ojanvafai/intrinsicsize-attribute">Explainer</a>, <a href="https://googlechrome.github.io/samples/intrinsic-size/index.html">examples</a></dd>
- <dt><code>poster</code></dt>
- <dd>A URL for an image to be shown while the video is downloading. If this attribute isn't specified, nothing is displayed until the first frame is available, then the first frame is shown as the poster frame.</dd>
- <dt><code>src</code></dt>
- <dd>The URL of the video to embed. This is optional; you may instead use the <code>&lt;source&gt;</code> element within the video block to specify the video to embed.</dd>
- <dt><code>width</code></dt>
- <dd>The width of the video's display area, in <a href="https://drafts.csswg.org/css-values/#px">CSS pixels</a> (absolute values only; <a href="https://html.spec.whatwg.org/multipage/embedded-content.html#dimension-attributes">no percentages</a>).</dd>
- <dt><code>playsinline</code></dt>
- <dd>A Boolean attribute indicating that the video is to be played "inline", that is within the element's playback area. Note that the absence of this attribute <em>does not</em> imply that the video will always be played in fullscreen.</dd>
-</dl>
-
-<!-- </prose.attributes> -->
-
 <!-- <prose.usage-notes> -->
 Usage notes
 -----------
@@ -177,6 +106,7 @@ AddType video/webm .webm
 
 Your web host may provide an easy interface to MIME type configuration
 changes for new technologies until a global update naturally occurs.
+<!-- </prose.usage-notes> -->
 
 <!-- <prose.accessibility-concerns> -->
 Accessibility concerns
