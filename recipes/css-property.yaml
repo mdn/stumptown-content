@@ -2,15 +2,14 @@ body:
 - prose.short-description
 - meta.interactive-example
 - prose.overview
-- meta.attributes
-- prose.usage-notes
+- prose.syntax
+- meta.formal-syntax
 - prose.*
 - prose.accessibility-concerns?
 - meta.examples
 - meta.info-box:
-    - meta.api
-    - meta.permitted-aria-roles
-    - meta.tag_omission
+    - meta.animatable
+    - meta.initial-value
 - meta.specifications
 - meta.browser-compatibility
 - prose.see-also

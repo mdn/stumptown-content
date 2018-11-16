@@ -2,10 +2,9 @@ title: '<video>: The Video Embed element'
 mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/video
 tags:
     group: Image and multimedia
-info:
-    api: HTMLVideoElement
-    permitted-aria-roles: application
-    tag_omission: none
+api: HTMLVideoElement
+permitted-aria-roles: application
+tag_omission: none
 interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/video.html
 specifications:
     - link: https://html.spec.whatwg.org/multipage/embedded-content.html#the-video-element
