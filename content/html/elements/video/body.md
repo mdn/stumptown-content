@@ -1,9 +1,9 @@
-<!-- <prose.short-description> -->
+<!-- <short-description> -->
 The **HTML Video element** (**`<video>`**) embeds a media player which
 supports video playback into the document.
-<!-- </prose.short-description> --> 
+<!-- </short-description> -->
 
-<!-- <prose.overview> -->
+<!-- <overview> -->
 You can use `<video>` for audio content as well, but the [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
 element may provide a more appropriate user experience.
 
@@ -56,9 +56,9 @@ A good general source of information on using HTML `<video>` is the
 [Video and audio
 content](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Video_and_audio_content)
 beginner's tutorial.
-<!-- </prose.overview> -->
+<!-- </overview> -->
 
-<!-- <prose.usage-notes> -->
+<!-- <usage-notes> -->
 Usage notes
 -----------
 
@@ -106,9 +106,9 @@ AddType video/webm .webm
 
 Your web host may provide an easy interface to MIME type configuration
 changes for new technologies until a global update naturally occurs.
-<!-- </prose.usage-notes> -->
+<!-- </usage-notes> -->
 
-<!-- <prose.accessibility-concerns> -->
+<!-- <accessibility-concerns> -->
 Accessibility concerns
 ----------------------
 
@@ -133,7 +133,7 @@ This includes emotion and tone:
 00:03:14 --> 00:03:18
 [Dramatic rock music]
 
-15 
+15
 00:03:19 --> 00:03:21
 [whispering] What's that off in the distance?
 
@@ -162,9 +162,9 @@ setting](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API#Cue_setting
     2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-av-only-alt.html)
 -   [Understanding Success Criterion 1.2.2 | W3C Understanding WCAG
     2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-captions.html)
-<!-- </prose.accessibility-concerns> -->
+<!-- </accessibility-concerns> -->
 
-<!-- <prose.see-also> -->
+<!-- <see-also> -->
 See also
 --------
 
@@ -179,4 +179,4 @@ See also
     canvas](https://developer.mozilla.org/en-US/docs/Manipulating_video_using_canvas)
 -   [Configuring servers for Ogg
     medi](https://developer.mozilla.org/en-US/docs/Configuring_servers_for_Ogg_media)
-<!-- <prose.see-also> -->
+<!-- <see-also> -->
