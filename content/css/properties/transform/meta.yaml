@@ -2,8 +2,9 @@ title: transform
 mdn-url: https://developer.mozilla.org/docs/Web/CSS/transform
 recipe: css-property
 interactive-example: https://interactive-examples.mdn.mozilla.net/pages/css/transform.html
-formal-syntax: transform
-css-info: transform
+formal-syntax: '[ <length> | <percentage> | auto ]{1,4}'
+animatable: true
+initial-value: none
 specifications:
     - link: https://drafts.csswg.org/css-transforms-2/#transform-functions
       name: CSS Transforms Level 2

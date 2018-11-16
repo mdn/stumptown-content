@@ -5,9 +5,11 @@ body:
 - prose.syntax
 - meta.formal-syntax
 - prose.*
-- prose.accessibility-concerns
+- prose.accessibility-concerns?
 - meta.examples
-- meta.css-info
+- meta.info-box:
+    - meta.animatable
+    - meta.initial-value
 - meta.specifications
 - meta.browser-compatibility
 - prose.see-also

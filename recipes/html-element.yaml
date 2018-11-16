@@ -5,9 +5,12 @@ body:
 - meta.attributes
 - prose.usage-notes
 - prose.*
-- prose.accessibility-concerns
+- prose.accessibility-concerns?
 - meta.examples
-- meta.info
+- meta.info-box:
+    - meta.api
+    - meta.permitted-aria-roles
+    - meta.tag_omission
 - meta.specifications
 - meta.browser-compatibility
 - prose.see-also
