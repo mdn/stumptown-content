@@ -1,7 +1,5 @@
 ---
-name: preload
-type: String
-values: none, metadata, auto, empty string
+browser-compatibility: html.elements.video.preload
 ---
 
 # preload
@@ -10,26 +8,29 @@ This enumerated attribute is intended to provide a hint to the browser about wha
 
  If not set, its default value is browser-defined (i.e. each browser may have its own default value). The spec advises it to be set to `metadata`.
 
+## Type
+
+String
+
 ## Values
 
-- `none`
+### `none`
 
-    Indicates that the video should not be preloaded.
+Indicates that the video should not be preloaded.
 
-- `metadata`
+### `metadata`
 
-    Indicates that only video metadata (e.g. length) is fetched.
+Indicates that only video metadata (e.g. length) is fetched.
   
-- `auto`
+### `auto`
 
-    Indicates that the whole video file can be downloaded, even if the user is not expected to use it.
+Indicates that the whole video file can be downloaded, even if the user is not expected to use it.
 
-- _empty string_ 
+### empty string
 
-    Synonym of the `auto` value.
+Synonym of the `auto` value.
 
- ## Notes
+## Notes
 
  - The `autoplay` attribute has precedence over `preload`. If `autoplay` is specified, the browser would obviously need to start downloading the video for playback.
  - The specification does not force the browser to follow the value of this attribute; it is a mere hint.
- 

@@ -2,27 +2,29 @@ title: '<video>: The Video Embed element'
 mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/video
 tags:
     group: Image and multimedia
-recipe:
-    name: html-element
-    references:
-        interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/video.html
-        specifications:
-            - link: https://html.spec.whatwg.org/multipage/embedded-content.html#the-video-element
-              status: Living Standard
-        browser-compatibility: html.elements.video
-        examples:
-            - title: Simple video example
-              html-source: examples/simple-video-example/example.html
-              description: examples/simple-video-example/description.md
-              size:
-                  width: 640
-                  height: 370
-            - title: Multiple sources example
-              html-source: examples/multiple-sources-example/example.html
-              description: examples/multiple-sources-example/description.md
-              size:
-                  width: 640
-                  height: 370
-        attributes:
-            element-specific: ./attributes
-            global-attributes: /html/global_attributes
+info:
+    api: HTMLVideoElement
+    permitted-aria-roles: application
+    tag_omission: none
+interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/video.html
+specifications:
+    - link: https://html.spec.whatwg.org/multipage/embedded-content.html#the-video-element
+      status: Living Standard
+browser-compatibility: html.elements.video
+examples:
+    - title: Simple video example
+      html-source: examples/simple-video-example/example.html
+      description: examples/simple-video-example/description.md
+      size:
+          width: 640
+          height: 370
+    - title: Multiple sources example
+      html-source: examples/multiple-sources-example/example.html
+      description: examples/multiple-sources-example/description.md
+      size:
+          width: 640
+          height: 370
+attributes:
+    element-specific: ./attributes
+    global-attributes: /content/html/global_attributes
+recipe: html-element
