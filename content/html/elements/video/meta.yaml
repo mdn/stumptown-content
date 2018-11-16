@@ -12,14 +12,14 @@ recipe:
         browser-compatibility: html.elements.video
         examples:
             - title: Simple video example
-              html-source: live-examples/simple-video-example/example.html
-              description: live-examples/simple-video-example/description.md
+              html-source: examples/simple-video-example/example.html
+              description: examples/simple-video-example/description.md
               size:
                   width: 640
                   height: 370
             - title: Multiple sources example
-              html-source: live-examples/multiple-sources-example/example.html
-              description: live-examples/multiple-sources-example/description.md
+              html-source: examples/multiple-sources-example/example.html
+              description: examples/multiple-sources-example/description.md
               size:
                   width: 640
                   height: 370
