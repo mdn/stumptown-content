@@ -179,4 +179,4 @@ See also
     canvas](https://developer.mozilla.org/en-US/docs/Manipulating_video_using_canvas)
 -   [Configuring servers for Ogg
     medi](https://developer.mozilla.org/en-US/docs/Configuring_servers_for_Ogg_media)
-<!-- <see-also> -->
+<!-- </see-also> -->
