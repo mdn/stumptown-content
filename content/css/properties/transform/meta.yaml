@@ -1,0 +1,22 @@
+title: transform
+mdn-url: https://developer.mozilla.org/docs/Web/CSS/transform
+recipe:
+    name: css-property
+    references:
+        interactive-example: https://interactive-examples.mdn.mozilla.net/pages/css/transform.html
+        formal-syntax: transform
+        css-info: transform
+        specifications:
+            - link: https://drafts.csswg.org/css-transforms-2/#transform-functions
+              name: CSS Transforms Level 2
+              status: Editor's Draft
+            - link: https://drafts.csswg.org/css-transforms/#transform-property
+              name: CSS Transforms Level 1
+              status: Working Draft
+        browser-compatibility: css.properties.transform
+        examples:
+            - html-source: examples/simple-transform-example/example.html
+              css-source: examples/simple-transform-example/example.css
+              size:
+                  width: 400
+                  height: 160
