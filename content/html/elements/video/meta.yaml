@@ -23,3 +23,6 @@ recipe:
               size:
                   width: 640
                   height: 370
+        attributes:
+            element-specific: ./attributes
+            global-attributes: /html/global_attributes
