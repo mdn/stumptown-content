@@ -21,7 +21,7 @@ Indicates that the video should not be preloaded.
 ### `metadata`
 
 Indicates that only video metadata (e.g. length) is fetched.
-  
+
 ### `auto`
 
 Indicates that the whole video file can be downloaded, even if the user is not expected to use it.
@@ -32,5 +32,5 @@ Synonym of the `auto` value.
 
 ## Notes
 
- - The `autoplay` attribute has precedence over `preload`. If `autoplay` is specified, the browser would obviously need to start downloading the video for playback.
- - The specification does not force the browser to follow the value of this attribute; it is a mere hint.
+- The `autoplay` attribute has precedence over `preload`. If `autoplay` is specified, the browser would obviously need to start downloading the video for playback.
+- The specification does not force the browser to follow the value of this attribute; it is a mere hint.

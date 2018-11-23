@@ -27,10 +27,8 @@ This helps people navigating with the aid of assistive technology such
 as a screen reader, people experiencing low vision conditions, and
 people with cognitive concerns.
 
--   [MDN Adding a caption to your table with
-    \<caption\>](/en-US/docs/Learn/HTML/Tables/Advanced#Adding_a_caption_to_your_table_with_%3Ccaption%3E)
--   [Caption & Summary • Tables • W3C WAI Web Accessibility
-    Tutorials](https://www.w3.org/WAI/tutorials/tables/caption-summary/)
+- [MDN Adding a caption to your table with <caption>](/en-US/docs/Learn/HTML/Tables/Advanced#Adding_a_caption_to_your_table_with_%3Ccaption%3E)
+- [Caption & Summary • Tables • W3C WAI Web Accessibility Tutorials](https://www.w3.org/WAI/tutorials/tables/caption-summary/)
 
 ### Scoping rows and columns
 
@@ -74,15 +72,14 @@ Providing a declaration of `scope="row"` on a
 [`<td>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td)
 element will help describe that the cell is the first in a row.
 
--   [MDN Tables for visually impaired
-    users](/en-US/docs/Learn/HTML/Tables/Advanced#Tables_for_visually_impaired_users)
--   [Tables with two headers • Tables • W3C WAI Web Accessibility
-    Tutorials](https://www.w3.org/WAI/tutorials/tables/two-headers/)
--   [Tables with irregular headers • Tables • W3C WAI Web Accessibility
-    Tutorials](https://www.w3.org/WAI/tutorials/tables/irregular/)
--   [H63: Using the scope attribute to associate header cells and data
-    cells in data tables \| W3C Techniques for WCAG
-    2.0](https://www.w3.org/TR/WCAG20-TECHS/H63.html)
+- [MDN Tables for visually impaired users](https://developer.mozilla.org/en-US/docs/Learn/HTML/Tables/Advanced#Tables_for_visually_impaired_users)
+- [Tables with two headers • Tables • W3C WAI Web Accessibility
+  Tutorials](https://www.w3.org/WAI/tutorials/tables/two-headers/)
+- [Tables with irregular headers • Tables • W3C WAI Web Accessibility
+  Tutorials](https://www.w3.org/WAI/tutorials/tables/irregular/)
+- [H63: Using the scope attribute to associate header cells and data
+  cells in data tables \| W3C Techniques for WCAG
+  2.0](https://www.w3.org/TR/WCAG20-TECHS/H63.html)
 
 ### Complicated tables
 
@@ -100,14 +97,13 @@ If the table cannot be broken apart, use a combination of the `id` and
 `headers` attributes to programmatically associate each table cell with
 the header(s) the cell is associated with.
 
--   [MDN Tables for visually impaired
-    users](/en-US/docs/Learn/HTML/Tables/Advanced#Tables_for_visually_impaired_users)
--   [Tables with multi-level headers • Tables • W3C WAI Web
-    Accessibility
-    Tutorials](https://www.w3.org/WAI/tutorials/tables/multi-level/)
--   [H43: Using id and headers attributes to associate data cells with
-    header cells in data tables \| Techniques for W3C WCAG
-    2.0](https://www.w3.org/TR/WCAG20-TECHS/H43.html)
+- [MDN Tables for visually impaired users](https://developer.mozilla.org/en-US/docs/Learn/HTML/Tables/Advanced#Tables_for_visually_impaired_users)
+- [Tables with multi-level headers • Tables • W3C WAI Web
+  Accessibility
+  Tutorials](https://www.w3.org/WAI/tutorials/tables/multi-level/)
+- [H43: Using id and headers attributes to associate data cells with
+  header cells in data tables \| Techniques for W3C WCAG
+  2.0](https://www.w3.org/TR/WCAG20-TECHS/H43.html)
 
 <!-- </accessibility-concerns> -->
 
@@ -115,33 +111,32 @@ the header(s) the cell is associated with.
 See also
 --------
 
--   Other table-related HTML Elements:
-    [`<caption>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption),
-    [`<col>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/col),
-    [`<colgroup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/colgroup),
-    [`<tbody>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tbody),
-    [`<td>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td),
-    [`<tfoot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot),
-    [`<th>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th),
-    [`<thead>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead),
-    [`<tr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr);
--   CSS properties that may be especially useful to style the `<table>`
-    element:
-    -   [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width)
-        to control the width of the table;
-    -   [`border`](https://developer.mozilla.org/en-US/docs/Web/CSS/border),
-        [`border-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-style),
-        [`border-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-color),
-        [`border-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-width),
-        [`border-collapse`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-collapse),
-        [`border-spacing`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-spacing)
-        to control the aspect of cell borders, rules and frame;
-    -   [`margin`](https://developer.mozilla.org/en-US/docs/Web/CSS/margin)
-        and
-        [`padding`](https://developer.mozilla.org/en-US/docs/Web/CSS/padding)
-        to style the individual cell content;
-    -   [`text-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align)
-        and
-        [`vertical-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align)
-        to define the alignment of text and cell content.
+- Other table-related HTML Elements:
+  [`<caption>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption),
+  [`<col>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/col),
+  [`<colgroup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/colgroup),
+  [`<tbody>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tbody),
+  [`<td>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td),
+  [`<tfoot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot),
+  [`<th>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th),
+  [`<thead>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead),
+  [`<tr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr);
+- CSS properties that may be especially useful to style the `<table>` element:
+    - [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width)
+      to control the width of the table;
+    - [`border`](https://developer.mozilla.org/en-US/docs/Web/CSS/border),
+      [`border-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-style),
+      [`border-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-color),
+      [`border-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-width),
+      [`border-collapse`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-collapse),
+      [`border-spacing`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-spacing)
+      to control the aspect of cell borders, rules and frame;
+    - [`margin`](https://developer.mozilla.org/en-US/docs/Web/CSS/margin)
+      and
+      [`padding`](https://developer.mozilla.org/en-US/docs/Web/CSS/padding)
+      to style the individual cell content;
+    - [`text-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align)
+      and
+      [`vertical-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align)
+      to define the alignment of text and cell content.
 <!-- </see-also> -->

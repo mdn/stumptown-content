@@ -1,0 +1,13 @@
+language: generic
+
+services:
+  - docker
+
+git:
+  depth: false
+
+before_install:
+  - docker pull node:10.13
+
+script:
+  - docker run --volume ${TRAVIS_BUILD_DIR}:/app --workdir /app node:10.13 ./scripts/lint.sh
