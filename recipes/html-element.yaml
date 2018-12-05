@@ -11,6 +11,5 @@ body:
     - meta.api
     - meta.permitted-aria-roles
     - meta.tag_omission
-- meta.specifications
 - meta.browser-compatibility
 - prose.see-also

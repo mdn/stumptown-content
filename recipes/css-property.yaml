@@ -10,6 +10,5 @@ body:
 - meta.info-box:
     - meta.animatable
     - meta.initial-value
-- meta.specifications
 - meta.browser-compatibility
 - prose.see-also

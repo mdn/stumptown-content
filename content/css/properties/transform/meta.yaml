@@ -5,13 +5,6 @@ interactive-example: https://interactive-examples.mdn.mozilla.net/pages/css/tran
 formal-syntax: '[ <length> | <percentage> | auto ]{1,4}'
 animatable: true
 initial-value: none
-specifications:
-    - link: https://drafts.csswg.org/css-transforms-2/#transform-functions
-      name: CSS Transforms Level 2
-      status: Editor's Draft
-    - link: https://drafts.csswg.org/css-transforms/#transform-property
-      name: CSS Transforms Level 1
-      status: Working Draft
 browser-compatibility: css.properties.transform
 examples:
     - html-source: examples/simple-transform-example/example.html
