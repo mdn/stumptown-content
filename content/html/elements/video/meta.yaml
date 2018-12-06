@@ -11,8 +11,6 @@ examples:
     - /content/html/examples/video-simple-video-example
     - /content/html/examples/video-multiple-sources-example
 attributes:
-    element-specific:
-        - /content/html/attributes/crossorigin
-        - /content/html/attributes/src
+    element-specific: ./attributes
     global: /content/html/global_attributes
 recipe: html-element

@@ -13,24 +13,6 @@ browser-compatibility: html.elements.iframe
 examples:
     - /content/html/examples/iframe-simple-maps-example
 attributes:
-    element-specific:
-        - /content/html/attributes/align
-        - /content/html/attributes/allow
-        - /content/html/attributes/allowfullscreen
-        - /content/html/attributes/allowpaymentrequest
-        - /content/html/attributes/csp
-        - /content/html/attributes/frameborder
-        - /content/html/attributes/height-iframe
-        - /content/html/attributes/importance
-        - /content/html/attributes/longdesc
-        - /content/html/attributes/marginheight
-        - /content/html/attributes/marginwidth
-        - /content/html/attributes/name
-        - /content/html/attributes/referrerpolicy
-        - /content/html/attributes/sandbox
-        - /content/html/attributes/scrolling
-        - /content/html/attributes/src-iframe
-        - /content/html/attributes/srcdoc
-        - /content/html/attributes/width-iframe
+    element-specific: ./attributes
     global: /content/html/global_attributes
 recipe: html-element
