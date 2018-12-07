@@ -31,26 +31,23 @@ the browser will then use the first one it understands:
 
 Other usage notes:
 
--   If you don't specify the `controls` attribute, the video won't
-    include the browser's default controls; you can create your own
-    custom controls using JavaScript and the
-    [`HTMLMediaElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement) API. See [Creating a cross-browser
-    video
-    player](https://developer.mozilla.org/en-US/docs/Web/Apps/Fundamentals/Audio_and_video_delivery/cross_browser_video_player)
-    for more details.
--   To allow precise control over your video (and audio) content,
-    `HTMLMediaElement`s fire many different
-    [events](https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Media_events).
--   You can use the [`object-position`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-position) property to adjust
-    the positioning of the video within the element's frame, and the
-    [`object-fit`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) property to control how the video's size
-    is adjusted to fit within the frame.
--   To show subtitles/captions along with your video, you can use some
-    JavaScript along with the [`<track>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track) element and the
-    [WebVTT](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API) format. See [Adding
-    captions and subtitles to HTML5
-    video](https://developer.mozilla.org/en-US/docs/Web/Apps/Fundamentals/Audio_and_video_delivery/Adding_captions_and_subtitles_to_HTML5_video)
-    for more information.
+- If you don't specify the `controls` attribute, the video won't
+  include the browser's default controls; you can create your own
+  custom controls using JavaScript and the
+  [`HTMLMediaElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement) API. See [Creating a cross-browser video player](https://developer.mozilla.org/en-US/docs/Web/Apps/Fundamentals/Audio_and_video_delivery/cross_browser_video_player) for more details.
+- To allow precise control over your video (and audio) content,
+  `HTMLMediaElement`s fire many different
+  [events](https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Media_events).
+- You can use the [`object-position`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-position) property to adjust
+  the positioning of the video within the element's frame, and the
+  [`object-fit`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) property to control how the video's size
+  is adjusted to fit within the frame.
+- To show subtitles/captions along with your video, you can use some
+  JavaScript along with the [`<track>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track) element and the
+  [WebVTT](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API) format. See [Adding
+  captions and subtitles to HTML5
+  video](https://developer.mozilla.org/en-US/docs/Web/Apps/Fundamentals/Audio_and_video_delivery/Adding_captions_and_subtitles_to_HTML5_video)
+  for more information.
 
 A good general source of information on using HTML `<video>` is the
 [Video and audio
@@ -150,33 +147,33 @@ Captions should not obstruct the main subject of the video. They can be
 positioned using [the `align` VTT cue
 setting](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API#Cue_settings).
 
--   [MDN Subtitles and closed caption —
-    Plugins](https://developer.mozilla.org/en-US/docs/Plugins/Flash_to_HTML5/Video/Subtitles_captions)
--   [Web Video Text Tracks Format
-    (WebVTT)](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API)
--   [WebAIM: Captions, Transcripts, and Audio
-    Descriptions](https://webaim.org/techniques/captions/)
--   [MDN Understanding WCAG, Guideline 1.2
-    explanations](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable#Guideline_1.2_—_Providing_text_alternatives_for_time-based_media)
--   [Understanding Success Criterion 1.2.1 | W3C Understanding WCAG
-    2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-av-only-alt.html)
--   [Understanding Success Criterion 1.2.2 | W3C Understanding WCAG
-    2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-captions.html)
+- [MDN Subtitles and closed caption —
+  Plugins](https://developer.mozilla.org/en-US/docs/Plugins/Flash_to_HTML5/Video/Subtitles_captions)
+- [Web Video Text Tracks Format
+  (WebVTT)](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API)
+- [WebAIM: Captions, Transcripts, and Audio
+  Descriptions](https://webaim.org/techniques/captions/)
+- [MDN Understanding WCAG, Guideline 1.2
+  explanations](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable#Guideline_1.2_—_Providing_text_alternatives_for_time-based_media)
+- [Understanding Success Criterion 1.2.1 | W3C Understanding WCAG
+  2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-av-only-alt.html)
+- [Understanding Success Criterion 1.2.2 | W3C Understanding WCAG
+  2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-captions.html)
 <!-- </accessibility-concerns> -->
 
 <!-- <see-also> -->
 See also
 --------
 
--   [Media formats supported by the audio and video
-    elements](https://developer.mozilla.org/en-US/docs/Media_formats_supported_by_the_audio_and_video_elements)
--   Positioning and sizing the picture within its frame:
-    `object-position` and `object-fit`
--   `<audio>`
--   [Using HTML5 audio and
-    video](https://developer.mozilla.org/en-US/docs/Using_HTML5_audio_and_video)
--   [Manipulating video using
-    canvas](https://developer.mozilla.org/en-US/docs/Manipulating_video_using_canvas)
--   [Configuring servers for Ogg
-    medi](https://developer.mozilla.org/en-US/docs/Configuring_servers_for_Ogg_media)
+- [Media formats supported by the audio and video
+  elements](https://developer.mozilla.org/en-US/docs/Media_formats_supported_by_the_audio_and_video_elements)
+- Positioning and sizing the picture within its frame:
+  `object-position` and `object-fit`
+- `<audio>`
+- [Using HTML5 audio and
+  video](https://developer.mozilla.org/en-US/docs/Using_HTML5_audio_and_video)
+- [Manipulating video using
+  canvas](https://developer.mozilla.org/en-US/docs/Manipulating_video_using_canvas)
+- [Configuring servers for Ogg
+  media](https://developer.mozilla.org/en-US/docs/Configuring_servers_for_Ogg_media)
 <!-- </see-also> -->
