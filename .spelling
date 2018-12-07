@@ -1,0 +1,54 @@
+# markdown-spellcheck spelling configuration file
+# Format - lines beginning # are comments
+# global dictionary is at the start, file overrides afterwards
+# one word per line, to define a file override use ' - filename'
+# where filename is relative to this configuration file
+autoplay
+crossorigin
+CORS-enabled
+i.e.
+X.509
+intrinsicsize
+playsinline
+fullscreen
+preload
+preloaded
+metadata
+e.g.
+src
+WebVTT
+viewport
+Ogg
+Theora
+ogg
+ogm
+ogv
+mime.types
+WebM
+webm
+AddType
+WebAIM
+codecs
+allowfullscreen
+allowpaymentrequest
+csp
+frameborder
+longdesc
+marginheight
+marginwidth
+referrerpolicy
+srcdoc
+targetable
+TLS-protected
+iframe
+scrollbar
+bgcolor
+cellpadding
+cellspacing
+navigations
+sandboxing
+sandboxed
+popups
+popup
+assistive
+programmatically
