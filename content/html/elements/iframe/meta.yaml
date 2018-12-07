@@ -11,7 +11,7 @@ tag_omission: none
 interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/iframe.html
 browser-compatibility: html.elements.iframe
 examples:
-    - /content/html/examples/iframe-simple-maps-example
+    - examples/simple-maps-example
 attributes:
     element-specific: ./attributes
     global: /content/html/global_attributes

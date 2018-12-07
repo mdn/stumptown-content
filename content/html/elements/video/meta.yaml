@@ -8,8 +8,8 @@ tag_omission: none
 interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/video.html
 browser-compatibility: html.elements.video
 examples:
-    - /content/html/examples/video-simple-video-example
-    - /content/html/examples/video-multiple-sources-example
+    - examples/simple-example
+    - examples/multiple-sources-example
 attributes:
     element-specific: ./attributes
     global: /content/html/global_attributes
