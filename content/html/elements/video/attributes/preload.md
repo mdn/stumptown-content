@@ -6,11 +6,11 @@ browser-compatibility: html.elements.video.preload
 
 This enumerated attribute is intended to provide a hint to the browser about what the author thinks will lead to the best user experience with regards to what content is loaded before the video is played.
 
- If not set, its default value is browser-defined (i.e. each browser may have its own default value). The spec advises it to be set to `metadata`.
+If not set, its default value is browser-defined (i.e. each browser may have its own default value). The spec advises it to be set to `metadata`.
 
-## Type
+The `autoplay` attribute has precedence over `preload`. If `autoplay` is specified, the browser would obviously need to start downloading the video for playback.
 
-String
+The specification does not force the browser to follow the value of this attribute; it is a mere hint.
 
 ## Values
 
@@ -30,7 +30,6 @@ Indicates that the whole video file can be downloaded, even if the user is not e
 
 Synonym of the `auto` value.
 
-## Notes
+## Type
 
-- The `autoplay` attribute has precedence over `preload`. If `autoplay` is specified, the browser would obviously need to start downloading the video for playback.
-- The specification does not force the browser to follow the value of this attribute; it is a mere hint.
+String

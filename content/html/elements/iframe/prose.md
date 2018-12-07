@@ -1,7 +1,7 @@
 <!-- <short-description> -->
-[The **HTML Inline Frame element (`<iframe>`)** represents a nested
+The **HTML Inline Frame element (`<iframe>`)** represents a nested
 [browsing context](https://developer.mozilla.org/en-US/docs/Glossary/Browsing_context), embedding
-another HTML page into the current one.]
+another HTML page into the current one.
 <!-- </short-description> -->
 
 <!-- <overview> -->
