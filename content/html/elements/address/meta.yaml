@@ -1,0 +1,15 @@
+title: '<address>: The Contact Address element'
+mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/address
+tags:
+    group: Content sectioning
+api: HTMLElement
+permitted-aria-roles:
+    - none
+tag_omission: none
+interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/address.html
+browser-compatibility: html.elements.address
+examples:
+    - examples/simple-address-example
+attributes:
+    global: /content/html/global_attributes
+recipe: html-element
