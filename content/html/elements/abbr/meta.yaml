@@ -10,9 +10,9 @@ interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/a
 browser-compatibility: html.elements.abbr
 examples:
     - examples/marking-up-an-abbreviation
-    - styling-an abbreviation
-    - providing-an-expansion
-    - defining-an-abbreviation
+    - examples/styling-an abbreviation
+    - examples/providing-an-expansion
+    - examples/defining-an-abbreviation
 attributes:
     global: /content/html/global_attributes
 recipe: html-element
