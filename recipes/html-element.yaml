@@ -2,6 +2,7 @@ body:
 - prose.short-description
 - meta.interactive-example
 - prose.overview
+- prose.attributes-text?
 - meta.attributes
 - prose.usage-notes
 - prose.*
