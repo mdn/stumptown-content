@@ -1,0 +1,18 @@
+title: '<abbr>: The Abbreviation element'
+mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/abbr
+tags:
+    group: Inline text semantics
+api: HTMLElement
+permitted-aria-roles:
+    - any
+tag_omission: none
+interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/abbr.html
+browser-compatibility: html.elements.abbr
+examples:
+    - examples/marking-up-an-abbreviation
+    - styling-an abbreviation
+    - providing-an-expansion
+    - defining-an-abbreviation
+attributes:
+    global: /content/html/global_attributes
+recipe: html-element
