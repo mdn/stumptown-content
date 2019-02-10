@@ -10,6 +10,6 @@ A Boolean attribute; if specified, the video automatically begins to play back a
 
 To disable video autoplay, `autoplay="false"` will not work; the video will autoplay if the attribute is there in the `<video>` tag at all. To remove autoplay the attribute needs to be removed altogether.
 
- ## Type
+## Type
 
- Boolean
+Boolean
