@@ -1,0 +1,11 @@
+---
+browser-compatibility: html.elements.base.href
+---
+
+# autoplay
+
+The base URL to be used throughout the document for relative URL addresses. If this attribute is specified, this element must come before any other elements with attributes whose values are URLs. Absolute and relative URLs are allowed.
+
+## Type
+
+URL
