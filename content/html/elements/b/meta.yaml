@@ -1,0 +1,15 @@
+title: '<b>: The Bring Attention To element'
+mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/b
+tags:
+    group: Inline text semantics
+api: HTMLElement
+permitted-aria-roles:
+    - any
+tag_omission: none
+interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/b.html
+browser-compatibility: html.elements.b
+examples:
+    - examples/simple-b-example
+attributes:
+    global: /content/html/global_attributes
+recipe: html-element
