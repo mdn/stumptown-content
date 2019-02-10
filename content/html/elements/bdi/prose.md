@@ -70,8 +70,7 @@ using `<bdi>`, but its semantics are less clear.
 The `dir` attribute behaves differently than normal: it defaults to `auto`,
 meaning its value is never inherited from the parent element. This means
 that unless you specify a value of either `"rtl"` or `"ltr"` for `dir`,
-the [user
-agent](/en-US/docs/Glossary/user_agent "user agent: A user agent is a computer program representing a person, for example, a browser in a Web context."){.glossaryLink}
+the [user agent](/en-US/docs/Glossary/user_agent)
 will determine the correct directionality to use based on the contents
 of the `<bdi>`.
 <!-- </attributes-text> -->
