@@ -1,5 +1,5 @@
 ---
-browser-compatibility: html.elements.audio.cite
+browser-compatibility: html.elements.blockquote.cite
 ---
 
 # cite
