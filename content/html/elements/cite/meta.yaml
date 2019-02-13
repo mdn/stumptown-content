@@ -1,0 +1,13 @@
+title: '<cite>: The Citation element'
+mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/cite
+tags:
+    group: Text content
+api: HTMLElement
+permitted-aria-roles: any
+tag_omission: none
+browser-compatibility: html.elements.cite
+examples:
+    - examples/simple-example
+attributes:
+    global: /content/html/global_attributes
+recipe: html-element
