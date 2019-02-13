@@ -1,7 +1,7 @@
 title: '<caption>: The Table Caption element'
 mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/caption
 tags:
-    group: Scripting
+    group: Table content
 api: HTMLTableCaptionElement
 permitted-aria-roles: none
 tag_omission:
