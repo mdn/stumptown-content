@@ -1,0 +1,14 @@
+title: '<colgroup>'
+mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/colgroup
+tags:
+    group: Table content
+api: HTMLTableColElement
+permitted-aria-roles: none
+tag_omission:
+browser-compatibility: html.elements.colgroup
+examples:
+    - examples/simple-example
+attributes:
+    element-specific: ./attributes
+    global: /content/html/global_attributes
+recipe: html-element
