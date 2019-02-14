@@ -1,0 +1,14 @@
+title: '<data>'
+mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/data
+tags:
+    group: Inline text semantics
+api: HTMLDataElement
+permitted-aria-roles:
+tag_omission: none
+browser-compatibility: html.elements.data
+examples:
+    - examples/simple-example
+attributes:
+    element-specific: ./attributes
+    global: /content/html/global_attributes
+recipe: html-element
