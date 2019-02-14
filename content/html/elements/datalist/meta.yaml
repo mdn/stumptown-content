@@ -1,0 +1,13 @@
+title: '<datalist>'
+mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/datalist
+tags:
+    group: Forms
+api: HTMLDataListElement
+permitted-aria-roles: none
+tag_omission: none
+browser-compatibility: html.elements.datalist
+examples:
+    - examples/simple-example
+attributes:
+    global: /content/html/global_attributes
+recipe: html-element
