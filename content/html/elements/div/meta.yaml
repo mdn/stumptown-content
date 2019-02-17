@@ -1,0 +1,14 @@
+title: '<div>: The Content Division element'
+mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/div
+tags:
+    group: Text content
+api: HTMLDivElement
+permitted-aria-roles: any
+tag_omission: none
+browser-compatibility: html.elements.div
+examples:
+    - examples/simple-example
+    - examples/styled-example
+attributes:
+    global: /content/html/global_attributes
+recipe: html-element
