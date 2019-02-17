@@ -1,0 +1,13 @@
+title: '<dt>: The Description Term element'
+mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/dt
+tags:
+    group: Text content
+api: HTMLElement
+permitted-aria-roles: none
+tag_omission:
+browser-compatibility: html.elements.dt
+examples:
+    - examples/link-to-examples
+attributes:
+    global: /content/html/global_attributes
+recipe: html-element
