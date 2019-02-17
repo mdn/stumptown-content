@@ -1,0 +1,15 @@
+title: '<dfn>: The Definition element'
+mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/dfn
+tags:
+    group: Inline text semantics
+api: HTMLElement
+permitted-aria-roles: any
+tag_omission: none
+browser-compatibility: html.elements.dfn
+examples:
+    - examples/basic-identification
+    - examples/links-to-definitions
+    - examples/abbreviations-and-definitions
+attributes:
+    global: /content/html/global_attributes
+recipe: html-element
