@@ -1,0 +1,19 @@
+title: '<dl>: The Description List element'
+mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/dl
+tags:
+    group: Text content
+api: HTMLDListElement
+permitted-aria-roles:
+  - group
+  - presentation
+tag_omission: none
+browser-compatibility: html.elements.dl
+examples:
+    - examples/single-term-and-description
+    - examples/multiple-terms-single-description
+    - examples/single-term-multiple-descriptions
+    - examples/metadata
+    - examples/wrapping-name-value-groups
+attributes:
+    global: /content/html/global_attributes
+recipe: html-element
