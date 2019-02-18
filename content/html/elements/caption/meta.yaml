@@ -5,6 +5,7 @@ tags:
 api: HTMLTableCaptionElement
 permitted-aria-roles: none
 tag_omission:
+interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/caption.html
 browser-compatibility: html.elements.caption
 examples:
     - examples/simple-example

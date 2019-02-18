@@ -7,6 +7,7 @@ permitted-aria-roles:
   - group
   - presentation
 tag_omission: none
+interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/dl.html
 browser-compatibility: html.elements.dl
 examples:
     - examples/single-term-and-description

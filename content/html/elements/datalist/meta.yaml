@@ -5,6 +5,7 @@ tags:
 api: HTMLDataListElement
 permitted-aria-roles: none
 tag_omission: none
+interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/datalist.html
 browser-compatibility: html.elements.datalist
 examples:
     - examples/simple-example

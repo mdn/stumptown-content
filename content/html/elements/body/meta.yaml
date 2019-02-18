@@ -4,7 +4,7 @@ tags:
     group: Sectioning root
 api: HTMLBodyElement
 permitted-aria-roles: none
-tag_omission: 
+tag_omission:
 browser-compatibility: html.elements.body
 examples:
     - examples/simple-example

@@ -5,6 +5,7 @@ tags:
 api: HTMLTableColElement
 permitted-aria-roles: none
 tag_omission:
+interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/colgroup.html
 browser-compatibility: html.elements.colgroup
 examples:
     - examples/simple-example

@@ -5,6 +5,7 @@ tags:
 api: HTMLDataElement
 permitted-aria-roles:
 tag_omission: none
+interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/data.html
 browser-compatibility: html.elements.data
 examples:
     - examples/simple-example

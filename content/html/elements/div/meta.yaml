@@ -5,6 +5,7 @@ tags:
 api: HTMLDivElement
 permitted-aria-roles: any
 tag_omission: none
+interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/div.html
 browser-compatibility: html.elements.div
 examples:
     - examples/simple-example
