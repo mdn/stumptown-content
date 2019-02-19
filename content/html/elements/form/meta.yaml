@@ -1,17 +1,16 @@
-title: '<fieldset>: The Field Set element'
-mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/fieldset
+title: '<form>'
+mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/form
 tags:
     group: Forms
-api: HTMLFieldSetElement
+api: HTMLFormElement
 permitted-aria-roles:
     - group
     - presentation
 tag_omission: none
-interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/fieldset.html
-browser-compatibility: html.elements.fieldset
+interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/form.html
+browser-compatibility: html.elements.form
 examples:
     - examples/simple-example
-    - examples/disabled-fieldset
 attributes:
     element-specific: ./attributes
     global: /content/html/global_attributes
