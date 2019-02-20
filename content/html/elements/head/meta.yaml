@@ -1,0 +1,13 @@
+title: '<head>: The Document Metadata (Header) element'
+mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/head
+tags:
+    group: Document metadata
+api: HTMLHeadElement
+permitted-aria-roles: none
+tag_omission:
+browser-compatibility: html.elements.head
+examples:
+    - examples/simple-example
+attributes:
+    global: /content/html/global_attributes
+recipe: html-element
