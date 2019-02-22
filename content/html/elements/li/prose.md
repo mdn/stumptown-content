@@ -1,0 +1,52 @@
+<!-- <short-description> -->
+The **HTML `<li>` element** is used to represent an item in a list. It
+must be contained in a parent element: an ordered list
+([`<ol>`](/en-US/docs/Web/HTML/Element/ol)),
+an unordered list
+([`<ul>`](/en-US/docs/Web/HTML/Element/ul)),
+or a menu
+([`<menu>`](/en-US/docs/Web/HTML/Element/menu)).
+In menus and unordered lists, list items are usually displayed using
+bullet points. In ordered lists, they are usually displayed with an
+ascending counter on the left, such as a number or letter.
+<!-- </short-description> -->
+
+<!-- <overview> -->
+<!-- </overview> -->
+
+<!-- <usage-notes> -->
+<!-- </usage-notes> -->
+
+<!-- <styling-with-css> -->
+Styling with CSS
+----------------
+
+Use the
+[`list-style-image`](/en-US/docs/Web/CSS/list-style-image),
+[`list-style-position`](/en-US/docs/Web/CSS/list-style-position), and
+[`list-style-type`](/en-US/docs/Web/CSS/list-style-type)
+properties to style list items.
+<!-- </styling-with-css> -->
+
+<!-- <accessibility-concerns> -->
+<!-- </accessibility-concerns> -->
+
+<!-- <see-also> -->
+
+See also
+--------
+
+-   Other list-related HTML Elements:
+    [`<ul>`](/en-US/docs/Web/HTML/Element/ul),
+    [`<ol>`](/en-US/docs/Web/HTML/Element/ol),
+    [`<menu>`](/en-US/docs/Web/HTML/Element/menu)
+-   CSS properties that may be specially useful to style the `<li>`
+    element:
+    -   the
+        [`list-style`](/en-US/docs/Web/CSS/list-style)
+        property, to choose the way the ordinal is displayed,
+    -   [CSS counters](/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CSS_counters),
+        to handle complex nested lists,
+    -   the [`margin`](/en-US/docs/Web/CSS/margin)
+        property, to control the indent of the list item.
+<!-- </see-also> -->

@@ -1,0 +1,26 @@
+title: '<li>'
+mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/li
+tags:
+    group: Text content
+api: HTMLLIElement
+permitted-aria-roles:
+    - menuitem
+    - menuitemcheckbox
+    - menuitemradio
+    - option
+    - presentation
+    - radio
+    - separator
+    - tab
+    - treeitem
+tag_omission:
+interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/li.html
+browser-compatibility: html.elements.li
+examples:
+    - examples/simple-example
+    - examples/using-value-attribute
+    - examples/ul-example
+attributes:
+    element-specific: ./attributes
+    global: /content/html/global_attributes
+recipe: html-element
