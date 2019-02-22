@@ -1,0 +1,17 @@
+title: '<kbd>: The Keyboard Input element'
+mdn-url: https://developer.mozilla.org/docs/Web/HTML/Element/kbd
+tags:
+    group: Inline text semantics
+api: HTMLElement
+permitted-aria-roles: any
+tag_omission: none
+interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/kbd.html
+browser-compatibility: html.elements.kbd
+examples:
+    - examples/simple-example
+    - examples/keystrokes
+    - examples/echoed-input
+    - examples/onscreen-input
+attributes:
+    global: /content/html/global_attributes
+recipe: html-element
