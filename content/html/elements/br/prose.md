@@ -25,9 +25,6 @@ first **target** value are used; all others are ignored.
 <!-- </usage-notes> -->
 
 <!-- <accessibility-concerns> -->
-Accessibility concerns
-----------------------
-
 Creating separate paragraphs of text using `<br>` is not only bad
 practice, it is problematic for people who navigate with the aid of
 screen reading technology. Screen readers may announce the presence of

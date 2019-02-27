@@ -64,8 +64,6 @@ by default. To avoid this, apply the CSS
 property to the `<cite>` element.
 <!-- </usage-notes> -->
 
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
 <!-- <see-also> -->
 
 See also

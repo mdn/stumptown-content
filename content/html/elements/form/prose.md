@@ -12,12 +12,6 @@ the individual [`elements`](/en-US/docs/Web/API/HTMLFormElement/elements)
 within the form are valid.
 <!-- </overview> -->
 
-<!-- <usage-notes> -->
-<!-- </usage-notes> -->
-
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 
 See also

@@ -17,8 +17,5 @@ If multiple `<base>` elements are specified, only the first **href** and
 first **target** value are used; all others are ignored.
 <!-- </usage-notes> -->
 
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 <!-- </see-also> -->

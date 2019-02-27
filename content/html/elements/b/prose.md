@@ -59,10 +59,6 @@ Usage notes
     property with the value `"bold"` instead in order to make text bold.
 <!-- </usage-notes> -->
 
-<!-- <accessibility-concerns> -->
-
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 
 See also

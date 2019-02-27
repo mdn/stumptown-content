@@ -12,12 +12,6 @@ presentational terms, so if you wish to draw a horizontal line, you
 should do so using appropriate CSS.
 <!-- </overview> -->
 
-<!-- <usage-notes> -->
-<!-- </usage-notes> -->
-
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 See also
 --------

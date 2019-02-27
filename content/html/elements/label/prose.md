@@ -63,9 +63,6 @@ you don't cause the text to become difficult to read.
 <!-- </styling-with-css> -->
 
 <!-- <accessibility-concerns> -->
-Accessibility concerns
-----------------------
-
 ### Interactive content
 
 Don't place interactive elements such as

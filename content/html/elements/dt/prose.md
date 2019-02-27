@@ -22,9 +22,6 @@ related text associated with the term specified using `<dt>`.
 <!-- <usage-notes> -->
 <!-- </usage-notes> -->
 
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 See also
 --------

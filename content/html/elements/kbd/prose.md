@@ -39,12 +39,6 @@ selection for the `<kbd>` element, although the user's preferences may
 potentially override your CSS.
 <!-- </usage-notes> -->
 
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
-<!-- <styling-with-css> -->
-<!-- </styling-with-css> -->
-
 <!-- <see-also> -->
 
 See also

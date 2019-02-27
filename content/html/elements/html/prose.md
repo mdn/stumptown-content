@@ -11,9 +11,6 @@ other elements must be descendants of this element.
 <!-- </usage-notes> -->
 
 <!-- <accessibility-concerns> -->
-Accessibility concerns
-----------------------
-
 Providing a `lang` attribute with a [valid IETF identifying language
 tag](https://www.ietf.org/rfc/bcp/bcp47.txt) on the `html` element will
 help screen reading technology determine the proper language to

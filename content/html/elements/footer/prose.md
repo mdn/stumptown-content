@@ -22,9 +22,6 @@ Usage notes
 <!-- </usage-notes> -->
 
 <!-- <accessibility-concerns> -->
-Accessibility concerns
-----------------------
-
 The [VoiceOver](https://help.apple.com/voiceover/info/guide/) screen
 reader has an issue where the footer [landmark
 role](/en-US/docs/Learn/Accessibility/WAI-ARIA_basics#SignpostsLandmarks)

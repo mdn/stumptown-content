@@ -11,10 +11,6 @@ columns of cells containing data.
 <!-- </usage-notes> -->
 
 <!-- <accessibility-concerns> -->
-
-Accessibility concerns
-----------------------
-
 ### Captions
 
 By supplying a

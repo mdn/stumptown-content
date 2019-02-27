@@ -25,9 +25,6 @@ To change the indentation of a description term, use the
 property.
 <!-- </usage-notes> -->
 
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 See also
 --------

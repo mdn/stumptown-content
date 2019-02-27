@@ -28,9 +28,6 @@ Use the
 properties to style list items.
 <!-- </styling-with-css> -->
 
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 
 See also

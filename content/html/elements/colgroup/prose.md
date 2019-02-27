@@ -12,8 +12,6 @@ list).
 <!-- <usage-notes> -->
 <!-- </usage-notes> -->
 
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
 <!-- <see-also> -->
 See also
 --------

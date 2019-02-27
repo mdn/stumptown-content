@@ -23,10 +23,6 @@ position, alignment, and scaling of the embedded document within the
 properties.
 <!-- </overview> -->
 
-<!-- <usage-notes> -->
-
-<!-- </usage-notes> -->
-
 <!-- <scripting> -->
 Scripting
 ---------
@@ -51,9 +47,6 @@ achieved using [`Window.postMessage()`](https://developer.mozilla.org/en-US/docs
 <!-- </scripting> -->
 
 <!-- <accessibility-concerns> -->
-Accessibility concerns
-----------------------
-
 People navigating with assistive technology such as a screen reader can
 use the [`title`
 attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title) on an `iframe`

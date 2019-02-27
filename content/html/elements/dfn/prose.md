@@ -58,9 +58,6 @@ that the reader can quickly navigate to the term's definition if
 they're not already aware of it, by clicking on the term's link.
 <!-- </usage-notes> -->
 
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 See also
 --------

@@ -75,9 +75,6 @@ will determine the correct directionality to use based on the contents
 of the `<bdi>`.
 <!-- </attributes-text> -->
 
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 See also
 --------

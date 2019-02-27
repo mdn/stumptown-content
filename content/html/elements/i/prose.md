@@ -5,9 +5,6 @@ terms, foreign language phrases, or fictional character thoughts. It is
 typically displayed in italic type.
 <!-- </short-description> -->
 
-<!-- <overview> -->
-<!-- </overview> -->
-
 <!-- <usage-notes> -->
 Usage notes
 -----------
@@ -43,9 +40,6 @@ Usage notes
     element is being used, so that if the presentation needs to change
     at a later date, it can be done selectively with style sheets.
 <!-- </usage-notes> -->
-
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
 
 <!-- <see-also> -->
 See also

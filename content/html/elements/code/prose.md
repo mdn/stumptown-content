@@ -21,8 +21,6 @@ browser's default font face. Preferences set by the user might take
 precedence over the specified CSS.
 <!-- </usage-notes> -->
 
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
 <!-- <see-also> -->
 See also
 --------

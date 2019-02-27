@@ -3,18 +3,6 @@ The **HTML `<legend>` element** represents a caption for the content of
 its parent [`<fieldset>`](/en-US/docs/Web/HTML/Element/fieldset).
 <!-- </short-description> -->
 
-<!-- <overview> -->
-<!-- </overview> -->
-
-<!-- <usage-notes> -->
-<!-- </usage-notes> -->
-
-<!-- <styling-with-css> -->
-<!-- </styling-with-css> -->
-
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 See also
 --------

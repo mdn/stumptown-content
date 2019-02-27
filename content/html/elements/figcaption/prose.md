@@ -5,15 +5,6 @@ the rest of the contents its parent
 element, if any.
 <!-- </short-description> -->
 
-<!-- <overview> -->
-<!-- </overview> -->
-
-<!-- <usage-notes> -->
-<!-- </usage-notes> -->
-
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 See also
 --------

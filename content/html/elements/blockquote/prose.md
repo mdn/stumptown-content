@@ -32,9 +32,6 @@ the
 (Quotation) element.
 <!-- </usage-notes> -->
 
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 
 See also

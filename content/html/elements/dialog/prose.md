@@ -25,12 +25,6 @@ Usage notes
     [`HTMLDialogElement.showModal()`](/en-US/docs/Web/API/HTMLDialogElement/showModal).
 <!-- </usage-notes> -->
 
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
-<!-- <events> -->
-<!-- </events> -->
-
 <!-- <see-also> -->
 See also
 --------

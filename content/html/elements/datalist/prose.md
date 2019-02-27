@@ -10,9 +10,6 @@ elements that represent the values available for other controls.
 <!-- <usage-notes> -->
 <!-- </usage-notes> -->
 
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 See also
 --------

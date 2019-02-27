@@ -34,10 +34,6 @@ Usage notes
   is no longer a part of the W3C HTML 5 standard.
 <!-- </usage-notes> -->
 
-<!-- <accessibility-concerns> -->
-
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 See also
 --------

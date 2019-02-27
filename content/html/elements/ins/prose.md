@@ -14,9 +14,6 @@ from the document.
 <!-- </usage-notes> -->
 
 <!-- <accessibility-concerns> -->
-Accessibility concerns
-----------------------
-
 The presence of the `ins` element is not announced by most screen
 reading technology in its default configuration. It can be made to be
 announced by using the CSS [`content`](/en-US/docs/Web/CSS/content)

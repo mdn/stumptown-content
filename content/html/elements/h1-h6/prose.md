@@ -25,9 +25,6 @@ Usage notes
 <!-- </usage-notes> -->
 
 <!-- <accessibility-concerns> -->
-Accessibility concerns
-----------------------
-
 ### Navigation
 
 A common navigation technique for users of screen reading software is

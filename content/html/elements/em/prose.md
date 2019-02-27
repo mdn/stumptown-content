@@ -57,9 +57,6 @@ queen named Mary, but a ship named *Queen Mary*. Another example for
 `<i>` could be: "The word *the* is an article".
 <!-- </usage-notes> -->
 
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 See also
 --------

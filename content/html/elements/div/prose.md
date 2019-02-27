@@ -24,9 +24,6 @@ Usage notes
     is appropriate.
 <!-- </usage-notes> -->
 
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <events> -->
 <!-- </events> -->
 

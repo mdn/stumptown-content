@@ -29,9 +29,6 @@ different name. This allowed `<header>` to be free to fill a different
 role later on.
 <!-- </usage-notes> -->
 
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 See also
 --------

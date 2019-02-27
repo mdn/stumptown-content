@@ -28,12 +28,6 @@ property to control how the object\'s size is adjusted to fit within the
 frame.
 <!-- </usage-notes> -->
 
-<!-- <scripting> -->
-<!-- </scripting> -->
-
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 See also
 --------

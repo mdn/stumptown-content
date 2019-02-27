@@ -72,9 +72,6 @@ When used with `<bdo>` the [`dir`](/en-US/docs/Web/HTML/Global_attributes/dir) a
         direction.
 <!-- </attributes-text> -->
 
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 See also
 --------

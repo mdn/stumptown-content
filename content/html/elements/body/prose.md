@@ -9,9 +9,6 @@ document. There can be only one `<body>` element in a document.
 <!-- <usage-notes> -->
 <!-- </usage-notes> -->
 
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 
 See also

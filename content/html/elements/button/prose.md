@@ -49,9 +49,6 @@ This can be disabled using `background-image: none`.
 <!-- </usage-notes> -->
 
 <!-- <accessibility-concerns> -->
-Accessibility concerns
-----------------------
-
 ### Icon buttons
 
 Buttons that only use an icon to represent functionality do not have an

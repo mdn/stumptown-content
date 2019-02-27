@@ -24,9 +24,6 @@ Usage notes
     inside it (as the first or the last child).
 <!-- </usage-notes> -->
 
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <see-also> -->
 See also
 --------

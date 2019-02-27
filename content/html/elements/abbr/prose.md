@@ -53,9 +53,6 @@ expansion or description for the abbreviation. If present,
 <!-- </usage-notes> -->
 
 <!-- <accessibility-concerns> -->
-Accessibility concerns
-----------------------
-
 Spelling out the acronym or abbreviation in full the first time it is
 used on a page is beneficial for helping people understand it,
 especially if the content is technical or industry jargon.

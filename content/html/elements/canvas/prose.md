@@ -66,9 +66,6 @@ unusable --- drawing commands will not work.
 <!-- </usage-notes> -->
 
 <!-- <accessibility-concerns> -->
-Accessibility concerns
-----------------------
-
 ### Alternative content
 
 The

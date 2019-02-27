@@ -16,12 +16,6 @@ on the same page, allowing you to make the `<fieldset>` part of that
 allows you to disable the `<fieldset>` and all its contents in one go.
 <!-- </overview> -->
 
-<!-- <usage-notes> -->
-<!-- </usage-notes> -->
-
-<!-- <accessibility-concerns> -->
-<!-- </accessibility-concerns> -->
-
 <!-- <styling-with-css> -->
 Styling with CSS
 ----------------

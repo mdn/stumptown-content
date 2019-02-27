@@ -149,10 +149,6 @@ You can also use
 <!-- </usage-notes> -->
 
 <!-- <accessibility-concerns> -->
-
-Accessibility concerns
-----------------------
-
 Audio with spoken dialog should provide both captions and transcripts
 that accurately describe its content. Captions allow people who are
 experiencing hearing loss to understand an audio recording's content as
