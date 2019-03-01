@@ -2,13 +2,9 @@ title: transform
 mdn-url: https://developer.mozilla.org/docs/Web/CSS/transform
 recipe: css-property
 interactive-example: https://interactive-examples.mdn.mozilla.net/pages/css/transform.html
-formal-syntax: '[ <length> | <percentage> | auto ]{1,4}'
+formal-syntax: 'none | <transform-list>'
 animatable: true
 initial-value: none
 browser-compatibility: css.properties.transform
 examples:
-    - html-source: examples/simple-transform-example/example.html
-      css-source: examples/simple-transform-example/example.css
-      size:
-          width: 400
-          height: 160
+    - examples/simple-example
