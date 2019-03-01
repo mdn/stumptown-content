@@ -2,7 +2,9 @@ body:
 - prose.short-description
 - meta.interactive-example
 - prose.overview
-- prose.syntax
+- prose.syntax-overview
+- prose.example-syntax
+- meta.values
 - meta.formal-syntax
 - prose.*
 - prose.accessibility-concerns?
