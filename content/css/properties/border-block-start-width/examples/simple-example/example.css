@@ -1,0 +1,11 @@
+div {
+  background-color: yellow;
+  width: 120px;
+  height: 120px;
+}
+
+.exampleText {
+  writing-mode: vertical-lr;
+  border: 1px solid blue;
+  border-block-start-width: 5px;
+}
