@@ -122,7 +122,7 @@ This gives us the following detailed breakdown.
 
 * Input element migration
     * describe and document structure for input element pages
-    * migrate attribute pages
+    * migrate input elements pages
     * document problems and solutions
 
 
