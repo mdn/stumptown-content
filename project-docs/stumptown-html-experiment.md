@@ -87,7 +87,7 @@ In this section we'll start breaking this down into pieces that could eventually
 
 The output of this work is to have the entire HTML reference in GitHub in a structured form, in two locales: en-US and fr.
 
-#### Migrating en-US HTML pages to structured content
+**Note that currently this proposal only considers en-US: hopefully we might get a better idea of localization support after the All-Hands.**
 
 There are in total 211 pages under /en-US/docs/Web/HTML:
 
