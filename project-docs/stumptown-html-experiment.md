@@ -137,6 +137,6 @@ This gives us the following detailed breakdown.
     * migrate guide pages
     * document problems and solutions
 
- Some of these are still too big to be individual user stories, ad should be broken up some more.
+ Some of these are still too big to be individual user stories, and should be broken up some more.
 
 [1] Note that guides are a quite different sort of thing from the other three. Guides don't have any formal structure, which brings its own challenges: we have to figure out how to embed "rich content" (browser compat tables, or live examples, say) at arbitrary points in the document. This looks more like a KumaScript "directives-based" model than the much more formal model for reference docs. But either way, we need to be able to describe how to represent this kind of document.
