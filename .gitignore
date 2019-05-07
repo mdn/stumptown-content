@@ -1,2 +1,3 @@
 # Local node installation
 node_modules/
+.docker-build
