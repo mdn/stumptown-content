@@ -30,6 +30,11 @@ const writeToFile = (propertyName, json) => {
 function package(elementName) {
     const elementPath = path.join(process.cwd(), htmlElements, elementName);
 
+    if (!fs.exists(elementPath)) {
+        console.error(`Could not find an element called "${elementName}"`);
+        return;
+    }
+
     // open meta.yaml
     const meta = yaml.safeLoad(fs.readFileSync(path.join(elementPath, 'meta.yaml'), 'utf8'));
 
