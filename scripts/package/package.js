@@ -30,7 +30,7 @@ const writeToFile = (propertyName, json) => {
 function package(elementName) {
     const elementPath = path.join(process.cwd(), htmlElements, elementName);
 
-    if (!fs.exists(elementPath)) {
+    if (!fs.existsSync(elementPath)) {
         console.error(`Could not find an element called "${elementName}"`);
         return;
     }
