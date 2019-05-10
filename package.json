@@ -14,7 +14,7 @@
     },
     "scripts": {
         "lint-md": "remark content",
-        "package": "node scripts/package/package.js",
+        "build-json": "node scripts/build-json/build-json.js",
         "spell-md": "mdspell -a -n --en-us 'content/**/*.md'"
     },
     "dependencies": {

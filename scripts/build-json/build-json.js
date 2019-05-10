@@ -2,11 +2,11 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
 
-const bcd = require('./package-bcd');
-const examples = require('./package-examples');
-const attributes = require('./package-attributes');
-const prose = require('./package-prose');
-const contributors = require('./package-contributors');
+const bcd = require('./resolve-bcd');
+const examples = require('./compose-examples');
+const attributes = require('./compose-attributes');
+const prose = require('./slice-prose');
+const contributors = require('./resolve-contributors');
 
 const htmlElements = '/content/html/elements';
 
