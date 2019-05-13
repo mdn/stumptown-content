@@ -14,18 +14,27 @@
     },
     "scripts": {
         "lint-md": "remark content",
+        "build-json": "node scripts/build-json/build-json.js",
         "spell-md": "mdspell -a -n --en-us 'content/**/*.md'"
     },
     "dependencies": {
+        "gray-matter": "4.0.2",
+        "jsdom": "^12.2.0",
+        "js-yaml": "3.13.1",
+        "marked": "0.6.2",
         "markdown-spellcheck": "1.3.1",
-        "npm": "^6.4.1",
+        "mdn-browser-compat-data": "0.x",
+        "npm": "^6.9.0",
         "remark-cli": "6.0.1",
         "remark-preset-lint-recommended": "3.0.2"
     },
     "remarkConfig": {
         "plugins": [
             "remark-preset-lint-recommended",
-            ["remark-lint-list-item-indent", "space"]
+            [
+                "remark-lint-list-item-indent",
+                "space"
+            ]
         ]
     }
 }
