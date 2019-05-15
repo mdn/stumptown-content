@@ -10,5 +10,6 @@ before_install:
   - make build
 
 script:
+  - make jslint
   - make lint
   - make validate
