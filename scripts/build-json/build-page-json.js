@@ -29,7 +29,7 @@ const writeToFile = (propertyName, json) => {
 
 function buildPageJSON(elementPath) {
     if (!elementPath.startsWith('html/elements')) {
-        console.log('Not an HTMl element');
+        console.log(`Not an HTMl element: ${elementPath}`);
         return;
     }
     elementPath = path.join(process.cwd(), './content', elementPath);
@@ -64,6 +64,7 @@ function buildPageJSON(elementPath) {
     element.contributors = contributors.package(contributorsPath);
 
     writeToFile(elementName, element);
+    console.log(`Processed: ${elementPath}`);
 }
 
 module.exports = {
