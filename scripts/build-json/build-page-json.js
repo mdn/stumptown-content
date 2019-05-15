@@ -8,8 +8,6 @@ const attributes = require('./compose-attributes');
 const prose = require('./slice-prose');
 const contributors = require('./resolve-contributors');
 
-const htmlElements = '/content/html/elements';
-
 const writeToFile = (propertyName, json) => {
   const data = {
     html: {
@@ -32,21 +30,21 @@ function buildPageJSON(elementPath) {
 
     if (!fs.existsSync(elementPath)) {
         console.error(`Could not find an item at "${elementPath}"`);
-        return;
+        return 1;
     }
 
     // open meta.yaml and check the recipe type
     const meta = yaml.safeLoad(fs.readFileSync(path.join(elementPath, 'meta.yaml'), 'utf8'));
     if (meta.recipe !== 'html-element') {
-        console.log(`Not an HTMl element: ${elementPath}`);
-        return;
+        console.warn(`Not an HTML element: ${elementPath}`);
+        return 2;
     }
 
     // initialise some paths for more resources
     const examplesPaths = meta.examples.map(relativePath => path.join(elementPath, relativePath));
     const prosePath = path.join(elementPath, 'prose.md');
     const contributorsPath = path.join(elementPath, 'contributors.md');
-  
+
     // make the package
     const element = {};
     element.title = meta.title;
@@ -65,6 +63,7 @@ function buildPageJSON(elementPath) {
     const elementName = path.basename(elementPath);
     writeToFile(elementName, element);
     console.log(`Processed: ${elementPath}`);
+    return 0;
 }
 
 module.exports = {
