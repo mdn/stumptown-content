@@ -28,20 +28,19 @@ const writeToFile = (propertyName, json) => {
 };
 
 function buildPageJSON(elementPath) {
-    if (!elementPath.startsWith('html/elements')) {
+    elementPath = path.join(process.cwd(), './content', elementPath);
+
+    if (!fs.existsSync(elementPath)) {
+        console.error(`Could not find an item at "${elementPath}"`);
+        return;
+    }
+
+    // open meta.yaml and check the recipe type
+    const meta = yaml.safeLoad(fs.readFileSync(path.join(elementPath, 'meta.yaml'), 'utf8'));
+    if (meta.recipe !== 'html-element') {
         console.log(`Not an HTMl element: ${elementPath}`);
         return;
     }
-    elementPath = path.join(process.cwd(), './content', elementPath);
-    const elementName = path.basename(elementPath);
-
-    if (!fs.existsSync(elementPath)) {
-        console.error(`Could not find an element called "${elementName}"`);
-        return;
-    }
-
-    // open meta.yaml
-    const meta = yaml.safeLoad(fs.readFileSync(path.join(elementPath, 'meta.yaml'), 'utf8'));
 
     // initialise some paths for more resources
     const examplesPaths = meta.examples.map(relativePath => path.join(elementPath, relativePath));
@@ -63,6 +62,7 @@ function buildPageJSON(elementPath) {
     element.prose = prose.package(prosePath);
     element.contributors = contributors.package(contributorsPath);
 
+    const elementName = path.basename(elementPath);
     writeToFile(elementName, element);
     console.log(`Processed: ${elementPath}`);
 }
