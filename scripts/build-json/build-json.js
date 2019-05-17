@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const yaml = require('js-yaml');
 
 const buildPage = require('./build-page-json');
 
@@ -18,22 +17,26 @@ function walk(directory, filepaths) {
     }
 }
 
-function collectItems(directory) {
+function collectItems(directory, searchPaths) {
     let filepaths = [];
     walk(directory, filepaths);
-    filepaths = filepaths.map( filepath => filepath.slice(path.join(process.cwd(), './content/').length) )
+    filepaths = filepaths.map( 
+        filepath => filepath.slice(path.join(process.cwd(), './content/').length) 
+    ).filter(filepath => !searchPaths.length || searchPaths.some(searchPath => filepath.includes(searchPath)))
     return filepaths;
 }
 
-function buildJSON() {
-    const items = collectItems(path.resolve(process.cwd(), './content'));
-    for (let item of items) {
-        buildPage.buildPageJSON(item);
+function buildJSON(searchPaths) {
+    let errors = 0;
+    const items = collectItems(path.resolve(process.cwd(), './content'), searchPaths);
+    if (!items.length && searchPaths.length) {
+        console.error("No elements found");
+        errors++;
     }
+    for (let item of items) {
+        errors += buildPage.buildPageJSON(item);
+    }
+    return errors;
 }
 
-if (process.argv[2]) {
-    buildPage.buildPageJSON(process.argv[2]);
-} else {
-    buildJSON();
-}
+process.exit(buildJSON(process.argv.slice(2)));
