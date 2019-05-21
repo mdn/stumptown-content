@@ -1,11 +1,6 @@
-<!-- <short-description> -->
+<!-- short-description -->
 The **HTML Abbreviation element** (**`<abbr>`**) represents an
 abbreviation or acronym.
-<!-- </short-description> -->
-
-<!-- <overview> -->
-<!-- </overview> -->
-
 <!-- <usage-notes> -->
 Usage notes
 -----------
@@ -49,10 +44,7 @@ English.
 The optional `title` attribute can provide an
 expansion or description for the abbreviation. If present,
 `title` must contain this full description and nothing else.
-
-<!-- </usage-notes> -->
-
-<!-- <accessibility-concerns> -->
+<!-- accessibility-concerns -->
 Spelling out the acronym or abbreviation in full the first time it is
 used on a page is beneficial for helping people understand it,
 especially if the content is technical or industry jargon.
@@ -66,9 +58,7 @@ especially if the content is technical or industry jargon.
 This is especially helpful for people who are unfamiliar with the
 terminology or concepts discussed in the content, people who are new to
 the language, and people with cognitive concerns.
-<!-- </accessibility-concerns> -->
-
-<!-- <attributes-text> -->
+<!-- attributes-text -->
 The `title`
 attribute has a specific semantic meaning when used with the `<abbr>`
 element; it *must* contain a full human-readable description or
@@ -78,9 +68,7 @@ as a tooltip when the mouse cursor is hovered over the element.
 Each `<abbr>` element you use is independent from all others; providing
 a `title` for one does not automatically attach the same expansion text
 to others with the same content text.
-<!-- </attributes-text> -->
-
-<!-- <default-styling> -->
+<!-- default-styling -->
 Default styling
 ---------------
 
@@ -100,12 +88,7 @@ another:
     small caps; to avoid this styling, adding something like
     [`font-variant`](/en-US/docs/Web/CSS/font-variant)`: none`
     in the CSS takes care of this case.
-<!-- </default-styling> -->
-
-<!-- <see-also> -->
-See also
---------
-
+<!-- see-also -->
 -   [Using the `<abbr>` element](/en-US/Learn/HTML/Element/abbr)
 -   Other elements conveying [text-level
     semantics](/en-US/docs/Web/HTML/Text_level_semantics_conveying_elements):
@@ -136,5 +119,3 @@ See also
 -   The obsolete
     [`<acronym>`](/en-US/docs/Web/HTML/Element/acronym)
     element, whose responsibilities were folded into `<abbr>`
-
-<!-- </see-also> -->

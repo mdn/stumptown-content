@@ -10,7 +10,7 @@ interactive-example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/a
 browser-compatibility: html.elements.abbr
 examples:
     - examples/marking-up-an-abbreviation
-    - examples/styling-an abbreviation
+    - examples/styling-an-abbreviation
     - examples/providing-an-expansion
     - examples/defining-an-abbreviation
 attributes:
