@@ -1,32 +1,36 @@
-const fs = require('fs');
-const path = require('path');
-const yaml = require('js-yaml');
+const fs = require("fs");
+const path = require("path");
+const yaml = require("js-yaml");
 
-const bcd = require('./resolve-bcd');
-const examples = require('./compose-examples');
-const attributes = require('./compose-attributes');
-const prose = require('./slice-prose');
-const contributors = require('./resolve-contributors');
+const bcd = require("./resolve-bcd");
+const examples = require("./compose-examples");
+const attributes = require("./compose-attributes");
+const prose = require("./slice-prose");
+const contributors = require("./resolve-contributors");
 
 const writeToFile = (propertyName, json) => {
-  const data = {
-    html: {
-      elements: {
-        [propertyName]: json,
-      }
-    }
-  };
+    const data = {
+        html: {
+            elements: {
+                [propertyName]: json
+            }
+        }
+    };
 
-  const dest = path.join(process.cwd(),'packaged/html/elements', `${propertyName}.json`);
-  const destDir = path.dirname(dest);
-  if (!fs.existsSync(destDir)) {
-      fs.mkdirSync(destDir, { recursive: true });
-  }
-  fs.writeFileSync(dest, `${JSON.stringify(data, null, 2)}`);
+    const dest = path.join(
+        process.cwd(),
+        "packaged/html/elements",
+        `${propertyName}.json`
+    );
+    const destDir = path.dirname(dest);
+    if (!fs.existsSync(destDir)) {
+        fs.mkdirSync(destDir, { recursive: true });
+    }
+    fs.writeFileSync(dest, `${JSON.stringify(data, null, 2)}`);
 };
 
 function buildPageJSON(elementPath) {
-    elementPath = path.join(process.cwd(), './content', elementPath);
+    elementPath = path.join(process.cwd(), "./content", elementPath);
 
     if (!fs.existsSync(elementPath)) {
         console.error(`Could not find an item at "${elementPath}"`);
@@ -34,25 +38,32 @@ function buildPageJSON(elementPath) {
     }
 
     // open meta.yaml and check the recipe type
-    const meta = yaml.safeLoad(fs.readFileSync(path.join(elementPath, 'meta.yaml'), 'utf8'));
-    if (meta.recipe !== 'html-element') {
+    const meta = yaml.safeLoad(
+        fs.readFileSync(path.join(elementPath, "meta.yaml"), "utf8")
+    );
+    if (meta.recipe !== "html-element") {
         console.warn(`Not an HTML element: ${elementPath}`);
         return 2;
     }
 
     // initialise some paths for more resources
-    const examplesPaths = meta.examples.map(relativePath => path.join(elementPath, relativePath));
-    const prosePath = path.join(elementPath, 'prose.md');
-    const contributorsPath = path.join(elementPath, 'contributors.md');
+    const examplesPaths = meta.examples.map(relativePath =>
+        path.join(elementPath, relativePath)
+    );
+    const prosePath = path.join(elementPath, "prose.md");
+    const contributorsPath = path.join(elementPath, "contributors.md");
 
     // make the package
     const element = {};
     element.title = meta.title;
-    element.mdn_url = meta['mdn-url'];
-    element.interactive_example_url = meta['interactive-example'];
-    element.browser_compatibility = bcd.package(meta['browser-compatibility']);
-    if (meta.attributes['element-specific']) {
-        const attributesPath = path.join(elementPath, meta.attributes['element-specific']);
+    element.mdn_url = meta["mdn-url"];
+    element.interactive_example_url = meta["interactive-example"];
+    element.browser_compatibility = bcd.package(meta["browser-compatibility"]);
+    if (meta.attributes["element-specific"]) {
+        const attributesPath = path.join(
+            elementPath,
+            meta.attributes["element-specific"]
+        );
         element.attributes = attributes.package(attributesPath);
     } else {
         element.attributes = null;
@@ -69,4 +80,4 @@ function buildPageJSON(elementPath) {
 
 module.exports = {
     buildPageJSON
-}
+};

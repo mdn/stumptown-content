@@ -1,31 +1,31 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-const yaml = require('js-yaml');
-const matter = require('gray-matter');
-const marked = require('marked');
-const jsdom = require('jsdom');
-const bcd = require('mdn-browser-compat-data');
+const yaml = require("js-yaml");
+const matter = require("gray-matter");
+const marked = require("marked");
+const jsdom = require("jsdom");
+const bcd = require("mdn-browser-compat-data");
 
 const { JSDOM } = jsdom;
 const commentNode = 8;
 const namedSections = [
-  'short-description',
-  'overview',
-  'attributes-text',
-  'usage-notes',
-  'accessibility-concerns',
-  'see-also'
+    "short-description",
+    "overview",
+    "attributes-text",
+    "usage-notes",
+    "accessibility-concerns",
+    "see-also"
 ];
 
 function extractFromSiblings(node, terminatorTag, contentType) {
-    let content = '';
+    let content = "";
     let sib = node.nextSibling;
     while (sib && sib.nodeName != terminatorTag) {
         if (sib.outerHTML) {
-            if (contentType === 'html') {
+            if (contentType === "html") {
                 content += sib.outerHTML;
-            } else if (contentType === 'text') {
+            } else if (contentType === "text") {
                 content += sib.textContent;
             }
         }
@@ -36,12 +36,12 @@ function extractFromSiblings(node, terminatorTag, contentType) {
 
 function packageValues(heading, dom) {
     const values = [];
-    const valueHeadings = dom.querySelectorAll('h3');
+    const valueHeadings = dom.querySelectorAll("h3");
     for (let valueHeading of valueHeadings) {
         let value = {
             value: valueHeading.textContent,
-            description: extractFromSiblings(valueHeading, 'H3', 'html')
-        }
+            description: extractFromSiblings(valueHeading, "H3", "html")
+        };
         values.push(value);
     }
     return values;
@@ -49,7 +49,7 @@ function packageValues(heading, dom) {
 
 function getSection(node, sections) {
     const sectionName = node.textContent.trim();
-    const sectionContent = extractFromSiblings(node, '#comment', 'html');
+    const sectionContent = extractFromSiblings(node, "#comment", "html");
     const extraSections = [];
 
     if (namedSections.includes(sectionName)) {
@@ -59,15 +59,15 @@ function getSection(node, sections) {
             name: sectionName,
             content: sectionContent
         };
-      sections['additional-sections'].push(additionalSection);
+        sections["additional-sections"].push(additionalSection);
     }
 }
 
 function package(prosePath) {
-    const proseMD = fs.readFileSync(prosePath, 'utf8');
+    const proseMD = fs.readFileSync(prosePath, "utf8");
     const dom = JSDOM.fragment(marked(proseMD));
     const sections = {
-        'additional-sections': []
+        "additional-sections": []
     };
     let node = dom.firstChild;
     while (node) {
@@ -81,4 +81,4 @@ function package(prosePath) {
 
 module.exports = {
     package
-}
+};
