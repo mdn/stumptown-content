@@ -48,6 +48,7 @@ function buildPageJSON(elementPath) {
     // make the package
     const element = {};
     element.title = meta.title;
+    element.mdn_url = meta['mdn-url'];
     element.interactive_example_url = meta['interactive-example'];
     element.browser_compatibility = bcd.package(meta['browser-compatibility']);
     if (meta.attributes['element-specific']) {
