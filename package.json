@@ -13,8 +13,9 @@
         "url": "https://github.com/mdn/stumptown-experiment/issues"
     },
     "scripts": {
-        "pretty": "prettier --list-different scripts/**/*.js",
-        "prettify": "prettier --write scripts/**/*.js",
+        "prettier": "prettier --write '**'",
+        "prettier-ci": "prettier --list-different '**' || (echo '\n\nThis failure means you did not run `npm run prettier-dev` before committing\n\n' && exit 1)",
+        "prettier-dev": "pretty-quick --branch master",
         "lint-md": "remark content",
         "build-json": "node scripts/build-json/build-json.js",
         "spell-md": "mdspell -a -n --en-us 'content/**/*.md'"
@@ -39,9 +40,16 @@
         ]
     },
     "devDependencies": {
-        "prettier": "1.17.1"
+        "husky": "2.3.0",
+        "prettier": "1.17.1",
+        "pretty-quick": "1.11.0"
     },
     "prettier": {
         "tabWidth": 4
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
     }
 }

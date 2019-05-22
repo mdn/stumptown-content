@@ -1,2 +1,2 @@
 #!/bin/bash -e
-npm run pretty
+npm run prettier-ci

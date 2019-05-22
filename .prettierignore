@@ -1,0 +1,11 @@
+# exclude everything by default
+*.*
+# exclude these files
+Dockerfile
+Makefile
+# exclude these directories
+/built/
+/content/
+/node_modules/
+# white-list files we want to process
+!*.js
