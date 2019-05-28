@@ -37,8 +37,14 @@ function renderHTML(elementName) {
     rendered += `${elementJSON.prose['short-description']}\n`;
     rendered += renderIE(elementJSON.interactive_example_url);
     rendered += `${elementJSON.prose.overview}\n`;
-    rendered += renderAttributes(elementJSON.attributes);
+    rendered += renderAttributes(elementJSON.prose['attributes-text'], elementJSON.attributes);
+    rendered += `${elementJSON.prose['usage-notes']}\n`;
+    for (let section of elementJSON.prose['additional-sections']) {
+        rendered += `${section}\n`;
+    }
+    rendered += `<h2>Accessibility concerns</h2>\n${elementJSON.prose['accessibility-concerns']}\n`;
     rendered += renderExamples(elementJSON.examples);
+    rendered += `<h2>See also</h2>\n${elementJSON.prose['see-also']}\n`;
     rendered += '</body></html>';
 
     writeToFile(elementName, rendered);

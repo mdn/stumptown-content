@@ -27,9 +27,12 @@ function renderAttribute(attribute) {
     return rendered;
 }
 
-function renderAttributes(attributes) {
+function renderAttributes(attributesText, attributes) {
     let rendered = '<h2>Attributes</h2>';
 
+    if (attributesText) {
+        rendered += attributesText;
+    }
     rendered += '<dl>';
     for (let attribute of attributes) {
         rendered += renderAttribute(attribute);
