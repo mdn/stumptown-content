@@ -9,10 +9,10 @@ const bcd = require('mdn-browser-compat-data');
 
 const { JSDOM } = jsdom;
 
-function extractFromSiblings(node, terminatorTag, contentType) {
+function extractFromSiblings(node, terminatorTags, contentType) {
     let content = '';
     let sib = node.nextSibling;
-    while (sib && sib.nodeName != terminatorTag) {
+    while (sib && !terminatorTags.includes(sib.nodeName)) {
         if (sib.outerHTML) {
             if (contentType === 'html') {
                 content += sib.outerHTML;
@@ -31,7 +31,7 @@ function packageValues(heading, dom) {
     for (let valueHeading of valueHeadings) {
         let value = {
             value: valueHeading.textContent,
-            description: extractFromSiblings(valueHeading, 'H3', 'html')
+            description: extractFromSiblings(valueHeading, ['H2', 'H3'], 'html')
         }
         values.push(value);
     }
@@ -49,12 +49,12 @@ function packageAttribute(attributePath) {
     attribute.name = name.textContent;
 
     // extract the description property
-    attribute.description = extractFromSiblings(name, 'H2', 'html');
+    attribute.description = extractFromSiblings(name, ['H2'], 'html');
 
     // extract the type property
     const h2Headings = dom.querySelectorAll('h2');
     const typeHeading = (h2Headings.length === 2)? h2Headings[1]: h2Headings[0];
-    attribute.type = extractFromSiblings(typeHeading, 'H2', 'text');
+    attribute.type = extractFromSiblings(typeHeading, ['H2'], 'text');
 
     // extract the values property
     if (h2Headings.length === 2) {
