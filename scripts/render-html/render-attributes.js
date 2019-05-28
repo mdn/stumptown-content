@@ -1,3 +1,14 @@
+function renderValues(values) {
+    let rendered = '<ul>';
+
+    for (let value of values) {
+        rendered += `<li><code>${value.value}</code>: ${value.description}</li>`;
+    }
+    rendered += '</ul>';
+
+    return rendered;
+}
+
 
 function renderAttribute(attribute) {
     let rendered = '<dt>';
@@ -8,6 +19,9 @@ function renderAttribute(attribute) {
     rendered += '<dd>';
     rendered += `<strong>${attribute.type}</strong>`;
     rendered += attribute.description;
+    if (attribute.values) {
+        rendered += renderValues(attribute.values);
+    }
     rendered += '</dd>';
 
     return rendered;
