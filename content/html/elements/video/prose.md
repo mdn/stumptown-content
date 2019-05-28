@@ -150,6 +150,7 @@ setting](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API#Cue_setting
   2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-av-only-alt.html)
 - [Understanding Success Criterion 1.2.2 | W3C Understanding WCAG
   2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-captions.html)
+
 <!-- see-also -->
 See also
 --------
