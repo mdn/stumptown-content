@@ -52,8 +52,6 @@ See also
     [`<header>`](/en-US/docs/Web/HTML/Element/header),
     [`<section>`](/en-US/docs/Web/HTML/Element/section),
     [`<address>`](/en-US/docs/Web/HTML/Element/address);
--   [Sections and outlines of an HTML5
-    document](/en-US/docs/Web/Guide/HTML/Sections_and_Outlines_of_an_HTML5_document).
--   [ARIA: Contentinfo
-    role](/en-US/docs/Web/Accessibility/ARIA/Roles/Contentinfo_role)
+-   [Sections and outlines of an HTML5 document](/en-US/docs/Web/Guide/HTML/Sections_and_Outlines_of_an_HTML5_document).
+-   [ARIA: `contentinfo` role](/en-US/docs/Web/Accessibility/ARIA/Roles/Contentinfo_role)
 <!-- </see-also> -->

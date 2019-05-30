@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.video.preload
 ---
 
-# preload
+# `preload`
 
 This enumerated attribute is intended to provide a hint to the browser about what the author thinks will lead to the best user experience with regards to what content is loaded before the video is played.
 

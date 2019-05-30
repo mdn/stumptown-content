@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.body.onafterprint
 ---
 
-# onafterprint
+# `onafterprint`
 
 Function to call after the user has printed the document.
 

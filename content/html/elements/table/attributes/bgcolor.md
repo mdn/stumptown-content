@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.table.bgcolor
 ---
 
-# bgcolor
+# `bgcolor`
 
 This attribute defines the background color of a table. It consists of a 6-digit hexadecimal code prefixed by '#'. This attribute may be used with one of sixteen predefined color strings:
 

@@ -26,10 +26,8 @@ such as the page's
 [`<title>`](/en-US/docs/Web/HTML/Element/title),
 are also announced properly.
 
--   [MDN Understanding WCAG, Guideline 3.1
-    explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Understandable#Guideline_3.1_%E2%80%94_Readable_Make_text_content_readable_and_understandable)
--   [Understanding Success Criterion 3.1.1 | W3C Understanding WCAG
-    2.0](https://www.w3.org/TR/2016/NOTE-UNDERSTANDING-WCAG20-20161007/meaning-doc-lang-id.html)
+-   [MDN Understanding WCAG, Guideline 3.1 explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Understandable#Guideline_3.1_%E2%80%94_Readable_Make_text_content_readable_and_understandable)
+-   [Understanding Success Criterion 3.1.1 | W3C Understanding WCAG 2.0](https://www.w3.org/TR/2016/NOTE-UNDERSTANDING-WCAG20-20161007/meaning-doc-lang-id.html)
 <!-- </accessibility-concerns> -->
 
 <!-- <see-also> -->

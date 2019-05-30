@@ -138,9 +138,9 @@ For MDN pages we could just handle "global" with some text like "Like all other 
 
 * front matter which is currently just a BCD reference
 
-* H1: this is the name of the attribute, and is followed by some freeform Markdown describing the attribute.
+* H1: this is the name of the attribute (marked up in ``), and is followed by some freeform Markdown describing the attribute.
 
-* H2 "Values" (optional): If present this contains the values it can take. Each H3 under here is the value's name, and is followed by some Markdown describing that value.
+* H2 "Values" (optional): If present this contains the values it can take. Each H3 under here is the value's name (marked up in ``), and is followed by some Markdown describing that value.
 
 * H2: "Type" (mandatory (?)): If present this is followed by a string describing the type of the attribute. I think this ought to be an enumerated list of possible types, including "String", "Boolean", "Number", and possibly "URL".
 

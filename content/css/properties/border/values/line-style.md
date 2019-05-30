@@ -6,4 +6,4 @@ Sets the style of the border. Defaults to `none` if absent. See
 
 ## Type
 
-CSSSyntax
+`CSSSyntax`

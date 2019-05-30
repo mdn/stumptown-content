@@ -64,8 +64,7 @@ Usage notes
 See also
 --------
 
--   Others elements conveying [text-level
-    semantics](/en-US/docs/HTML/Text_level_semantics_conveying_elements):
+-   Others elements conveying [text-level semantics](/en-US/docs/HTML/Text_level_semantics_conveying_elements):
     [`<a>`](/en-US/docs/Web/HTML/Element/a),
     [`<em>`](/en-US/docs/Web/HTML/Element/em),
     [`<strong>`](/en-US/docs/Web/HTML/Element/strong),

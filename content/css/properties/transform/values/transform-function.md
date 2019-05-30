@@ -9,4 +9,4 @@ from right to left.
 
 ## Type
 
-CSSSyntax
+`CSSSyntax`

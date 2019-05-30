@@ -63,6 +63,6 @@ See also
 -   [`<ins>`](/en-US/docs/Web/HTML/Element/ins)
     element for insertions into a text
 -   [`<s>`](/en-US/docs/Web/HTML/Element/s)
-    element for strikethrough separate from representing deletion of
+    element for strike-through separate from representing deletion of
     text
 <!-- </see-also> -->

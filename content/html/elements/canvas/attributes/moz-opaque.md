@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.canvas.moz-opaque
 ---
 
-# moz-opaque
+# `moz-opaque`
 
 Lets the canvas know whether or not translucency will be a factor.
 If the canvas knows there's no translucency, painting performance

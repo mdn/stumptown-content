@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.body.onstorage
 ---
 
-# onstorage
+# `onstorage`
 
 Function to call when the storage area has changed.
 

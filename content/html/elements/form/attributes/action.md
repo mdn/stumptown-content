@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.form.action
 ---
 
-# action
+# `action`
 
 The URI of a program that processes the form information. This value
 can be overridden by a `formaction` attribute on a

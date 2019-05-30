@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.base.target
 ---
 
-# target
+# `target`
 
 A name or keyword indicating the default location to display the result when hyperlinks or forms cause navigation, for elements that do not have an explicit target reference. It is a name of, or keyword for, a browsing context (for example: tab, window, or inline frame). The following keywords have special meanings:
 

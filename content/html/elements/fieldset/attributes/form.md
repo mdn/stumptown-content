@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.fieldset.form
 ---
 
-# form
+# `form`
 
 This attribute takes the value of the `id` attribute of a
 [`<form>`](/en-US/docs/Web/HTML/Element/form)

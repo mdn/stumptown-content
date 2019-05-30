@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.iframe.sandbox
 ---
 
-# sandbox
+# `sandbox`
 
 Applies extra restrictions to the content in the frame. The value of the attribute can either be empty to apply all restrictions, or space-separated tokens to lift particular restrictions.
 

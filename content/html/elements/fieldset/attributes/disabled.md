@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.fieldset.disabled
 ---
 
-# disabled
+# `disabled`
 
 If this attribute is set, all form controls that are
 descendants of the `<fieldset>`, are disabled, meaning they are not

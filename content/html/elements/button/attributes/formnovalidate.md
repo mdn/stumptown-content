@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.button.formnovalidate
 ---
 
-# formnovalidate
+# `formnovalidate`
 
 If the button is a submit button, this Boolean attribute specifies
 that the form is not to be validated when it is submitted. If this

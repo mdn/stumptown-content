@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.form.target
 ---
 
-# target
+# `target`
 
 A name or keyword indicating where to display the response that is
 received after submitting the form. In HTML 4, this is the
@@ -17,24 +17,24 @@ element.
 
 ## Values
 
-### \_self
+### `_self`
 
 Load the response into the same HTML 4 frame (or HTML5
 browsing context) as the current one. This value is the default
 if the attribute is not specified.
 
-### \_blank
+### `_blank`
 
 Load the response into a new unnamed HTML 4 window or HTML5 browsing context.
 
-### \_parent
+### `_parent`
 
-Load the response into the HTML 4 frameset parent of
+Load the response into the HTML 4 `<frameset>` parent of
 the current frame, or HTML5 parent browsing context of the
 current one. If there is no parent, this option behaves the same
 way as `_self`.
 
-### \_top
+### `_top`
 
 HTML 4: Load the response into the full original window,
 and cancel all other frames. HTML5: Load the response into the
@@ -42,7 +42,7 @@ top-level browsing context (i.e., the browsing context that is
 an ancestor of the current one, and has no parent). If there is
 no parent, this option behaves the same way as `_self`.
 
-### iframename
+### `iframename`
 
 The response is displayed in a named
 [`<iframe>`](/en-US/docs/Web/HTML/Element/iframe).

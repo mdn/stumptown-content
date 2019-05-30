@@ -13,8 +13,8 @@ The base URL of a document can be queried from a script using
 Usage notes
 -----------
 
-If multiple `<base>` elements are specified, only the first **href** and
-first **target** value are used; all others are ignored.
+If multiple `<base>` elements are specified, only the first `href` and
+first `target` value are used; all others are ignored.
 <!-- </usage-notes> -->
 
 <!-- <see-also> -->

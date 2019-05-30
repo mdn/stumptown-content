@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.iframe.height
 ---
 
-# height
+# `height`
 
 The height of the frame in CSS pixels. Default is 150.
 

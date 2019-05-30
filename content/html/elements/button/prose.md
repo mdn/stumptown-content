@@ -86,10 +86,8 @@ different cultural interpretations for the imagery the icon button uses.
 
 -   [What is an accessible name? | The Paciello
     Group](https://developer.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
--   [MDN Understanding WCAG, Guideline 4.1
-    explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Robust#Guideline_4.1_—_Compatible_Maximize_compatibility_with_current_and_future_user_agents_including_assistive_technologies)
--   [Understanding Success Criterion 4.1.2 | W3C Understanding WCAG
-    2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-rsv.html)
+-   [MDN Understanding WCAG, Guideline 4.1 explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Robust#Guideline_4.1_—_Compatible_Maximize_compatibility_with_current_and_future_user_agents_including_assistive_technologies)
+-   [Understanding Success Criterion 4.1.2 | W3C Understanding WCAG 2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-rsv.html)
 
 ### Proximity
 
@@ -121,16 +119,14 @@ button text and background color values compared to the background the
 button is placed on. In order to meet current [Web Content Accessibility
 Guidelines (WCAG)](https://www.w3.org/WAI/intro/wcag), a ratio of 4.5:1
 is required for text content and 3:1 for larger text such as headings.
-Large text is defined as 18.66px and
+Large text is defined as `18.66px` and
 [`bold`](/en-US/docs/Web/CSS/font-weight "The documentation about this has not yet been written; please consider contributing!")
-or larger, or 24px or larger.
+or larger, or `24px` or larger.
 
 -   [WebAIM: Color Contrast
     Checker](https://webaim.org/resources/contrastchecker/)
--   [MDN Understanding WCAG, Guideline 1.4
-    explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable#Guideline_1.4_Make_it_easier_for_users_to_see_and_hear_content_including_separating_foreground_from_background)
--   [Understanding Success Criterion 1.4.3 | W3C Understanding WCAG
-    2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html)
+-   [MDN Understanding WCAG, Guideline 1.4 explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable#Guideline_1.4_Make_it_easier_for_users_to_see_and_hear_content_including_separating_foreground_from_background)
+-   [Understanding Success Criterion 1.4.3 | W3C Understanding WCAG 2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html)
 
 ### Clicking and focus
 
@@ -147,7 +143,7 @@ of `type="button"` and `type="submit"` were the same.
 
 * On Windows, clicking a button gives it the focus on Firefox, Chrome, and Internet Explorer.
 
-* On Macos, clicking a button gives it the focus on Chrome, but not on Firefox or Safari.
+* On macOS, clicking a button gives it the focus on Chrome, but not on Firefox or Safari.
 
 ** Does tapping on [`<button>`](/en-US/docs/Web/HTML/Element/button) give it the focus?**
 

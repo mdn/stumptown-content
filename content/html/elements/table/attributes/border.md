@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.table.border
 ---
 
-# border
+# `border`
 
 This integer attribute defines, in pixels, the size of the frame surrounding the table. If set to 0, the `frame` attribute is set to void.
 

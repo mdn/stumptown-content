@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.blockquote.cite
 ---
 
-# cite
+# `cite`
 
 A URL that designates a source document or message for the
 information quoted. This attribute is intended to point to

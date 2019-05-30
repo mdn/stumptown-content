@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.details.open
 ---
 
-# open
+# `open`
 
 This Boolean attribute indicates whether or not the details - that
 is, the contents of the `<details>` element - are currently

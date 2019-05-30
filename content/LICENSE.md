@@ -5,5 +5,5 @@ distribute it under the same terms. Visit [About
 MDN](https://developer.mozilla.org/en-US/docs/MDN/About#Using_MDN_Web_Docs_content)
 to learn more about MDN content, its authorship, and reuse.
 
-Individual contributors to the pages are credited in a "contributors.md" file
+Individual contributors to the pages are credited in a `contributors.md` file
 in the directory that contains the page content.

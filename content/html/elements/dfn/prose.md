@@ -1,5 +1,5 @@
 <!-- <short-description> -->
-The **HTML Definition element** (**<dfn\>**) is used to indicate the
+The **HTML Definition element** (**\<dfn>**) is used to indicate the
 term being defined within the context of a definition phrase or
 sentence. The
 [`<p>`](/en-US/docs/Web/HTML/Element/p)

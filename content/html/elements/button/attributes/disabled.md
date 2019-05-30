@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.button.disabled
 ---
 
-# disabled
+# `disabled`
 
 This Boolean attribute indicates that the user cannot interact with
 the button. If this attribute is not specified, the button inherits

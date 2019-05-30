@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.button.form
 ---
 
-# form
+# `form`
 
 The form element that the button is associated with (its *form
 owner*). The value of the attribute must be the **id** attribute of

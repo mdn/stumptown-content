@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.table.frame
 ---
 
-# frame
+# `frame`
 
 This attribute defines which side of the frame surrounding the table must be displayed.
   

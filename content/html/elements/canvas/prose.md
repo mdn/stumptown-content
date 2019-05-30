@@ -77,7 +77,7 @@ in an accessible website or app. The following guides can help to make
 it more accessible.
 
 -   [MDN Hit regions and
-    accessability](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Hit_regions_and_accessibility)
+    accessibility](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Hit_regions_and_accessibility)
 -   [Canvas accessibility use
     cases](https://www.w3.org/WAI/PF/HTML/wiki/Canvas_Accessibility_Use_Cases)
 -   [Canvas element accessibility
