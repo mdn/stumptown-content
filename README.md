@@ -1,13 +1,8 @@
 # stumptown-experiment
 
-## Development
-Run:
-```sh
-make lint
-```
-to validate and spell-check all of the markdown files under the `content`
-folder, and:
-```sh
-make validate
-```
-to validate all of the documents under the `content` folder.
+## Usage
+
+To render out `.json` files for all elements run `yarn run build-json` but
+you (currently) need to supply an additional search argument. For example:
+
+    yarn run build-json html/elements
