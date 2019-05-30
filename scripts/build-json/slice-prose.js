@@ -34,19 +34,6 @@ function extractFromSiblings(node, terminatorTag, contentType) {
     return content;
 }
 
-function packageValues(heading, dom) {
-    const values = [];
-    const valueHeadings = dom.querySelectorAll('h3');
-    for (let valueHeading of valueHeadings) {
-        let value = {
-            value: valueHeading.textContent,
-            description: extractFromSiblings(valueHeading, 'H3', 'html')
-        }
-        values.push(value);
-    }
-    return values;
-}
-
 function getSection(node, sections) {
     const sectionName = node.textContent.trim();
     const sectionContent = extractFromSiblings(node, '#comment', 'html');
