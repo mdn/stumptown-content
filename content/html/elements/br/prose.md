@@ -20,8 +20,8 @@ property to control their size.
 Usage notes
 -----------
 
-If multiple `<base>` elements are specified, only the first **href** and
-first **target** value are used; all others are ignored.
+If multiple `<base>` elements are specified, only the first `href` and
+first `target` value are used; all others are ignored.
 <!-- </usage-notes> -->
 
 <!-- <accessibility-concerns> -->

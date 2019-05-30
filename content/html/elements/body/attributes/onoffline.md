@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.body.onoffline
 ---
 
-# onoffline
+# `onoffline`
 
 Function to call when network communication has failed.
 

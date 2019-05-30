@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.embed.src
 ---
 
-# src
+# `src`
 
 The URL of the resource being embedded.
 

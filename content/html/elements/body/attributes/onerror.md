@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.body.onerror
 ---
 
-# onerror
+# `onerror`
 
 Function to call when the document fails to load properly.
 

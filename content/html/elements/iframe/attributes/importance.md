@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.iframe.importance
 ---
 
-# importance
+# `importance`
 
 The download priority of the resource in the `<iframe>`'s `src` attribute.
 

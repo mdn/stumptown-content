@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.form.novalidate
 ---
 
-# novalidate
+# `novalidate`
 
 This Boolean attribute indicates that the form is not to be
 validated when submitted. If this attribute is not specified (and

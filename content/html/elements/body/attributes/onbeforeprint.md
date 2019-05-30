@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.body.onbeforeprint
 ---
 
-# onbeforeprint
+# `onbeforeprint`
 
 Function to call when the user requests printing of the document.
 

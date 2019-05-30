@@ -26,7 +26,7 @@ Its [`display`](/en-US/docs/Web/CSS/display)
 value is `block` by default, and it establishes a block formatting
 context. If the `<fieldset>` is styled with an inline-level `display`
 value, it will behave as `inline-block`, otherwise it will behave as
-`block`. By default there is a 2px groove border surrounding the
+`block`. By default there is a `2px` groove border surrounding the
 contents, and a small amount of default padding. The element has
 `min-inline-size: min-content` by default.
 

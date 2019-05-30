@@ -5,4 +5,4 @@ The width of the border.
 
 ## Type
 
-CSSProperty
+`CSSProperty`

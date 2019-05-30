@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.li.value
 ---
 
-# value
+# `value`
 
 This integer attribute indicates the current ordinal value of the
 list item as defined by the

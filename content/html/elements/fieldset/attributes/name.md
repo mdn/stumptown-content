@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.fieldset.name
 ---
 
-# name
+# `name`
 
 The name associated with the group.
 

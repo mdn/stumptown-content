@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.button.formmethod
 ---
 
-# formmethod
+# `formmethod`
 
 If the button is a submit button, this attribute specifies the HTTP
 method that the browser uses to submit the form.
@@ -12,12 +12,12 @@ button's form owner.
 
 ## Values
 
-### post
+### `post`
 
 The data from the form are included in the body of the
 form and sent to the server.
 
-### get
+### `get`
 
 The data from the form are appended to the **form**
 attribute URI, with a '?' as a separator, and the resulting

@@ -77,20 +77,13 @@ determine the hierarchy of the content:
 When headings are nested, heading levels may be "skipped" when closing
 a subsection.
 
--   [Headings • Page Structure • WAI Web Accessibility
-    Tutorials](https://www.w3.org/WAI/tutorials/page-structure/headings/)
--   [MDN Understanding WCAG, Guideline 1.3
-    explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable#Guideline_1.3_—_Create_content_that_can_be_presented_in_different_ways)
--   [Understanding Success Criterion 1.3.1 \| W3C Understanding WCAG
-    2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html)
--   [MDN Understanding WCAG, Guideline 2.4
-    explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Operable#Guideline_2.4_—_Navigable_Provide_ways_to_help_users_navigate_find_content_and_determine_where_they_are)
--   [Understanding Success Criterion 2.4.1 \| W3C Understanding WCAG
-    2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-skip.html)
--   [Understanding Success Criterion 2.4.6 \| W3C Understanding WCAG
-    2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-descriptive.html)
--   [Understanding Success Criterion 2.4.10 \| W3C Understanding WCAG
-    2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-headings.html)
+-   [Headings • Page Structure • WAI Web Accessibility Tutorials](https://www.w3.org/WAI/tutorials/page-structure/headings/)
+-   [MDN Understanding WCAG, Guideline 1.3 explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable#Guideline_1.3_—_Create_content_that_can_be_presented_in_different_ways)
+-   [Understanding Success Criterion 1.3.1 \| W3C Understanding WCAG 2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html)
+-   [MDN Understanding WCAG, Guideline 2.4 explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Operable#Guideline_2.4_—_Navigable_Provide_ways_to_help_users_navigate_find_content_and_determine_where_they_are)
+-   [Understanding Success Criterion 2.4.1 \| W3C Understanding WCAG 2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-skip.html)
+-   [Understanding Success Criterion 2.4.6 \| W3C Understanding WCAG 2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-descriptive.html)
+-   [Understanding Success Criterion 2.4.10 \| W3C Understanding WCAG 2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-headings.html)
 
 ### Labeling section content
 
@@ -133,10 +126,8 @@ navigation". If labels were not provided, the person using screen
 reading software may have to investigate each `nav` element's contents
 to determine their purpose.
 
--   [Using the aria-labelledby
-    attribute](/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute)
--   [Labeling Regions • Page Structure • W3C WAI Web Accessibility
-    Tutorials](https://www.w3.org/WAI/tutorials/page-structure/labels/#using-aria-labelledby)
+-   [Using the `aria-labelledby` attribute](/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute)
+-   [Labeling Regions • Page Structure • W3C WAI Web Accessibility Tutorials](https://www.w3.org/WAI/tutorials/page-structure/labels/#using-aria-labelledby)
 <!-- </accessibility-concerns> -->
 
 <!-- <see-also> -->

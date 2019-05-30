@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.table.align
 ---
 
-# align
+# `align`
 
 This enumerated attribute indicates how the table must be aligned inside the containing document.
 

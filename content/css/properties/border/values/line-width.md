@@ -6,4 +6,4 @@ See [`border-width`](/en-US/docs/Web/CSS/border-width).
 
 ## Type
 
-CSSSyntax
+`CSSSyntax`

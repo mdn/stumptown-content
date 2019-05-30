@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.button.autocomplete
 ---
 
-# autocomplete
+# `autocomplete`
 
 The use of this attribute on a
 [`<button>`](/en-US/docs/Web/HTML/Element/button)
@@ -17,7 +17,7 @@ across page loads. Setting the value of this attribute to `off`
 
 ## Values
 
-### off
+### `off`
 
 Firefox will not persist the dynamic disabled state of a button across page loads.
 

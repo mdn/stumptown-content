@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.ins.datetime
 ---
 
-# datetime
+# `datetime`
 
 This attribute indicates the time and date of the change and must be
 a valid date with an optional time string. If the value cannot be

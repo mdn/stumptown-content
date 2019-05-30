@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.button.formtarget
 ---
 
-# formtarget
+# `formtarget`
 
 If the button is a submit button, this attribute is a name or
 keyword indicating where to display the response that is received

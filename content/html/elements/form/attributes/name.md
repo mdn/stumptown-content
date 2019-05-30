@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.form.name
 ---
 
-# name
+# `name`
 
 The name of the form. In HTML 4, its use is deprecated (`id` should
 be used instead). It must be unique among the forms in a document

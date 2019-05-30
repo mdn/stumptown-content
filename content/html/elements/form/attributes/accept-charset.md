@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.form.accept-charset
 ---
 
-# accept-charset
+# `accept-charset`
 
 A space- or comma-delimited list of character encodings that the
 server accepts. The browser uses them in the order in which they are

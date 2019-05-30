@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.body.onlanguagechange
 ---
 
-# onlanguagechange
+# `onlanguagechange`
 
 Function to call when the preferred languages changed.
 

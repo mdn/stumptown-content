@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.table.width
 ---
 
-# width
+# `width`
 
 This attribute defines the width of the table. The width may be defined by pixels or a percentage value. A percentage value will be defined by the width of the container in which the table is placed.
 

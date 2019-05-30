@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.form.autocapitalize
 ---
 
-# autocapitalize
+# `autocapitalize`
 
 This is a nonstandard attribute used by iOS Safari Mobile which
 controls whether and how the text value for textual form control
@@ -14,27 +14,27 @@ available in iOS 5 and later. The default value is `sentences`.
 
 ## Values
 
-### none
+### `none`
 
 Completely disables automatic capitalization.
 
-### sentences
+### `sentences`
 
 Automatically capitalize the first letter of sentences.
 
-### words
+### `words`
 
 Automatically capitalize the first letter of words.
 
-### characters
+### `characters`
 
 Automatically capitalize all characters.
 
-### on
+### `on`
 
 Deprecated since iOS 5.
 
-### off
+### `off`
 
 Deprecated since iOS 5.
 

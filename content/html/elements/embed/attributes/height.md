@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.embed.height
 ---
 
-# height
+# `height`
 
 The displayed height of the resource, in [CSS
 pixels](https://drafts.csswg.org/css-values/#px). This must be an

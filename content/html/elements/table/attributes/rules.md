@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.table.rules
 ---
 
-# rules
+# `rules`
 
 This enumerated attribute defines where rules, i.e. lines, should appear in a table.
   
