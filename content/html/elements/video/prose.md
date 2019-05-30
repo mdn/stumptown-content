@@ -1,7 +1,10 @@
-<!-- short-description -->
+## Short description
+
 The **HTML Video element** (**`<video>`**) embeds a media player which
 supports video playback into the document.
-<!-- overview -->
+
+## Overview
+
 You can use `<video>` for audio content as well, but the [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
 element may provide a more appropriate user experience.
 
@@ -51,9 +54,8 @@ A good general source of information on using HTML `<video>` is the
 [Video and audio
 content](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Video_and_audio_content)
 beginner's tutorial.
-<!-- usage-notes -->
-Usage notes
------------
+
+## Usage notes
 
 ### Styling with CSS
 
@@ -151,9 +153,7 @@ setting](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API#Cue_setting
 - [Understanding Success Criterion 1.2.2 | W3C Understanding WCAG
   2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-captions.html)
 
-<!-- see-also -->
-See also
---------
+## See also
 
 - [Media formats supported by the audio and video
   elements](https://developer.mozilla.org/en-US/docs/Media_formats_supported_by_the_audio_and_video_elements)
@@ -166,4 +166,3 @@ See also
   canvas](https://developer.mozilla.org/en-US/docs/Manipulating_video_using_canvas)
 - [Configuring servers for Ogg
   media](https://developer.mozilla.org/en-US/docs/Configuring_servers_for_Ogg_media)
-<!-- </see-also> -->

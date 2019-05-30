@@ -10,13 +10,17 @@ const bcd = require('mdn-browser-compat-data');
 const { JSDOM } = jsdom;
 const commentNode = 8;
 const namedSections = [
-  'short-description',
-  'overview',
-  'attributes-text',
-  'usage-notes',
-  'accessibility-concerns',
-  'see-also'
+  'Short description',
+  'Overview',
+  'Attributes',
+  'Usage notes',
+  'Accessibility concerns',
+  'See also'
 ];
+
+function sectionNameToSlug(sectionName) {
+    return sectionName.toLowerCase().replace(' ', '_');
+}
 
 function extractFromSiblings(node, terminatorTag, contentType) {
     let content = '';
@@ -49,14 +53,18 @@ function packageValues(heading, dom) {
 
 function getSection(node, sections) {
     const sectionName = node.textContent.trim();
-    const sectionContent = extractFromSiblings(node, '#comment', 'html');
+    const sectionContent = extractFromSiblings(node, 'H2', 'html');
     const extraSections = [];
 
     if (namedSections.includes(sectionName)) {
-        sections[sectionName] = sectionContent;
+        const sectionSlug = sectionNameToSlug(sectionName);
+        sections[sectionSlug] = {
+            title: sectionName,
+            content: sectionContent
+        }
     } else {
         const additionalSection = {
-            name: sectionName,
+            title: sectionName,
             content: sectionContent
         };
       sections['additional-sections'].push(additionalSection);
@@ -71,7 +79,7 @@ function package(prosePath) {
     };
     let node = dom.firstChild;
     while (node) {
-        if (node.nodeType === commentNode) {
+        if (node.nodeName === 'H2') {
             getSection(node, sections);
         }
         node = node.nextSibling;
