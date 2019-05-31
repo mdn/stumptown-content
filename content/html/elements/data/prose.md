@@ -1,19 +1,14 @@
-<!-- <short-description> -->
+## Short description
+
 The **HTML `<data>` element** links a given content with a
 machine-readable translation. If the content is time- or date-related,
 the [`<time>`](/en-US/docs/Web/HTML/Element/time)
 element must be used.
-<!-- </short-description> -->
 
-<!-- <overview> -->
-<!-- </overview> -->
+## Overview
 
-<!-- <usage-notes> -->
-<!-- </usage-notes> -->
+## Usage notes
 
-<!-- <see-also> -->
-See also
---------
+## See also
 
--   The HTML [`<time>`](/en-US/docs/Web/HTML/Element/time) element.
-<!-- </see-also> -->
+- The HTML [`<time>`](/en-US/docs/Web/HTML/Element/time) element.

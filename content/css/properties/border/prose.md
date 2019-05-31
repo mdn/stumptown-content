@@ -1,9 +1,10 @@
-<!-- <short-description> -->
+## Short description
+
 The **`border`** [CSS](/en-US/docs/CSS) property sets an element's
 border.
-<!-- </short-description> -->
 
-<!-- <overview> -->
+## Overview
+
 It's a [shorthand](/en-US/docs/Web/CSS/Shorthand_properties)
 for [`border-width`](/en-US/docs/Web/CSS/border-width),
 [`border-style`](/en-US/docs/Web/CSS/border-style),
@@ -34,13 +35,12 @@ border properties.
 Borders and [outlines](/en-US/docs/Web/CSS/outline) are very similar.
 However, outlines differ from borders in the following ways:
 
--   Outlines never take up space, as they are drawn outside of an
-    element's content.
--   According to the spec, outlines don't have to be rectangular,
-    although they usually are.
-<!-- </overview> -->
+- Outlines never take up space, as they are drawn outside of an
+  element's content.
+- According to the spec, outlines don't have to be rectangular,
+  although they usually are.
 
-<!-- <example-syntax> -->
+## Example syntax
 ```.css
 /* style */
 border: solid;
@@ -59,15 +59,12 @@ border: inherit;
 border: initial;
 border: unset;
 ```
-<!-- </example-syntax> -->
 
-<!-- <syntax-overview> -->
+## Syntax overview
 The `border` property may be specified using one, two, or three of the
 values listed below. The order of the values does not matter.
 
 The border will be invisible if its style is not defined. This
 is because the style defaults to `none`.
-<!-- </syntax-overview> -->
 
-<!-- <see-also> -->
-<!-- </see-also> -->
+## See also

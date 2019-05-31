@@ -1,15 +1,12 @@
-<!-- <short-description> -->
+## Short description
+
 The **HTML Table Caption element** (**`<caption>`**) specifies the
 caption (or title) of a table, and if used is *always* the first child
 of a [`<table>`](/en-US/docs/Web/HTML/Element/table).
-<!-- </short-description> -->
 
-<!-- <overview> -->
-<!-- </overview> -->
+## Overview
 
-<!-- <usage-notes> -->
-Usage notes
------------
+## Usage notes
 
 When the
 [`<table>`](/en-US/docs/Web/HTML/Element/table)
@@ -25,22 +22,19 @@ using the CSS
 and
 [`text-align`](/en-US/docs/Web/CSS/text-align)
 properties.
-<!-- </usage-notes> -->
 
-<!-- <see-also> -->
-See also
---------
--   Other table-related HTML Elements:
-    [`<col>`](/en-US/docs/Web/HTML/Element/col),
-    [`<colgroup>`](/en-US/docs/Web/HTML/Element/colgroup),
-    [`<table>`](/en-US/docs/Web/HTML/Element/table),
-    [`<tbody>`](/en-US/docs/Web/HTML/Element/tbody),
-    [`<td>`](/en-US/docs/Web/HTML/Element/td),
-    [`<tfoot>`](/en-US/docs/Web/HTML/Element/tfoot),
-    [`<th>`](/en-US/docs/Web/HTML/Element/th),
-    [`<thead>`](/en-US/docs/Web/HTML/Element/thead),
-    [`<tr>`](/en-US/docs/Web/HTML/Element/tr);
--   CSS properties that may be specially useful to style the
-    [`<caption>`](/en-US/docs/Web/HTML/Element/caption)
-    element: [`text-align`](/en-US/docs/Web/CSS/text-align), [`caption-side`](/en-US/docs/Web/CSS/caption-side).
-<!-- </see-also> -->
+
+## See also
+- Other table-related HTML Elements:
+  [`<col>`](/en-US/docs/Web/HTML/Element/col),
+  [`<colgroup>`](/en-US/docs/Web/HTML/Element/colgroup),
+  [`<table>`](/en-US/docs/Web/HTML/Element/table),
+  [`<tbody>`](/en-US/docs/Web/HTML/Element/tbody),
+  [`<td>`](/en-US/docs/Web/HTML/Element/td),
+  [`<tfoot>`](/en-US/docs/Web/HTML/Element/tfoot),
+  [`<th>`](/en-US/docs/Web/HTML/Element/th),
+  [`<thead>`](/en-US/docs/Web/HTML/Element/thead),
+  [`<tr>`](/en-US/docs/Web/HTML/Element/tr);
+- CSS properties that may be specially useful to style the
+  [`<caption>`](/en-US/docs/Web/HTML/Element/caption)
+  element: [`text-align`](/en-US/docs/Web/CSS/text-align), [`caption-side`](/en-US/docs/Web/CSS/caption-side).
