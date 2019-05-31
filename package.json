@@ -17,13 +17,8 @@
         "prettify": "prettier --write scripts/**/*.js",
         "lint-md": "remark -q -f content",
         "build-json": "node scripts/build-json/build-json.js",
-<<<<<<< HEAD
         "spell-md": "mdspell -a -n -r -x --en-us 'content/**/!(*contributors).md'",
-        "test": "npm run lint-md && npm run spell-md"
-=======
-        "spell-md": "mdspell -a -n --en-us 'content/**/*.md'",
-        "test": "yarn run lint-md"
->>>>>>> Switch to yarn
+        "test": "yarn run lint-md && yarn run spell-md"
     },
     "dependencies": {
         "gray-matter": "4.0.2",
