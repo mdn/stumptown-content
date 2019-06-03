@@ -1,4 +1,3 @@
-
 ## Short description
 
 The **HTML Video element** (**`<video>`**) embeds a media player which
