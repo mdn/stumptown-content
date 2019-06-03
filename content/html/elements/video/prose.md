@@ -1,4 +1,5 @@
-## Short descriptions
+
+## Short description
 
 The **HTML Video element** (**`<video>`**) embeds a media player which
 supports video playback into the document.

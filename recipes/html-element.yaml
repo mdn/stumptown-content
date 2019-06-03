@@ -1,16 +1,16 @@
 body:
-- prose.short-description
-- meta.interactive-example?
+- prose.short_description
+- meta.interactive_example?
 - prose.overview?
-- prose.attributes-text?
+- prose.attributes_text?
 - meta.attributes
-- prose.usage-notes
+- prose.usage_notes
 - prose.*
-- prose.accessibility-concerns?
+- prose.accessibility_concerns?
 - meta.examples
-- meta.info-box:
+- meta.info_box:
     - meta.api
-    - meta.permitted-aria-roles
+    - meta.permitted_aria_roles
     - meta.tag_omission
-- meta.browser-compatibility
-- prose.see-also
+- meta.browser_compatibility
+- prose.see_also
