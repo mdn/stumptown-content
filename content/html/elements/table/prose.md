@@ -1,11 +1,8 @@
 ## Short description
+
 The **HTML `<table>` element** represents tabular data --- that is,
 information presented in a two-dimensional table comprised of rows and
 columns of cells containing data.
-
-## Overview
-
-## Usage notes
 
 ## Accessibility concerns
 ### Captions

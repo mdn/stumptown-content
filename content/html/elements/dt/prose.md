@@ -19,10 +19,6 @@ The subsequent
 (**Description Details**) element provides the definition or other
 related text associated with the term specified using `<dt>`.
 
-
-## Usage notes
-
-
 ## See also
 
 - [`<dd>`](/en-US/docs/Web/HTML/Element/dd),

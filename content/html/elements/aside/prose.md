@@ -5,8 +5,6 @@ content is only indirectly related to the document's main
 content. Asides are frequently presented as sidebars or
 call-out boxes.
 
-## Overview
-
 ## Usage notes
 
 - Do not use the `<aside>` element to tag parenthesized text, as this

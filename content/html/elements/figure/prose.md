@@ -5,8 +5,6 @@ frequently with a caption
 ([`<figcaption>`](/en-US/docs/Web/HTML/Element/figcaption)),
 and is typically referenced as a single unit.
 
-## Overview
-
 ## Usage notes
 
 - Usually a `<figure>` is an image, illustration, diagram, code

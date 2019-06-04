@@ -5,6 +5,7 @@ well as labels ([`<label>`](/en-US/docs/Web/HTML/Element/label))
 within a web form.
 
 ## Overview
+
 The `<fieldset>` element provides a grouping
 for a part of an HTML form, with a nested
 [`<legend>`](/en-US/docs/Web/HTML/Element/legend)
@@ -50,7 +51,6 @@ inside a
 [`<fieldset>`](/en-US/docs/Web/HTML/Element/fieldset).
 [This GitHub issue](https://github.com/w3c/csswg-drafts/issues/321)
 provides bug tracking links.
-
 
 ## See also
 

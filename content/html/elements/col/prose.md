@@ -11,8 +11,6 @@ will have an effect on the column ([see the CSS 2.1
 specification](https://www.w3.org/TR/CSS21/tables.html#columns) for a
 list).
 
-## Usage notes
-
 ## See also
 
 - Other table-related HTML elements:

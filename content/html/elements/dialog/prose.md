@@ -3,8 +3,6 @@
 The **HTML `<dialog>` element** represents a dialog box or other
 interactive component, such as an inspector or window.
 
-## Overview
-
 ## Usage notes
 
 - `<form>` elements can be integrated within a dialog by specifying

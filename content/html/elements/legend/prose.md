@@ -1,4 +1,5 @@
 ## Short description
+
 The **HTML `<legend>` element** represents a caption for the content of
 its parent [`<fieldset>`](/en-US/docs/Web/HTML/Element/fieldset).
 

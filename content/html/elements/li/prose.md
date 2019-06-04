@@ -11,10 +11,6 @@ In menus and unordered lists, list items are usually displayed using
 bullet points. In ordered lists, they are usually displayed with an
 ascending counter on the left, such as a number or letter.
 
-## Overview
-
-## Usage notes
-
 ## Styling with CSS
 
 Use the

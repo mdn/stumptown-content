@@ -16,7 +16,6 @@ support for browser plug-ins, so relying upon `<embed>` is generally not
 wise if you want your site to be operable on the average user\'s
 browser.
 
-
 ## Usage notes
 
 You can use the

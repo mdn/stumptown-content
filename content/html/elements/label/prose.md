@@ -1,8 +1,10 @@
 ## Short description
+
 The **HTML `<label>` element** represents a caption for an item in a
 user interface.
 
 ## Overview
+
 Associating a `<label>` with an input element offers some major
 advantages:
 

@@ -6,10 +6,6 @@ definition of the preceding term
 in a description list
 ([`<dl>`](/en-US/docs/Web/HTML/Element/dl)).
 
-## Overview
-
-## Usage notes
-
 ## See also
 
 - [`<dl>`](/en-US/docs/Web/HTML/Element/dl)

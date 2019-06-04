@@ -40,8 +40,6 @@ The common use of a triangle which rotates or twists around to
 represent opening or closing the widget is why these are sometimes
 called "twisties".
 
-## Overview
-
 ## Events
 
 In addition to the usual events supported by HTML elements, the

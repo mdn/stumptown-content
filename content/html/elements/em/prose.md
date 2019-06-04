@@ -4,9 +4,6 @@ The **HTML `<em>` element** marks text that has stress emphasis. The
 `<em>` element can be nested, with each level of nesting indicating a
 greater degree of emphasis.
 
-
-## Overview
-
 ## Usage notes
 
 The `<em>` element is for words that have a stressed emphasis compared
@@ -53,7 +50,6 @@ Here, there is no added emphasis or importance on the word "Queen
 Mary". It is merely indicated that the object in question is not a
 queen named Mary, but a ship named *Queen Mary*. Another example for
 `<i>` could be: "The word *the* is an article".
-
 
 ## See also
 

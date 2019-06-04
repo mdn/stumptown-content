@@ -1,11 +1,10 @@
 ## Short description
+
 The **HTML `<footer>` element** represents a footer for its nearest
 [sectioning content](/en-US/docs/Web/Guide/HTML/Sections_and_Outlines_of_an_HTML5_document#Defining_sections)
 or [sectioning root](/en-US/docs/Web/Guide/HTML/Sections_and_Outlines_of_an_HTML5_document#Sectioning_roots)
 element. A footer typically contains information about the author of the
 section, copyright data or links to related documents.
-
-## Overview
 
 ## Usage notes
 

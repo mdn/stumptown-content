@@ -4,8 +4,6 @@ The **HTML `<head>` element** provides general information (metadata)
 about the document, including its title and links to its scripts and
 style sheets.
 
-## Overview
-
 ## Usage notes
 Modern, HTML5-compliant browsers automatically construct a `<head>`
 element if the tags are omitted in the markup. [This behavior cannot be

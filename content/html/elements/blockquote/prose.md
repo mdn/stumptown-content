@@ -9,8 +9,6 @@ given using the
 [`<cite>`](/en-US/docs/Web/HTML/Element/cite)
 element.
 
-## Overview
-
 ## Usage notes
 
 To change the indentation applied to the quoted text, use the

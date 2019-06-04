@@ -20,8 +20,6 @@ attribute), and so on.
   [`<nav>`](/en-US/docs/Web/HTML/Element/nav))
   is appropriate.
 
-## Events
-
 ## See also
 
 - Semantic sectioning elements:

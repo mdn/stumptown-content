@@ -4,8 +4,6 @@ The **HTML Table Caption element** (**`<caption>`**) specifies the
 caption (or title) of a table, and if used is *always* the first child
 of a [`<table>`](/en-US/docs/Web/HTML/Element/table).
 
-## Overview
-
 ## Usage notes
 
 When the
@@ -23,8 +21,8 @@ and
 [`text-align`](/en-US/docs/Web/CSS/text-align)
 properties.
 
-
 ## See also
+
 - Other table-related HTML Elements:
   [`<col>`](/en-US/docs/Web/HTML/Element/col),
   [`<colgroup>`](/en-US/docs/Web/HTML/Element/colgroup),

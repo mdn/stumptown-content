@@ -6,4 +6,5 @@ the rest of the contents its parent
 element, if any.
 
 ## See also
+
 - The [`<figure>`](/en-US/docs/Web/HTML/Element/figure) element.

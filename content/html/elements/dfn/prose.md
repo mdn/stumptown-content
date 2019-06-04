@@ -11,8 +11,6 @@ pairing, or the
 element which is the nearest ancestor of the `<dfn>` is considered to be
 the definition of the term.
 
-## Overview
-
 ## Usage notes
 
 - The `<dfn>` element marks the term being defined; the definition of

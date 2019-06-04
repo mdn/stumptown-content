@@ -13,5 +13,3 @@ The base URL of a document can be queried from a script using
 
 If multiple `<base>` elements are specified, only the first `href` and
 first `target` value are used; all others are ignored.
-
-## See also

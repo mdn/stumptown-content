@@ -4,8 +4,8 @@ The **HTML Keyboard Input element** (**`<kbd>`**) represents a span of
 inline text denoting textual user input from a keyboard, voice input, or
 any other text entry device.
 
-
 ## Overview
+
 By convention, the [user agent](/en-US/docs/Glossary/user_agent)
 defaults to rendering the contents of a `<kbd>` element using its
 default monospace font, although this is not mandated by the HTML
@@ -35,7 +35,6 @@ specific scenarios:
 You can define a custom style to override the browser's default font
 selection for the `<kbd>` element, although the user's preferences may
 potentially override your CSS.
-
 
 ## See also
 

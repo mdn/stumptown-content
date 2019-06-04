@@ -6,8 +6,6 @@ author or the URL of that work. The reference may be in an
 abbreviated form according to context-appropriate conventions related to
 citation metadata.
 
-## Overview
-
 ## Usage notes
 
 In the context of the `<cite>` element, a creative work that might be
@@ -57,7 +55,6 @@ Typically, browsers style the contents of a `<cite>` element in italics
 by default. To avoid this, apply the CSS
 [`font-style`](/en-US/docs/Web/CSS/font-style)
 property to the `<cite>` element.
-
 
 ## See also
 

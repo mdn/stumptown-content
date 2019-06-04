@@ -7,10 +7,6 @@ change tracking or source code diffs, for example. The
 element can be used for the opposite purpose: to indicate text that has
 been added to the document.
 
-## Overview
-
-## Usage notes
-
 ## Accessibility concerns
 The presence of the `del` element is not announced by most screen
 reading technology in its default configuration. It can be made to be

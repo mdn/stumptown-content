@@ -22,7 +22,6 @@ position, alignment, and scaling of the embedded document within the
 [`object-position`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-position) and [`object-fit`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit)
 properties.
 
-
 ## Scripting
 
 Inline frames are included in
@@ -43,7 +42,6 @@ script was loaded from a different origin, including scripts inside a
 frame accessing the frame's parent. Cross-origin communication can be
 achieved using [`Window.postMessage()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage).
 
-
 ## Accessibility concerns
 People navigating with assistive technology such as a screen reader can
 use the [`title`
@@ -59,5 +57,3 @@ Without this title, they have to navigate into the `iframe` to determine
 what its embedded content is. This context shift can be confusing and
 time-consuming, especially for pages with multiple `<iframe>`s and/or if
 embeds contain interactive content like video or audio.
-
-## See also

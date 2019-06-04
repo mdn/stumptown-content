@@ -5,10 +5,6 @@ machine-readable translation. If the content is time- or date-related,
 the [`<time>`](/en-US/docs/Web/HTML/Element/time)
 element must be used.
 
-## Overview
-
-## Usage notes
-
 ## See also
 
 - The HTML [`<time>`](/en-US/docs/Web/HTML/Element/time) element.
