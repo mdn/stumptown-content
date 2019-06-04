@@ -40,7 +40,25 @@ function packageExample(examplePath) {
 }
 
 function package(paths) {
-    return paths.map(packageExample);
+    const rendered = paths.map(packageExample);
+
+    // Do invariance checking after all examples have been packaged.
+    // These are checks that only makes sense to run *after* all
+    // individual examples have been packaged.
+    const normalizedTitles = new Set(
+        rendered.map(example => example.description.title)
+        .filter(title => !!title)
+        .map(title => title.trim().toLowerCase())
+    );
+    // Check that they are all unique
+    if (normalizedTitles.size !== rendered.length) {
+        throw new Error(
+            "Every example's description title must be unique " +
+            `(${JSON.stringify([...normalizedTitles])})`
+        );
+    }
+
+    return rendered
 }
 
 module.exports = {
