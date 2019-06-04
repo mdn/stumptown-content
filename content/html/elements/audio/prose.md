@@ -1,4 +1,5 @@
-<!-- <short-description> -->
+## Short description
+
 The **HTML `<audio>` element** is used to embed sound content in
 documents. It may contain one or more audio sources, represented using
 the `src` attribute or the
@@ -6,9 +7,8 @@ the `src` attribute or the
 element: the browser will choose the most suitable one. It can also be
 the destination for streamed media, using a
 [`MediaStream`](https://developer.mozilla.org/en-US/docs/Web/API/MediaStream).
-<!-- </short-description> -->
 
-<!-- <overview> -->
+## Overview
 In a similar manner to the
 [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img)
 element, we include a path to the media we want to embed inside the
@@ -36,32 +36,28 @@ elements, and the browser will then use the first one it understands:
 
 Other usage notes:
 
--   If you don't specify the `controls` attribute, the audio player
-    won't include the browser's default controls; you can create your
-    own custom controls using JavaScript and the
-    [`HTMLMediaElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement)
-    API.
--   To allow precise control over your audio content,
-    `HTMLMediaElement`s fire many different
-    [events](https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Media_events).
--   You can also use the [Web Audio
-    API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) to directly generate and
-    manipulate audio streams from JavaScript code.
--   `<audio>` elements can't have subtitles/captions associated with
-    them in the same way that `<video>` elements can. See [WebVTT and
-    Audio](https://www.iandevlin.com/blog/2015/12/html5/webvtt-and-audio)
-    by Ian Devlin for some useful information and workarounds.
+- If you don't specify the `controls` attribute, the audio player
+  won't include the browser's default controls; you can create your
+  own custom controls using JavaScript and the
+  [`HTMLMediaElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement)
+  API.
+- To allow precise control over your audio content,
+  `HTMLMediaElement`s fire many different
+  [events](https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Media_events).
+- You can also use the [Web Audio
+  API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) to directly generate and
+  manipulate audio streams from JavaScript code.
+- `<audio>` elements can't have subtitles/captions associated with
+  them in the same way that `<video>` elements can. See [WebVTT and
+  Audio](https://www.iandevlin.com/blog/2015/12/html5/webvtt-and-audio)
+  by Ian Devlin for some useful information and workarounds.
 
 A good general source of information on using HTML `<audio>` is the
 [Video and audio
 content](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Video_and_audio_content)
 beginner's tutorial.
-<!-- </overview> -->
 
-<!-- <usage-notes> -->
-
-Usage notes
------------
+## Usage notes
 
 ### Styling with CSS
 
@@ -106,19 +102,19 @@ they\'re sent to the track list object within the `<audio>` element's
 [`HTMLMediaElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement)
 that corresponds to the type of track that was added to the element:
 
-*   [`HTMLMediaElement.audioTracks`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/audioTracks): An
-    [`AudioTrackList`](https://developer.mozilla.org/en-US/docs/Web/API/AudioTrackList)
-    containing all of the media element's audio tracks. You can add a
-    listener for `addtrack` to this object to be alerted when new audio
-    tracks are added to the element.
+* [`HTMLMediaElement.audioTracks`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/audioTracks): An
+  [`AudioTrackList`](https://developer.mozilla.org/en-US/docs/Web/API/AudioTrackList)
+  containing all of the media element's audio tracks. You can add a
+  listener for `addtrack` to this object to be alerted when new audio
+  tracks are added to the element.
 
-*   [`HTMLMediaElement.videoTracks`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/videoTracks): Add an `addtrack` listener to this
-    [`VideoTrackList`](https://developer.mozilla.org/en-US/docs/Web/API/VideoTrackList)
-    object to be informed when video tracks are added to the element.
+* [`HTMLMediaElement.videoTracks`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/videoTracks): Add an `addtrack` listener to this
+  [`VideoTrackList`](https://developer.mozilla.org/en-US/docs/Web/API/VideoTrackList)
+  object to be informed when video tracks are added to the element.
 
-*   [`HTMLElement.textTracks`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/textTracks): Add an `addtrack` event listener to this
-    [`TextTrackList`](https://developer.mozilla.org/en-US/docs/Web/API/TextTrackList)
-    to be notified when new text tracks are added to the element.
+* [`HTMLElement.textTracks`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/textTracks): Add an `addtrack` event listener to this
+  [`TextTrackList`](https://developer.mozilla.org/en-US/docs/Web/API/TextTrackList)
+  to be notified when new text tracks are added to the element.
 
 **Note:** Even though it's an `<audio>` element, it still has video and
 text track lists, and can in fact be used to present video, although the
@@ -146,9 +142,8 @@ and remove the track from the editor's list of available tracks.
 You can also use
 [`addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) to listen for the `addtrack` and `removetrack` events.
 
-<!-- </usage-notes> -->
+## Accessibility concerns
 
-<!-- <accessibility-concerns> -->
 Audio with spoken dialog should provide both captions and transcripts
 that accurately describe its content. Captions allow people who are
 experiencing hearing loss to understand an audio recording's content as
@@ -163,49 +158,35 @@ In addition to spoken dialog, subtitles and transcripts should also
 identify music and sound effects that communicate important information.
 This includes emotion and tone:
 
+```
     1
     00:00:00 --> 00:00:45
     [Energetic techno music]
 
-    2 
+    2
     00:00:46 --> 00:00:51
     Welcome to the Time Keeper's podcast! In this episode we're discussing which Swisswatch is a wrist switchwatch?
 
     16
     00:00:52 --> 00:01:02
     [Laughing] Sorry! I mean, which wristwatch is a Swiss wristwatch?
+```
 
--   [MDN Subtitles and closed caption ---
-    Plugins](https://developer.mozilla.org/en-US/docs/Plugins/Flash_to_HTML5/Video/Subtitles_captions)
--   [Web Video Text Tracks Format
-    (WebVTT)](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API)
--   [WebAIM: Captions, Transcripts, and Audio
-    Descriptions](https://webaim.org/techniques/captions/)
--   [MDN Understanding WCAG, Guideline 1.2
-    explanations](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable#Guideline_1.2_—_Providing_text_alternatives_for_time-based_media)
--   [Understanding Success Criterion 1.2.1 \| W3C Understanding WCAG
-    2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-av-only-alt.html)
--   [Understanding Success Criterion 1.2.2 \| W3C Understanding WCAG
-    2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-captions.html)
+- [MDN Subtitles and closed caption --- Plugins](https://developer.mozilla.org/en-US/docs/Plugins/Flash_to_HTML5/Video/Subtitles_captions)
+- [Web Video Text Tracks Format (WebVTT)](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API)
+- [WebAIM: Captions, Transcripts, and Audio Descriptions](https://webaim.org/techniques/captions/)
+- [MDN Understanding WCAG, Guideline 1.2 explanations](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable#Guideline_1.2_—_Providing_text_alternatives_for_time-based_media)
+- [Understanding Success Criterion 1.2.1 \| W3C Understanding WCAG 2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-av-only-alt.html)
+- [Understanding Success Criterion 1.2.2 \| W3C Understanding WCAG 2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-captions.html)
 
-<!-- </accessibility-concerns> -->
+## See also
 
-<!-- <see-also> -->
-
-See also
---------
-
--   [Media formats supported by the audio and video
-    elements](https://developer.mozilla.org/en-US/docs/Media_formats_supported_by_the_audio_and_video_elements)
--   [Web Audio API](https://developer.mozilla.org/en-US/docs/Web_Audio_API)
--   [`HTMLAudioElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement)
--   [`nsIDOMHTMLMediaElement`](https://developer.mozilla.org/en-US/docs/XPCOM_Interface_Reference/NsIDOMHTMLMediaElement)
--   [`<source>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source)
--   [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
--   [Using audio and video](https://developer.mozilla.org/en-US/docs/Using_HTML5_audio_and_video)
--   [Cross-browser audio
-    basics](https://developer.mozilla.org/en-US/docsApps/Fundamentals/Audio_and_video_delivery/Cross-browser_audio_basics)
--   [The `audio`
-    element](https://www.whatwg.org/specs/web-apps/current-work/#audio)
-    (HTML5 specification)
-<!-- </see-also> -->
+- [Media formats supported by the audio and video elements](https://developer.mozilla.org/en-US/docs/Media_formats_supported_by_the_audio_and_video_elements)
+- [Web Audio API](https://developer.mozilla.org/en-US/docs/Web_Audio_API)
+- [`HTMLAudioElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement)
+- [`nsIDOMHTMLMediaElement`](https://developer.mozilla.org/en-US/docs/XPCOM_Interface_Reference/NsIDOMHTMLMediaElement)
+- [`<source>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source)
+- [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
+- [Using audio and video](https://developer.mozilla.org/en-US/docs/Using_HTML5_audio_and_video)
+- [Cross-browser audio basics](https://developer.mozilla.org/en-US/docsApps/Fundamentals/Audio_and_video_delivery/Cross-browser_audio_basics)
+- [The `audio` element](https://www.whatwg.org/specs/web-apps/current-work/#audio) (HTML5 specification)

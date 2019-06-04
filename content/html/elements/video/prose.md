@@ -101,7 +101,9 @@ AddType video/webm .webm
 
 Your web host may provide an easy interface to MIME type configuration
 changes for new technologies until a global update naturally occurs.
-<!-- accessibility-concerns -->
+
+## Accessibility concerns
+
 Videos should provide both captions and transcripts that accurately
 describe its content (see [Adding captions and subtitles to HTML5
 video](https://developer.mozilla.org/en-US/docs/Web/Apps/Fundamentals/Audio_and_video_delivery/Adding_captions_and_subtitles_to_HTML5_video)

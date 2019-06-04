@@ -1,10 +1,11 @@
-<!-- <short-description> -->
+## Short description
+
 The **HTML Bidirectional Text Override element** (**`<bdo>`**)
 overrides the current directionality of text, so that the text within is
 rendered in a different direction.
-<!-- </short-description> -->
 
-<!-- <overview> -->
+## Overview
+
 Bidirectional text is text that may contain both sequences of characters
 that are arranged left-to-right (LTR) and sequences of characters that
 are arranged right-to-left (RTL), such as an Arabic quotation embedded
@@ -24,10 +25,10 @@ The `<bdi>` element is used to wrap a span of text and instructs the
 bidirectional algorithm to treat this text in isolation from its
 surroundings. This works in two ways:
 
--   The directionality of text embedded in `<bdi>` *does not influence*
-    the directionality of the surrounding text.
--   The directionality of text embedded in `<bdi>` *is not influenced
-    by* the directionality of the surrounding text.
+- The directionality of text embedded in `<bdi>` *does not influence*
+  the directionality of the surrounding text.
+- The directionality of text embedded in `<bdi>` *is not influenced
+  by* the directionality of the surrounding text.
 
 For example, consider some text like:
 
@@ -62,20 +63,11 @@ CSS styling.
 
 Embedding the characters in `<span dir="auto">` has the same effect as
 using `<bdi>`, but its semantics are less clear.
-<!-- </overview> -->
 
-<!-- <attributes-text> -->
+## Attributes text
 When used with `<bdo>` the [`dir`](/en-US/docs/Web/HTML/Global_attributes/dir) attribute is mandatory and describes the direction in which text should be rendered inside the element's Possible values are:
--   `ltr`: Indicates that the text should go in a left-to-right
-        direction.
--   `rtl`: Indicates that the text should go in a right-to-left
-        direction.
-<!-- </attributes-text> -->
+- `ltr`: Indicates that the text should go in a left-to-right direction.
+- `rtl`: Indicates that the text should go in a right-to-left direction.
 
-<!-- <see-also> -->
-See also
---------
-
--   [Inline markup and bidirectional text in
-    HTML](https://www.w3.org/International/articles/inline-bidi-markup/)
-<!-- </see-also> -->
+## See also
+- [Inline markup and bidirectional text in HTML](https://www.w3.org/International/articles/inline-bidi-markup/)

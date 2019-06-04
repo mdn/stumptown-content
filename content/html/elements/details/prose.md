@@ -1,11 +1,10 @@
-<!-- <short-description> -->
+## Short description
 The **HTML Details Element (`<details>`)** creates a disclosure widget
 in which information is visible only when the widget is toggled into an
 "open" state. A summary or label can be provided using
 the [`<summary>`](/en-US/docs/Web/HTML/Element/summary) element.
-<!-- </short-description> -->
 
-<!-- <overview> -->
+## Overview
 A disclosure widget is typically presented onscreen using a small
 triangle which rotates (or twists) to indicate open/closed status, with
 a label next to the triangle. If the first child of the `<details>`
@@ -40,14 +39,8 @@ element.
 The common use of a triangle which rotates or twists around to
 represent opening or closing the widget is why these are sometimes
 called "twisties".
-<!-- </overview> -->
 
-<!-- <usage-notes> -->
-<!-- </usage-notes> -->
-
-<!-- <events> -->
-Events
-------
+## Events
 
 In addition to the usual events supported by HTML elements, the
 `<details>` element supports the `toggle` event, which is dispatched to
@@ -68,11 +61,7 @@ details.addEventListener("toggle", event => {
   }
 });
 ```
-<!-- </events> -->
 
-<!-- <see-also> -->
-See also
---------
+## See also
 
--   [`<summary>`](/en-US/docs/Web/HTML/Element/summary)
-<!-- </see-also> -->
+- [`<summary>`](/en-US/docs/Web/HTML/Element/summary)

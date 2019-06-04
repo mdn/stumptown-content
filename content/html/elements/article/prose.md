@@ -1,20 +1,18 @@
-<!-- <short-description> -->
+## Short description
+
 The **HTML `<article>` element** represents a self-contained composition
 in a document, page, application, or site, which is intended to be
 independently distributable or reusable (e.g., in syndication). Examples
 include: a forum post, a magazine or newspaper article, or a blog entry.
-<!-- </short-description> -->
 
-<!-- <overview> -->
+## Overview
+
 A given document can have multiple articles in it; for example, on a
 blog that shows the text of each article one after another as the reader
 scrolls, each post would be contained in an `<article>` element,
 possibly with one or more `<section>`s within.
-<!-- </overview> -->
 
-<!-- <usage-notes> -->
-Usage notes
------------
+## Usage notes
 
 - Each `<article>` should be identified, typically by including a heading
   ([`<h1>`-`<h6>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements)
@@ -32,11 +30,9 @@ Usage notes
   element. Note that the `pubdate` attribute of
   [`<time>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time)
   is no longer a part of the W3C HTML 5 standard.
-<!-- </usage-notes> -->
 
-<!-- <see-also> -->
-See also
---------
+
+## See also
 
 - Other section-related elements:
   [`<body>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body),
@@ -54,5 +50,3 @@ See also
   [`<footer>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/footer),
   [`<address>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/address)
 - [Sections and outlines of an HTML5 document](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Sections_and_Outlines_of_an_HTML5_document)
-
-<!-- </see-also> -->

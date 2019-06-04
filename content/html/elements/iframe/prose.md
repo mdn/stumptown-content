@@ -1,10 +1,10 @@
-<!-- <short-description> -->
+## Short description
+
 The **HTML Inline Frame element (`<iframe>`)** represents a nested
 [browsing context](https://developer.mozilla.org/en-US/docs/Glossary/Browsing_context), embedding
 another HTML page into the current one.
-<!-- </short-description> -->
 
-<!-- <overview> -->
+## Overview
 Each embedded browsing context has its own session
 history. The browsing context that
 embeds the others is called the *parent browsing context*. The *topmost*
@@ -21,11 +21,8 @@ position, alignment, and scaling of the embedded document within the
 `<iframe>` element's box, can be adjusted with the
 [`object-position`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-position) and [`object-fit`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit)
 properties.
-<!-- </overview> -->
 
-<!-- <scripting> -->
-Scripting
----------
+## Scripting
 
 Inline frames are included in
 the [`window.frames`](https://developer.mozilla.org/en-US/docs/Web/API/Window/frames) pseudo-array.
@@ -44,9 +41,8 @@ Scripts cannot access most properties in other window objects if the
 script was loaded from a different origin, including scripts inside a
 frame accessing the frame's parent. Cross-origin communication can be
 achieved using [`Window.postMessage()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage).
-<!-- </scripting> -->
 
-<!-- <accessibility-concerns> -->
+## Accessibility concerns
 People navigating with assistive technology such as a screen reader can
 use the [`title`
 attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title) on an `iframe`
@@ -61,7 +57,3 @@ Without this title, they have to navigate into the `iframe` to determine
 what its embedded content is. This context shift can be confusing and
 time-consuming, especially for pages with multiple `<iframe>`s and/or if
 embeds contain interactive content like video or audio.
-<!-- </accessibility-concerns> -->
-
-<!-- <see-also> -->
-<!-- </see-also> -->

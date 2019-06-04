@@ -1,22 +1,23 @@
-<!-- <short-description> -->
+## Short description
+
 The **HTML `<label>` element** represents a caption for an item in a
 user interface.
-<!-- </short-description> -->
 
-<!-- <overview> -->
+## Overview
+
 Associating a `<label>` with an input element offers some major
 advantages:
 
--   The label text is not only visually associated with its
-    corresponding text input; it is programmatically associated with it
-    too. This means that, for example, a screenreader will read out the
-    label when the user is focused on the form input, making it easier
-    for an assistive technology user to understand what data should be
-    entered.
--   You can click the associated label to focus/activate the input, as
-    well as the input itself. This increased hit area provides an
-    advantage to anyone trying to activate the input, including those
-    using a touch-screen device.
+- The label text is not only visually associated with its
+  corresponding text input; it is programmatically associated with it
+  too. This means that, for example, a screenreader will read out the
+  label when the user is focused on the form input, making it easier
+  for an assistive technology user to understand what data should be
+  entered.
+- You can click the associated label to focus/activate the input, as
+  well as the input itself. This increased hit area provides an
+  advantage to anyone trying to activate the input, including those
+  using a touch-screen device.
 
 To associate the `<label>` with an `<input>` element, you need to give
 the `<input>` an `id` attribute. The `<label>` then needs a `for`
@@ -31,26 +32,20 @@ association is implicit:
   <input type="checkbox" name="peas">
 </label>
 ```
-<!-- </overview> -->
 
-<!-- <usage-notes> -->
-Usage notes
------------
+## Usage notes
 
--   The form control that the label is labeling is called the *labeled
-    control* of the label element. One input can be associated with
-    multiple labels.
--   Labels are not themselves directly associated with forms. They are
-    only indirectly associated with forms through the controls with
-    which they're associated.
--   When a `<label>` is clicked or tapped and it is associated with a
-    form control, the resulting `click` event is also raised for the
-    associated control.
-<!-- </usage-notes> -->
+- The form control that the label is labeling is called the *labeled
+  control* of the label element. One input can be associated with
+  multiple labels.
+- Labels are not themselves directly associated with forms. They are
+  only indirectly associated with forms through the controls with
+  which they're associated.
+- When a `<label>` is clicked or tapped and it is associated with a
+  form control, the resulting `click` event is also raised for the
+  associated control.
 
-<!-- <styling-with-css> -->
-Styling with CSS
-----------------
+## Styling with CSS
 
 There are no special styling considerations for `<label>` elements ---
 structurally they are simple inline elements, and so can be styled in
@@ -60,9 +55,8 @@ or
 [`<a>`](/en-US/docs/Web/HTML/Element/a)
 element. You can apply styling to them in any way you want, as long as
 you don't cause the text to become difficult to read.
-<!-- </styling-with-css> -->
 
-<!-- <accessibility-concerns> -->
+## Accessibility concerns
 ### Interactive content
 
 Don't place interactive elements such as
@@ -122,7 +116,7 @@ element placed within a
 <label class="large-label" for="your-name">
   Your name
   <input id="your-name" name="your-name" type="text">
-</label> 
+</label>
 ```
 
 ### Buttons
@@ -134,26 +128,22 @@ interfere with how assistive technology parses the button input. The
 same applies for the
 [`<button>`](/en-US/docs/Web/HTML/Element/button)
 element.
-<!-- </accessibility-concerns> -->
 
-<!-- <see-also> -->
-See also
---------
+## See also
 
 Other form-related elements:
 
--   [`<form>`](/en-US/docs/Web/HTML/Element/form)
--   [`<input>`](/en-US/docs/Web/HTML/Element/input)
--   [`<button>`](/en-US/docs/Web/HTML/Element/button)
--   [`<datalist>`](/en-US/docs/Web/HTML/Element/datalist)
--   [`<legend>`](/en-US/docs/Web/HTML/Element/legend)
--   [`<select>`](/en-US/docs/Web/HTML/Element/select)
--   [`<optgroup>`](/en-US/docs/Web/HTML/Element/optgroup)
--   [`<option>`](/en-US/docs/Web/HTML/Element/option)
--   [`<textarea>`](/en-US/docs/Web/HTML/Element/textarea)
--   [`<keygen>`](/en-US/docs/Web/HTML/Element/keygen)
--   [`<fieldset>`](/en-US/docs/Web/HTML/Element/fieldset)
--   [`<output>`](/en-US/docs/Web/HTML/Element/output)
--   [`<progress>`](/en-US/docs/Web/HTML/Element/progress)
--   [`<meter>`](/en-US/docs/Web/HTML/Element/meter)
-<!-- </see-also> -->
+- [`<form>`](/en-US/docs/Web/HTML/Element/form)
+- [`<input>`](/en-US/docs/Web/HTML/Element/input)
+- [`<button>`](/en-US/docs/Web/HTML/Element/button)
+- [`<datalist>`](/en-US/docs/Web/HTML/Element/datalist)
+- [`<legend>`](/en-US/docs/Web/HTML/Element/legend)
+- [`<select>`](/en-US/docs/Web/HTML/Element/select)
+- [`<optgroup>`](/en-US/docs/Web/HTML/Element/optgroup)
+- [`<option>`](/en-US/docs/Web/HTML/Element/option)
+- [`<textarea>`](/en-US/docs/Web/HTML/Element/textarea)
+- [`<keygen>`](/en-US/docs/Web/HTML/Element/keygen)
+- [`<fieldset>`](/en-US/docs/Web/HTML/Element/fieldset)
+- [`<output>`](/en-US/docs/Web/HTML/Element/output)
+- [`<progress>`](/en-US/docs/Web/HTML/Element/progress)
+- [`<meter>`](/en-US/docs/Web/HTML/Element/meter)

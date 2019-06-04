@@ -1,16 +1,10 @@
-<!-- <short-description> -->
+## Short description
+
 The **HTML `<table>` element** represents tabular data --- that is,
 information presented in a two-dimensional table comprised of rows and
 columns of cells containing data.
-<!-- </short-description> -->
 
-<!-- <overview> -->
-<!-- </overview> -->
-
-<!-- <usage-notes> -->
-<!-- </usage-notes> -->
-
-<!-- <accessibility-concerns> -->
+## Accessibility concerns
 ### Captions
 
 By supplying a
@@ -101,11 +95,7 @@ the header(s) the cell is associated with.
   header cells in data tables \| Techniques for W3C WCAG
   2.0](https://www.w3.org/TR/WCAG20-TECHS/H43.html)
 
-<!-- </accessibility-concerns> -->
-
-<!-- <see-also> -->
-See also
---------
+## See also
 
 - Other table-related HTML Elements:
   [`<caption>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption),
@@ -118,21 +108,20 @@ See also
   [`<thead>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead),
   [`<tr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr);
 - CSS properties that may be especially useful to style the `<table>` element:
-    - [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width)
-      to control the width of the table;
-    - [`border`](https://developer.mozilla.org/en-US/docs/Web/CSS/border),
-      [`border-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-style),
-      [`border-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-color),
-      [`border-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-width),
-      [`border-collapse`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-collapse),
-      [`border-spacing`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-spacing)
-      to control the aspect of cell borders, rules and frame;
-    - [`margin`](https://developer.mozilla.org/en-US/docs/Web/CSS/margin)
-      and
-      [`padding`](https://developer.mozilla.org/en-US/docs/Web/CSS/padding)
-      to style the individual cell content;
-    - [`text-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align)
-      and
-      [`vertical-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align)
-      to define the alignment of text and cell content.
-<!-- </see-also> -->
+  - [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width)
+    to control the width of the table;
+  - [`border`](https://developer.mozilla.org/en-US/docs/Web/CSS/border),
+    [`border-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-style),
+    [`border-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-color),
+    [`border-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-width),
+    [`border-collapse`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-collapse),
+    [`border-spacing`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-spacing)
+    to control the aspect of cell borders, rules and frame;
+  - [`margin`](https://developer.mozilla.org/en-US/docs/Web/CSS/margin)
+    and
+    [`padding`](https://developer.mozilla.org/en-US/docs/Web/CSS/padding)
+    to style the individual cell content;
+  - [`text-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align)
+    and
+    [`vertical-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align)
+    to define the alignment of text and cell content.
