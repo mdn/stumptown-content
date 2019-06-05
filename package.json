@@ -18,7 +18,7 @@
         "lint-md": "remark -q -f content",
         "build-json": "node scripts/build-json/build-json.js",
         "spell-md": "mdspell -a -n -r -x --en-us 'content/**/!(*contributors).md'",
-        "test": "npm run lint-md && npm run spell-md"
+        "test": "yarn run lint-md && yarn run spell-md"
     },
     "dependencies": {
         "gray-matter": "4.0.2",
