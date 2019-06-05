@@ -54,7 +54,7 @@ function getSection(node, sections) {
             title: sectionName,
             content: sectionContent
         };
-      sections['additional-sections'].push(additionalSection);
+      sections['additional_sections'].push(additionalSection);
     }
 }
 
@@ -62,7 +62,7 @@ function package(prosePath) {
     const proseMD = fs.readFileSync(prosePath, 'utf8');
     const dom = JSDOM.fragment(marked(proseMD));
     const sections = {
-        'additional-sections': []
+        'additional_sections': []
     };
     let node = dom.firstChild;
     while (node) {
