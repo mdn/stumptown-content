@@ -55,7 +55,7 @@ function buildPageJSON(elementPath) {
         const attributesPath = path.join(elementPath, meta.attributes['element-specific']);
         element.attributes = attributes.package(attributesPath);
     } else {
-        element.attributes = null;
+        element.attributes = [];
     }
     element.examples = examples.package(examplesPaths);
     element.prose = prose.package(prosePath);
