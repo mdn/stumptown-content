@@ -1,6 +1,4 @@
-This document describes how examples can be authored and will be processed rendered. Note that this doesn't include interactive examples, which are handled separately.
-
-The document is in three sections:
+This document describes how examples can be authored and will be processed. It's in three sections:
 
 * **Authoring format** describes the formats used by writers to specify examples
 
@@ -15,6 +13,8 @@ There are three sorts of examples supported:
 * **static code samples**: these consist of blocks of source code, optionally with descriptive text. The source code may not be fully functional (for example, the example might require so much setup or other dependencies that it's not practical to make a functional example).
 
 * **live samples**: these consist of blocks of source code, optionally with descriptive text, and a specification for the size of an iframe in which the result can be presented. The code must be functional: so a consumer can package it into a document and have it run in an iframe.
+
+Note that this doesn't include interactive examples, which are handled separately.
 
 ## Authoring format
 
