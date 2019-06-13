@@ -1,19 +1,17 @@
-<!-- <short-description> -->
+## Short description
+
 The **HTML `<button>` element** represents a clickable button, which
 can be used in [forms](/en-US/docs/Learn/HTML/Forms) or anywhere in a
 document that needs simple, standard button functionality.
-<!-- </short-description> -->
 
-<!-- <overview> -->
+## Overview
+
 By default, HTML buttons are typically presented in a style similar to
 that of the host platform the [user agent](/en-US/docs/Glossary/user_agent)
 is running on, but you can change the appearance of the button using
 [CSS](/en-US/docs/Web/CSS).
-<!-- </overview> -->
 
-<!-- <usage-notes> -->
-Usage notes
------------
+## Usage notes
 
 `<button>` elements are much easier to style than
 [`<input>`](/en-US/docs/Web/HTML/Element/input)
@@ -46,9 +44,7 @@ gradient on all buttons (see [bug
 763671](https://bugzilla.mozilla.org/show_bug.cgi?id=763671)).
 This can be disabled using `background-image: none`.
 
-<!-- </usage-notes> -->
-
-<!-- <accessibility-concerns> -->
+## Accessibility concerns
 ### Icon buttons
 
 Buttons that only use an icon to represent functionality do not have an
@@ -84,12 +80,9 @@ or understand the button's purpose. This is especially relevant for
 people who are not as technologically sophisticated, or who may have
 different cultural interpretations for the imagery the icon button uses.
 
--   [What is an accessible name? | The Paciello
-    Group](https://developer.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
--   [MDN Understanding WCAG, Guideline 4.1
-    explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Robust#Guideline_4.1_—_Compatible_Maximize_compatibility_with_current_and_future_user_agents_including_assistive_technologies)
--   [Understanding Success Criterion 4.1.2 | W3C Understanding WCAG
-    2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-rsv.html)
+- [What is an accessible name? | The Paciello Group](https://developer.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
+- [MDN Understanding WCAG, Guideline 4.1 explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Robust#Guideline_4.1_—_Compatible_Maximize_compatibility_with_current_and_future_user_agents_including_assistive_technologies)
+- [Understanding Success Criterion 4.1.2 | W3C Understanding WCAG 2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-rsv.html)
 
 ### Proximity
 
@@ -102,8 +95,7 @@ wrong interactive content.
 Spacing may be created using CSS properties such as
 [`margin`](/en-US/docs/Web/CSS/margin "The margin CSS property sets the margin area on all four sides of an element. It is a shorthand for margin-top, margin-right, margin-bottom, and margin-left.").
 
--   [Hand tremors and the giant-button-problem - Axess
-    Lab](https://axesslab.com/hand-tremors/)
+- [Hand tremors and the giant-button-problem - Axess Lab](https://axesslab.com/hand-tremors/)
 
 ### Firefox
 
@@ -121,16 +113,13 @@ button text and background color values compared to the background the
 button is placed on. In order to meet current [Web Content Accessibility
 Guidelines (WCAG)](https://www.w3.org/WAI/intro/wcag), a ratio of 4.5:1
 is required for text content and 3:1 for larger text such as headings.
-Large text is defined as 18.66px and
+Large text is defined as `18.66px` and
 [`bold`](/en-US/docs/Web/CSS/font-weight "The documentation about this has not yet been written; please consider contributing!")
-or larger, or 24px or larger.
+or larger, or `24px` or larger.
 
--   [WebAIM: Color Contrast
-    Checker](https://webaim.org/resources/contrastchecker/)
--   [MDN Understanding WCAG, Guideline 1.4
-    explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable#Guideline_1.4_Make_it_easier_for_users_to_see_and_hear_content_including_separating_foreground_from_background)
--   [Understanding Success Criterion 1.4.3 | W3C Understanding WCAG
-    2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html)
+- [WebAIM: Color Contrast Checker](https://webaim.org/resources/contrastchecker/)
+- [MDN Understanding WCAG, Guideline 1.4 explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable#Guideline_1.4_Make_it_easier_for_users_to_see_and_hear_content_including_separating_foreground_from_background)
+- [Understanding Success Criterion 1.4.3 | W3C Understanding WCAG 2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html)
 
 ### Clicking and focus
 
@@ -141,25 +130,21 @@ results for
 [`<input>`](/en-US/docs/Web/HTML/Element/input)
 of `type="button"` and `type="submit"` were the same.
 
-** Does clicking on a
+**Does clicking on a
   [`<button>`](/en-US/docs/Web/HTML/Element/button)
   give it the focus?**
 
 * On Windows, clicking a button gives it the focus on Firefox, Chrome, and Internet Explorer.
 
-* On Macos, clicking a button gives it the focus on Chrome, but not on Firefox or Safari.
+* On macOS, clicking a button gives it the focus on Chrome, but not on Firefox or Safari.
 
-** Does tapping on [`<button>`](/en-US/docs/Web/HTML/Element/button) give it the focus?**
+**Does tapping on [`<button>`](/en-US/docs/Web/HTML/Element/button) give it the focus?**
 
 * On iOS, tapping a button does not give it focus on Chrome or Safari.
 
 * On Android, tapping a button does give it focus on Chrome.
 
-<!-- </accessibility-concerns> -->
-<!-- <see-also> -->
-
-See also
---------
+## See also
 
 Other elements that are used for creating forms:
 [`<form>`](/en-US/docs/Web/HTML/Element/form),
@@ -175,4 +160,3 @@ Other elements that are used for creating forms:
 [`<progress>`](/en-US/docs/Web/HTML/Element/progress),
 [`<select>`](/en-US/docs/Web/HTML/Element/select),
 [`<textarea>`](/en-US/docs/Web/HTML/Element/textarea).
-<!-- </see-also> -->

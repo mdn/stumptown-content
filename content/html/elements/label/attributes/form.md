@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.label.form
 ---
 
-# form
+# `form`
 
 The [`<form>`](/en-US/docs/Web/HTML/Element/form)
 element with which the label is associated (its *form owner*). If

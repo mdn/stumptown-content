@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.col.span
 ---
 
-# span
+# `span`
 
 This attribute contains a positive integer indicating the number of
 consecutive columns the `<col>` element spans. If not present, its

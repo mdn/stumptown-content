@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.label.for
 ---
 
-# for
+# `for`
 
 The `id` of a
 [labelable](/en-US/docs/Web/Guide/HTML/Content_categories#Form_labelable)

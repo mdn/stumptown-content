@@ -1,9 +1,10 @@
-<!-- <short-description> -->
+## Short description
+
 The **`transform`** [CSS](/en-US/docs/Web/CSS) property lets you rotate,
 scale, skew, or translate an element.
-<!-- </short-description> -->
 
-<!-- <overview> -->
+## Overview
+
 This property modifies the coordinate space
 of the CSS [visual formatting
 model](/en-US/docs/Web/CSS/Visual_formatting_model).
@@ -17,9 +18,9 @@ Only elements positioned by the [box
 model](/en-US/docs/Web/CSS/CSS_Box_Model) can be `transform`ed. As a
 rule of thumb, an element is positioned by the box model if it has
 `display: block`.
-<!-- </overview> -->
 
-<!-- <example-syntax> -->
+## Example syntax
+
 ```.css
 /* Keyword values */
 transform: none;
@@ -55,14 +56,12 @@ transform: inherit;
 transform: initial;
 transform: unset;
 ```
-<!-- </example-syntax> -->
 
-<!-- <syntax-overview> -->
+## Syntax overview
+
 The `transform` property may be specified as either the keyword value
 `none` or as one or more `<transform-function>` values.
-<!-- </syntax-overview> -->
 
-<!-- <see-also> -->
--   [Using CSS transforms](/en-US/docs/CSS/Using_CSS_transforms)
--   [`<transform-function>`](/en-US/docs/Web/CSS/transform-function) data type
-<!-- </see-also> -->
+## See also
+- [Using CSS transforms](/en-US/docs/CSS/Using_CSS_transforms)
+- [`<transform-function>`](/en-US/docs/Web/CSS/transform-function) data type

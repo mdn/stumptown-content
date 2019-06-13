@@ -1,11 +1,12 @@
-<!-- <short-description> -->
+## Short description
+
 The **HTML `<dt>` element** specifies a term in a description or
 definition list, and as such must be used inside a
 [`<dl>`](/en-US/docs/Web/HTML/Element/dl)
 element.
-<!-- </short-description> -->
 
-<!-- <overview> -->
+## Overview
+
 It is usually followed by a
 [`<dd>`](/en-US/docs/Web/HTML/Element/dd)
 element; however, multiple `<dt>` elements in a row indicate several
@@ -17,15 +18,8 @@ The subsequent
 [`<dd>`](/en-US/docs/Web/HTML/Element/dd)
 (**Description Details**) element provides the definition or other
 related text associated with the term specified using `<dt>`.
-<!-- </overview> -->
 
-<!-- <usage-notes> -->
-<!-- </usage-notes> -->
+## See also
 
-<!-- <see-also> -->
-See also
---------
-
--   [`<dd>`](/en-US/docs/Web/HTML/Element/dd),
-    [`<dl>`](/en-US/docs/Web/HTML/Element/dl)
-<!-- </see-also> -->
+- [`<dd>`](/en-US/docs/Web/HTML/Element/dd),
+  [`<dl>`](/en-US/docs/Web/HTML/Element/dl)

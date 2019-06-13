@@ -1,12 +1,13 @@
-<!-- <short-description> -->
+## Short description
+
 The HTML **Bidirectional Isolate element** (**`<bdi>`**) tells the
 browser's bidirectional algorithm to treat the text it contains in
 isolation from its surrounding text. It's particularly
 useful when a website dynamically inserts some text and doesn't know
 the directionality of the text being inserted.
-<!-- </short-description> -->
 
-<!-- <overview> -->
+## Overview
+
 Bidirectional text is text that may contain both sequences of characters
 that are arranged left-to-right (LTR) and sequences of characters that
 are arranged right-to-left (RTL), such as an Arabic quotation embedded
@@ -26,10 +27,10 @@ The `<bdi>` element is used to wrap a span of text and instructs the
 bidirectional algorithm to treat this text in isolation from its
 surroundings. This works in two ways:
 
--   The directionality of text embedded in `<bdi>` *does not influence*
-    the directionality of the surrounding text.
--   The directionality of text embedded in `<bdi>` *is not influenced
-    by* the directionality of the surrounding text.
+- The directionality of text embedded in `<bdi>` *does not influence*
+  the directionality of the surrounding text.
+- The directionality of text embedded in `<bdi>` *is not influenced
+  by* the directionality of the surrounding text.
 
 For example, consider some text like:
 
@@ -64,30 +65,20 @@ CSS styling.
 
 Embedding the characters in `<span dir="auto">` has the same effect as
 using `<bdi>`, but its semantics are less clear.
-<!-- </overview> -->
 
-<!-- <attributes-text> -->
+## Attributes text
+
 The `dir` attribute behaves differently than normal: it defaults to `auto`,
 meaning its value is never inherited from the parent element. This means
 that unless you specify a value of either `"rtl"` or `"ltr"` for `dir`,
 the [user agent](/en-US/docs/Glossary/user_agent)
 will determine the correct directionality to use based on the contents
 of the `<bdi>`.
-<!-- </attributes-text> -->
 
-<!-- <see-also> -->
-See also
---------
+## See also
 
--   [Inline markup and bidirectional text in
-    HTML](https://www.w3.org/International/articles/inline-bidi-markup/)
--   [Unicode Bidirectional Algorithm
-    basics](https://www.w3.org/International/articles/inline-bidi-markup/uba-basics)
--   [Localization and
-    Internationalization](/en-US/docs/Web/Localization)
--   Related HTML element:
-    [`<bdo>`](/en-US/docs/Web/HTML/Element/bdo)
--   Related CSS properties:
-    [`direction`](/en-US/docs/Web/CSS/direction),
-    [`unicode-bidi`](/en-US/docs/Web/CSS/unicode-bidi)
-<!-- </see-also> -->
+- [Inline markup and bidirectional text in HTML](https://www.w3.org/International/articles/inline-bidi-markup/)
+- [Unicode Bidirectional Algorithm basics](https://www.w3.org/International/articles/inline-bidi-markup/uba-basics)
+- [Localization and Internationalization](/en-US/docs/Web/Localization)
+- Related HTML element: [`<bdo>`](/en-US/docs/Web/HTML/Element/bdo)
+- Related CSS properties: [`direction`](/en-US/docs/Web/CSS/direction), [`unicode-bidi`](/en-US/docs/Web/CSS/unicode-bidi)

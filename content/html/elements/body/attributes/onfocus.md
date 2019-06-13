@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.body.onfocus
 ---
 
-# onfocus
+# `onfocus`
 
 Function to call when the document receives focus.
 

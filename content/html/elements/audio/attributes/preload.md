@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.audio.preload
 ---
 
-# preload
+# `preload`
 
 This enumerated attribute is intended to provide a hint to the browser about what the author thinks will lead to the best user experience.
 

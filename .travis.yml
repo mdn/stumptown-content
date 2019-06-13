@@ -1,14 +1,5 @@
-language: generic
-
-services:
-  - docker
+language: node_js
+node_js: stable
 
 git:
   depth: false
-
-before_install:
-  - make build
-
-script:
-  - make lint
-  - make validate

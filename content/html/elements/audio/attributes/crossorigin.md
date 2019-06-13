@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.audio.crossorigin
 ---
 
-# crossorigin
+# `crossorigin`
 
 This enumerated attribute indicates whether to use CORS to fetch the resource. [CORS-enabled resources](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image) can be reused in the `<canvas>` element without being _tainted_.
 

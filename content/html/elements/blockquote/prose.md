@@ -1,4 +1,5 @@
-<!-- <short-description> -->
+## Short description
+
 The **HTML `<blockquote>` Element** (or *HTML Block Quotation Element*)
 indicates that the enclosed text is an extended quotation. Usually, this
 is rendered visually by indentation (see [Usage notes](#Usage_notes) for how
@@ -7,15 +8,8 @@ the **cite** attribute, while a text representation of the source can be
 given using the
 [`<cite>`](/en-US/docs/Web/HTML/Element/cite)
 element.
-<!-- </short-description> -->
 
-<!-- <overview> -->
-<!-- </overview> -->
-
-<!-- <usage-notes> -->
-
-Usage notes
------------
+## Usage notes
 
 To change the indentation applied to the quoted text, use the
 [CSS](/en-US/docs/Glossary/CSS")
@@ -30,17 +24,10 @@ To include shorter quotes inline rather than in a separate block, use
 the
 [`<q>`](/en-US/docs/Web/HTML/Element/q)
 (Quotation) element.
-<!-- </usage-notes> -->
 
-<!-- <see-also> -->
+## See also
 
-See also
---------
-
--   The
-    [`<q>`](/en-US/docs/Web/HTML/Element/q)
-    element for inline quotations.
--   The
-    [`<cite>`](/en-US/docs/Web/HTML/Element/cite)
-    element for source citations.
-<!-- </see-also> -->
+- The [`<q>`](/en-US/docs/Web/HTML/Element/q)
+  element for inline quotations.
+- The [`<cite>`](/en-US/docs/Web/HTML/Element/cite)
+  element for source citations.

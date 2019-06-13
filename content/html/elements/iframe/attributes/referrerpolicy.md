@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.iframe.referrerpolicy
 ---
 
-# referrerpolicy
+# `referrerpolicy`
 
 Indicates which [referrer](https://developer.mozilla.org/en-US/docs/Web/API/Document/referrer) to send when fetching the frame\'s resource:
 

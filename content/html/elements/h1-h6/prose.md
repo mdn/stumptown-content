@@ -1,30 +1,24 @@
-<!-- <short-description> -->
+## Short description
+
 The **HTML `<h1>`--`<h6>` elements** represent six levels of section
 headings. `<h1>` is the highest section level and `<h6>` is the
 lowest.
-<!-- </short-description> -->
 
-<!-- <overview> -->
-<!-- </overview> -->
+## Usage notes
 
-<!-- <usage-notes> -->
-Usage notes
------------
+- Heading information may be used by user agents, for example, to
+  construct a table of contents for a document automatically.
+- Do not use lower levels to decrease heading font size: use the
+  [CSS](/en-US/docs/Web/CSS) [`font-size`](/en-US/docs/Web/CSS/font-size)
+  property instead.
+- Avoid skipping heading levels: always start from `<h1>`, next use
+  `<h2>` and so on.
+- You should consider avoiding using `<h1>` more than once on a page.
+  See [Defining sections](/en-US/docs/Web/Guide/HTML/Using_HTML_sections_and_outlines#Defining_sections)
+  in [Using HTML sections and outlines](/en-US/docs/Web/Guide/HTML/Using_HTML_sections_and_outlines)
+  for more information.
 
--   Heading information may be used by user agents, for example, to
-    construct a table of contents for a document automatically.
--   Do not use lower levels to decrease heading font size: use the
-    [CSS](/en-US/docs/Web/CSS) [`font-size`](/en-US/docs/Web/CSS/font-size)
-    property instead.
--   Avoid skipping heading levels: always start from `<h1>`, next use
-    `<h2>` and so on.
--   You should consider avoiding using `<h1>` more than once on a page.
-    See [Defining sections](/en-US/docs/Web/Guide/HTML/Using_HTML_sections_and_outlines#Defining_sections)
-    in [Using HTML sections and outlines](/en-US/docs/Web/Guide/HTML/Using_HTML_sections_and_outlines)
-    for more information.
-<!-- </usage-notes> -->
-
-<!-- <accessibility-concerns> -->
+## Accessibility concerns
 ### Navigation
 
 A common navigation technique for users of screen reading software is
@@ -56,41 +50,34 @@ content of the page. Most screen readers can also generate an ordered
 list of all the headings on a page, which can help a person quickly
 determine the hierarchy of the content:
 
-1.  `h1` Beetles
-    1.  `h2` Etymology
-    2.  `h2` Distribution and Diversity
-    3.  `h2` Evolution
-        1.  `h3` Late Paleozoic
-        2.  `h3` Jurassic
-        3.  `h3` Cretaceous
-        4.  `h3` Cenozoic
-    4.  `h2` External Morphology
-        1.  `h3` Head
-            1.  `h4` Mouthparts
-        2.  `h3` Thorax
-            1.  `h4` Prothorax
-            2.  `h4` Pterothorax
-        3.  `h3` Legs
-        4.  `h3` Wings
-        5.  `h3` Abdomen
+1. `h1` Beetles
+   1. `h2` Etymology
+   2. `h2` Distribution and Diversity
+   3. `h2` Evolution
+      1. `h3` Late Paleozoic
+      2. `h3` Jurassic
+      3. `h3` Cretaceous
+      4. `h3` Cenozoic
+   4. `h2` External Morphology
+      1. `h3` Head
+         1. `h4` Mouthparts
+      2. `h3` Thorax
+         1. `h4` Prothorax
+         2. `h4` Pterothorax
+      3. `h3` Legs
+      4. `h3` Wings
+      5. `h3` Abdomen
 
 When headings are nested, heading levels may be "skipped" when closing
 a subsection.
 
--   [Headings • Page Structure • WAI Web Accessibility
-    Tutorials](https://www.w3.org/WAI/tutorials/page-structure/headings/)
--   [MDN Understanding WCAG, Guideline 1.3
-    explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable#Guideline_1.3_—_Create_content_that_can_be_presented_in_different_ways)
--   [Understanding Success Criterion 1.3.1 \| W3C Understanding WCAG
-    2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html)
--   [MDN Understanding WCAG, Guideline 2.4
-    explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Operable#Guideline_2.4_—_Navigable_Provide_ways_to_help_users_navigate_find_content_and_determine_where_they_are)
--   [Understanding Success Criterion 2.4.1 \| W3C Understanding WCAG
-    2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-skip.html)
--   [Understanding Success Criterion 2.4.6 \| W3C Understanding WCAG
-    2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-descriptive.html)
--   [Understanding Success Criterion 2.4.10 \| W3C Understanding WCAG
-    2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-headings.html)
+- [Headings • Page Structure • WAI Web Accessibility Tutorials](https://www.w3.org/WAI/tutorials/page-structure/headings/)
+- [MDN Understanding WCAG, Guideline 1.3 explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable#Guideline_1.3_—_Create_content_that_can_be_presented_in_different_ways)
+- [Understanding Success Criterion 1.3.1 \| W3C Understanding WCAG 2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html)
+- [MDN Understanding WCAG, Guideline 2.4 explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Operable#Guideline_2.4_—_Navigable_Provide_ways_to_help_users_navigate_find_content_and_determine_where_they_are)
+- [Understanding Success Criterion 2.4.1 \| W3C Understanding WCAG 2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-skip.html)
+- [Understanding Success Criterion 2.4.6 \| W3C Understanding WCAG 2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-descriptive.html)
+- [Understanding Success Criterion 2.4.10 \| W3C Understanding WCAG 2.0](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-headings.html)
 
 ### Labeling section content
 
@@ -133,17 +120,11 @@ navigation". If labels were not provided, the person using screen
 reading software may have to investigate each `nav` element's contents
 to determine their purpose.
 
--   [Using the aria-labelledby
-    attribute](/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute)
--   [Labeling Regions • Page Structure • W3C WAI Web Accessibility
-    Tutorials](https://www.w3.org/WAI/tutorials/page-structure/labels/#using-aria-labelledby)
-<!-- </accessibility-concerns> -->
+- [Using the `aria-labelledby` attribute](/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute)
+- [Labeling Regions • Page Structure • W3C WAI Web Accessibility Tutorials](https://www.w3.org/WAI/tutorials/page-structure/labels/#using-aria-labelledby)
 
-<!-- <see-also> -->
-See also
---------
+## See also
 
--   [`<p>`](/en-US/docs/Web/HTML/Element/p)
--   [`<div>`](/en-US/docs/Web/HTML/Element/div)
--   [`<section>`](/en-US/docs/Web/HTML/Element/section)
-<!-- </see-also> -->
+- [`<p>`](/en-US/docs/Web/HTML/Element/p)
+- [`<div>`](/en-US/docs/Web/HTML/Element/div)
+- [`<section>`](/en-US/docs/Web/HTML/Element/section)

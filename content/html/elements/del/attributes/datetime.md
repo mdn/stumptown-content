@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.del.datetime
 ---
 
-# datetime
+# `datetime`
 
 This attribute indicates the time and date of the change and must be
 a valid date string with an optional time. If the value cannot be

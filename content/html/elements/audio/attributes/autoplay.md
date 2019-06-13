@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.audio.autoplay
 ---
 
-# autoplay
+# `autoplay`
 
 A Boolean attribute: if specified, the audio will automatically
 begin playback as soon as it can do so, without waiting for the

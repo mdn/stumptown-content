@@ -1,16 +1,11 @@
-<!-- <short-description> -->
+## Short description
+
 The **HTML `<html>` element** represents the root (top-level element) of
 an HTML document, so it is also referred to as the *root element*. All
 other elements must be descendants of this element.
-<!-- </short-description> -->
 
-<!-- <overview> -->
-<!-- </overview> -->
+## Accessibility concerns
 
-<!-- <usage-notes> -->
-<!-- </usage-notes> -->
-
-<!-- <accessibility-concerns> -->
 Providing a `lang` attribute with a [valid IETF identifying language
 tag](https://www.ietf.org/rfc/bcp/bcp47.txt) on the `html` element will
 help screen reading technology determine the proper language to
@@ -26,16 +21,10 @@ such as the page's
 [`<title>`](/en-US/docs/Web/HTML/Element/title),
 are also announced properly.
 
--   [MDN Understanding WCAG, Guideline 3.1
-    explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Understandable#Guideline_3.1_%E2%80%94_Readable_Make_text_content_readable_and_understandable)
--   [Understanding Success Criterion 3.1.1 | W3C Understanding WCAG
-    2.0](https://www.w3.org/TR/2016/NOTE-UNDERSTANDING-WCAG20-20161007/meaning-doc-lang-id.html)
-<!-- </accessibility-concerns> -->
+- [MDN Understanding WCAG, Guideline 3.1 explanations](/en-US/docs/Web/Accessibility/Understanding_WCAG/Understandable#Guideline_3.1_%E2%80%94_Readable_Make_text_content_readable_and_understandable)
+- [Understanding Success Criterion 3.1.1 | W3C Understanding WCAG 2.0](https://www.w3.org/TR/2016/NOTE-UNDERSTANDING-WCAG20-20161007/meaning-doc-lang-id.html)
 
-<!-- <see-also> -->
-See also
---------
+## See also
 
--   MathML top-level element: `<math>`
--   SVG top-level element: [`<svg>`](/en-US/docs/Web/SVG/Element/svg)
-<!-- </see-also> -->
+- MathML top-level element: `<math>`
+- SVG top-level element: [`<svg>`](/en-US/docs/Web/SVG/Element/svg)

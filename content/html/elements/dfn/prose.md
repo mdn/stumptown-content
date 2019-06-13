@@ -1,5 +1,6 @@
-<!-- <short-description> -->
-The **HTML Definition element** (**<dfn\>**) is used to indicate the
+## Short description
+
+The **HTML Definition element** (**\<dfn>**) is used to indicate the
 term being defined within the context of a definition phrase or
 sentence. The
 [`<p>`](/en-US/docs/Web/HTML/Element/p)
@@ -9,41 +10,35 @@ pairing, or the
 [`<section>`](/en-US/docs/Web/HTML/Element/section)
 element which is the nearest ancestor of the `<dfn>` is considered to be
 the definition of the term.
-<!-- </short-description> -->
 
-<!-- <overview> -->
-<!-- </overview> -->
+## Usage notes
 
-<!-- <usage-notes> -->
-Usage notes
------------
-
--   The `<dfn>` element marks the term being defined; the definition of
-    the term should be given by the surrounding
-    [`<p>`](/en-US/docs/Web/HTML/Element/p),
-    [`<section>`](/en-US/docs/Web/HTML/Element/section)
-    or definition list group (usually a
-    [`<dt>`](/en-US/docs/Web/HTML/Element/dt),
-    [`<dd>`](/en-US/docs/Web/HTML/Element/dd)
-    pair).
+- The `<dfn>` element marks the term being defined; the definition of
+  the term should be given by the surrounding
+  [`<p>`](/en-US/docs/Web/HTML/Element/p),
+  [`<section>`](/en-US/docs/Web/HTML/Element/section)
+  or definition list group (usually a
+  [`<dt>`](/en-US/docs/Web/HTML/Element/dt),
+  [`<dd>`](/en-US/docs/Web/HTML/Element/dd)
+  pair).
 
 ### Specifying the term being defined
 
 The term being defined is identified following these rules:
 
-1.  If the `<dfn>` element has a `title` attribute, the value of the
-    `title` attribute is considered to be the term being defined. The
-    element must still have text within it, but that text may be an
-    abbreviation (perhaps using
-    [`<abbr>`](/en-US/docs/Web/HTML/Element/abbr))
-    or another form of the term.
-2.  If the `<dfn>` contains a single child element and does not have any
-    text content of its own, and the child element is an
-    [`<abbr>`](/en-US/docs/Web/HTML/Element/abbr)
-    element with a `title` attribute itself, then the exact value of the
-    `<abbr>` element's `title` is the term being defined.
-3.  Otherwise, the text content of the `<dfn>` element is the term being
-    defined.
+1. If the `<dfn>` element has a `title` attribute, the value of the
+   `title` attribute is considered to be the term being defined. The
+   element must still have text within it, but that text may be an
+   abbreviation (perhaps using
+   [`<abbr>`](/en-US/docs/Web/HTML/Element/abbr))
+   or another form of the term.
+2. If the `<dfn>` contains a single child element and does not have any
+   text content of its own, and the child element is an
+   [`<abbr>`](/en-US/docs/Web/HTML/Element/abbr)
+   element with a `title` attribute itself, then the exact value of the
+   `<abbr>` element's `title` is the term being defined.
+3. Otherwise, the text content of the `<dfn>` element is the term being
+   defined.
 
 If the `<dfn>` element has a `title` attribute, it *must* contain the
 term being defined and no other text.
@@ -56,15 +51,11 @@ link to it using
 elements. Such links should be uses of the term, with the intent being
 that the reader can quickly navigate to the term's definition if
 they're not already aware of it, by clicking on the term's link.
-<!-- </usage-notes> -->
 
-<!-- <see-also> -->
-See also
---------
+## See also
 
--   Elements related to definition lists:
-    [`<dl>`](/en-US/docs/Web/HTML/Element/dl),
-    [`<dt>`](/en-US/docs/Web/HTML/Element/dt),
-    [`<dd>`](/en-US/docs/Web/HTML/Element/dd)
--   [`<abbr>`](/en-US/docs/Web/HTML/Element/abbr)
-<!-- </see-also> -->
+- Elements related to definition lists:
+  [`<dl>`](/en-US/docs/Web/HTML/Element/dl),
+  [`<dt>`](/en-US/docs/Web/HTML/Element/dt),
+  [`<dd>`](/en-US/docs/Web/HTML/Element/dd)
+- [`<abbr>`](/en-US/docs/Web/HTML/Element/abbr)

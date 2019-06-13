@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.button.autofocus
 ---
 
-# autofocus
+# `autofocus`
 
 Lets you specify that the button should have
 input focus when the page loads, unless the user overrides it, for

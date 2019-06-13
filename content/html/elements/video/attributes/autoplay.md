@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.video.autoplay
 ---
 
-# autoplay
+# `autoplay`
 
 A Boolean attribute; if specified, the video automatically begins to play back as soon as it can do so without stopping to finish loading the data.
 

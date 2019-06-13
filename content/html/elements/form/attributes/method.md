@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.form.method
 ---
 
-# method
+# `method`
 
 The [HTTP](/en-US/docs/Web/HTTP) method that the browser uses to
 submit the form.
@@ -15,14 +15,14 @@ element.
 
 ## Values
 
-### post
+### `post`
 
 Corresponds to the HTTP [POST
 method](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.5)
 ; form data are included in the body of the form and sent to the
 server.
 
-### get
+### `get`
 
 Corresponds to the HTTP [GET
 method](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.3);
@@ -31,7 +31,7 @@ form data are appended to the `action` attribute URI with a
 Use this method when the form has no side-effects and contains
 only ASCII characters.
 
-### dialog
+### `dialog`
 
 Use when the form is inside a
 [`<dialog>`](/en-US/docs/Web/HTML/Element/dialog)

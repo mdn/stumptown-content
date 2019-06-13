@@ -2,7 +2,7 @@
 browser-compatibility: html.elements.body.ononline
 ---
 
-# ononline
+# `ononline`
 
 Function to call when network communication has been restored.
 
