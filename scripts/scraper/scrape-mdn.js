@@ -5,36 +5,18 @@ Usage:
 
 npm run scrape-mdn <mdn-url> <destination> scrape-children
 
-<mdn-url>
-A full URL to an MDN page to scrape.
+<mdn-url>: A full URL to an MDN page to scrape.
 
-<destination>
-Where to put the processed document. This is relative to ./content
+<destination>: Where to put the processed document. This is relative to ./content
 
-scrape-children
-If 'scrape-children' is given, fetch the immediate children of this page and process them as well.
-Store the child pages under a subdirectory of <destination>, where the subdirectory
-name is the parent's name.
-
-For example, if you call:
-
-npm run scrape-mdn https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding learn/html scrape-children
-
-...this will fetch and process the page at
-https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding
-and all its immediate children.
-
-The page at 'Multimedia_and_embedding' will
-be saved as './content/learn/html/multimedia-and-embedding.md'.
-
-Its children will
-be saved as pages like ./content/learn/html/Multimedia_and_embedding/images-in-html.md.
+scrape-children: If 'scrape-children' is given, fetch the immediate children
+of this page and process them as well. Store the child pages under a
+subdirectory of <destination>, where the subdirectory name is the parent's name.
 
 The pages are 'processed' on the way. This means that they are:
 * converted to JSDOM where various things can be done to them, before going back to HTML
 * converted to Markdown
 * given some front matter (title and mdn_url)
-
 */
 
 const unified = require('unified');
