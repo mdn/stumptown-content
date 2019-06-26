@@ -1,14 +1,9 @@
 const fs = require('fs');
-const path = require('path');
 
-const yaml = require('js-yaml');
-const matter = require('gray-matter');
 const marked = require('marked');
 const jsdom = require('jsdom');
-const bcd = require('mdn-browser-compat-data');
 
 const { JSDOM } = jsdom;
-const commentNode = 8;
 const namedSections = [
   'Short description',
   'Overview',
@@ -41,7 +36,6 @@ function extractFromSiblings(node, terminatorTag, contentType) {
 function getSection(node, sections) {
     const sectionName = node.textContent.trim();
     const sectionContent = extractFromSiblings(node, 'H2', 'html');
-    const extraSections = [];
 
     if (namedSections.includes(sectionName)) {
         const sectionSlug = sectionNameToSlug(sectionName);

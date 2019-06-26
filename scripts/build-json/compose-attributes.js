@@ -1,11 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const yaml = require('js-yaml');
 const matter = require('gray-matter');
 const marked = require('marked');
 const jsdom = require('jsdom');
-const bcd = require('mdn-browser-compat-data');
 
 const { JSDOM } = jsdom;
 
@@ -25,7 +23,7 @@ function extractFromSiblings(node, terminatorTags, contentType) {
     return content;
 }
 
-function packageValues(heading, dom) {
+function packageValues(dom) {
     const values = [];
     const valueHeadings = dom.querySelectorAll('h3');
     for (let valueHeading of valueHeadings) {
@@ -40,7 +38,7 @@ function packageValues(heading, dom) {
 
 function packageAttribute(attributePath) {
     const attributeMD = fs.readFileSync(attributePath, 'utf8');
-    const {data, content} = matter(attributeMD);
+    const {content} = matter(attributeMD);
     const dom = JSDOM.fragment(marked(content));
     const attribute = {};
 
@@ -59,7 +57,7 @@ function packageAttribute(attributePath) {
     // extract the values property
     if (h2Headings.length === 2) {
         valuesHeading = h2Headings[0];
-        attribute.values = packageValues(valuesHeading, dom);
+        attribute.values = packageValues(dom);
     }
 
     return attribute;
