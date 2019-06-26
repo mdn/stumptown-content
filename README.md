@@ -1,5 +1,7 @@
 # stumptown-experiment
 
+[![Build Status](https://travis-ci.org/mdn/stumptown-content.svg?branch=master)](https://travis-ci.org/mdn/stumptown-content)
+
 ## Installation
 
 First [fork](https://help.github.com/en/articles/fork-a-repo) then [clone the repo on your machine](https://help.github.com/en/articles/cloning-a-repository-from-github).
