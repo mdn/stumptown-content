@@ -3,13 +3,14 @@ A scraper to help migrate MDN docs to stumptown.
 
 Usage:
 
-npm run scrape-mdn <mdn-url> <destination> scrape-children
+npm run scrape-mdn <mdn-url> <destination> -- --scrape-children
 
 <mdn-url>: A full URL to an MDN page to scrape.
 
-<destination>: Where to put the processed document. This is relative to ./content
+<destination>: Where to put the processed document. This is relative to the current
+working directory.
 
-scrape-children: If 'scrape-children' is given, fetch the immediate children
+--scrape-children: If '--scrape-children' is given, fetch the immediate children
 of this page and process them as well. Store the child pages under a
 subdirectory of <destination>, where the subdirectory name is the parent's name.
 
@@ -52,10 +53,9 @@ function namify(title) {
 
 /**
  * Just writes the doc out where we want.
- * 'subpath' is placed under './content'.
  */
 function writeDoc(subpath, name, doc) {
-  const dest = path.join(process.cwd(), 'content', subpath, `${name}.md`);
+  const dest = path.join(process.cwd(), subpath, `${name}.md`);
   const destDir = path.dirname(dest);
   if (!fs.existsSync(destDir)) {
     fs.mkdirSync(destDir, { recursive: true });
@@ -117,7 +117,7 @@ async function processDoc(relativeURL, title, destination) {
  * Otherwise just process the given page.
  */
 async function main(args) {
-  if (args.length > 2 && args[2] === 'scrape-children') {
+  if (args.includes('--scrape-children')) {
     const childrenJSON = await getPageJSON(args[0] + '$children');
     childrenJSON.subpages.map(child => {
       // the final component of the parent's URL
