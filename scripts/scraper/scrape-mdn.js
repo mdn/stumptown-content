@@ -45,13 +45,6 @@ function toMarkdown(html) {
 }
 
 /**
- * Converts a document title into a filename.
- */
-function namify(title) {
-  return title.toLowerCase().replace(/[ ?]/gi, "-");
-}
-
-/**
  * Just writes the doc out where we want.
  */
 function writeDoc(subpath, name, doc) {
@@ -108,7 +101,7 @@ async function processDoc(relativeURL, title, destination) {
   const absoluteURL = baseURL + relativeURL;
   const md = String(await processSingleDocContent(absoluteURL));
   const doc = addFrontMatter(title, relativeURL, md);
-  writeDoc(destination, namify(title), doc);
+  writeDoc(destination, relativeURL.split('/').pop(), doc);
 }
 
 /**
