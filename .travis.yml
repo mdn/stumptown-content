@@ -1,5 +1,11 @@
 language: node_js
 node_js: stable
-
+cache: npm
 git:
   depth: false
+
+script:
+  - npm run test
+  # Note, in a near future we're going to want to build-json for *everything*
+  # and not just the 'html' section.
+  - npm run build-json html
