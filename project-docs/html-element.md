@@ -1,6 +1,6 @@
 # HTML element recipe breakdown
 
-This document is intended to help explain how we could take a "recipe" for an HTML element, and the structured content for the element, (for example: https://github.com/mdn/stumptown-experiment/tree/master/content/html/elements/video) and generate an MDN page from it.
+This document is intended to help explain how we could take a "recipe" for an HTML element, and the structured content for the element, (for example: https://github.com/mdn/stumptown-content/tree/master/content/html/elements/video) and generate an MDN page from it.
 
 The overall outline of an HTML element reference page on MDN is like this:
 
@@ -144,7 +144,7 @@ For MDN pages we could just handle "global" with some text like "Like all other 
 
 * H2: "Type" (mandatory (?)): If present this is followed by a string describing the type of the attribute. I think this ought to be an enumerated list of possible types, including "String", "Boolean", "Number", and possibly "URL".
 
-For an example of a relatively complex attribute see [video.crossorigin](https://github.com/mdn/stumptown-experiment/blob/master/content/html/elements/video/attributes/crossorigin.md).
+For an example of a relatively complex attribute see [video.crossorigin](https://github.com/mdn/stumptown-content/blob/master/content/html/elements/video/attributes/crossorigin.md).
 
 To render it in an MDN page, we could say:
 
