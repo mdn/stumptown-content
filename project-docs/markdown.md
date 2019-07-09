@@ -2,7 +2,7 @@
 
 In the stumptown project, we write content in [GitHub Flavored Markdown](https://github.github.com/gfm/) (GFM).
 
-To transform Markdown into other formats (especially HTML), we use [remark](https://github.com/remarkjs/remark) or its parent library, [unified](https://github.com/unifiedjs/unified). Some legacy code may use other Markdown processors; if you're modifying that code, please replace it with remark and friends.
+To transform Markdown into other formats (especially HTML), we use [remark](https://github.com/remarkjs/remark) or its parent library, [unified](https://github.com/unifiedjs/unified). Do not introduce dependencies on other Markdown parsers.
 
 ## Background, or why we chose GFM
 
