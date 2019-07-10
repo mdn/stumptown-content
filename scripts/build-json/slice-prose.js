@@ -54,7 +54,7 @@ function getSection(node, sections) {
 
 async function package(prosePath) {
     const proseMD = fs.readFileSync(prosePath, 'utf8');
-    const proseHTML = await markdown.toHTML(proseMD)
+    const proseHTML = await markdown.markdownToHTML(proseMD)
     const dom = JSDOM.fragment(proseHTML);
     const sections = {
         'additional_sections': []

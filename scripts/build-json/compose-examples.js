@@ -7,7 +7,7 @@ const markdown = require('./markdown-converter');
 async function packageDescription(examplePath) {
     const descriptionMD = fs.readFileSync(path.join(examplePath, 'description.md'), 'utf8');
     const {data, content} = matter(descriptionMD);
-    data.content = await markdown.toHTML(content);
+    data.content = await markdown.markdownToHTML(content);
     return data;
 }
 
