@@ -1,10 +1,10 @@
 const fs = require('fs');
 
-const marked = require('marked');
+const markdown = require('./markdown-converter');
 
-function package(contributorsPath) {
+async function package(contributorsPath) {
     const contributorsMD = fs.readFileSync(contributorsPath, 'utf8');
-    return marked(contributorsMD);
+    return markdown.toHTML(contributorsMD);
 }
 
 module.exports = {

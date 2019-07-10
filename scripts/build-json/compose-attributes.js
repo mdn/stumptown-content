@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const matter = require('gray-matter');
-const marked = require('marked');
+const markdown = require('./markdown-converter');
 const jsdom = require('jsdom');
 
 const { JSDOM } = jsdom;
@@ -36,12 +36,12 @@ function packageValues(dom) {
     return values;
 }
 
-function packageAttribute(attributePath) {
+async function packageAttribute(attributePath) {
     const attributeMD = fs.readFileSync(attributePath, 'utf8');
     const {content} = matter(attributeMD);
-    const dom = JSDOM.fragment(marked(content));
+    const contentHTML = await markdown.toHTML(content);
+    const dom = JSDOM.fragment(contentHTML);
     const attribute = {};
-
     // extract the name property
     const name = dom.querySelector('h1');
     attribute.name = name.textContent;
@@ -65,7 +65,7 @@ function packageAttribute(attributePath) {
 
 function package(root) {
     const attributePaths = fs.readdirSync(root).map(relative => path.join(root, relative));
-    return attributePaths.map(packageAttribute);
+    return Promise.all(attributePaths.map(packageAttribute));
 }
 
 module.exports = {

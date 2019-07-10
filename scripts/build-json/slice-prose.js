@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const marked = require('marked');
+const markdown = require('./markdown-converter');
 const jsdom = require('jsdom');
 
 const { JSDOM } = jsdom;
@@ -52,9 +52,10 @@ function getSection(node, sections) {
     }
 }
 
-function package(prosePath) {
+async function package(prosePath) {
     const proseMD = fs.readFileSync(prosePath, 'utf8');
-    const dom = JSDOM.fragment(marked(proseMD));
+    const proseHTML = await markdown.toHTML(proseMD)
+    const dom = JSDOM.fragment(proseHTML);
     const sections = {
         'additional_sections': []
     };

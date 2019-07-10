@@ -25,7 +25,7 @@ const writeToFile = (propertyName, json) => {
   fs.writeFileSync(dest, `${JSON.stringify(data, null, 2)}`);
 };
 
-function buildPageJSON(elementPath) {
+async function buildPageJSON(elementPath) {
     elementPath = path.join(process.cwd(), './content', elementPath);
 
     if (!fs.existsSync(elementPath)) {
@@ -53,13 +53,13 @@ function buildPageJSON(elementPath) {
     element.browser_compatibility = bcd.package(meta['browser-compatibility']);
     if (meta.attributes['element-specific']) {
         const attributesPath = path.join(elementPath, meta.attributes['element-specific']);
-        element.attributes = attributes.package(attributesPath);
+        element.attributes = await attributes.package(attributesPath);
     } else {
         element.attributes = [];
     }
-    element.examples = examples.package(examplesPaths);
-    element.prose = prose.package(prosePath);
-    element.contributors = contributors.package(contributorsPath);
+    element.examples = await examples.package(examplesPaths);
+    element.prose = await prose.package(prosePath);
+    element.contributors = await contributors.package(contributorsPath);
 
     const elementName = path.basename(elementPath);
     writeToFile(elementName, element);
