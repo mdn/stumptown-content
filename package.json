@@ -5,12 +5,12 @@
     "private": true,
     "repository": {
         "type": "git",
-        "url": "https://github.com/mdn/stumptown-experiment"
+        "url": "https://github.com/mdn/stumptown-content"
     },
     "author": "MDN Web Docs",
     "license": "MPL",
     "bugs": {
-        "url": "https://github.com/mdn/stumptown-experiment/issues"
+        "url": "https://github.com/mdn/stumptown-content/issues"
     },
     "scripts": {
         "pretty": "prettier --check scripts/**/*.js",
