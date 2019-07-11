@@ -17,7 +17,7 @@ const writeToFile = (propertyName, json) => {
     }
   };
 
-  const dest = path.join(process.cwd(),'packaged/html/elements', `${propertyName}.json`);
+  const dest = path.join(process.cwd(),'packaged/html/reference/elements', `${propertyName}.json`);
   const destDir = path.dirname(dest);
   if (!fs.existsSync(destDir)) {
       fs.mkdirSync(destDir, { recursive: true });
