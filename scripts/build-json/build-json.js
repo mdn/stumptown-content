@@ -39,4 +39,4 @@ function buildJSON(searchPaths) {
     return errors;
 }
 
-process.exit(buildJSON(process.argv.slice(2)));
+process.exitCode = buildJSON(process.argv.slice(2));
