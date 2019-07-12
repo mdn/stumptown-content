@@ -1,0 +1,12 @@
+recipe: chapter-list
+chapters:
+    - Introduction_to_HTML.md
+    - Introduction_to_HTML/Getting_started.md
+    - Introduction_to_HTML/The_head_metadata_in_HTML.md
+    - Introduction_to_HTML/HTML_text_fundamentals.md
+    - Introduction_to_HTML/Creating_hyperlinks.md
+    - Introduction_to_HTML/Advanced_text_formatting.md
+    - Introduction_to_HTML/Document_and_website_structure.md
+    - Introduction_to_HTML/Debugging_HTML.md
+    - Introduction_to_HTML/Marking_up_a_letter.md
+    - Introduction_to_HTML/Structuring_a_page_of_content.md

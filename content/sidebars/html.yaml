@@ -1,0 +1,9 @@
+# HTML sidebar
+- title: Learn HTML
+  content:
+  - title: Introduction to HTML
+    content: "/content/learn/html/Introduction_to_HTML.yaml"
+- title: Reference
+  content:
+  - title: Elements
+    content: "/content/html/elements"
