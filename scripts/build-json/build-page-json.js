@@ -8,7 +8,9 @@ const attributes = require('./compose-attributes');
 const prose = require('./slice-prose');
 const contributors = require('./resolve-contributors');
 
-const writeToFile = (propertyName, json) => {
+const writeToFile = (json, elementPath) => {
+  const propertyName = path.basename(elementPath);
+  const dirName = path.dirname(elementPath);
   const data = {
     html: {
       elements: {
@@ -17,7 +19,7 @@ const writeToFile = (propertyName, json) => {
     }
   };
 
-  const dest = path.join(process.cwd(),'packaged/html/reference/elements', `${propertyName}.json`);
+  const dest = path.join(process.cwd(), 'packaged', dirName, `${propertyName}.json`);
   const destDir = path.dirname(dest);
   if (!fs.existsSync(destDir)) {
       fs.mkdirSync(destDir, { recursive: true });
@@ -25,8 +27,8 @@ const writeToFile = (propertyName, json) => {
   fs.writeFileSync(dest, `${JSON.stringify(data, null, 2)}`);
 };
 
-async function buildPageJSON(elementPath) {
-    elementPath = path.join(process.cwd(), './content', elementPath);
+async function buildPageJSON(elementRelativePath) {
+    const elementPath = path.join(process.cwd(), './content', elementRelativePath);
 
     if (!fs.existsSync(elementPath)) {
         console.error(`Could not find an item at "${elementPath}"`);
@@ -61,9 +63,8 @@ async function buildPageJSON(elementPath) {
     element.prose = await prose.package(prosePath);
     element.contributors = await contributors.package(contributorsPath);
 
-    const elementName = path.basename(elementPath);
-    writeToFile(elementName, element);
-    console.log(`Processed: ${elementPath}`);
+    writeToFile(element, elementRelativePath);
+    console.log(`Processed: ${elementRelativePath}`);
     return 0;
 }
 
