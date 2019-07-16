@@ -39,28 +39,25 @@ async function buildPageJSON(elementRelativePath) {
     const prosePath = path.join(elementPath, 'prose.md');
     const contributorsPath = path.join(elementPath, 'contributors.md');
 
-    // set up element data
-    const element = {
-      data: {},
-      metadata: {}
-    };
-    element.data.title = meta.title;
-    element.data.mdn_url = meta['mdn-url'];
-    element.data.interactive_example_url = meta['interactive-example'];
-    element.data.browser_compatibility = bcd.package(meta['browser-compatibility']);
+    // set up data
+    const data = {};
+    data.title = meta.title;
+    data.mdn_url = meta['mdn-url'];
+    data.interactive_example_url = meta['interactive-example'];
+    data.browser_compatibility = bcd.package(meta['browser-compatibility']);
     if (meta.attributes['element-specific']) {
         const attributesPath = path.join(elementPath, meta.attributes['element-specific']);
-        element.data.attributes = await attributes.package(attributesPath);
+        data.attributes = await attributes.package(attributesPath);
     } else {
-        element.data.attributes = [];
+        data.attributes = [];
     }
-    element.data.examples = await examples.package(examplesPaths);
-    element.data.prose = await prose.package(prosePath);
+    data.examples = await examples.package(examplesPaths);
+    data.prose = await prose.package(prosePath);
 
     // set up element metadata
-    element.metadata.contributors = await contributors.package(contributorsPath);
+    data.contributors = await contributors.package(contributorsPath);
 
-    writeToFile(element, elementRelativePath);
+    writeToFile(data, elementRelativePath);
     console.log(`Processed: ${elementRelativePath}`);
     return 0;
 }
