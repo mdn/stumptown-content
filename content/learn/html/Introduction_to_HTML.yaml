@@ -1,4 +1,4 @@
-recipe: chapter-list
+title: Introduction to HTML
 chapters:
     - Introduction_to_HTML.md
     - Introduction_to_HTML/Getting_started.md

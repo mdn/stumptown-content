@@ -35,9 +35,12 @@ function sidebarItemFromMeta(metaPath) {
 function sectionFromChapterList(chapterListPath) {
   const fullPath = path.join(process.cwd(), chapterListPath);
   const fullDir = path.dirname(fullPath);
-  let chapterList = yaml.safeLoad(fs.readFileSync(fullPath, 'utf8'));
-  chapterList = chapterList.chapters.map(chapter => path.join(fullDir, chapter));
-  return chapterList.map(sidebarItemFromFile);
+  const chapterList = yaml.safeLoad(fs.readFileSync(fullPath, 'utf8'));
+  const chapterPaths = chapterList.chapters.map(chapter => path.join(fullDir, chapter));
+  return {
+    title: chapterList.title,
+    content: chapterPaths.map(sidebarItemFromFile)
+  }
 }
 
 /**
@@ -59,21 +62,20 @@ function sectionFromDirectory(directory) {
  * - the name of a directory whose children to list
  */
 function buildSidebarSection(sectionSpec) {
-  if (Array.isArray(sectionSpec.content)) {
+  if (sectionSpec.children) {
     return {
       title: sectionSpec.title,
-      content: sectionSpec.content.map(buildSidebarSection)
+      content: sectionSpec.children.map(buildSidebarSection)
     };
-  } else if (sectionSpec.content.endsWith('.yaml')) {
+  } else if (sectionSpec.chapter_list) {
+    return sectionFromChapterList(sectionSpec.chapter_list);
+  } else if (sectionSpec.directory)  {
     return {
       title: sectionSpec.title,
-      content: sectionFromChapterList(sectionSpec.content)
+      content: sectionFromDirectory(sectionSpec.directory)
     };
   } else {
-    return {
-      title: sectionSpec.title,
-      content: sectionFromDirectory(sectionSpec.content)
-    };
+    throw('Sidebar section does not contain expected type');
   }
 }
 
