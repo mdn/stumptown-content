@@ -7,6 +7,7 @@ const examples = require('./compose-examples');
 const attributes = require('./compose-attributes');
 const prose = require('./slice-prose');
 const contributors = require('./resolve-contributors');
+const related = require('./related-content');
 
 const writeToFile = (json, elementPath) => {
   const propertyName = path.basename(elementPath);
@@ -49,6 +50,12 @@ async function buildPageJSON(elementRelativePath) {
 
     // make the package
     const element = {};
+
+    // load the recipe
+    const recipePath = path.join(process.cwd(), './recipes', `${meta.recipe}.yaml`);
+    const recipe = yaml.safeLoad(fs.readFileSync(recipePath, 'utf8'));
+
+    element.related_content = related.buildRelatedContent(recipe.related_content);
     element.title = meta.title;
     element.mdn_url = meta['mdn-url'];
     element.interactive_example_url = meta['interactive-example'];

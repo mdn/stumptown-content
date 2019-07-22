@@ -17,7 +17,6 @@
         "prettify": "prettier --write scripts/**/*.js",
         "lint-md": "remark -q -f content",
         "build-json": "node scripts/build-json/build-json.js",
-        "build-sidebars": "node scripts/build-json/build-sidebars.js",
         "scrape-mdn": "node scripts/scraper/scrape-mdn.js",
         "spell-md": "mdspell -a -n -r -x --en-us 'content/**/!(*contributors).md'",
         "test": "npm run lint-md && npm run spell-md"
