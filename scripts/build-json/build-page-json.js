@@ -9,23 +9,15 @@ const prose = require('./slice-prose');
 const contributors = require('./resolve-contributors');
 const related = require('./related-content');
 
-const writeToFile = (json, elementPath) => {
+function writeToFile(json, elementPath) {
   const propertyName = path.basename(elementPath);
   const dirName = path.dirname(elementPath);
-  const data = {
-    html: {
-      elements: {
-        [propertyName]: json,
-      }
-    }
-  };
-
   const dest = path.join(process.cwd(), 'packaged', dirName, `${propertyName}.json`);
   const destDir = path.dirname(dest);
   if (!fs.existsSync(destDir)) {
       fs.mkdirSync(destDir, { recursive: true });
   }
-  fs.writeFileSync(dest, `${JSON.stringify(data, null, 2)}`);
+  fs.writeFileSync(dest, `${JSON.stringify(json, null, 2)}`);
 };
 
 async function buildPageJSON(elementRelativePath) {
@@ -49,28 +41,31 @@ async function buildPageJSON(elementRelativePath) {
     const contributorsPath = path.join(elementPath, 'contributors.md');
 
     // make the package
-    const element = {};
+    const data = {};
 
     // load the recipe
     const recipePath = path.join(process.cwd(), './recipes', `${meta.recipe}.yaml`);
     const recipe = yaml.safeLoad(fs.readFileSync(recipePath, 'utf8'));
 
-    element.related_content = related.buildRelatedContent(recipe.related_content);
-    element.title = meta.title;
-    element.mdn_url = meta['mdn-url'];
-    element.interactive_example_url = meta['interactive-example'];
-    element.browser_compatibility = bcd.package(meta['browser-compatibility']);
+    data.related_content = related.buildRelatedContent(recipe.related_content);
+    data.title = meta.title;
+    data.mdn_url = meta['mdn-url'];
+    data.interactive_example_url = meta['interactive-example'];
+    data.browser_compatibility = bcd.package(meta['browser-compatibility']);
+  
     if (meta.attributes['element-specific']) {
         const attributesPath = path.join(elementPath, meta.attributes['element-specific']);
-        element.attributes = await attributes.package(attributesPath);
+        data.attributes = await attributes.package(attributesPath);
     } else {
-        element.attributes = [];
+        data.attributes = [];
     }
-    element.examples = await examples.package(examplesPaths);
-    element.prose = await prose.package(prosePath);
-    element.contributors = await contributors.package(contributorsPath);
+    data.examples = await examples.package(examplesPaths);
+    data.prose = await prose.package(prosePath);
 
-    writeToFile(element, elementRelativePath);
+    // set up element metadata
+    data.contributors = await contributors.package(contributorsPath);
+
+    writeToFile(data, elementRelativePath);
     console.log(`Processed: ${elementRelativePath}`);
     return 0;
 }
