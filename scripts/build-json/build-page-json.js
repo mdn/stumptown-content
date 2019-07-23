@@ -7,6 +7,7 @@ const examples = require('./compose-examples');
 const attributes = require('./compose-attributes');
 const prose = require('./slice-prose');
 const contributors = require('./resolve-contributors');
+const related = require('./related-content');
 
 function writeToFile(json, elementPath) {
   const propertyName = path.basename(elementPath);
@@ -39,12 +40,19 @@ async function buildPageJSON(elementRelativePath) {
     const prosePath = path.join(elementPath, 'prose.md');
     const contributorsPath = path.join(elementPath, 'contributors.md');
 
-    // set up data
+    // make the package
     const data = {};
+
+    // load the recipe
+    const recipePath = path.join(process.cwd(), './recipes', `${meta.recipe}.yaml`);
+    const recipe = yaml.safeLoad(fs.readFileSync(recipePath, 'utf8'));
+
+    data.related_content = related.buildRelatedContent(recipe.related_content);
     data.title = meta.title;
     data.mdn_url = meta['mdn-url'];
     data.interactive_example_url = meta['interactive-example'];
     data.browser_compatibility = bcd.package(meta['browser-compatibility']);
+  
     if (meta.attributes['element-specific']) {
         const attributesPath = path.join(elementPath, meta.attributes['element-specific']);
         data.attributes = await attributes.package(attributesPath);
