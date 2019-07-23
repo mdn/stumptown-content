@@ -7,6 +7,7 @@ body:
 - meta.attributes
 - prose.usage_notes
 - prose.*
+- prose.styling?
 - prose.accessibility_concerns?
 - meta.examples
 - meta.info_box:
