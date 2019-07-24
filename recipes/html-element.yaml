@@ -5,9 +5,9 @@ body:
 - prose.overview
 - prose.attributes_text?
 - meta.attributes
-- prose.*
 - prose.styling?
 - prose.accessibility_concerns?
+- prose.*
 - meta.examples
 - meta.info_box:
     - meta.api
