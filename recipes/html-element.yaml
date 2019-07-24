@@ -5,7 +5,6 @@ body:
 - prose.overview
 - prose.attributes_text?
 - meta.attributes
-- prose.usage_notes
 - prose.*
 - prose.styling?
 - prose.accessibility_concerns?
