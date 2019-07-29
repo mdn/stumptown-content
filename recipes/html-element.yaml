@@ -2,12 +2,12 @@ related_content: /content/related_content/html.yaml
 body:
 - prose.short_description
 - meta.interactive_example?
-- prose.overview?
+- prose.overview
 - prose.attributes_text?
 - meta.attributes
-- prose.usage_notes
-- prose.*
+- prose.styling?
 - prose.accessibility_concerns?
+- prose.*
 - meta.examples
 - meta.info_box:
     - meta.api
