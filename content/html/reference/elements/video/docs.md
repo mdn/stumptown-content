@@ -1,3 +1,22 @@
+---
+title: '<video>: The Video Embed element'
+mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/video
+tags:
+    group: Image and multimedia
+api: HTMLVideoElement
+permitted_aria_roles: application
+tag_omission: none
+interactive_example_url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/video.html
+browser_compatibility: html.elements.video
+examples:
+    - examples/simple-example
+    - examples/multiple-sources-example
+attributes:
+    element_specific: ./attributes
+    global: /content/html/global_attributes
+recipe: html_element
+---
+
 ## Short description
 
 The **HTML Video element** (**`<video>`**) embeds a media player which
