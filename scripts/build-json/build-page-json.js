@@ -35,7 +35,7 @@ async function buildPageJSON(elementRelativePath) {
     const { data, content } = matter(docs);
 
     // check the recipe type
-    if (data.recipe !== 'html_element') {
+    if (data.recipe !== 'html-element') {
         console.warn(`Not an HTML element: ${elementPath}`);
         return 2;
     }
