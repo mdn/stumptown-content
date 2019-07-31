@@ -15,17 +15,6 @@ function itemFromFile(filePath) {
 }
 
 /**
- * Get a single item from meta.yaml
- */
-function itemFromMeta(metaPath) {
-  const meta = yaml.safeLoad(fs.readFileSync(metaPath, 'utf8'));
-  return {
-    title: meta.title,
-    mdn_url: meta['mdn-url']
-  };
-}
-
-/**
  * Build a section from a special YAML file called a "chapter list"
  * that is just an ordered list of pages.
  */
@@ -47,8 +36,8 @@ function sectionFromChapterList(chapterListPath) {
 function sectionFromDirectory(directory) {
   const fullPath = path.join(process.cwd(), directory);
   let itemDirectories = fs.readdirSync(path.join(process.cwd(), directory));
-  itemDirectories = itemDirectories.map(itemDirectory => path.join(fullPath, itemDirectory, 'meta.yaml'));
-  return itemDirectories.map(itemFromMeta);
+  itemDirectories = itemDirectories.map(itemDirectory => path.join(fullPath, itemDirectory, 'docs.md'));
+  return itemDirectories.map(itemFromFile);
 }
 
 /**

@@ -14,7 +14,7 @@ examples:
 attributes:
     element_specific: ./attributes
     global: /content/html/global_attributes
-recipe: html_element
+recipe: html-element
 ---
 
 ## Short description
