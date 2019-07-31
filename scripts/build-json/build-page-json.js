@@ -50,7 +50,7 @@ async function buildPageJSON(elementRelativePath) {
 
     item.title = data.title;
     item.mdn_url = data.mdn_url;
-    item.interactive_example_url = data.interactive_example_url;
+    item.interactive_example_url = data.interactive_example;
     item.browser_compatibility = bcd.package(data.browser_compatibility);
   
     if (data.attributes.element_specific) {
