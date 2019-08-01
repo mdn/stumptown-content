@@ -7,7 +7,7 @@ function walk(directory, filepaths) {
     const files = fs.readdirSync(directory);
     for (let filename of files) {
         const filepath = path.join(directory, filename);
-        if (filename === 'meta.yaml') {
+        if (filename === 'docs.md') {
             filepaths.push(directory);
             continue;
         }

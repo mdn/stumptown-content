@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
+const matter = require('gray-matter');
 
 const bcd = require('./resolve-bcd');
 const examples = require('./compose-examples');
@@ -28,44 +29,45 @@ async function buildPageJSON(elementRelativePath) {
         return 1;
     }
 
-    // open meta.yaml and check the recipe type
-    const meta = yaml.safeLoad(fs.readFileSync(path.join(elementPath, 'meta.yaml'), 'utf8'));
-    if (meta.recipe !== 'html-element') {
+    // open docs.md and parse front matter(data) from Markdown(content)
+    const docsPath = path.join(elementPath, 'docs.md');
+    const docs = fs.readFileSync(docsPath, 'utf8');
+    const { data, content } = matter(docs);
+
+    // check the recipe type
+    if (data.recipe !== 'html-element') {
         console.warn(`Not an HTML element: ${elementPath}`);
         return 2;
     }
 
-    // initialise some paths for more resources
-    const examplesPaths = meta.examples.map(relativePath => path.join(elementPath, relativePath));
-    const prosePath = path.join(elementPath, 'prose.md');
-    const contributorsPath = path.join(elementPath, 'contributors.md');
-
     // make the package
-    const data = {};
+    const item = {};
 
-    // load the recipe
-    const recipePath = path.join(process.cwd(), './recipes', `${meta.recipe}.yaml`);
+    // load the recipe to get related_content
+    const recipePath = path.join(process.cwd(), './recipes', `${data.recipe}.yaml`);
     const recipe = yaml.safeLoad(fs.readFileSync(recipePath, 'utf8'));
+    item.related_content = related.buildRelatedContent(recipe.related_content);
 
-    data.related_content = related.buildRelatedContent(recipe.related_content);
-    data.title = meta.title;
-    data.mdn_url = meta['mdn-url'];
-    data.interactive_example_url = meta['interactive-example'];
-    data.browser_compatibility = bcd.package(meta['browser-compatibility']);
+    item.title = data.title;
+    item.mdn_url = data.mdn_url;
+    item.interactive_example_url = data.interactive_example;
+    item.browser_compatibility = bcd.package(data.browser_compatibility);
   
-    if (meta.attributes['element-specific']) {
-        const attributesPath = path.join(elementPath, meta.attributes['element-specific']);
-        data.attributes = await attributes.package(attributesPath);
+    if (data.attributes.element_specific) {
+        const attributesPath = path.join(elementPath, data.attributes.element_specific);
+        item.attributes = await attributes.package(attributesPath);
     } else {
-        data.attributes = [];
+        item.attributes = [];
     }
-    data.examples = await examples.package(examplesPaths);
-    data.prose = await prose.package(prosePath);
 
-    // set up element metadata
-    data.contributors = await contributors.package(contributorsPath);
+    const examplesPaths = data.examples.map(relativePath => path.join(elementPath, relativePath));
+    item.examples = await examples.package(examplesPaths);
+    item.prose = await prose.package(content);
 
-    writeToFile(data, elementRelativePath);
+    const contributorsPath = path.join(elementPath, 'contributors.md');
+    item.contributors = await contributors.package(contributorsPath);
+
+    writeToFile(item, elementRelativePath);
     console.log(`Processed: ${elementRelativePath}`);
     return 0;
 }
