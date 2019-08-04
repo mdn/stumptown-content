@@ -74,8 +74,6 @@ A good general source of information on using HTML `<video>` is the
 content](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Video_and_audio_content)
 beginner's tutorial.
 
-## Usage notes
-
 ### Styling with CSS
 
 The `<video>` element is a replaced element — its `display`

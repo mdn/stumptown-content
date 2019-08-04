@@ -24,7 +24,7 @@ recipe: html-element
 The **HTML Abbreviation element** (**`<abbr>`**) represents an
 abbreviation or acronym.
 
-## Usage notes
+## Overview
 
 The article *[How to mark abbreviations and make them
 understandable](/en-US/Learn/HTML/Howto/Mark_abbreviations_and_make_them_understandable)*

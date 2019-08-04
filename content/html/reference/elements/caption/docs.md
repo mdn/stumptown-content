@@ -21,7 +21,7 @@ The **HTML Table Caption element** (**`<caption>`**) specifies the
 caption (or title) of a table, and if used is *always* the first child
 of a [`<table>`](/en-US/docs/Web/HTML/Element/table).
 
-## Usage notes
+## Overview
 
 When the
 [`<table>`](/en-US/docs/Web/HTML/Element/table)

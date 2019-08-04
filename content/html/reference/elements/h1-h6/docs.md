@@ -24,7 +24,7 @@ The **HTML `<h1>`--`<h6>` elements** represent six levels of section
 headings. `<h1>` is the highest section level and `<h6>` is the
 lowest.
 
-## Usage notes
+## Overview
 
 - Heading information may be used by user agents, for example, to
   construct a table of contents for a document automatically.

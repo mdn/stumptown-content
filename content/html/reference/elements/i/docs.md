@@ -22,7 +22,7 @@ from the normal text for some reason. Some examples include technical
 terms, foreign language phrases, or fictional character thoughts. It is
 typically displayed in italic type.
 
-## Usage notes
+## Overview
 
 - Use the `<i>` element for text that is set off from the normal prose
   for readability reasons. This would be a range of text with

@@ -36,6 +36,9 @@ an unordered list
 ([`<ul>`](/en-US/docs/Web/HTML/Element/ul)),
 or a menu
 ([`<menu>`](/en-US/docs/Web/HTML/Element/menu)).
+
+## Overview
+
 In menus and unordered lists, list items are usually displayed using
 bullet points. In ordered lists, they are usually displayed with an
 ascending counter on the left, such as a number or letter.

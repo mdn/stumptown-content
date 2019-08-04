@@ -23,7 +23,7 @@ author or the URL of that work. The reference may be in an
 abbreviated form according to context-appropriate conventions related to
 citation metadata.
 
-## Usage notes
+## Overview
 
 In the context of the `<cite>` element, a creative work that might be
 cited could be, for example, one of the following:

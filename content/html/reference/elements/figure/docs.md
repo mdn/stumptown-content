@@ -27,7 +27,7 @@ frequently with a caption
 ([`<figcaption>`](/en-US/docs/Web/HTML/Element/figcaption)),
 and is typically referenced as a single unit.
 
-## Usage notes
+## Overview
 
 - Usually a `<figure>` is an image, illustration, diagram, code
   snippet, etc., that is referenced in the main flow of a document,

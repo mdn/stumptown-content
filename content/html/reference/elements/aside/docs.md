@@ -24,10 +24,11 @@ recipe: html-element
 
 The **HTML `<aside>` element** represents a portion of a document whose
 content is only indirectly related to the document's main
-content. Asides are frequently presented as sidebars or
-call-out boxes.
+content.
 
-## Usage notes
+## Overview
+
+Asides are frequently presented as sidebars or call-out boxes.
 
 - Do not use the `<aside>` element to tag parenthesized text, as this
   kind of text is considered part of the main flow.

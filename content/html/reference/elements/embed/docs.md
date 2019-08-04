@@ -38,8 +38,6 @@ support for browser plug-ins, so relying upon `<embed>` is generally not
 wise if you want your site to be operable on the average user\'s
 browser.
 
-## Usage notes
-
 You can use the
 [`object-position`](/en-US/docs/Web/CSS/object-position)
 property to adjust the positioning of the embedded object within the

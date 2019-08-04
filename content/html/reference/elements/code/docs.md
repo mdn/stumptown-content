@@ -22,7 +22,7 @@ intended to indicate that the text is a short fragment of computer
 code. By default, the content text is displayed using the
 [user agent's](/en-US/docs/Glossary/user_agent) default monospace font.
 
-## Usage notes
+## Overview
 
 To represent multiple lines of code, wrap the `<code>` element within a
 [`<pre>`](/en-US/docs/Web/HTML/Element/pre)

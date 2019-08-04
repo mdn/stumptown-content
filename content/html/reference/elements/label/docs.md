@@ -52,8 +52,6 @@ association is implicit:
 </label>
 ```
 
-## Usage notes
-
 - The form control that the label is labeling is called the *labeled
   control* of the label element. One input can be associated with
   multiple labels.
