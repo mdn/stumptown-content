@@ -22,8 +22,7 @@ indicates that the enclosed text is an extended quotation.
 
 ## Overview
 
-Usually, this is rendered visually by indentation (see
-[Usage notes](#Usage_notes) for how to change it). A URL for the source of the
+Usually, this is rendered visually by indentation. A URL for the source of the
 quotation may be given using the **cite** attribute, while a text representation
 of the source can be given using the
 [`<cite>`](/en-US/docs/Web/HTML/Element/cite) element.
