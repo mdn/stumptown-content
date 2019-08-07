@@ -23,7 +23,7 @@ deleted from a document.
 
 ## Overview
 
-This can be used when rendering change tracking or source code diffs, for
+`<del>` can be used when rendering change tracking or source code diffs, for
 example. The [`<ins>`](/en-US/docs/Web/HTML/Element/ins) element can be used for
 the opposite purpose: to indicate text that has been added to the document.
 
