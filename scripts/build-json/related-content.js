@@ -72,7 +72,7 @@ function buildSection(sectionSpec) {
 const relatedContentCache = {};
 function buildRelatedContent(specName) {
   const cached = relatedContentCache[specName];
-  if (cached) {
+  if (cached !== undefined) {
     return cached;
   }
   const spec = yaml.safeLoad(fs.readFileSync(path.join(process.cwd(), specName), 'utf8'));
