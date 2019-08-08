@@ -44,5 +44,6 @@ function package(paths) {
 }
 
 module.exports = {
-    package
+    package,
+    packageExample
 }

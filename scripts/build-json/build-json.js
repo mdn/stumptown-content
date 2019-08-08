@@ -7,8 +7,8 @@ function walk(directory, filepaths) {
     const files = fs.readdirSync(directory);
     for (let filename of files) {
         const filepath = path.join(directory, filename);
-        if (filename === 'docs.md') {
-            filepaths.push(directory);
+        if (path.extname(filename) === '.md') {
+            filepaths.push(path.join(directory, filename));
             continue;
         }
         if (fs.statSync(filepath).isDirectory()) {
@@ -34,7 +34,8 @@ function buildJSON(searchPaths) {
         errors++;
     }
     for (let item of items) {
-        errors += buildPage.buildPageJSON(item);
+        const parsed = path.parse(item);
+        errors += buildPage.buildPageJSON(parsed.dir, parsed.base);
     }
     return errors;
 }

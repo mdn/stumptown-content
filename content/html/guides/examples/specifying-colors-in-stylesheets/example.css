@@ -1,0 +1,33 @@
+.wrapper {
+  width: 620px;
+  height: 110px;
+  margin: 0;
+  padding: 10px;
+  border: 6px solid mediumturquoise;
+}
+
+.box {
+  width: 290px;
+  height: 100px;
+  margin: 0;
+  padding: 4px 6px;
+  font: 28px "Marker Felt", "Zapfino", cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boxLeft {
+  float: left;
+  background-color: rgb(245, 130, 130);
+  outline: 2px solid darkred;
+}
+
+.boxRight {
+  float: right;
+  background-color: hsl(270deg, 50%, 75%);
+  outline: 4px dashed rgb(110, 20, 120);
+  color: hsl(0deg, 100%, 100%);
+  text-decoration: underline wavy #88ff88;
+  text-shadow: 2px 2px 3px black;
+}
