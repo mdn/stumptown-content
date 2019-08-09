@@ -69,9 +69,16 @@ function buildSection(sectionSpec) {
  * Build a single related content object given its YAML file.
  * At the top level a related content object is an array of sections.
  */
+const relatedContentCache = {};
 function buildRelatedContent(specName) {
+  const cached = relatedContentCache[specName];
+  if (cached !== undefined) {
+    return cached;
+  }
   const spec = yaml.safeLoad(fs.readFileSync(path.join(process.cwd(), specName), 'utf8'));
-  return spec.map(buildSection);
+  const result = spec.map(buildSection);
+  relatedContentCache[specName] = result;
+  return result;
 }
 
 module.exports = {
