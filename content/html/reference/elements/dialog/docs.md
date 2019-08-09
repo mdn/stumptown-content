@@ -21,7 +21,7 @@ recipe: html-element
 The **HTML `<dialog>` element** represents a dialog box or other
 interactive component, such as an inspector or window.
 
-## Usage notes
+## Overview
 
 - `<form>` elements can be integrated within a dialog by specifying
   them with the attribute `method="dialog"`. When such a form is

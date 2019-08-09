@@ -29,8 +29,6 @@ easily styled using the `class` or `id` attributes, marking a section of
 a document as being written in a different language (using the `lang`
 attribute), and so on.
 
-## Usage notes
-
 - The `<div>` element should be used only when no other semantic
   element (such as
   [`<article>`](/en-US/docs/Web/HTML/Element/article)

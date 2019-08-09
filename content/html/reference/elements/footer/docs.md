@@ -25,7 +25,7 @@ or [sectioning root](/en-US/docs/Web/Guide/HTML/Sections_and_Outlines_of_an_HTML
 element. A footer typically contains information about the author of the
 section, copyright data or links to related documents.
 
-## Usage notes
+## Overview
 
 - Enclose information about the author in an
   [`<address>`](/en-US/docs/Web/HTML/Element/address)

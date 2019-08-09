@@ -35,8 +35,6 @@ blog that shows the text of each article one after another as the reader
 scrolls, each post would be contained in an `<article>` element,
 possibly with one or more `<section>`s within.
 
-## Usage notes
-
 - Each `<article>` should be identified, typically by including a heading
   ([`<h1>`-`<h6>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements)
   element) as a child of the `<article>` element.

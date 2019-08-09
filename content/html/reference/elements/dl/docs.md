@@ -31,7 +31,7 @@ element) and descriptions (provided by
 elements). Common uses for this element are to implement a glossary or
 to display metadata (a list of key-value pairs).
 
-## Usage notes
+## Overview
 
 Do not use this element (or
 [`<ul>`](/en-US/docs/Web/HTML/Element/ul)

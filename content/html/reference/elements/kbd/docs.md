@@ -36,8 +36,6 @@ standard.
 (Sample Output) element to represent various forms of input or input
 based on visual cues.
 
-## Usage notes
-
 Other elements can be used in tandem with `<kbd>` to represent more
 specific scenarios:
 

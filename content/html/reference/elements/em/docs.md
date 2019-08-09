@@ -21,7 +21,7 @@ The **HTML `<em>` element** marks text that has stress emphasis. The
 `<em>` element can be nested, with each level of nesting indicating a
 greater degree of emphasis.
 
-## Usage notes
+## Overview
 
 The `<em>` element is for words that have a stressed emphasis compared
 to surrounding text, which is often limited to a word or words of a

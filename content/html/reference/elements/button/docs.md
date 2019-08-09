@@ -37,8 +37,6 @@ that of the host platform the [user agent](/en-US/docs/Glossary/user_agent)
 is running on, but you can change the appearance of the button using
 [CSS](/en-US/docs/Web/CSS).
 
-## Usage notes
-
 `<button>` elements are much easier to style than
 [`<input>`](/en-US/docs/Web/HTML/Element/input)
 elements. You can add inner HTML content (think `<em>`, `<strong>` or

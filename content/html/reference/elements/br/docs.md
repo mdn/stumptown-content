@@ -34,8 +34,6 @@ elements and use the [CSS](/en-US/docs/CSS)
 [`margin`](/en-US/docs/Web/CSS/margin)
 property to control their size.
 
-## Usage notes
-
 If multiple `<base>` elements are specified, only the first `href` and
 first `target` value are used; all others are ignored.
 

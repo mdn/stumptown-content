@@ -33,8 +33,6 @@ property to create boldface text, or the
 [`<strong>`](/en-US/docs/Web/HTML/Element/strong)
 element to indicate that text is of special importance.
 
-## Usage notes
-
 - Use the `<b>` for cases like keywords in a summary, product names in
   a review, or other spans of text whose typical presentation would be
   boldfaced (but not including any special importance).

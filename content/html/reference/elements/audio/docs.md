@@ -29,6 +29,7 @@ the destination for streamed media, using a
 [`MediaStream`](https://developer.mozilla.org/en-US/docs/Web/API/MediaStream).
 
 ## Overview
+
 In a similar manner to the
 [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img)
 element, we include a path to the media we want to embed inside the
@@ -76,8 +77,6 @@ A good general source of information on using HTML `<audio>` is the
 [Video and audio
 content](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Video_and_audio_content)
 beginner's tutorial.
-
-## Usage notes
 
 ### Styling with CSS
 

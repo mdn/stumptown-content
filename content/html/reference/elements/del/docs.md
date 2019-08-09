@@ -19,11 +19,13 @@ recipe: html-element
 ## Short description
 
 The **HTML `<del>` element** represents a range of text that has been
-deleted from a document. This can be used when rendering
-change tracking or source code diffs, for example. The
-[`<ins>`](/en-US/docs/Web/HTML/Element/ins)
-element can be used for the opposite purpose: to indicate text that has
-been added to the document.
+deleted from a document.
+
+## Overview
+
+The `<del>` element can be used when rendering change tracking or source code diffs, for
+example. The [`<ins>`](/en-US/docs/Web/HTML/Element/ins) element can be used for
+the opposite purpose: to indicate text that has been added to the document.
 
 ## Accessibility concerns
 The presence of the `del` element is not announced by most screen

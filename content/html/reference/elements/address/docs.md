@@ -37,8 +37,6 @@ business\'s contact information in the page header, or indicating the
 author of an article by including an `<address>` element within the
 [`<article>`](/en-US/docs/Web/HTML/Element/article "The HTML <article> element represents a self-contained composition in a document, page, application, or site, which is intended to be independently distributable or reusable (e.g., in syndication). Examples include: a forum post, a magazine or newspaper article, or a blog entry.").
 
-## Usage notes
-
 - To represent an arbitrary address, one that is not related to the
   contact information, use a
   [`<p>`](/en-US/docs/Web/HTML/Element/p)
