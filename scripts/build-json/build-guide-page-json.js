@@ -33,7 +33,7 @@ async function buildGuideContentJSON(elementPath, data, content) {
         if (match) {
              result.push(await processDirective(elementPath, match[1]));
         } else {
-             result.push(await processProse(elementPath, content));
+             result.push(await processProse(elementPath, section));
         }
     };
     return result;
