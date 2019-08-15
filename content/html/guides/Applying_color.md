@@ -22,47 +22,47 @@ At a fundamental level, the [`color`](/en-US/docs/Web/CSS/color "The color CSS p
 
 Whenever an element is rendered, these properties are used to determine the color of the text, its background, and any decorations on the text.
 
--   [`color`](/en-US/docs/Web/CSS/color "The color CSS property sets the foreground color value of an element's text and text decorations, and sets the currentcolor value.")
+- [`color`](/en-US/docs/Web/CSS/color "The color CSS property sets the foreground color value of an element's text and text decorations, and sets the currentcolor value.")
 
     The color to use when drawing the text and any [text decorations](/en-US/docs/Learn/CSS/Styling_text/Fundamentals#Font_style_font_weight_text_transform_and_text_decoration) (such as the addition of under- or overlines, strike-through lines, and so forth.
 
--   [`background-color`](/en-US/docs/Web/CSS/background-color "The background-color CSS property sets the background color of an element.")
+- [`background-color`](/en-US/docs/Web/CSS/background-color "The background-color CSS property sets the background color of an element.")
 
     The text's background color.
 
--   [`text-shadow`](/en-US/docs/Web/CSS/text-shadow "The text-shadow CSS property adds shadows to text. It accepts a comma-separated list of shadows to be applied to the text and any of its decorations.")
+- [`text-shadow`](/en-US/docs/Web/CSS/text-shadow "The text-shadow CSS property adds shadows to text. It accepts a comma-separated list of shadows to be applied to the text and any of its decorations.")
 
     Configures a shadow effect to apply to text. Among the options for the shadow is the shadow's base color (which is then blurred and blended with the background based on the other parameters). See [Text drop shadows](/en-US/docs/Learn/CSS/Styling_text/Fundamentals#Text_drop_shadows "We hoped you enjoyed playing with text in this article! The next article will give you all you need to know about styling HTML lists.") in [Fundamental text and font styling](/en-US/docs/Learn/CSS/Styling_text/Fundamentals "We hoped you enjoyed playing with text in this article! The next article will give you all you need to know about styling HTML lists.") to learn more.
 
--   [`text-decoration-color`](/en-US/docs/Web/CSS/text-decoration-color "The text-decoration-color CSS property sets the color of decorations added to text by text-decoration-line.")
+- [`text-decoration-color`](/en-US/docs/Web/CSS/text-decoration-color "The text-decoration-color CSS property sets the color of decorations added to text by text-decoration-line.")
 
     By default, text decorations (such as underlines, strikethroughs, etc) use the `color` property as their colors. However, you can override that behavior and use a different color for them with the `text-decoration-color` property.
 
--   [`text-emphasis-color`](/en-US/docs/Web/CSS/text-emphasis-color "The text-emphasis-color CSS property sets the color of emphasis marks. This value can also be set using the text-emphasis shorthand.")
+- [`text-emphasis-color`](/en-US/docs/Web/CSS/text-emphasis-color "The text-emphasis-color CSS property sets the color of emphasis marks. This value can also be set using the text-emphasis shorthand.")
 
     The color to use when drawing emphasis symbols adjacent to each character in the text. This is used primarily when drawing text for East Asian languages.
 
--   [`caret-color`](/en-US/docs/Web/CSS/caret-color "The caret-color CSS property sets the color of the insertion caret, the visible marker where the next character typed will be inserted.")
+- [`caret-color`](/en-US/docs/Web/CSS/caret-color "The caret-color CSS property sets the color of the insertion caret, the visible marker where the next character typed will be inserted.")
 
-    The color to use when drawing the [caret](/en-US/docs/Glossary/caret 'caret: A caret (sometimes called a "text cursor") is an indicator displayed on the screen to indicate where text input will be inserted.') (sometimes referred to as the text input cursor) within the element. This is only useful in elements that are editable, such as [`<input>`](/en-US/docs/Web/HTML/Element/input "The HTML &lt;input> element is used to create interactive controls for web-based forms in order to accept data from the user; a wide variety of types of input data and control widgets are available, depending on the device and user agent.") and [`<textarea>`](/en-US/docs/Web/HTML/Element/textarea "The HTML &lt;textarea> element represents a multi-line plain-text editing control, useful when you want to allow users to enter a sizeable amount of free-form text, for example a comment on a review or feedback form.") or elements whose HTML `contenteditable` attribute is set.
+    The color to use when drawing the [caret](/en-US/docs/Glossary/caret) (sometimes referred to as the text input cursor) within the element. This is only useful in elements that are editable, such as [`<input>`](/en-US/docs/Web/HTML/Element/input "The HTML &lt;input> element is used to create interactive controls for web-based forms in order to accept data from the user; a wide variety of types of input data and control widgets are available, depending on the device and user agent.") and [`<textarea>`](/en-US/docs/Web/HTML/Element/textarea "The HTML &lt;textarea> element represents a multi-line plain-text editing control, useful when you want to allow users to enter a sizeable amount of free-form text, for example a comment on a review or feedback form.") or elements whose HTML `contenteditable` attribute is set.
 
 ### Boxes
 
 Every element is a box with some sort of content, and has a background and a border in addition to whatever contents the box may have.
 
--   [Borders](#Borders)
+- [Borders](#Borders)
 
     See the section [Borders](#Borders) for a list of the CSS properties you can use to set the colors of a box's borders.
 
--   [`background-color`](/en-US/docs/Web/CSS/background-color "The background-color CSS property sets the background color of an element.")
+- [`background-color`](/en-US/docs/Web/CSS/background-color "The background-color CSS property sets the background color of an element.")
 
     The background color to use in areas of the element that have no foreground content.
 
--   [`column-rule-color`](/en-US/docs/Web/CSS/column-rule-color "The column-rule-color CSS property sets the color of the rule (line) drawn between columns in a multi-column layout.")
+- [`column-rule-color`](/en-US/docs/Web/CSS/column-rule-color "The column-rule-color CSS property sets the color of the rule (line) drawn between columns in a multi-column layout.")
 
     The color to use when drawing the line separating columns of text.
 
--   [`outline-color`](/en-US/docs/Web/CSS/outline-color "The outline-color CSS property sets the color of an element's outline.")
+- [`outline-color`](/en-US/docs/Web/CSS/outline-color "The outline-color CSS property sets the color of an element's outline.")
 
     The color to use when drawing an outline around the outside of the element. This outline is different from the border in that it doesn't get space set aside for it in the document (so it may overlap other content). It's generally used as a focus indicator, to show which element will receive input events.
 
@@ -72,19 +72,19 @@ Any element can have a [border](/en-US/docs/Learn/CSS/Styling_boxes/Borders) dra
 
 You can use the [`border`](/en-US/docs/Web/CSS/border "The border shorthand CSS property sets an element's border.") shorthand property, which lets you configure everything about the border in one shot (including non-color features of borders, such as its [width](/en-US/docs/Web/CSS/border-width), [style](/en-US/docs/Web/CSS/border-style) (solid, dashed, etc.), and so forth.
 
--   [`border-color`](/en-US/docs/Web/CSS/border-color "The border-color shorthand CSS property sets the color of an element's border.")
+- [`border-color`](/en-US/docs/Web/CSS/border-color "The border-color shorthand CSS property sets the color of an element's border.")
 
     Specifies a single color to use for every side of the element's border.
 
--   [`border-left-color`](/en-US/docs/Web/CSS/border-left-color "The border-left-color CSS property sets the color of an element's left border."), [`border-right-color`](/en-US/docs/Web/CSS/border-right-color "The border-right-color CSS property sets the color of an element's right border. It can also be set with the shorthand CSS properties border-color or border-right."), [`border-top-color`](/en-US/docs/Web/CSS/border-top-color "The border-top-color CSS property sets the color of an element's top border."), and [`border-bottom-color`](/en-US/docs/Web/CSS/border-bottom-color "The border-bottom-color CSS property sets the color of an element's bottom border.")
+- [`border-left-color`](/en-US/docs/Web/CSS/border-left-color "The border-left-color CSS property sets the color of an element's left border."), [`border-right-color`](/en-US/docs/Web/CSS/border-right-color "The border-right-color CSS property sets the color of an element's right border. It can also be set with the shorthand CSS properties border-color or border-right."), [`border-top-color`](/en-US/docs/Web/CSS/border-top-color "The border-top-color CSS property sets the color of an element's top border."), and [`border-bottom-color`](/en-US/docs/Web/CSS/border-bottom-color "The border-bottom-color CSS property sets the color of an element's bottom border.")
 
     Lets you set the color of the corresponding side of the element's border.
 
--   [`border-block-start-color`](/en-US/docs/Web/CSS/border-block-start-color "The border-block-start-color CSS property defines the color of the logical block-start border of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color, border-right-color, border-bottom-color, or border-left-color property depending on the values defined for writing-mode, direction, and text-orientation.") and [`border-block-end-color`](/en-US/docs/Web/CSS/border-block-end-color "The border-block-end-color CSS property defines the color of the logical block-end border of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color, border-right-color, border-bottom-color, or border-left-color property depending on the values defined for writing-mode, direction, and text-orientation.")
+- [`border-block-start-color`](/en-US/docs/Web/CSS/border-block-start-color "The border-block-start-color CSS property defines the color of the logical block-start border of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color, border-right-color, border-bottom-color, or border-left-color property depending on the values defined for writing-mode, direction, and text-orientation.") and [`border-block-end-color`](/en-US/docs/Web/CSS/border-block-end-color "The border-block-end-color CSS property defines the color of the logical block-end border of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color, border-right-color, border-bottom-color, or border-left-color property depending on the values defined for writing-mode, direction, and text-orientation.")
 
     With these, you can set the color used to draw the borders which are closest to the start and end of the block the border surrounds. In a left-to-right writing mode (such as the way English is written), the block start border is the top edge and the block end is the bottom. This differs from the inline start and end, which are the left and right edges (corresponding to where each line of text in the box begins and ends).
 
--   [`border-inline-start-color`](/en-US/docs/Web/CSS/border-inline-start-color "The border-inline-start-color CSS property defines the color of the logical inline start border of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color, border-right-color, border-bottom-color, or border-left-color property depending on the values defined for writing-mode, direction, and text-orientation.") and [`border-inline-end-color`](/en-US/docs/Web/CSS/border-inline-end-color "The border-inline-end-color CSS property defines the color of the logical inline-end border of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color, border-right-color, border-bottom-color, or border-left-color property depending on the values defined for writing-mode, direction, and text-orientation.")
+- [`border-inline-start-color`](/en-US/docs/Web/CSS/border-inline-start-color "The border-inline-start-color CSS property defines the color of the logical inline start border of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color, border-right-color, border-bottom-color, or border-left-color property depending on the values defined for writing-mode, direction, and text-orientation.") and [`border-inline-end-color`](/en-US/docs/Web/CSS/border-inline-end-color "The border-inline-end-color CSS property defines the color of the logical inline-end border of an element, which maps to a physical border color depending on the element's writing mode, directionality, and text orientation. It corresponds to the border-top-color, border-right-color, border-bottom-color, or border-left-color property depending on the values defined for writing-mode, direction, and text-orientation.")
 
     These let you color the edges of the border closest to to the beginning and the end of the start of lines of text within the box. Which side this is will vary depending on the [`writing-mode`](/en-US/docs/Web/CSS/writing-mode "The writing-mode CSS property sets whether lines of text are laid out horizontally or vertically, as well as the direction in which blocks progress."), [`direction`](/en-US/docs/Web/CSS/direction "The direction CSS property sets the direction of text, table columns, and horizontal overflow."), and [`text-orientation`](/en-US/docs/Web/CSS/text-orientation "The text-orientation CSS property sets the orientation of the text characters in a line. It only affects text in vertical mode (when writing-mode is not horizontal-tb).") properties, which are typically (but not always) used to adjust text directionality based on the language being displayed. For example, if the box's text is being rendered right-to-left, then the `border-inline-start-color` is applied to the right side of the border.
 
@@ -92,15 +92,15 @@ You can use the [`border`](/en-US/docs/Web/CSS/border "The border shorthand CSS 
 
 CSS isn't the only web technology that supports color. There are graphics technologies that are available on the web which also support color.
 
--   The HTML [Canvas API](/en-US/docs/Web/API/Canvas_API)
+- The HTML [Canvas API](/en-US/docs/Web/API/Canvas_API)
 
     Lets you draw 2D bitmapped graphics in a [`<canvas>`](/en-US/docs/Web/HTML/Element/canvas "Use the HTML &lt;canvas> element with either the canvas scripting API or the WebGL API to draw graphics and animations.") element. See our [Canvas tutorial](/en-US/docs/Web/API/Canvas_API/Tutorial) to learn more.
 
--   [SVG](/en-US/docs/Web/SVG) (Scalable Vector Graphics)
+- [SVG](/en-US/docs/Web/SVG) (Scalable Vector Graphics)
 
     Lets you draw images using commands that draw specific shapes, patterns, and lines to produce an image. SVG commands are formatted as XML, and can be embedded directly into a web page or can be placed in he page using the [`<img>`](/en-US/docs/Web/HTML/Element/img "The HTML &lt;img> element embeds an image into the document. It is a replaced element.") element, just like any other type of image.
 
--   [WebGL](/en-US/docs/Web/API/WebGL_API)
+- [WebGL](/en-US/docs/Web/API/WebGL_API)
 
     The Web Graphics Library is an OpenGL ES-based API for drawing high-performance 2D and 3D graphics on the Web. See our [WebGL tutorial](/en-US/docs/Web/API/WebGL_API/Tutorial) to find out more.
 
@@ -126,19 +126,19 @@ Hexadecimal string notation represents a color using hexadecimal digits to repre
 
 A color in hexadecimal string notation always begins with the character `"#"`. After that come the hexadecimal digits of the color code. The string is case-insensitive.
 
--   `"#rrggbb"`
+- `"#rrggbb"`
 
     Specifies a fully-opaque color whose red component is the hexadecimal number `0xrr`, green component is `0xgg`, and blue component is `0xbb`.
 
--   `"#rrggbbaa"`
+- `"#rrggbbaa"`
 
     Specifies a color whose red component is the hexadecimal number `0xrr`, green component is `0xgg`, and blue component is `0xbb`. The alpha channel is specified by `0xaa`; the lower this value is, the more translucent the color becomes.
 
--   `"#rgb"`
+- `"#rgb"`
 
     Specifies a color whose red component is the hexadecimal number `0xrr`, green component is `0xgg`, and blue component is `0xbb`.
 
--   `"#rgba"`
+- `"#rgba"`
 
     Specifies a color whose red component is the hexadecimal number `0xrr`, green component is `0xgg`, and blue component is `0xbb`. The alpha channel is specified by `0xaa`; the lower this value is, the more translucent the color becomes.
 
@@ -150,11 +150,11 @@ RGB (Red/Green/Blue) functional notation, like hexadecimal string notation, repr
 
 Legal values for each of these parameters are:
 
--   `red`, `green`, and `blue`
+- `red`, `green`, and `blue`
 
     Each must be an [`<integer>`](/en-US/docs/Web/CSS/integer "The &lt;integer> CSS data type is a special type of &lt;number> that represents a whole number, whether positive or negative. Integers can be used in numerous CSS properties, such as column-count, counter-increment, grid-column, grid-row, and z-index.") value between 0 and 255 (inclusive), or a [`<percentage>`](/en-US/docs/Web/CSS/percentage "The &lt;percentage> CSS data type represents a percentage value. It is often used to define a size as relative to an element's parent object. Numerous properties can use percentages, such as width, height, margin, padding, and font-size.") from 0% to 100%.
 
--   `alpha`
+- `alpha`
 
     The alpha channel is a number between 0.0 (fully transparent) and 1.0 (fully opaque). You can also specify a percentage where 0% is the same as 0.0 and 100% is the same as 1.0.
 
@@ -174,9 +174,9 @@ The saturation (S) component of the color specifies what percentage of the final
 
 Think of it like creating the perfect paint color:
 
-1.  You start with base paint that's the maximum intensity possible for a given color, such as the most intense blue that can be represented by the user's screen. This is the **hue** (H) component: a value representing the angle around the color wheel for the vivid hue we want to use as our base.
-2.  Then select a greyscale paint that corresponds how bright you want the color to be; this is the luminance. Do you want it to be very bright and nearly white, or very dark and closer to black, or somewhere in between? This is specified using a percentage, where 0% is perfectly black and 100% is perfectly white. (regardless of the saturation or hue). In between values are a literal grey area.
-3.  Now that you have a grey paint and a perfectly vivid color, you need to mix them together. The saturation (S) component of the color indicates what percentage of the final color should be comprised of that perfectly vivid color. The rest of the final color is made up of the grey paint that represents the saturation.
+1. You start with base paint that's the maximum intensity possible for a given color, such as the most intense blue that can be represented by the user's screen. This is the **hue** (H) component: a value representing the angle around the color wheel for the vivid hue we want to use as our base.
+2. Then select a greyscale paint that corresponds how bright you want the color to be; this is the luminance. Do you want it to be very bright and nearly white, or very dark and closer to black, or somewhere in between? This is specified using a percentage, where 0% is perfectly black and 100% is perfectly white. (regardless of the saturation or hue). In between values are a literal grey area.
+3. Now that you have a grey paint and a perfectly vivid color, you need to mix them together. The saturation (S) component of the color indicates what percentage of the final color should be comprised of that perfectly vivid color. The rest of the final color is made up of the grey paint that represents the saturation.
 
 You can also optionally include an alpha channel, to make the color less than 100% opaque.
 
@@ -208,9 +208,9 @@ Coming up with just the right colors can be tricky, especially without training 
 
 The first step is to choose your **base color**. This is the color that in some way defines your website or the subject matter of the site. Just as we associate green with the beverage [Mountain Dew](<https://en.wikipedia.org/wiki/Mountain Dew> "Mountain Dew") and one might think of the color blue in relationship with the sky or the ocean, choosing an appropriate base color to represent your site is a good place to start. There are plenty of ways to select a base color; a few ideas include:
 
--   A color that is naturally associated with the topic of your content, such as the existing color identified with a product or idea or a color representative of the emotion you wish to convey.
--   A color that comes from imagery associated with what your content is about. If you're creating a website about a given item or product, choose a color that's physically present on that item.
--   Browse websites that let you look at lots of existing color palettes and images to find inspiration.
+- A color that is naturally associated with the topic of your content, such as the existing color identified with a product or idea or a color representative of the emotion you wish to convey.
+- A color that comes from imagery associated with what your content is about. If you're creating a website about a given item or product, choose a color that's physically present on that item.
+- Browse websites that let you look at lots of existing color palettes and images to find inspiration.
 
 When trying to decide upon a base color, you may find that browser extensions that let you select colors from web content can be particularly handy. Some of these are even specifically designed to help with this sort of work. For example, the website [ColorZilla](http://www.colorzilla.com/) offers an extension ([Chrome](http://www.colorzilla.com/chrome) / [Firefox](http://www.colorzilla.com/firefox)) that offers an eyedropper tool for picking colors from the web. It can also take averages of the colors of pixels in various sized areas or even a selected area of the page.
 
@@ -222,9 +222,9 @@ Once you have decided on your base color, there are plenty of online tools that 
 
 A few examples (all free to use as of the time this list was last revised):
 
--   [MDN's color picker tool](/en-US/docs/Web/CSS/CSS_Colors/Color_picker_tool)
--   [Paletton](http://paletton.com)
--   [Adobe Color CC online color wheel](https://color.adobe.com/create/color-wheel)
+- [MDN's color picker tool](/en-US/docs/Web/CSS/CSS_Colors/Color_picker_tool)
+- [Paletton](http://paletton.com)
+- [Adobe Color CC online color wheel](https://color.adobe.com/create/color-wheel)
 
 When designing your palette, be sure to keep in mind that in addition to the colors these tools typically generate, you'll probably also need to add some core neutral colors such as white (or nearly white), black (or nearly black), and some number of shades of gray.
 
@@ -234,11 +234,11 @@ Usually, you are far better off using the smallest number of colors possible. By
 
 A full review of color theory is beyond the scope of this article, but there are plenty of articles about color theory available, as well as courses you can find at nearby schools and universities. A couple of useful resources about color theory:
 
--   [Color Science](https://www.khanacademy.org/partner-content/pixar/color) ([Khan Academy](https://www.khanacademy.org/) in association with [Pixar](https://www.pixar.com/))
+- [Color Science](https://www.khanacademy.org/partner-content/pixar/color) ([Khan Academy](https://www.khanacademy.org/) in association with [Pixar](https://www.pixar.com/))
 
     An online course which introduces concepts such as what color is, how it's percieved, and how to use colors to express ideas. Presented by Pixar artists and designers.
 
--   [Color theory](<https://en.wikipedia.org/wiki/Color theory> "Color theory") on Wikipedia
+- [Color theory](<https://en.wikipedia.org/wiki/Color theory> "Color theory") on Wikipedia
 
     Wikipedia's entry on color theory, which has a lot of great information from a technical perspective. It's not really a resource for helping you with the color sleection process, but is still full of useful information.
 
@@ -252,9 +252,9 @@ The most important rule: never use color as the only way to know something. If, 
 
 For more information about color blindness, see the following articles:
 
--   [Medline Plus: Color Blindness](https://medlineplus.gov/colorblindness.html) (United States National Institute of Health)
--   [American Academy of Ophthamology: What Is Color Blindness?](https://www.aao.org/eye-health/diseases/what-is-color-blindness)
--   [Color Blindness & Web Design](https://www.usability.gov/get-involved/blog/2010/02/color-blindness.html) (Usability.gov: United States Department of Health and Human Services)
+- [Medline Plus: Color Blindness](https://medlineplus.gov/colorblindness.html) (United States National Institute of Health)
+- [American Academy of Ophthamology: What Is Color Blindness?](https://www.aao.org/eye-health/diseases/what-is-color-blindness)
+- [Color Blindness & Web Design](https://www.usability.gov/get-involved/blog/2010/02/color-blindness.html) (Usability.gov: United States Department of Health and Human Services)
 
 ### Palette design example
 
@@ -300,6 +300,6 @@ You can set `color-adjust` to `exact` to tell the browser that the element or el
 
 ## See also
 
--   [Drawing graphics](/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Drawing_graphics)
--   [Graphics on the web](/en-US/docs/Web/Guide/Graphics)
--   [MDN's color picker tool](/en-US/docs/Web/CSS/CSS_Colors/Color_picker_tool)
+- [Drawing graphics](/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Drawing_graphics)
+- [Graphics on the web](/en-US/docs/Web/Guide/Graphics)
+- [MDN's color picker tool](/en-US/docs/Web/CSS/CSS_Colors/Color_picker_tool)

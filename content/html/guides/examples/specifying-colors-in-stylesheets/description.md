@@ -14,14 +14,14 @@ The `.box` class establishes the size of each box, as well as the configuration 
 
 The `.boxLeft` class—which, cleverly, is used to style the box on the left—floats the box to the left, then sets up the colors:
 
--   The box's background color is set by changing the value of the CSS [`background-color`](/en-US/docs/Web/CSS/background-color) property to `rgb(245, 130, 130)`.
--   An outline is defined for the box. Unlike the more commonly used `border`, [`outline`](/en-US/docs/Web/CSS/outline) doesn't affect layout at all; it draws over the top of whatever may happen to be outside the element's box instead of making room as `border` does. This outline is a solid, dark red line that's two pixels thick. Note the use of the `darkred` keyword when specifying the color.
--   Notice that we're not explicitly setting the text color. That means the value of [`color`](/en-US/docs/Web/CSS/color) will be inherited from the nearest containing element that defines it. By default, that's black.
+- The box's background color is set by changing the value of the CSS [`background-color`](/en-US/docs/Web/CSS/background-color) property to `rgb(245, 130, 130)`.
+- An outline is defined for the box. Unlike the more commonly used `border`, [`outline`](/en-US/docs/Web/CSS/outline) doesn't affect layout at all; it draws over the top of whatever may happen to be outside the element's box instead of making room as `border` does. This outline is a solid, dark red line that's two pixels thick. Note the use of the `darkred` keyword when specifying the color.
+- Notice that we're not explicitly setting the text color. That means the value of [`color`](/en-US/docs/Web/CSS/color) will be inherited from the nearest containing element that defines it. By default, that's black.
 
 Finally, the `.boxRight` class describes the unique properties of the box that's drawn on the right. It's configured to float the box to the right so that it appears next to the previous box. Then the following colors are established:
 
--   The `background-color` is set using the HSL value specified using `hsl(270deg, 50%, 75%)`. This is a medium purple color.
--   The box's `outline` is used to specify that the box should be enclosed in a four pixel thick dashed line whose color is a somewhat deeper purple (`rgb(110, 20, 120)`).
--   The foreground (text) color is specified by setting the [`color`](/en-US/docs/Web/CSS/color "The color CSS property sets the foreground color value of an element's text and text decorations, and sets the currentcolor value.") property to `hsl(0deg, 100%, 100%)`. This is one of many ways to specify the color white.
--   We add a green wavy line under the text with [`text-decoration`](/en-US/docs/Web/CSS/text-decoration "The text-decoration shorthand CSS property sets the appearance of decorative lines on text.").
--   Finally, a bit of a shadow is added to the text using [`text-shadow`](/en-US/docs/Web/CSS/text-shadow "The text-shadow CSS property adds shadows to text. It accepts a comma-separated list of shadows to be applied to the text and any of its decorations."). Its `color` parameter is set to `black`.
+- The `background-color` is set using the HSL value specified using `hsl(270deg, 50%, 75%)`. This is a medium purple color.
+- The box's `outline` is used to specify that the box should be enclosed in a four pixel thick dashed line whose color is a somewhat deeper purple (`rgb(110, 20, 120)`).
+- The foreground (text) color is specified by setting the [`color`](/en-US/docs/Web/CSS/color "The color CSS property sets the foreground color value of an element's text and text decorations, and sets the currentcolor value.") property to `hsl(0deg, 100%, 100%)`. This is one of many ways to specify the color white.
+- We add a green wavy line under the text with [`text-decoration`](/en-US/docs/Web/CSS/text-decoration "The text-decoration shorthand CSS property sets the appearance of decorative lines on text.").
+- Finally, a bit of a shadow is added to the text using [`text-shadow`](/en-US/docs/Web/CSS/text-shadow "The text-shadow CSS property adds shadows to text. It accepts a comma-separated list of shadows to be applied to the text and any of its decorations."). Its `color` parameter is set to `black`.
