@@ -9,6 +9,7 @@ const attributes = require('./compose-attributes');
 const prose = require('./slice-prose');
 const contributors = require('./resolve-contributors');
 const related = require('./related-content');
+const guide = require('./build-guide-page-json');
 
 function writeToFile(json, elementPath) {
   const propertyName = path.basename(elementPath);
@@ -21,26 +22,7 @@ function writeToFile(json, elementPath) {
   fs.writeFileSync(dest, `${JSON.stringify(json, null, 2)}`);
 };
 
-async function buildPageJSON(elementRelativePath) {
-    const elementPath = path.join(process.cwd(), './content', elementRelativePath);
-
-    if (!fs.existsSync(elementPath)) {
-        console.error(`Could not find an item at "${elementPath}"`);
-        return 1;
-    }
-
-    // open docs.md and parse front matter(data) from Markdown(content)
-    const docsPath = path.join(elementPath, 'docs.md');
-    const docs = fs.readFileSync(docsPath, 'utf8');
-    const { data, content } = matter(docs);
-
-    // check the recipe type
-    if (data.recipe !== 'html-element') {
-        console.warn(`Not an HTML element: ${elementPath}`);
-        return 2;
-    }
-
-    // make the package
+async function buildFromRecipe(elementPath, data, content) {
     const item = {};
 
     // load the recipe to get related_content
@@ -66,6 +48,43 @@ async function buildPageJSON(elementRelativePath) {
 
     const contributorsPath = path.join(elementPath, 'contributors.md');
     item.contributors = await contributors.package(contributorsPath);
+
+    return item;
+}
+
+async function buildPageJSON(elementRelativePath, elementFilename) {
+    const elementPath = path.join(process.cwd(), './content', elementRelativePath);
+
+    if (!fs.existsSync(elementPath)) {
+        console.error(`Could not find an item at "${elementPath}"`);
+        return 1;
+    }
+
+    // open docs.md and parse front matter(data) from Markdown(content)
+    const docsPath = path.join(elementPath, elementFilename);
+    const docs = fs.readFileSync(docsPath, 'utf8');
+    const { data, content } = matter(docs);
+
+    // check whether this is a buildable item
+    if (!data || !data.recipe) {
+        return 0;
+    }
+
+    // build the item
+    let item = null;
+
+    switch (data.recipe) {
+        case 'guide':
+            item = await guide.buildGuidePageJSON(elementPath, data, content);
+            elementRelativePath = path.join(elementRelativePath, elementFilename.split('.')[0]);
+            break;
+        case 'html-element':
+            item = await buildFromRecipe(elementPath, data, content);
+            break;
+        default:
+            console.warn(`Not a supported recipe: ${elementPath}`);
+            return 2;
+    }
 
     writeToFile(item, elementRelativePath);
     console.log(`Processed: ${elementRelativePath}`);
