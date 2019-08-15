@@ -112,7 +112,7 @@ For more detailed discussion of each of the color value types, see the reference
 
 ### Keywords
 
-A set of standard color names have been defined, letting you use these keywords instead of numeric representations of colors if you choose to do so and there's a keyword representing the exact color you want to use. Color keywords include the standard primary and secondary colors (such as `red`, `blue`, or `orange`), shades of gray (from `black` to `white`, including colors like `darkgray` and `lightgrey`), and a variety of other blended colors including `lightseagreen`, `cornflowerblue`, and `rebeccapurple`.
+A set of standard color names have been defined, letting you use these keywords instead of numeric representations of colors if you choose to do so and there's a keyword representing the exact color you want to use. Color keywords include the standard primary and secondary colors (such as `red`, `blue`, or `orange`), shades of gray (from `black` to `white`, including colors like `darkgray` and `lightgray`), and a variety of other blended colors including `lightseagreen`, `cornflowerblue`, and `rebeccapurple`.
 
 See [Color keywords](/en-US/docs/Web/CSS/color_value#Color_keywords "The &lt;color> CSS data type represents a color in the sRGB color space. A &lt;color> may also include an alpha-channel transparency value, indicating how the color should composite with its background.") in [`<color>`](/en-US/docs/Web/CSS/color_value "The &lt;color> CSS data type represents a color in the sRGB color space. A &lt;color> may also include an alpha-channel transparency value, indicating how the color should composite with its background.") for a list of all available color keywords.
 
@@ -170,13 +170,13 @@ _**Figure 1. An HSL color cylinder.** Hue defines the actual color based on the 
 
 The value of the hue (H) component of an HSL color is an angle from red around through yellow, green, cyan, blue, and magenta (ending up back at red again at 360°) that identifies what the base color is. The value can be specified in any [`<angle>`](/en-US/docs/Web/CSS/angle "The &lt;angle> CSS data type represents an angle value expressed in degrees, gradians, radians, or turns. It is used, for example, in &lt;gradient>s and in some transform functions.") unit supported by CSS, including degrees (`deg`), radians (`rad`), gradians (`grad`), or turns (`turn`). But this doesn't control how vivid or dull, or how bright or dark the color is.
 
-The saturation (S) component of the color specifies what percentage of the final color is comprised of the specified hue. The rest is defined by the grey level provided by the luminance (L) component.
+The saturation (S) component of the color specifies what percentage of the final color is comprised of the specified hue. The rest is defined by the gray level provided by the luminance (L) component.
 
 Think of it like creating the perfect paint color:
 
 1. You start with base paint that's the maximum intensity possible for a given color, such as the most intense blue that can be represented by the user's screen. This is the **hue** (H) component: a value representing the angle around the color wheel for the vivid hue we want to use as our base.
-2. Then select a greyscale paint that corresponds how bright you want the color to be; this is the luminance. Do you want it to be very bright and nearly white, or very dark and closer to black, or somewhere in between? This is specified using a percentage, where 0% is perfectly black and 100% is perfectly white. (regardless of the saturation or hue). In between values are a literal grey area.
-3. Now that you have a grey paint and a perfectly vivid color, you need to mix them together. The saturation (S) component of the color indicates what percentage of the final color should be comprised of that perfectly vivid color. The rest of the final color is made up of the grey paint that represents the saturation.
+2. Then select a grayscale paint that corresponds how bright you want the color to be; this is the luminance. Do you want it to be very bright and nearly white, or very dark and closer to black, or somewhere in between? This is specified using a percentage, where 0% is perfectly black and 100% is perfectly white. (regardless of the saturation or hue). In between values are a literal gray area.
+3. Now that you have a gray paint and a perfectly vivid color, you need to mix them together. The saturation (S) component of the color indicates what percentage of the final color should be comprised of that perfectly vivid color. The rest of the final color is made up of the gray paint that represents the saturation.
 
 You can also optionally include an alpha channel, to make the color less than 100% opaque.
 
@@ -198,7 +198,7 @@ The `<input>` element represents a color only in the [hexadecimal string notatio
 
 ## Using color wisely
 
-Making the right choices when selecting colors when designing a website can be a tricky process, especially if you aren't well-grounded in art, design, or at least basic color theory. The wrong color choice can render your site unattractive, or even worse, leave the content unreadable due to problems with contrast or conflicting colors. Worse still, if using the wrong colors can result in your content being outright unusable by people withcertain vision problems, particularly color blindness.
+Making the right choices when selecting colors when designing a website can be a tricky process, especially if you aren't well-grounded in art, design, or at least basic color theory. The wrong color choice can render your site unattractive, or even worse, leave the content unreadable due to problems with contrast or conflicting colors. Worse still, if using the wrong colors can result in your content being outright unusable by people with certain vision problems, particularly color blindness.
 
 ### Finding the right colors
 
@@ -236,11 +236,11 @@ A full review of color theory is beyond the scope of this article, but there are
 
 - [Color Science](https://www.khanacademy.org/partner-content/pixar/color) ([Khan Academy](https://www.khanacademy.org/) in association with [Pixar](https://www.pixar.com/))
 
-    An online course which introduces concepts such as what color is, how it's percieved, and how to use colors to express ideas. Presented by Pixar artists and designers.
+    An online course which introduces concepts such as what color is, how it's perceived, and how to use colors to express ideas. Presented by Pixar artists and designers.
 
 - [Color theory](<https://en.wikipedia.org/wiki/Color theory> "Color theory") on Wikipedia
 
-    Wikipedia's entry on color theory, which has a lot of great information from a technical perspective. It's not really a resource for helping you with the color sleection process, but is still full of useful information.
+    Wikipedia's entry on color theory, which has a lot of great information from a technical perspective. It's not really a resource for helping you with the color selection process, but is still full of useful information.
 
 ### Color and accessibility
 
@@ -278,7 +278,7 @@ If you're unhappy with the color that's proposed to you, you can change the colo
 
 ![Triad color scheme selected](https://mdn.mozillademos.org/files/15457/paletton4.png)
 
-That greyish blue in the top-right looks pretty good. Clicking on it, we find that it's `#556E8D`. That would be used as the accent color, to be used sparingly to make things stand out, such as in headlines or in the highlighting of tabs or other indicators on the site:
+That grayish blue in the top-right looks pretty good. Clicking on it, we find that it's `#556E8D`. That would be used as the accent color, to be used sparingly to make things stand out, such as in headlines or in the highlighting of tabs or other indicators on the site:
 
 ![Triad color scheme selected](https://mdn.mozillademos.org/files/15459/paletton-color-detail.png)
 
