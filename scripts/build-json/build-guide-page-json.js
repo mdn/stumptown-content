@@ -27,9 +27,9 @@ async function processProse(elementPath, proseMD) {
 
 async function buildGuideContentJSON(elementPath, data, content) {
     const result = [];
-    const sections = content.split(/({{.*}})/);
+    const sections = content.split(/({{{{{.*}}}}})/);
     for (let section of sections) {
-        let match = section.match(/{{(.*)}}/);
+        let match = section.match(/{{{{{(.*)}}}}}/);
         if (match) {
              result.push(await processDirective(elementPath, match[1]));
         } else {

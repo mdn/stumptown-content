@@ -186,7 +186,7 @@ Note that when you omit the hue's unit, it's assumed to be in degrees (`deg`).
 
 Now that you know what CSS properties exist that let you apply color to elements and the formats you can use to describe colors, you can put this together to begin to make use of color. As you may have seen from the list under [Things that can have color](#Things_that_can_have_color), there are plenty of things you can color with CSS. Let's look at this from two sides: using color within a [stylesheet](/en-US/docs/Glossary/stylesheet "The definition of that term (stylesheet) has not been written yet; please consider contributing it!"), and adding and changing color using [JavaScript](/en-US/docs/Glossary/JavaScript "JavaScript: JavaScript (JS) is a programming language mostly used to dynamically script webpages on the client side, but it is also often utilized on the server-side, using packages such as Node.js.") code to alter the styles of elements.
 
-{{embed-example:examples/specifying-colors-in-stylesheets}}
+{{{{{embed-example:examples/specifying-colors-in-stylesheets}}}}}
 
 ## Letting the user pick a color
 
@@ -194,7 +194,7 @@ There are many situations in which your website may need to let the user select 
 
 The `<input>` element represents a color only in the [hexadecimal string notation](#Hexadecimal_string_notation) covered above.
 
-{{embed-example:examples/picking-a-color}}
+{{{{{embed-example:examples/picking-a-color}}}}}
 
 ## Using color wisely
 
