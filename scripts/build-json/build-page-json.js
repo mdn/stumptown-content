@@ -51,7 +51,7 @@ async function processMetaIngredient(elementPath, ingredientName, data) {
 async function processProseIngredient(ingredientName, proseSections) {
     if (ingredientName !== '*') {
         const matches = proseSections.filter(section => section.value.id === ingredientName);
-        if (matches.length > 0) {
+        if (matches.length) {
             return matches[0];
         }
     } else {
