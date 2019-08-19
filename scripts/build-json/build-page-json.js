@@ -40,6 +40,7 @@ async function processMetaIngredient(elementPath, ingredientName, data) {
             return await examples.package(examplesPaths);
         case 'info_box':
             // TODO: implement packaging for info boxes
+            // See: https://github.com/mdn/stumptown-content/issues/106
             return 'info_box-value';
         default:
             console.error(`Error: Unrecognized ingredient: ${ingredient}`);
