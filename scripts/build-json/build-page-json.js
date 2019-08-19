@@ -55,7 +55,7 @@ async function processProseIngredient(ingredientName, proseSections) {
             return matches[0];
         }
     } else {
-        const additional = proseSections.filter(section => !section.value.id);
+        const value = proseSections.filter(section => !section.value.id);
         return {
           type: 'additional_prose',
           value: additional
