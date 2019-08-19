@@ -43,8 +43,7 @@ async function processMetaIngredient(elementPath, ingredientName, data) {
             // See: https://github.com/mdn/stumptown-content/issues/106
             return 'info_box-value';
         default:
-            console.error(`Error: Unrecognized ingredient: ${ingredient}`);
-            return null;
+            throw new Error(`Unrecognized ingredient: ${ingredient}`);
     }
 }
 
@@ -53,6 +52,8 @@ async function processProseIngredient(ingredientName, proseSections) {
         const matches = proseSections.filter(section => section.value.id === ingredientName);
         if (matches.length) {
             return matches[0];
+        } else {
+            return null;
         }
     } else {
         const value = proseSections.filter(section => !section.value.id);
@@ -87,7 +88,7 @@ async function buildFromRecipe(elementPath, data, content) {
         } else if (ingredientType === 'prose') {
             return await processProseIngredient(ingredientName, proseSections);
         } else {
-            throw (`Error: Unrecognized ingredient type: ${ingredientType}`);
+            throw new Error(`Unrecognized ingredient type: ${ingredientType} in ${elementPath}`);
         }
     }));
     // filter out missing ingredients
