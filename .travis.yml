@@ -6,7 +6,6 @@ branches:
     - master
 
 script:
-  - npm run test
   - npm run lint-js
   - npm run lint-md
   - npm run spell-md
