@@ -1,5 +1,3 @@
-const fs = require("fs");
-
 const markdown = require("./markdown-converter");
 const jsdom = require("jsdom");
 
@@ -33,7 +31,7 @@ function extractFromSiblings(node, terminatorTag, contentType) {
     return content;
 }
 
-function getSectionValue(node, sections) {
+function getSectionValue(node) {
     const sectionName = node.textContent.trim();
     const sectionContent = extractFromSiblings(node, "H2", "html");
 
@@ -59,7 +57,7 @@ async function packageProse(proseMD) {
     let node = dom.firstChild;
     while (node) {
         if (node.nodeName === "H2") {
-            const sectionValue = getSectionValue(node, sections);
+            const sectionValue = getSectionValue(node);
             sections.push({
                 type: "prose",
                 value: sectionValue

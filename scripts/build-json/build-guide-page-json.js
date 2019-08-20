@@ -12,7 +12,6 @@ async function processDirective(elementPath, directive) {
                 type: 'example',
                 content: await examples.packageExample(path.join(elementPath, directiveComponents[1]))
             }
-            break;
         default:
             throw ('Unsupported guide directive');
     }
@@ -23,7 +22,7 @@ async function processProse(elementPath, proseMD) {
         type: 'prose',
         content: await markdown.markdownToHTML(proseMD)
     }
-};
+}
 
 async function buildGuideContentJSON(elementPath, data, content) {
     const result = [];
@@ -35,7 +34,7 @@ async function buildGuideContentJSON(elementPath, data, content) {
         } else {
              result.push(await processProse(elementPath, section));
         }
-    };
+    }
     return result;
 }
 
