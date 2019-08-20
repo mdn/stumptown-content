@@ -63,11 +63,11 @@ async function packageAttribute(attributePath) {
     return attribute;
 }
 
-function package(root) {
+function packageAttributes(root) {
     const attributePaths = fs.readdirSync(root).map(relative => path.join(root, relative));
     return Promise.all(attributePaths.map(packageAttribute));
 }
 
 module.exports = {
-    package
+    packageAttributes
 }

@@ -3,11 +3,11 @@ const path = require('path');
 const yaml = require('js-yaml');
 const matter = require('gray-matter');
 
-const bcd = require('./resolve-bcd');
-const examples = require('./compose-examples');
-const attributes = require('./compose-attributes');
-const prose = require('./slice-prose');
-const contributors = require('./resolve-contributors');
+const { packageBCD } = require('./resolve-bcd');
+const { packageExamples } = require('./compose-examples');
+const { packageAttributes } = require('./compose-attributes');
+const { packageProse } = require('./slice-prose');
+const { packageContributors } = require('./resolve-contributors');
 const related = require('./related-content');
 const guide = require('./build-guide-page-json');
 
@@ -27,17 +27,17 @@ async function processMetaIngredient(elementPath, ingredientName, data) {
         case 'interactive_example':
             return data.interactive_example;
         case 'browser_compatibility':
-            return bcd.package(data.browser_compatibility);
+            return packageBCD(data.browser_compatibility);
         case 'attributes':
             if (data.attributes.element_specific) {
                 const attributesPath = path.join(elementPath, data.attributes.element_specific);
-                return await attributes.package(attributesPath);
+                return await packageAttributes(attributesPath);
             } else {
                 return [];
             }
         case 'examples':
             const examplesPaths = data.examples.map(relativePath => path.join(elementPath, relativePath));
-            return await examples.package(examplesPaths);
+            return await packageExamples(examplesPaths);
         case 'info_box':
             // TODO: implement packaging for info boxes
             // See: https://github.com/mdn/stumptown-content/issues/106
@@ -74,7 +74,7 @@ async function buildFromRecipe(elementPath, data, content) {
     item.related_content = related.buildRelatedContent(recipe.related_content);
 
     // for each ingredient in the recipe, process the item's ingredient
-    const proseSections = await prose.package(content);
+    const proseSections = await packageProse(content);
     item.body = await Promise.all(recipe.body.map(async ingredient => {
         const [ingredientType, ingredientName] = ingredient.replace(/\?$/, '').split('.');
         if (ingredientType === 'meta') {
@@ -95,7 +95,7 @@ async function buildFromRecipe(elementPath, data, content) {
     item.body = item.body.filter(x => !!x);
 
     const contributorsPath = path.join(elementPath, 'contributors.md');
-    item.contributors = await contributors.package(contributorsPath);
+    item.contributors = await packageContributors(contributorsPath);
 
     return item;
 }
