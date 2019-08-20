@@ -16,10 +16,11 @@
         "pretty": "prettier --check scripts/**/*.js",
         "prettify": "prettier --write scripts/**/*.js",
         "lint-md": "remark -q -f content",
+        "lint": "eslint .",
         "build-json": "node scripts/build-json/build-json.js",
         "scrape-mdn": "node scripts/scraper/scrape-mdn.js",
         "spell-md": "mdspell -a -n -r -x --en-us 'content/**/!(*contributors).md'",
-        "test": "npm run lint-md && npm run spell-md"
+        "test": "npm run lint && npm run lint-md && npm run spell-md"
     },
     "dependencies": {
         "gray-matter": "4.0.2",
