@@ -39,11 +39,11 @@ async function packageExample(examplePath) {
     }
 }
 
-function package(paths) {
+function packageExamples(paths) {
     return Promise.all(paths.map(packageExample));
 }
 
 module.exports = {
-    package,
+    packageExamples,
     packageExample
 }
