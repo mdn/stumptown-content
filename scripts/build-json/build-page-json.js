@@ -22,29 +22,77 @@ function writeToFile(json, elementPath) {
   fs.writeFileSync(dest, `${JSON.stringify(json, null, 2)}`);
 };
 
+async function processMetaIngredient(elementPath, ingredientName, data) {
+    switch (ingredientName) {
+        case 'interactive_example':
+            return data.interactive_example;
+        case 'browser_compatibility':
+            return bcd.package(data.browser_compatibility);
+        case 'attributes':
+            if (data.attributes.element_specific) {
+                const attributesPath = path.join(elementPath, data.attributes.element_specific);
+                return await attributes.package(attributesPath);
+            } else {
+                return [];
+            }
+        case 'examples':
+            const examplesPaths = data.examples.map(relativePath => path.join(elementPath, relativePath));
+            return await examples.package(examplesPaths);
+        case 'info_box':
+            // TODO: implement packaging for info boxes
+            // See: https://github.com/mdn/stumptown-content/issues/106
+            return 'info_box-value';
+        default:
+            throw new Error(`Unrecognized ingredient: ${ingredient}`);
+    }
+}
+
+async function processProseIngredient(ingredientName, proseSections) {
+    if (ingredientName !== '*') {
+        const matches = proseSections.filter(section => section.value.id === ingredientName);
+        if (matches.length) {
+            return matches[0];
+        } else {
+            return null;
+        }
+    } else {
+        const value = proseSections.filter(section => !section.value.id);
+        return {
+          type: 'additional_prose',
+          value
+        };
+    }
+}
+
 async function buildFromRecipe(elementPath, data, content) {
     const item = {};
+    item.title = data.title;
+    item.mdn_url = data.mdn_url;
 
-    // load the recipe to get related_content
     const recipePath = path.join(process.cwd(), './recipes', `${data.recipe}.yaml`);
     const recipe = yaml.safeLoad(fs.readFileSync(recipePath, 'utf8'));
     item.related_content = related.buildRelatedContent(recipe.related_content);
 
-    item.title = data.title;
-    item.mdn_url = data.mdn_url;
-    item.interactive_example_url = data.interactive_example;
-    item.browser_compatibility = bcd.package(data.browser_compatibility);
-  
-    if (data.attributes.element_specific) {
-        const attributesPath = path.join(elementPath, data.attributes.element_specific);
-        item.attributes = await attributes.package(attributesPath);
-    } else {
-        item.attributes = [];
-    }
-
-    const examplesPaths = data.examples.map(relativePath => path.join(elementPath, relativePath));
-    item.examples = await examples.package(examplesPaths);
-    item.prose = await prose.package(content);
+    // for each ingredient in the recipe, process the item's ingredient
+    const proseSections = await prose.package(content);
+    item.body = await Promise.all(recipe.body.map(async ingredient => {
+        const [ingredientType, ingredientName] = ingredient.replace(/\?$/, '').split('.');
+        if (ingredientType === 'meta') {
+            const value = await processMetaIngredient(elementPath, ingredientName, data);
+            if (value) {
+                return {
+                  type: ingredientName,
+                  value: value
+                };
+            }
+        } else if (ingredientType === 'prose') {
+            return await processProseIngredient(ingredientName, proseSections);
+        } else {
+            throw new Error(`Unrecognized ingredient type: ${ingredientType} in ${elementPath}`);
+        }
+    }));
+    // filter out missing ingredients
+    item.body = item.body.filter(x => !!x);
 
     const contributorsPath = path.join(elementPath, 'contributors.md');
     item.contributors = await contributors.package(contributorsPath);

@@ -33,35 +33,37 @@ function extractFromSiblings(node, terminatorTag, contentType) {
     return content;
 }
 
-function getSection(node, sections) {
+function getSectionValue(node, sections) {
     const sectionName = node.textContent.trim();
     const sectionContent = extractFromSiblings(node, 'H2', 'html');
 
     if (namedSections.includes(sectionName)) {
-        const sectionSlug = sectionNameToSlug(sectionName);
-        sections[sectionSlug] = {
+        const sectionId = sectionNameToSlug(sectionName);
+        return {
             title: sectionName,
+            id: sectionId,
             content: sectionContent
-        }
+        };
     } else {
-        const additionalSection = {
+        return {
             title: sectionName,
             content: sectionContent
         };
-      sections['additional_sections'].push(additionalSection);
     }
 }
 
 async function package(proseMD) {
-    const proseHTML = await markdown.markdownToHTML(proseMD)
+    const proseHTML = await markdown.markdownToHTML(proseMD);
     const dom = JSDOM.fragment(proseHTML);
-    const sections = {
-        'additional_sections': []
-    };
+    const sections = [];
     let node = dom.firstChild;
     while (node) {
         if (node.nodeName === 'H2') {
-            getSection(node, sections);
+            const sectionValue = getSectionValue(node, sections);
+            sections.push({
+                type: 'prose',
+                value: sectionValue
+            });
         }
         node = node.nextSibling;
     }

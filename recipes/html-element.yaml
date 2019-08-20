@@ -9,9 +9,6 @@ body:
 - prose.accessibility_concerns?
 - prose.*
 - meta.examples
-- meta.info_box:
-    - meta.api
-    - meta.permitted_aria_roles
-    - meta.tag_omission
+- meta.info_box
 - meta.browser_compatibility
 - prose.see_also
