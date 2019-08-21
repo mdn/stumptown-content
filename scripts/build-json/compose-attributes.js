@@ -56,7 +56,6 @@ async function packageAttribute(attributePath) {
 
     // extract the values property
     if (h2Headings.length === 2) {
-        valuesHeading = h2Headings[0];
         attribute.values = packageValues(dom);
     }
 

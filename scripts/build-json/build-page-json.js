@@ -20,7 +20,7 @@ function writeToFile(json, elementPath) {
       fs.mkdirSync(destDir, { recursive: true });
   }
   fs.writeFileSync(dest, `${JSON.stringify(json, null, 2)}`);
-};
+}
 
 async function processMetaIngredient(elementPath, ingredientName, data) {
     switch (ingredientName) {
@@ -35,15 +35,16 @@ async function processMetaIngredient(elementPath, ingredientName, data) {
             } else {
                 return [];
             }
-        case 'examples':
-            const examplesPaths = data.examples.map(relativePath => path.join(elementPath, relativePath));
-            return await packageExamples(examplesPaths);
+        case 'examples': {
+          const examplesPaths = data.examples.map(relativePath => path.join(elementPath, relativePath));
+          return await packageExamples(examplesPaths);
+        }
         case 'info_box':
             // TODO: implement packaging for info boxes
             // See: https://github.com/mdn/stumptown-content/issues/106
             return 'info_box-value';
         default:
-            throw new Error(`Unrecognized ingredient: ${ingredient}`);
+            throw new Error(`Unrecognized ingredient: ${ingredientName}`);
     }
 }
 
