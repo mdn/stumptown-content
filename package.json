@@ -39,7 +39,7 @@
         "remark-preset-lint-consistent": "^2.0.3",
         "remark-preset-lint-recommended": "3.0.3",
         "remark-rehype": "5.0.0",
-        "remark-stringify": "7.0.2"
+        "remark-stringify": "7.0.3"
     },
     "remarkConfig": {
         "plugins": [
