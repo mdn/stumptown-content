@@ -3,6 +3,8 @@ const path = require('path');
 const yaml = require('js-yaml');
 const matter = require('gray-matter');
 
+const { ROOT } = require('./constants');
+
 /**
  * Get a single item from front matter
  */
@@ -19,7 +21,7 @@ function itemFromFile(filePath) {
  * that is just an ordered list of pages.
  */
 function sectionFromChapterList(chapterListPath) {
-  const fullPath = path.join(process.cwd(), chapterListPath);
+  const fullPath = path.join(ROOT, chapterListPath);
   const fullDir = path.dirname(fullPath);
   const chapterList = yaml.safeLoad(fs.readFileSync(fullPath, 'utf8'));
   const chapterPaths = chapterList.chapters.map(chapter => path.join(fullDir, chapter));
@@ -34,8 +36,8 @@ function sectionFromChapterList(chapterListPath) {
  * - list all the children of this directory.
  */
 function sectionFromDirectory(directory) {
-  const fullPath = path.join(process.cwd(), directory);
-  let itemDirectories = fs.readdirSync(path.join(process.cwd(), directory));
+  const fullPath = path.join(ROOT, directory);
+  let itemDirectories = fs.readdirSync(path.join(ROOT, directory));
   itemDirectories = itemDirectories.map(itemDirectory => path.join(fullPath, itemDirectory, 'docs.md'));
   return itemDirectories.map(itemFromFile);
 }
@@ -75,7 +77,7 @@ function buildRelatedContent(specName) {
   if (cached !== undefined) {
     return cached;
   }
-  const spec = yaml.safeLoad(fs.readFileSync(path.join(process.cwd(), specName), 'utf8'));
+  const spec = yaml.safeLoad(fs.readFileSync(path.join(ROOT, specName), 'utf8'));
   const result = spec.map(buildSection);
   relatedContentCache[specName] = result;
   return result;

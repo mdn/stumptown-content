@@ -2,12 +2,13 @@ const fs = require('fs');
 const path = require('path');
 
 const buildPage = require('./build-page-json');
+const { ROOT } = require('./constants');
 
 function walk(directory, filepaths) {
     const files = fs.readdirSync(directory);
     for (let filename of files) {
         const filepath = path.join(directory, filename);
-        if (path.extname(filename) === '.md') {
+        if (path.extname(filename) === '.md' && !/readme.md/i.test(filename)) {
             filepaths.push(path.join(directory, filename));
             continue;
         }
@@ -17,26 +18,37 @@ function walk(directory, filepaths) {
     }
 }
 
-function collectItems(directory, searchPaths) {
+function findItems(directory, searchPaths) {
     let filepaths = [];
     walk(directory, filepaths);
-    filepaths = filepaths.map( 
-        filepath => filepath.slice(path.join(process.cwd(), './content/').length) 
-    ).filter(filepath => !searchPaths.length || searchPaths.some(searchPath => filepath.includes(searchPath)))
-    return filepaths;
+    return filepaths.filter(
+        filePath => !searchPaths.length || searchPaths.some(searchPath => filePath.includes(searchPath)));
 }
 
 function buildJSON(searchPaths) {
     let errors = 0;
-    const items = collectItems(path.resolve(process.cwd(), './content'), searchPaths);
+    const items = findItems(path.resolve(ROOT, 'content'), searchPaths);
     if (!items.length && searchPaths.length) {
         console.error("No elements found");
         errors++;
     }
-    for (let item of items) {
-        const parsed = path.parse(item);
-        errors += buildPage.buildPageJSON(parsed.dir, parsed.base);
-    }
+    
+    // XXX Would it be "faster" to Promise.all() spawn these async tasks?!
+    items.forEach(async item => {
+        let built
+        try {
+            built = await buildPage.buildPageJSON(item);
+            const { docsPath, destPath } = built;
+            if (destPath !== null) {
+                console.log(`Packaged ${docsPath} to ${destPath}`);
+            }
+        } catch (error) {
+            console.warn(`Failed to build page JSON from ${item}`);
+            console.error(error);
+            errors++;
+        }
+        
+    })
     return errors;
 }
 

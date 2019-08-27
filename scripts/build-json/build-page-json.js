@@ -10,16 +10,24 @@ const { packageProse } = require('./slice-prose');
 const { packageContributors } = require('./resolve-contributors');
 const related = require('./related-content');
 const guide = require('./build-guide-page-json');
+const { ROOT } = require('./constants');
+
 
 function writeToFile(json, elementPath) {
-  const propertyName = path.basename(elementPath);
-  const dirName = path.dirname(elementPath);
-  const dest = path.join(process.cwd(), 'packaged', dirName, `${propertyName}.json`);
-  const destDir = path.dirname(dest);
-  if (!fs.existsSync(destDir)) {
-      fs.mkdirSync(destDir, { recursive: true });
-  }
-  fs.writeFileSync(dest, `${JSON.stringify(json, null, 2)}`);
+    // 'elementPath' is the folder the source came from
+    // Like '/path/to/stumptown/content/html/element/video for example. 
+    const propertyName = path.basename(elementPath);
+    const dirName = path.dirname(elementPath);
+    const dest = path.join(dirName.replace(
+        path.join(ROOT, 'content'),
+        path.join(ROOT, 'packaged')
+    ), `${propertyName}.json`);
+    const destDir = path.dirname(dest);
+    if (!fs.existsSync(destDir)) {
+        fs.mkdirSync(destDir, { recursive: true });
+    }
+    fs.writeFileSync(dest, JSON.stringify(json, null, 2));
+    return dest;
 }
 
 async function processMetaIngredient(elementPath, ingredientName, data) {
@@ -70,7 +78,7 @@ async function buildFromRecipe(elementPath, data, content) {
     item.title = data.title;
     item.mdn_url = data.mdn_url;
 
-    const recipePath = path.join(process.cwd(), './recipes', `${data.recipe}.yaml`);
+    const recipePath = path.join(__dirname, '..', '..', 'recipes', `${data.recipe}.yaml`);
     const recipe = yaml.safeLoad(fs.readFileSync(recipePath, 'utf8'));
     item.related_content = related.buildRelatedContent(recipe.related_content);
 
@@ -101,43 +109,41 @@ async function buildFromRecipe(elementPath, data, content) {
     return item;
 }
 
-async function buildPageJSON(elementRelativePath, elementFilename) {
-    const elementPath = path.join(process.cwd(), './content', elementRelativePath);
-
-    if (!fs.existsSync(elementPath)) {
-        console.error(`Could not find an item at "${elementPath}"`);
-        return 1;
-    }
-
+async function buildPageJSON(docsPath) {
     // open docs.md and parse front matter(data) from Markdown(content)
-    const docsPath = path.join(elementPath, elementFilename);
+    const docsDirectory = path.dirname(docsPath);
     const docs = fs.readFileSync(docsPath, 'utf8');
     const { data, content } = matter(docs);
 
+    // What was written
+    let destPath = null;
+
     // check whether this is a buildable item
-    if (!data || !data.recipe) {
-        return 0;
-    }
+    if (data && data.recipe) {
+        // build the item
+        let item = null;
 
-    // build the item
-    let item = null;
+        let elementDirectory = docsDirectory;
 
-    switch (data.recipe) {
-        case 'guide':
-            item = await guide.buildGuidePageJSON(elementPath, data, content);
-            elementRelativePath = path.join(elementRelativePath, elementFilename.split('.')[0]);
-            break;
-        case 'html-element':
-            item = await buildFromRecipe(elementPath, data, content);
-            break;
-        default:
-            console.warn(`Not a supported recipe: ${elementPath}`);
-            return 2;
-    }
+        switch (data.recipe) {
+            case 'guide':
+                item = await guide.buildGuidePageJSON(docsDirectory, data, content);
+                // Guide pages are special because they don't have their own 
+                // directory. Instead, individual .md files share a directory. 
+                // So we need to override the name of the directory to write to.
+                elementDirectory = path.join(docsDirectory, path.basename(docsPath).split('.')[0]);
+                break;
+            case 'html-element':
+                item = await buildFromRecipe(docsDirectory, data, content);
+                break;
+            default:
+                throw new Error(`Not a supported recipe: ${data.recipe}`);
+        }
 
-    writeToFile(item, elementRelativePath);
-    console.log(`Processed: ${elementRelativePath}`);
-    return 0;
+        destPath = writeToFile(item, elementDirectory);
+    } 
+
+    return { docsPath, destPath };
 }
 
 module.exports = {
