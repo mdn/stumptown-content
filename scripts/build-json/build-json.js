@@ -33,7 +33,6 @@ function buildJSON(searchPaths) {
         errors++;
     }
     
-    // XXX Would it be "faster" to Promise.all() spawn these async tasks?!
     items.forEach(async item => {
         let built
         try {
