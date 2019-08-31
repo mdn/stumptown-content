@@ -10,7 +10,7 @@ function findItems(directory, searchPaths, filepaths = []) {
     for (let filename of files) {
         const filepath = path.join(directory, filename);
         if (path.extname(filename) === '.md') {
-            if (!searchPaths.length || searchPaths.some(searchPath => filePath.includes(searchPath))) {
+            if (!searchPaths.length || searchPaths.some(s => filepath.includes(s))) {
                 filepaths.push(filepath);
             }
         } else if (fs.statSync(filepath).isDirectory()) {
