@@ -8,7 +8,7 @@ function walk(directory, filepaths) {
     const files = fs.readdirSync(directory);
     for (let filename of files) {
         const filepath = path.join(directory, filename);
-        if (path.extname(filename) === '.md' && !/readme.md/i.test(filename)) {
+        if (path.extname(filename) === '.md') {
             filepaths.push(path.join(directory, filename));
             continue;
         }
@@ -32,7 +32,7 @@ function buildJSON(searchPaths) {
         console.error("No elements found");
         errors++;
     }
-    
+
     items.forEach(async item => {
         let built
         try {
@@ -46,7 +46,7 @@ function buildJSON(searchPaths) {
             console.error(error);
             errors++;
         }
-        
+
     })
     return errors;
 }
