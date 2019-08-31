@@ -28,7 +28,7 @@ function buildJSON(searchPaths) {
         errors++;
     }
 
-    const cwd = process.cwd() + '/';
+    const cwd = process.cwd() + path.sep;
     function printPath(p) {
         return p.replace(cwd, '');
     }
