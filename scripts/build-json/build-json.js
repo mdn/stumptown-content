@@ -4,25 +4,20 @@ const path = require('path');
 const buildPage = require('./build-page-json');
 const { ROOT } = require('./constants');
 
-function walk(directory, filepaths) {
+
+function findItems(directory, searchPaths, filepaths = []) {
     const files = fs.readdirSync(directory);
     for (let filename of files) {
         const filepath = path.join(directory, filename);
         if (path.extname(filename) === '.md') {
-            filepaths.push(path.join(directory, filename));
-            continue;
-        }
-        if (fs.statSync(filepath).isDirectory()) {
-            walk(filepath, filepaths);
+            if (!searchPaths.length || searchPaths.some(searchPath => filePath.includes(searchPath))) {
+                filepaths.push(filepath);
+            }
+        } else if (fs.statSync(filepath).isDirectory()) {
+            findItems(filepath, searchPaths, filepaths);
         }
     }
-}
-
-function findItems(directory, searchPaths) {
-    let filepaths = [];
-    walk(directory, filepaths);
-    return filepaths.filter(
-        filePath => !searchPaths.length || searchPaths.some(searchPath => filePath.includes(searchPath)));
+    return filepaths;
 }
 
 function buildJSON(searchPaths) {
@@ -33,13 +28,17 @@ function buildJSON(searchPaths) {
         errors++;
     }
 
+    const cwd = process.cwd() + '/';
+    function printPath(p) {
+        return p.replace(cwd, '');
+    }
     items.forEach(async item => {
         let built
         try {
             built = await buildPage.buildPageJSON(item);
             const { docsPath, destPath } = built;
             if (destPath !== null) {
-                console.log(`Packaged ${docsPath} to ${destPath}`);
+                console.log(`Packaged ${printPath(docsPath)} to ${printPath(destPath)}`);
             }
         } catch (error) {
             console.warn(`Failed to build page JSON from ${item}`);
