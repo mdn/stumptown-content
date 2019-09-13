@@ -253,7 +253,7 @@ The most important rule: never use color as the only way to know something. If, 
 For more information about color blindness, see the following articles:
 
 - [Medline Plus: Color Blindness](https://medlineplus.gov/colorblindness.html) (United States National Institute of Health)
-- [American Academy of Ophthamology: What Is Color Blindness?](https://www.aao.org/eye-health/diseases/what-is-color-blindness)
+- [American Academy of Ophthalmology: What Is Color Blindness?](https://www.aao.org/eye-health/diseases/what-is-color-blindness)
 - [Color Blindness & Web Design](https://www.usability.gov/get-involved/blog/2010/02/color-blindness.html) (Usability.gov: United States Department of Health and Human Services)
 
 ### Palette design example
