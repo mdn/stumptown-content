@@ -10,6 +10,7 @@ const { packageProse } = require('./slice-prose');
 const { packageContributors } = require('./resolve-contributors');
 const related = require('./related-content');
 const guide = require('./build-guide-page-json');
+const landing = require('./build-landing-page-json');
 const { ROOT } = require('./constants');
 
 
@@ -130,6 +131,13 @@ async function buildPageJSON(docsPath) {
                 item = await guide.buildGuidePageJSON(docsDirectory, data, content);
                 // Guide pages are special because they don't have their own 
                 // directory. Instead, individual .md files share a directory. 
+                // So we need to override the name of the directory to write to.
+                elementDirectory = path.join(docsDirectory, path.basename(docsPath).split('.')[0]);
+                break;
+            case 'landing-page':
+                item = await landing.buildLandingPageJSON(docsDirectory, data, content);
+                // Landing pages are special because they don't have their own
+                // directory. Instead, individual .md files share a directory.
                 // So we need to override the name of the directory to write to.
                 elementDirectory = path.join(docsDirectory, path.basename(docsPath).split('.')[0]);
                 break;

@@ -5,42 +5,7 @@ const matter = require('gray-matter');
 
 const { ROOT } = require('./constants');
 
-/**
- * Get a single item from front matter
- */
-function itemFromFile(filePath) {
-  const {data} = matter(fs.readFileSync(filePath, 'utf8'));
-  return {
-    title: data.title,
-    mdn_url: data.mdn_url
-  };
-}
-
-/**
- * Build a section from a special YAML file called a "chapter list"
- * that is just an ordered list of pages.
- */
-function sectionFromChapterList(chapterListPath) {
-  const fullPath = path.join(ROOT, chapterListPath);
-  const fullDir = path.dirname(fullPath);
-  const chapterList = yaml.safeLoad(fs.readFileSync(fullPath, 'utf8'));
-  const chapterPaths = chapterList.chapters.map(chapter => path.join(fullDir, chapter));
-  return {
-    title: chapterList.title,
-    content: chapterPaths.map(itemFromFile)
-  }
-}
-
-/**
- * Build a section from a directory:
- * - list all the children of this directory.
- */
-function sectionFromDirectory(directory) {
-  const fullPath = path.join(ROOT, directory);
-  let itemDirectories = fs.readdirSync(path.join(ROOT, directory));
-  itemDirectories = itemDirectories.map(itemDirectory => path.join(fullPath, itemDirectory, 'docs.md'));
-  return itemDirectories.map(itemFromFile);
-}
+const links = require('./build-link-lists');
 
 /**
  * Build a section.
@@ -49,19 +14,16 @@ function sectionFromDirectory(directory) {
  * - `chapter_list`: the name of a YAML file that lists pages to include in the section
  * - `directory`: the name of a directory whose children to list
  */
-function buildSection(sectionSpec) {
+async function buildSection(sectionSpec) {
   if (sectionSpec.children) {
     return {
       title: sectionSpec.title,
-      content: sectionSpec.children.map(buildSection)
+      content: await Promise.all(sectionSpec.children.map(buildSection))
     };
   } else if (sectionSpec.chapter_list) {
-    return sectionFromChapterList(sectionSpec.chapter_list);
+    return await links.linkListFromChapterList(sectionSpec.chapter_list);
   } else if (sectionSpec.directory)  {
-    return {
-      title: sectionSpec.title,
-      content: sectionFromDirectory(sectionSpec.directory)
-    };
+    return await links.linkListFromDirectory(sectionSpec.title, sectionSpec.directory);
   } else {
     throw('Related content section must contain a property called "children", "chapter_list", or "directory"');
   }
@@ -72,13 +34,13 @@ function buildSection(sectionSpec) {
  * At the top level a related content object is an array of sections.
  */
 const relatedContentCache = {};
-function buildRelatedContent(specName) {
+async function buildRelatedContent(specName) {
   const cached = relatedContentCache[specName];
   if (cached !== undefined) {
     return cached;
   }
   const spec = yaml.safeLoad(fs.readFileSync(path.join(ROOT, specName), 'utf8'));
-  const result = spec.map(buildSection);
+  const result = await Promise.all(spec.map(buildSection));
   relatedContentCache[specName] = result;
   return result;
 }
