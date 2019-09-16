@@ -81,7 +81,7 @@ async function buildFromRecipe(elementPath, data, content) {
 
     const recipePath = path.join(__dirname, '..', '..', 'recipes', `${data.recipe}.yaml`);
     const recipe = yaml.safeLoad(fs.readFileSync(recipePath, 'utf8'));
-    item.related_content = related.buildRelatedContent(recipe.related_content);
+    item.related_content = await related.buildRelatedContent(recipe.related_content);
 
     // for each ingredient in the recipe, process the item's ingredient
     const proseSections = await packageProse(content);

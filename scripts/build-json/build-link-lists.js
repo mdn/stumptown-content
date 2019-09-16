@@ -25,8 +25,8 @@ async function itemFromFile(includeShortDescriptions, filePath) {
     return {
       title: data.title,
       mdn_url: data.mdn_url
-    }
-  };
+    };
+  }
 }
 
 /**

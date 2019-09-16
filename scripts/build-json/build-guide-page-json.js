@@ -42,7 +42,7 @@ async function buildGuidePageJSON(elementPath, data, content) {
     return {
         title: data.title,
         mdn_url: data.mdn_url,
-        related_content: related.buildRelatedContent(data.related_content),
+        related_content: await related.buildRelatedContent(data.related_content),
         content: await buildGuideContentJSON(elementPath, data, content)
     };
 }
