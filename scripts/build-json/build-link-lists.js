@@ -13,8 +13,11 @@ const { ROOT } = require('./constants');
  */
 async function itemFromFile(includeShortDescriptions, filePath) {
   const {data, content} = matter(fs.readFileSync(filePath, 'utf8'));
-  const prose = await proseSlicer.packageProse(content);
-  const shortDescriptions = prose.filter(section => section.value.id === 'short_description');
+  let shortDescriptions = [];
+  if (includeShortDescriptions) {
+    const prose = await proseSlicer.packageProse(content);
+    shortDescriptions = prose.filter(section => section.value.id === 'short_description');
+  }
   if (shortDescriptions.length > 0) {
     return {
       title: data.title,
