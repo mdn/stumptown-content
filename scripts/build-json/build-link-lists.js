@@ -7,7 +7,9 @@ const proseSlicer = require('./slice-prose');
 const { ROOT } = require('./constants');
 
 /**
- * Get a single linkable item from a file
+ * Get a single link (title and URL) from a file path.
+ * If `includeShortDescriptions` is `true`, and the file includes  short description,
+ * then include that, too.
  */
 async function itemFromFile(includeShortDescriptions, filePath) {
   const {data, content} = matter(fs.readFileSync(filePath, 'utf8'));
@@ -28,7 +30,7 @@ async function itemFromFile(includeShortDescriptions, filePath) {
 }
 
 /**
- * Build a list from a special YAML file called a "chapter list"
+ * Build a list of links from a special YAML file called a "chapter list"
  * that is just an ordered list of pages.
  */
 async function linkListFromChapterList(chapterListPath, includeShortDescriptions = false) {
@@ -43,7 +45,7 @@ async function linkListFromChapterList(chapterListPath, includeShortDescriptions
 }
 
 /**
- * Build a list from a directory:
+ * Build a list of links from a directory:
  * - list all the children of this directory.
  */
 async function linkListFromDirectory(title, directory, includeShortDescriptions = false) {
@@ -58,7 +60,7 @@ async function linkListFromDirectory(title, directory, includeShortDescriptions 
 }
 
 /**
- * Build a list from an array of file paths
+ * Build a list of links from an array of file paths
  */
 async function linkListFromFilePaths(title, filePaths, includeShortDescriptions = false) {
   const fullFilePaths = filePaths.map(filePath => path.join(ROOT, filePath));

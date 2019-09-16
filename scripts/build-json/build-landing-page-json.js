@@ -9,6 +9,14 @@ const markdown = require('./markdown-converter');
 
 const { ROOT } = require('./constants');
 
+/**
+ * Build a single list of links.
+ *
+ * These may be specified in one of three ways:
+ * - an explicitly enumerated list of pages
+ * - a reference to a "chapter_list" YAML file, which enables lists of pages to be shared
+ * - a reference to a directory, which means "include links to all the pages in this directory"
+ */
 function buildLinkList(groupSpec) {
     if (groupSpec.pages) {
         return links.linkListFromFilePaths(groupSpec.title, groupSpec.pages, true);
@@ -19,6 +27,16 @@ function buildLinkList(groupSpec) {
     }
 }
 
+/**
+ * Build a single landing page.
+ * A landing page consists of some overview text followed by one or more
+ * "link lists".
+ *
+ * A link list is just a representation of a list of links.
+ * It consists of some short text describing the list, followed by the links.
+ * Each link contains a title and a URL, and may optionally also contain
+ * a short description.
+ */
 async function buildLandingPageJSON(elementPath, data, content) {
     const overview = {
         type: "prose",
