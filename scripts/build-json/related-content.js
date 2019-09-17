@@ -40,7 +40,8 @@ async function buildRelatedContent(specName) {
   }
   const spec = yaml.safeLoad(fs.readFileSync(path.join(ROOT, specName), 'utf8'));
   const result = await Promise.all(spec.map(buildSection));
-  relatedContentCache[specName] = result;
+  // race condition would only result in reassigning the same value here
+  relatedContentCache[specName] = result; // eslint-disable-line require-atomic-updates
   return result;
 }
 
