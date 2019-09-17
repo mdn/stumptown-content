@@ -12,7 +12,9 @@ permitted_aria_roles:
     - presentation
     - region
 tag_omission: none
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/article.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/article.html
+    height: html-standard
 browser_compatibility: html.elements.article
 examples:
     - examples/simple-article-example

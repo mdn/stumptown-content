@@ -6,7 +6,9 @@ tags:
 api: HTMLElement
 permitted_aria_roles: any
 tag_omission: none
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/bdi.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/bdi.html
+    height: html-standard
 browser_compatibility: html.elements.bdi
 examples:
     - examples/ltr-only-example

@@ -7,7 +7,9 @@ api: HTMLElement
 permitted_aria_roles:
     - any
 tag_omission: none
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/abbr.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/abbr.html
+    height: html-shorter
 browser_compatibility: html.elements.abbr
 examples:
     - examples/marking-up-an-abbreviation

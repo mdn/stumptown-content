@@ -9,7 +9,9 @@ permitted_aria_roles:
     - document
     - img
 tag_omission: none
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/iframe.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/iframe.html
+    height: html-standard
 browser_compatibility: html.elements.iframe
 examples:
     - examples/simple-maps-example

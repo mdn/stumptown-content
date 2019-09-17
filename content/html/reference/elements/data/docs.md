@@ -6,7 +6,9 @@ tags:
 api: HTMLDataElement
 permitted_aria_roles: unknown
 tag_omission: none
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/data.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/data.html
+    height: html-shorter
 browser_compatibility: html.elements.data
 examples:
     - examples/simple-example

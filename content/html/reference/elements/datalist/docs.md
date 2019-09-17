@@ -6,7 +6,9 @@ tags:
 api: HTMLDataListElement
 permitted_aria_roles: none
 tag_omission: none
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/datalist.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/datalist.html
+    height: html-standard
 browser_compatibility: html.elements.datalist
 examples:
     - examples/simple-example

@@ -10,7 +10,9 @@ permitted_aria_roles:
     - img
     - presentation
 tag_omission: no-closing-tag
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/embed.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/embed.html
+    height: html-standard
 browser_compatibility: html.elements.embed
 examples:
     - examples/simple-example

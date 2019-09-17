@@ -7,7 +7,9 @@ api: HTMLElement
 permitted_aria_roles:
     - presentation
 tag_omission: no-closing-tag
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/hr.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/hr.html
+    height: html-shorter
 browser_compatibility: html.elements.hr
 examples:
     - examples/simple-example

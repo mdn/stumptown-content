@@ -6,7 +6,9 @@ tags:
 api: HTMLTableCaptionElement
 permitted_aria_roles: none
 tag_omission: yes
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/caption.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/caption.html
+    height: html-taller
 browser_compatibility: html.elements.caption
 examples:
     - examples/simple-example

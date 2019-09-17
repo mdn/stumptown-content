@@ -6,7 +6,9 @@ tags:
 api: HTMLModElement
 permitted_aria_roles: any
 tag_omission: none
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/del.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/del.html
+    height: html-standard
 browser_compatibility: html.elements.del
 examples:
     - examples/simple-example

@@ -6,7 +6,9 @@ tags:
 api: HTMLElement
 permitted_aria_roles: none
 tag_omission: yes
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/dd.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/dd.html
+    height: html-standard
 browser_compatibility: html.elements.dd
 examples:
     - examples/simple-example
