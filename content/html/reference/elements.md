@@ -3,7 +3,7 @@ title: HTML elements
 mdn_url: https://developer.mozilla.org/en-US/docs/HTML/Elements
 recipe: landing-page
 related_content: /content/related_content/html.yaml
-groups:
+link_lists:
   - title: Index of HTML elements
     directory: "/content/html/reference/elements"
 ---

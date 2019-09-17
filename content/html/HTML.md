@@ -3,7 +3,7 @@ title: "HTML: Hypertext Markup Language"
 mdn_url: https://developer.mozilla.org/en-US/docs/Web/HTML
 recipe: landing-page
 related_content: /content/related_content/html.yaml
-groups:
+link_lists:
   - title: Learn HTML
     pages:
       - "/content/learn/html/Introduction_to_HTML.md"

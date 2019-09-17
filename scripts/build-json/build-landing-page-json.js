@@ -10,13 +10,13 @@ const markdown = require('./markdown-converter');
  * - a reference to a "chapter_list" YAML file, which enables lists of pages to be shared
  * - a reference to a directory, which means "include links to all the pages in this directory"
  */
-function buildLinkList(groupSpec) {
-    if (groupSpec.pages) {
-        return links.linkListFromFilePaths(groupSpec.title, groupSpec.pages, true);
-    } else if (groupSpec.chapter_list) {
-        return links.linkListFromChapterList(groupSpec.chapter_list, true);
-    } else if (groupSpec.directory) {
-        return links.linkListFromDirectory(groupSpec.title, groupSpec.directory, true);
+function buildLinkList(listSpec) {
+    if (listSpec.pages) {
+        return links.linkListFromFilePaths(listSpec.title, listSpec.pages, true);
+    } else if (listSpec.chapter_list) {
+        return links.linkListFromChapterList(listSpec.chapter_list, true);
+    } else if (listSpec.directory) {
+        return links.linkListFromDirectory(listSpec.title, listSpec.directory, true);
     }
 }
 
@@ -39,8 +39,8 @@ async function buildLandingPageJSON(elementPath, data, content) {
             content: await markdown.markdownToHTML(content)
         }
     };
-    const linkLists = await Promise.all(data.groups.map(async groupSpec => {
-        const linkList = await buildLinkList(groupSpec);
+    const linkLists = await Promise.all(data.link_lists.map(async listSpec => {
+        const linkList = await buildLinkList(listSpec);
         return {
             type: "link_list",
             value: linkList
