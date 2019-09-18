@@ -18,18 +18,11 @@ async function itemFromFile(includeShortDescriptions, filePath) {
     const prose = await proseSlicer.packageProse(content);
     shortDescriptions = prose.filter(section => section.value.id === 'short_description');
   }
-  if (shortDescriptions.length > 0) {
-    return {
+  return {
       title: data.title,
       mdn_url: data.mdn_url,
-      short_description: shortDescriptions[0].value.content
+      short_description: shortDescriptions.length && shortDescriptions[0].value.content || null
     };
-  } else {
-    return {
-      title: data.title,
-      mdn_url: data.mdn_url
-    };
-  }
 }
 
 /**

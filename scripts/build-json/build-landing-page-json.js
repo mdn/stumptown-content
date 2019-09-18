@@ -17,6 +17,8 @@ function buildLinkList(listSpec) {
         return links.linkListFromChapterList(listSpec.chapter_list, true);
     } else if (listSpec.directory) {
         return links.linkListFromDirectory(listSpec.title, listSpec.directory, true);
+    } else {
+        throw new Error(`Unrecognized list spec '${JSON.stringify(listSpec)}'`);
     }
 }
 
