@@ -22,11 +22,6 @@ recipe: html-element
 The **HTML Video element** (**`<video>`**) embeds a media player which
 supports video playback into the document.
 
-<<<<<<< HEAD
-BEFORE
-=======
->>>>>>> Please ignore me.
-
 ## Overview
 
 You can use `<video>` for audio content as well, but the [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
