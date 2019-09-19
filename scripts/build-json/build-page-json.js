@@ -10,6 +10,7 @@ const { packageProse } = require('./slice-prose');
 const { packageContributors } = require('./resolve-contributors');
 const related = require('./related-content');
 const guide = require('./build-guide-page-json');
+const landing = require('./build-landing-page-json');
 const { ROOT } = require('./constants');
 
 
@@ -59,11 +60,10 @@ async function processMetaIngredient(elementPath, ingredientName, data) {
 async function buildFromRecipe(elementPath, data, content) {
     const recipePath = path.join(__dirname, '..', '..', 'recipes', `${data.recipe}.yaml`);
     const recipe = yaml.safeLoad(fs.readFileSync(recipePath, 'utf8'));
-
     const item = {
       title: data.title,
       mdn_url: data.mdn_url,
-      related_content: related.buildRelatedContent(recipe.related_content),
+      related_content: await related.buildRelatedContent(recipe.related_content),
       body: []
     };
 
@@ -126,6 +126,13 @@ async function buildPageJSON(docsPath) {
                 item = await guide.buildGuidePageJSON(docsDirectory, data, content);
                 // Guide pages are special because they don't have their own 
                 // directory. Instead, individual .md files share a directory. 
+                // So we need to override the name of the directory to write to.
+                elementDirectory = path.join(docsDirectory, path.basename(docsPath).split('.')[0]);
+                break;
+            case 'landing-page':
+                item = await landing.buildLandingPageJSON(docsDirectory, data, content);
+                // Landing pages are special because they don't have their own
+                // directory. Instead, individual .md files share a directory.
                 // So we need to override the name of the directory to write to.
                 elementDirectory = path.join(docsDirectory, path.basename(docsPath).split('.')[0]);
                 break;
