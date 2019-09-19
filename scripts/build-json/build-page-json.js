@@ -34,7 +34,7 @@ function writeToFile(json, elementPath) {
 async function processMetaIngredient(elementPath, ingredientName, data) {
     switch (ingredientName) {
         case 'interactive_example':
-            return data.interactive_example;
+            return data.interactive_example || null;
         case 'browser_compatibility':
             return packageBCD(data.browser_compatibility);
         case 'attributes':
@@ -57,52 +57,42 @@ async function processMetaIngredient(elementPath, ingredientName, data) {
     }
 }
 
-async function processProseIngredient(ingredientName, proseSections) {
-    if (ingredientName !== '*') {
-        const matches = proseSections.filter(section => section.value.id === ingredientName);
-        if (matches.length) {
-            return matches[0];
-        } else {
-            return null;
-        }
-    } else {
-        const value = proseSections.filter(section => !section.value.id);
-        return {
-          type: 'additional_prose',
-          value
-        };
-    }
-}
-
 async function buildFromRecipe(elementPath, data, content) {
-    const item = {};
-    item.title = data.title;
-    item.mdn_url = data.mdn_url;
-
     const recipePath = path.join(__dirname, '..', '..', 'recipes', `${data.recipe}.yaml`);
     const recipe = yaml.safeLoad(fs.readFileSync(recipePath, 'utf8'));
-    item.related_content = await related.buildRelatedContent(recipe.related_content);
+    const item = {
+      title: data.title,
+      mdn_url: data.mdn_url,
+      related_content: await related.buildRelatedContent(recipe.related_content),
+      body: []
+    };
+
+    const proseSections = await packageProse(content);
 
     // for each ingredient in the recipe, process the item's ingredient
-    const proseSections = await packageProse(content);
-    item.body = await Promise.all(recipe.body.map(async ingredient => {
+    for (let ingredient of recipe.body) {
         const [ingredientType, ingredientName] = ingredient.replace(/\?$/, '').split('.');
         if (ingredientType === 'meta') {
+            // non-prose ingredients, which are specified in front matter
             const value = await processMetaIngredient(elementPath, ingredientName, data);
-            if (value) {
-                return {
+            if (value !== null) {
+                item.body.push({
                   type: ingredientName,
                   value: value
-                };
+                });
             }
+        } else if (ingredientType === 'prose' && ingredientName === '*') {
+            // additional (unnamed) prose sections
+            const additionalProse = proseSections.filter(section => !section.value.id);
+            item.body.push(...additionalProse);
         } else if (ingredientType === 'prose') {
-            return await processProseIngredient(ingredientName, proseSections);
+            // named prose sections
+            const matches = proseSections.filter(section => section.value.id === ingredientName);
+            item.body.push(...matches);
         } else {
             throw new Error(`Unrecognized ingredient type: ${ingredientType} in ${elementPath}`);
         }
-    }));
-    // filter out missing ingredients
-    item.body = item.body.filter(x => !!x);
+    }
 
     const contributorsPath = path.join(elementPath, 'contributors.md');
     item.contributors = await packageContributors(contributorsPath);
