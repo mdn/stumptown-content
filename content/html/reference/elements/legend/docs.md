@@ -9,7 +9,6 @@ tag_omission: none
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/legend.html
     height: html-standard
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/legend.html
 browser_compatibility: html.elements.legend
 examples:
     - examples/simple-example
