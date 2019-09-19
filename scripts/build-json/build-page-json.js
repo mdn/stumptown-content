@@ -34,7 +34,7 @@ function writeToFile(json, elementPath) {
 async function processMetaIngredient(elementPath, ingredientName, data) {
     switch (ingredientName) {
         case 'interactive_example':
-            return data.interactive_example;
+            return data.interactive_example || null;
         case 'browser_compatibility':
             return packageBCD(data.browser_compatibility);
         case 'attributes':
@@ -72,28 +72,23 @@ async function buildFromRecipe(elementPath, data, content) {
     // for each ingredient in the recipe, process the item's ingredient
     for (let ingredient of recipe.body) {
         const [ingredientType, ingredientName] = ingredient.replace(/\?$/, '').split('.');
-        // meta ingredients
         if (ingredientType === 'meta') {
+            // non-prose ingredients, which are specified in front matter
             const value = await processMetaIngredient(elementPath, ingredientName, data);
-            if (value) {
+            if (value !== null) {
                 item.body.push({
                   type: ingredientName,
                   value: value
                 });
             }
-        // additional (unnamed) prose sections
         } else if (ingredientType === 'prose' && ingredientName === '*') {
+            // additional (unnamed) prose sections
             const additionalProse = proseSections.filter(section => !section.value.id);
-            if (additionalProse.length) {
-                item.body.push(...additionalProse);
-            }
-        // named prose sections
+            item.body.push(...additionalProse);
         } else if (ingredientType === 'prose') {
+            // named prose sections
             const matches = proseSections.filter(section => section.value.id === ingredientName);
-            if (matches.length) {
-              item.body.push(matches[0]);
-            }
-        // urecognized type
+            item.body.push(...matches);
         } else {
             throw new Error(`Unrecognized ingredient type: ${ingredientType} in ${elementPath}`);
         }
