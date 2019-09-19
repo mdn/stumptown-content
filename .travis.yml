@@ -7,7 +7,7 @@ branches:
 
 script:
   # Make sure there are no left-over git patch markers in
-  - git --no-pager grep '>>>>>>>' content && echo "There are leftover diff markers" && exit 1
+  - npm run ci-checks
   - npm run lint-js
   - npm run lint-md
   - npm run spell-md
