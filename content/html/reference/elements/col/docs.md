@@ -8,7 +8,7 @@ permitted_aria_roles: none
 tag_omission: no-closing-tag
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/col.html
-    height: html-taller
+    height: html-tall
 browser_compatibility: html.elements.col
 examples:
     - examples/simple-example

@@ -8,7 +8,7 @@ permitted_aria_roles: any
 tag_omission: none
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/dfn.html
-    height: html-shorter
+    height: html-short
 browser_compatibility: html.elements.dfn
 examples:
     - examples/basic-identification

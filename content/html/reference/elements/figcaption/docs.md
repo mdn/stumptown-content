@@ -10,7 +10,7 @@ permitted_aria_roles:
 tag_omission: none
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/figcaption.html
-    height: html-shorter
+    height: html-short
 browser_compatibility: html.elements.figcaption
 examples:
     - examples/simple-example

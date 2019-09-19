@@ -9,7 +9,7 @@ permitted_aria_roles:
 tag_omission: no-closing-tag
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/hr.html
-    height: html-shorter
+    height: html-short
 browser_compatibility: html.elements.hr
 examples:
     - examples/simple-example

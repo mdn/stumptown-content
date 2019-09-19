@@ -8,7 +8,7 @@ permitted_aria_roles: none
 tag_omission: yes
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/caption.html
-    height: html-taller
+    height: html-tall
 browser_compatibility: html.elements.caption
 examples:
     - examples/simple-example
