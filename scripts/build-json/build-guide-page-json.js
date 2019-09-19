@@ -10,7 +10,7 @@ async function processDirective(elementPath, directive) {
         case 'embed-example':
             return {
                 type: 'example',
-                content: await examples.packageExample(path.join(elementPath, directiveComponents[1]))
+                value: await examples.packageExample(path.join(elementPath, directiveComponents[1]))
             }
         default:
             throw ('Unsupported guide directive');
@@ -20,7 +20,9 @@ async function processDirective(elementPath, directive) {
 async function processProse(elementPath, proseMD) {
     return {
         type: 'prose',
-        content: await markdown.markdownToHTML(proseMD)
+        value: {
+          content: await markdown.markdownToHTML(proseMD)
+        }
     }
 }
 
@@ -43,7 +45,7 @@ async function buildGuidePageJSON(elementPath, data, content) {
         title: data.title,
         mdn_url: data.mdn_url,
         related_content: related.buildRelatedContent(data.related_content),
-        content: await buildGuideContentJSON(elementPath, data, content)
+        body: await buildGuideContentJSON(elementPath, data, content)
     };
 }
 
