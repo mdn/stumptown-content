@@ -6,6 +6,8 @@ branches:
     - master
 
 script:
+  # Make sure there are no left-over git patch markers in
+  - git --no-pager grep '>>>>>>>'
   - npm run lint-js
   - npm run lint-md
   - npm run spell-md
