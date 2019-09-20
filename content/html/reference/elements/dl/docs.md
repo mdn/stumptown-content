@@ -1,5 +1,6 @@
 ---
 title: '<dl>: The Description List element'
+short_title: <dl>
 mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/dl
 tags:
     group: Text content

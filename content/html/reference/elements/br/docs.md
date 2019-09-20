@@ -1,5 +1,6 @@
 ---
 title: '<br>: The Line Break element'
+short_title: <br>
 mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/br
 tags:
     group: Inline text semantics

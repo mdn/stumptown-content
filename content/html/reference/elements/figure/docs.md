@@ -1,5 +1,6 @@
 ---
 title: '<figure>'
+short_title: <figure>
 mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/figure
 tags:
     group: Text content

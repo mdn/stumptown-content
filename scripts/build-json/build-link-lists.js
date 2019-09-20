@@ -20,6 +20,7 @@ async function itemFromFile(includeShortDescriptions, filePath) {
   }
   return {
       title: data.title,
+      short_title: data.short_title || null,
       mdn_url: data.mdn_url,
       short_description: shortDescriptions.length && shortDescriptions[0].value.content || null
     };

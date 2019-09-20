@@ -1,5 +1,6 @@
 ---
 title: '<address>: The Contact Address element'
+short_title: <address>
 mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/address
 tags:
     group: Content sectioning

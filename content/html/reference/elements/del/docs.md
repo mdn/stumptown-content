@@ -1,5 +1,6 @@
 ---
 title: '<del>: The Deleted Text element'
+short_title: <del>
 mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/del
 tags:
     group: Demarcating edits

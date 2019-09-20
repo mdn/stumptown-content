@@ -1,5 +1,6 @@
 ---
 title: '<bdi>: The Bidirectional Isolate element'
+short_title: <bdi>
 mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/bdi
 tags:
     group: Inline text semantics
