@@ -1,5 +1,6 @@
 ---
 title: '<html>: The HTML Document / Root element'
+short_title: <html>
 mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/html
 tags:
     group: Main root

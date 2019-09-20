@@ -1,5 +1,6 @@
 ---
 title: '<iframe>: The Inline Frame element'
+short_title: <iframe>
 mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/iframe
 tags:
     group: Embedded content

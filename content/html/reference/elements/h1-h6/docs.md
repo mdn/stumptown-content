@@ -1,5 +1,6 @@
 ---
 title: '<h1>–<h6>: The HTML Section Heading elements'
+short_title: <h1>-<h6>
 mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/Heading_Elements
 tags:
     group: Content sectioning

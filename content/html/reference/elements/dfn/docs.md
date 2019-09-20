@@ -1,5 +1,6 @@
 ---
 title: '<dfn>: The Definition element'
+short_title: <dfn>
 mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/dfn
 tags:
     group: Inline text semantics

@@ -1,5 +1,6 @@
 ---
 title: '<body>: The Document Body element'
+short_title: <body>
 mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/body
 tags:
     group: Sectioning root

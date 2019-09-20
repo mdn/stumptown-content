@@ -1,5 +1,6 @@
 ---
 title: '<em>: The Emphasis element'
+short_title: <em>
 mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/em
 tags:
     group: Inline text semantics

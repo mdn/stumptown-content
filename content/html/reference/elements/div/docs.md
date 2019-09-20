@@ -1,5 +1,6 @@
 ---
 title: '<div>: The Content Division element'
+short_title: <div>
 mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/div
 tags:
     group: Text content

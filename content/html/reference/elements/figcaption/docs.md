@@ -1,5 +1,6 @@
 ---
 title: '<figcaption>'
+short_title: <figcaption>
 mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/figcaption
 tags:
     group: Text content

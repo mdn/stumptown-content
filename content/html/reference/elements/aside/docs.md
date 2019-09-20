@@ -1,5 +1,6 @@
 ---
 title: '<aside>: The Aside element'
+short_title: <aside>
 mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/aside
 tags:
     group: Flow content

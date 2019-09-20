@@ -1,5 +1,6 @@
 ---
 title: '<kbd>: The Keyboard Input element'
+short_title: <kbd>
 mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/kbd
 tags:
     group: Inline text semantics

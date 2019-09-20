@@ -1,5 +1,6 @@
 ---
 title: '<caption>: The Table Caption element'
+short_title: <caption>
 mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/caption
 tags:
     group: Table content
