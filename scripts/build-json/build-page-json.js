@@ -62,15 +62,8 @@ async function processMetaIngredient(elementPath, ingredientName, data) {
     }
 }
 
-async function buildFromRecipe(elementPath, data, content) {
-    const recipePath = path.join(__dirname, '..', '..', 'recipes', `${data.recipe}.yaml`);
-    const recipe = yaml.safeLoad(fs.readFileSync(recipePath, 'utf8'));
-    const item = {
-      title: data.title,
-      mdn_url: data.mdn_url,
-      related_content: await related.buildRelatedContent(recipe.related_content),
-      body: []
-    };
+async function buildFromRecipe(elementPath, data, content, recipe) {
+    const body = [];
 
     const proseSections = await packageProse(content);
 
@@ -81,7 +74,7 @@ async function buildFromRecipe(elementPath, data, content) {
             // non-prose ingredients, which are specified in front matter
             const value = await processMetaIngredient(elementPath, ingredientName, data);
             if (value !== null) {
-                item.body.push({
+                body.push({
                   type: ingredientName,
                   value: value
                 });
@@ -89,20 +82,17 @@ async function buildFromRecipe(elementPath, data, content) {
         } else if (ingredientType === 'prose' && ingredientName === '*') {
             // additional (unnamed) prose sections
             const additionalProse = proseSections.filter(section => !section.value.id);
-            item.body.push(...additionalProse);
+            body.push(...additionalProse);
         } else if (ingredientType === 'prose') {
             // named prose sections
             const matches = proseSections.filter(section => section.value.id === ingredientName);
-            item.body.push(...matches);
+            body.push(...matches);
         } else {
             throw new Error(`Unrecognized ingredient type: ${ingredientType} in ${elementPath}`);
         }
     }
 
-    const contributorsPath = path.join(elementPath, 'contributors.md');
-    item.contributors = await packageContributors(contributorsPath);
-
-    return item;
+    return body;
 }
 
 async function buildPageJSON(docsPath) {
@@ -116,35 +106,50 @@ async function buildPageJSON(docsPath) {
 
     // check whether this is a buildable item
     if (data && data.recipe) {
-        // build the item
-        let item = null;
-
+        let body = null;
+        let relatedContentSpec = data.related_content;
+        let contributors = null;
         let elementDirectory = docsDirectory;
 
         switch (data.recipe) {
             case 'guide':
-                item = await guide.buildGuidePageJSON(docsDirectory, data, content);
+                body = await guide.buildGuideContentJSON(docsDirectory, data, content);
                 // Guide pages are special because they don't have their own 
                 // directory. Instead, individual .md files share a directory. 
                 // So we need to override the name of the directory to write to.
                 elementDirectory = path.join(docsDirectory, path.basename(docsPath).split('.')[0]);
                 break;
             case 'landing-page':
-                item = await landing.buildLandingPageJSON(docsDirectory, data, content);
+                body = await landing.buildLandingPageJSON(docsDirectory, data, content);
                 // Landing pages are special because they don't have their own
                 // directory. Instead, individual .md files share a directory.
                 // So we need to override the name of the directory to write to.
                 elementDirectory = path.join(docsDirectory, path.basename(docsPath).split('.')[0]);
                 break;
             case 'html-element':
-                item = await buildFromRecipe(docsDirectory, data, content);
+                // for recipe-driven content, related_content is in the recipe
+                const recipePath = path.join(__dirname, '..', '..', 'recipes', `${data.recipe}.yaml`);
+                const recipe = yaml.safeLoad(fs.readFileSync(recipePath, 'utf8'));
+                relatedContentSpec = recipe.related_content;
+                body = await buildFromRecipe(docsDirectory, data, content, recipe);
+                // currently only reference-driven content supports contributors
+                contributors = await packageContributors(path.join(docsDirectory, 'contributors.md'))
                 break;
             default:
                 throw new Error(`Not a supported recipe: ${data.recipe}`);
         }
 
+        // build the item
+        const item = {
+          title: data.title,
+          mdn_url: data.mdn_url,
+          related_content: await related.buildRelatedContent(relatedContentSpec),
+          body: body,
+          contributors: contributors
+        };
+
         destPath = writeToFile(item, elementDirectory);
-    } 
+    }
 
     return { docsPath, destPath };
 }
