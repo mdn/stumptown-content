@@ -3,15 +3,11 @@ const path = require('path');
 const yaml = require('js-yaml');
 const matter = require('gray-matter');
 
-const { packageBCD } = require('./resolve-bcd');
-const { packageExamples } = require('./compose-examples');
-const { packageAttributes } = require('./compose-attributes');
-const { packageInteractiveExample } = require('./compose-interactive-example');
-const { packageProse } = require('./slice-prose');
 const { packageContributors } = require('./resolve-contributors');
 const related = require('./related-content');
-const guide = require('./build-guide-page-json');
-const landing = require('./build-landing-page-json');
+const guidePage = require('./build-guide-page-json');
+const landingPage = require('./build-landing-page-json');
+const recipePage = require('./build-recipe-page-json');
 const { ROOT } = require('./constants');
 
 
@@ -32,69 +28,6 @@ function writeToFile(json, elementPath) {
     return dest;
 }
 
-async function processMetaIngredient(elementPath, ingredientName, data) {
-    switch (ingredientName) {
-        case 'interactive_example':
-            // interactive_example is optional
-            if (!data.interactive_example) {
-                return null;
-            }
-            return packageInteractiveExample(data.interactive_example);
-        case 'browser_compatibility':
-            return packageBCD(data.browser_compatibility);
-        case 'attributes':
-            if (data.attributes.element_specific) {
-                const attributesPath = path.join(elementPath, data.attributes.element_specific);
-                return await packageAttributes(attributesPath);
-            } else {
-                return [];
-            }
-        case 'examples': {
-          const examplesPaths = data.examples.map(relativePath => path.join(elementPath, relativePath));
-          return await packageExamples(examplesPaths);
-        }
-        case 'info_box':
-            // TODO: implement packaging for info boxes
-            // See: https://github.com/mdn/stumptown-content/issues/106
-            return 'info_box-value';
-        default:
-            throw new Error(`Unrecognized ingredient: ${ingredientName}`);
-    }
-}
-
-async function buildFromRecipe(elementPath, data, content, recipe) {
-    const body = [];
-
-    const proseSections = await packageProse(content);
-
-    // for each ingredient in the recipe, process the item's ingredient
-    for (let ingredient of recipe.body) {
-        const [ingredientType, ingredientName] = ingredient.replace(/\?$/, '').split('.');
-        if (ingredientType === 'meta') {
-            // non-prose ingredients, which are specified in front matter
-            const value = await processMetaIngredient(elementPath, ingredientName, data);
-            if (value !== null) {
-                body.push({
-                  type: ingredientName,
-                  value: value
-                });
-            }
-        } else if (ingredientType === 'prose' && ingredientName === '*') {
-            // additional (unnamed) prose sections
-            const additionalProse = proseSections.filter(section => !section.value.id);
-            body.push(...additionalProse);
-        } else if (ingredientType === 'prose') {
-            // named prose sections
-            const matches = proseSections.filter(section => section.value.id === ingredientName);
-            body.push(...matches);
-        } else {
-            throw new Error(`Unrecognized ingredient type: ${ingredientType} in ${elementPath}`);
-        }
-    }
-
-    return body;
-}
-
 async function buildPageJSON(docsPath) {
     // open docs.md and parse front matter(data) from Markdown(content)
     const docsDirectory = path.dirname(docsPath);
@@ -113,28 +46,29 @@ async function buildPageJSON(docsPath) {
 
         switch (data.recipe) {
             case 'guide':
-                body = await guide.buildGuideContentJSON(docsDirectory, data, content);
+                body = await guidePage.buildGuideContentJSON(docsDirectory, data, content);
                 // Guide pages are special because they don't have their own 
                 // directory. Instead, individual .md files share a directory. 
                 // So we need to override the name of the directory to write to.
                 elementDirectory = path.join(docsDirectory, path.basename(docsPath).split('.')[0]);
                 break;
             case 'landing-page':
-                body = await landing.buildLandingPageJSON(docsDirectory, data, content);
+                body = await landingPage.buildLandingPageJSON(docsDirectory, data, content);
                 // Landing pages are special because they don't have their own
                 // directory. Instead, individual .md files share a directory.
                 // So we need to override the name of the directory to write to.
                 elementDirectory = path.join(docsDirectory, path.basename(docsPath).split('.')[0]);
                 break;
-            case 'html-element':
-                // for recipe-driven content, related_content is in the recipe
-                const recipePath = path.join(__dirname, '..', '..', 'recipes', `${data.recipe}.yaml`);
-                const recipe = yaml.safeLoad(fs.readFileSync(recipePath, 'utf8'));
-                relatedContentSpec = recipe.related_content;
-                body = await buildFromRecipe(docsDirectory, data, content, recipe);
-                // currently only reference-driven content supports contributors
-                contributors = await packageContributors(path.join(docsDirectory, 'contributors.md'))
-                break;
+            case 'html-element': {
+                    // for recipe-driven content, related_content is in the recipe
+                    const recipePath = path.join(__dirname, '..', '..', 'recipes', `${data.recipe}.yaml`);
+                    const recipe = yaml.safeLoad(fs.readFileSync(recipePath, 'utf8'));
+                    relatedContentSpec = recipe.related_content;
+                    body = await recipePage.buildRecipePageJSON(docsDirectory, data, content, recipe);
+                    // currently only reference-driven content supports contributors
+                    contributors = await packageContributors(path.join(docsDirectory, 'contributors.md'))
+                    break;
+                }
             default:
                 throw new Error(`Not a supported recipe: ${data.recipe}`);
         }
