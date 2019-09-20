@@ -6,7 +6,9 @@ tags:
 api: HTMLQuoteElement
 permitted_aria_roles: any
 tag_omission: none
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/blockquote.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/blockquote.html
+    height: html-standard
 browser_compatibility: html.elements.blockquote
 examples:
     - examples/simple-example

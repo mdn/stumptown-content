@@ -8,7 +8,9 @@ permitted_aria_roles:
     - group
     - presentation
 tag_omission: none
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/figcaption.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/figcaption.html
+    height: html-short
 browser_compatibility: html.elements.figcaption
 examples:
     - examples/simple-example

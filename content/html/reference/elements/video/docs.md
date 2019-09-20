@@ -6,7 +6,9 @@ tags:
 api: HTMLVideoElement
 permitted_aria_roles: application
 tag_omission: none
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/video.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/video.html
+    height: html-standard
 browser_compatibility: html.elements.video
 examples:
     - examples/simple-example

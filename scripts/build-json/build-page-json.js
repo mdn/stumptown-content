@@ -6,6 +6,7 @@ const matter = require('gray-matter');
 const { packageBCD } = require('./resolve-bcd');
 const { packageExamples } = require('./compose-examples');
 const { packageAttributes } = require('./compose-attributes');
+const { packageInteractiveExample } = require('./compose-interactive-example');
 const { packageProse } = require('./slice-prose');
 const { packageContributors } = require('./resolve-contributors');
 const related = require('./related-content');
@@ -34,7 +35,11 @@ function writeToFile(json, elementPath) {
 async function processMetaIngredient(elementPath, ingredientName, data) {
     switch (ingredientName) {
         case 'interactive_example':
-            return data.interactive_example || null;
+            // interactive_example is optional
+            if (!data.interactive_example) {
+                return null;
+            }
+            return packageInteractiveExample(data.interactive_example);
         case 'browser_compatibility':
             return packageBCD(data.browser_compatibility);
         case 'attributes':

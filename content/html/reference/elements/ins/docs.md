@@ -6,6 +6,9 @@ tags:
 api: HTMLModElement
 permitted_aria_roles: any
 tag_omission: none
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/ins.html
+    height: html-standard
 browser_compatibility: html.elements.ins
 examples:
     - examples/simple-example

@@ -6,7 +6,9 @@ tags:
 api: HTMLBRElement
 permitted_aria_roles: any
 tag_omission: no-closing-tag
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/br.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/br.html
+    height: html-standard
 browser_compatibility: html.elements.br
 examples:
     - examples/simple-example

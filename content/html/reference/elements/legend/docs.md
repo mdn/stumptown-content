@@ -6,7 +6,9 @@ tags:
 api: HTMLLegendElement
 permitted_aria_roles: none
 tag_omission: none
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/legend.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/legend.html
+    height: html-standard
 browser_compatibility: html.elements.legend
 examples:
     - examples/simple-example

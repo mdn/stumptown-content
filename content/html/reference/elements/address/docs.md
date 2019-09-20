@@ -7,7 +7,9 @@ api: HTMLElement
 permitted_aria_roles:
     - none
 tag_omission: none
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/address.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/address.html
+    height: html-standard
 browser_compatibility: html.elements.address
 examples:
     - examples/simple-address-example

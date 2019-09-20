@@ -7,7 +7,9 @@ api: HTMLTableElement
 permitted_aria_roles:
     - '*'
 tag_omission: none
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/table.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/table.html
+    height: html-standard
 browser_compatibility: html.elements.table
 examples:
     - examples/simple-example

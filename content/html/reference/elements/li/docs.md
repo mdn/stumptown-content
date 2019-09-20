@@ -15,7 +15,9 @@ permitted_aria_roles:
     - tab
     - treeitem
 tag_omission: yes
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/li.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/li.html
+    height: html-short
 browser_compatibility: html.elements.li
 examples:
     - examples/simple-example

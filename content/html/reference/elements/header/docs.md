@@ -8,7 +8,9 @@ permitted_aria_roles:
     - group
     - presentation
 tag_omission: none
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/header.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/header.html
+    height: html-standard
 browser_compatibility: html.elements.header
 examples:
     - examples/page-header

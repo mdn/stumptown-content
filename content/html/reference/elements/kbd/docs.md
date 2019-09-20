@@ -6,7 +6,9 @@ tags:
 api: HTMLElement
 permitted_aria_roles: any
 tag_omission: none
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/kbd.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/kbd.html
+    height: html-short
 browser_compatibility: html.elements.kbd
 examples:
     - examples/simple-example

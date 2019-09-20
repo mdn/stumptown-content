@@ -6,7 +6,9 @@ tags:
 api: HTMLAudioElement
 permitted_aria_roles: application
 tag_omission: none
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/audio.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/audio.html
+    height: html-standard
 browser_compatibility: html.elements.audio
 examples:
     - examples/simple-example

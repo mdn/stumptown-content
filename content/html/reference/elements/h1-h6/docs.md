@@ -8,7 +8,9 @@ permitted_aria_roles:
     - tab
     - presentation
 tag_omission: none
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/h1-h6.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/h1-h6.html
+    height: html-standard
 browser_compatibility: html.elements.h1
 examples:
     - examples/all-headings

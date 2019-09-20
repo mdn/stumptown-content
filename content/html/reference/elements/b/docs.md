@@ -7,7 +7,9 @@ api: HTMLElement
 permitted_aria_roles:
     - any
 tag_omission: none
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/b.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/b.html
+    height: html-short
 browser_compatibility: html.elements.b
 examples:
     - examples/simple-b-example

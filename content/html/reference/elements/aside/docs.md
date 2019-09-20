@@ -11,7 +11,9 @@ permitted_aria_roles:
     - region
     - search
 tag_omission: none
-interactive_example: https://interactive-examples.mdn.mozilla.net/pages/tabbed/aside.html
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/aside.html
+    height: html-standard
 browser_compatibility: html.elements.aside
 examples:
     - examples/simple-aside-example
