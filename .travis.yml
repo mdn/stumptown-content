@@ -6,7 +6,6 @@ branches:
     - master
 
 script:
-  # Make sure there are no left-over git patch markers in
   - npm run ci-checks
   - npm run lint-js
   - npm run lint-md
