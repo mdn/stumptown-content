@@ -1,4 +1,3 @@
-const related = require('./related-content');
 const links = require('./build-link-lists');
 const markdown = require('./markdown-converter');
 
@@ -48,12 +47,7 @@ async function buildLandingPageJSON(elementPath, data, content) {
             value: linkList
         };
     }));
-    return {
-        title: data.title,
-        mdn_url: data.mdn_url,
-        related_content: await related.buildRelatedContent(data.related_content),
-        body: [ overview, ...linkLists]
-    };
+    return [ overview, ...linkLists];
 }
 
 module.exports = {

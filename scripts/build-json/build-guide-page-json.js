@@ -1,7 +1,6 @@
 const path = require('path');
 const markdown = require('./markdown-converter');
 const examples = require('./compose-examples');
-const related = require('./related-content');
 
 async function processDirective(elementPath, directive) {
     const directiveComponents = directive.split(':');
@@ -40,15 +39,6 @@ async function buildGuideContentJSON(elementPath, data, content) {
     return result;
 }
 
-async function buildGuidePageJSON(elementPath, data, content) {
-    return {
-        title: data.title,
-        mdn_url: data.mdn_url,
-        related_content: related.buildRelatedContent(data.related_content),
-        body: await buildGuideContentJSON(elementPath, data, content)
-    };
-}
-
 module.exports = {
-    buildGuidePageJSON
+    buildGuideContentJSON
 }
