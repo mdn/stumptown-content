@@ -14,7 +14,7 @@ function extractMacroArguments(macroName, html) {
     return null;
   }
   // Split by ",", then strip leading and trailing spaces and double-quotes
-  return matches[1].split(',').map(piece => piece.replace(/^[\"\ ]+|[\"\ ]+$/g, ''));
+  return matches[1].split(',').map(piece => piece.replace(/^[" ]+|[" ]+$/g, ''));
 }
 
 function getInteractiveExampleHeight(heightArgument) {
@@ -29,23 +29,23 @@ function getInteractiveExampleHeight(heightArgument) {
     case 'tabbed-taller':
         return 'html-tall';
     default:
-      throw(`Unexpected interactive example height: ${toMap}`);
+      throw(`Unexpected interactive example height: ${heightArgument}`);
   }
 }
 
 function extractInteractiveExample(html) {
-  const arguments = extractMacroArguments('EmbedInteractiveExample', html);
-  if (!arguments) {
+  const macroArgs = extractMacroArguments('EmbedInteractiveExample', html);
+  if (!macroArgs) {
     return '';
   }
-  const url = `https://interactive-examples.mdn.mozilla.net/${arguments[0]}`;
-  const height = getInteractiveExampleHeight(arguments[1]);
+  const url = `https://interactive-examples.mdn.mozilla.net/${macroArgs[0]}`;
+  const height = getInteractiveExampleHeight(macroArgs[1]);
   return `interactive_example:\n    url: ${url}\n    height: ${height}\n`;
 }
 
 function extractBCD(html) {
-  const arguments = extractMacroArguments('Compat', html);
-  return arguments? `browser_compatibility: ${arguments[0]}\n`: '';
+  const macroArgs = extractMacroArguments('Compat', html);
+  return macroArgs? `browser_compatibility: ${macroArgs[0]}\n`: '';
 }
 
 async function scrapeFrontMatter(title, url, md, isGuidePage) {
