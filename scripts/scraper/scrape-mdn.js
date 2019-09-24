@@ -62,7 +62,7 @@ function addFrontMatter(title, url, md) {
 }
 
 function removeTitleAttributes(dom) {
-  const links = dom.window.document.querySelectorAll('a');
+  const links = dom.window.document.querySelectorAll('a[title]');
   for (let link of links) {
     link.removeAttribute('title');
   }
