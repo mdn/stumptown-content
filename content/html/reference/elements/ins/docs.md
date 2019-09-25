@@ -1,6 +1,6 @@
 ---
 title: '<ins>'
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/ins
+mdn_url: /en-US/docs/Web/HTML/Element/ins
 tags:
     group: Inline text semantics
 api: HTMLModElement

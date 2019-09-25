@@ -1,7 +1,7 @@
 ---
 title: '<dd>: The Description Details element'
 short_title: <dd>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/dd
+mdn_url: /en-US/docs/Web/HTML/Element/dd
 tags:
     group: Text content
 api: HTMLElement

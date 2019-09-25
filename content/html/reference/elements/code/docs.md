@@ -1,7 +1,7 @@
 ---
 title: '<code>: The Inline Code element'
 short_title: <code>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/code
+mdn_url: /en-US/docs/Web/HTML/Element/code
 tags:
     group: Inline text semantics
 api: HTMLElement

@@ -1,6 +1,6 @@
 ---
 title: "HTML: Hypertext Markup Language"
-mdn_url: https://developer.mozilla.org/en-US/docs/Web/HTML
+mdn_url: /en-US/en-US/docs/Web/HTML
 recipe: landing-page
 related_content: /content/related_content/html.yaml
 link_lists:

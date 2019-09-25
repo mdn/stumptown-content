@@ -1,6 +1,6 @@
 ---
 title: '<legend>'
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/legend
+mdn_url: /en-US/docs/Web/HTML/Element/legend
 tags:
     group: Forms
 api: HTMLLegendElement

@@ -1,7 +1,7 @@
 ---
 title: '<datalist>'
 short_title: <datalist>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/datalist
+mdn_url: /en-US/docs/Web/HTML/Element/datalist
 tags:
     group: Forms
 api: HTMLDataListElement

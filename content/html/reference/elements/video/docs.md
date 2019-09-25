@@ -1,6 +1,7 @@
 ---
 title: '<video>: The Video Embed element'
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/video
+short_title: <video>
+mdn_url: /en-US/docs/Web/HTML/Element/video
 tags:
     group: Image and multimedia
 api: HTMLVideoElement

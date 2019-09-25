@@ -1,6 +1,6 @@
 ---
 title: '<i>'
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/i
+mdn_url: /en-US/docs/Web/HTML/Element/i
 tags:
     group: Inline text semantics
 api: HTMLElement

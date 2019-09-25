@@ -1,7 +1,7 @@
 ---
 title: '<blockquote>: The Block Quotation element'
 short_title: <blockquote>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/blockquote
+mdn_url: /en-US/docs/Web/HTML/Element/blockquote
 tags:
     group: Text content
 api: HTMLQuoteElement

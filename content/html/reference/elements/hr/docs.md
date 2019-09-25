@@ -1,7 +1,7 @@
 ---
 title: '<hr>: The Thematic Break (Horizontal Rule) element'
 short_title: <hr>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/hr
+mdn_url: /en-US/docs/Web/HTML/Element/hr
 tags:
     group: Text content
 api: HTMLElement

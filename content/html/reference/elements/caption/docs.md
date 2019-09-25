@@ -1,7 +1,7 @@
 ---
 title: '<caption>: The Table Caption element'
 short_title: <caption>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/caption
+mdn_url: /en-US/docs/Web/HTML/Element/caption
 tags:
     group: Table content
 api: HTMLTableCaptionElement

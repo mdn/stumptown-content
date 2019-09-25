@@ -1,6 +1,7 @@
 ---
 title: '<table>: The Table element'
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/table
+short_title: <table>
+mdn_url: /en-US/docs/Web/HTML/Element/table
 tags:
     group: Flow content
 api: HTMLTableElement

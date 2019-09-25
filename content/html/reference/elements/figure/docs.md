@@ -1,7 +1,7 @@
 ---
 title: '<figure>'
 short_title: <figure>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/figure
+mdn_url: /en-US/docs/Web/HTML/Element/figure
 tags:
     group: Text content
 api: HTMLElement

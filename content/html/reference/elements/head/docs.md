@@ -1,7 +1,7 @@
 ---
 title: '<head>: The Document Metadata (Header) element'
 short_title: <head>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/head
+mdn_url: /en-US/docs/Web/HTML/Element/head
 tags:
     group: Document metadata
 api: HTMLHeadElement

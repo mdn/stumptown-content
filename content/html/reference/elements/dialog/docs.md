@@ -1,7 +1,7 @@
 ---
 title: '<dialog>: The Dialog element'
 short_title: <dialog>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/dialog
+mdn_url: /en-US/docs/Web/HTML/Element/dialog
 tags:
     group: Interactive elements
 api: HTMLDialogElement

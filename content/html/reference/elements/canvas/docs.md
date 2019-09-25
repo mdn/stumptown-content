@@ -1,7 +1,7 @@
 ---
 title: '<canvas>: The Graphics Canvas element'
 short_title: <canvas>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/canvas
+mdn_url: /en-US/docs/Web/HTML/Element/canvas
 tags:
     group: Scripting
 api: HTMLCanvasElement

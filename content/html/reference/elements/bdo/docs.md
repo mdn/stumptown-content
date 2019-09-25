@@ -1,7 +1,7 @@
 ---
 title: '<bdo>: The Bidirectional Text Override element'
 short_title: <bdo>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/bdo
+mdn_url: /en-US/docs/Web/HTML/Element/bdo
 tags:
     group: Inline text semantics
 api: HTMLElement

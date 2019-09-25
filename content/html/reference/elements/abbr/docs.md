@@ -1,7 +1,7 @@
 ---
 title: '<abbr>: The Abbreviation element'
 short_title: <abbr>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/abbr
+mdn_url: /en-US/docs/Web/HTML/Element/abbr
 tags:
     group: Inline text semantics
 api: HTMLElement

@@ -1,7 +1,7 @@
 ---
 title: '<b>: The Bring Attention To element'
 short_title: <b>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/b
+mdn_url: /en-US/docs/Web/HTML/Element/b
 tags:
     group: Inline text semantics
 api: HTMLElement
