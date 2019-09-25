@@ -1,6 +1,6 @@
 ---
 title: Applying color to HTML elements using CSS
-mdn_url: https://developer.mozilla.org/en-US/docs/Web/HTML/Applying_color
+mdn_url: https://developer.mozilla.org/docs/Web/HTML/Applying_color
 related_content: /content/related_content/html.yaml
 recipe: guide
 ---
