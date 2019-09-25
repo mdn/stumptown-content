@@ -60,6 +60,20 @@ function writeDoc(subpath, name, doc) {
   fs.writeFileSync(dest, doc);
 }
 
+function removeTitleAttributes(dom) {
+  const links = dom.window.document.querySelectorAll('a[title]');
+  for (let link of links) {
+    link.removeAttribute('title');
+  }
+}
+
+function removeSidebar(dom) {
+  const sidebar = dom.window.document.querySelector('section.Quick_links');
+  if (sidebar) {
+    sidebar.parentNode.removeChild(sidebar);
+  }
+}
+
 /**
  * 1. Convert the given HTML to JSDOM
  * 2. Do any cleaning we want
@@ -67,10 +81,8 @@ function writeDoc(subpath, name, doc) {
  */
 function cleanHTML(html) {
   const dom = new JSDOM(html);
-  const sidebar = dom.window.document.querySelector('section.Quick_links');
-  if (sidebar) {
-    sidebar.parentNode.removeChild(sidebar);
-  }
+  removeTitleAttributes(dom);
+  removeSidebar(dom);
   return dom.serialize();
 }
 
