@@ -1,7 +1,7 @@
 ---
 title: '<audio>: The Embed Audio element'
 short_title: <audio>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/audio
+mdn_url: /en-US/docs/Web/HTML/Element/audio
 tags:
     group: Image and multimedia
 api: HTMLAudioElement

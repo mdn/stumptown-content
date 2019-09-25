@@ -1,7 +1,7 @@
 ---
 title: '<fieldset>: The Field Set element'
 short_title: <fieldset>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/fieldset
+mdn_url: /en-US/docs/Web/HTML/Element/fieldset
 tags:
     group: Forms
 api: HTMLFieldSetElement

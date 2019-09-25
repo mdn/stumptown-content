@@ -1,6 +1,6 @@
 ---
 title: HTML elements
-mdn_url: https://developer.mozilla.org/en-US/docs/HTML/Elements
+mdn_url: /en-US/docs/HTML/Elements
 recipe: landing-page
 related_content: /content/related_content/html.yaml
 link_lists:

@@ -1,7 +1,7 @@
 ---
 title: '<base>: The Document Base URL element'
 short_title: <base>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/base
+mdn_url: /en-US/docs/Web/HTML/Element/base
 tags:
     group: Document metadata
 api: HTMLBaseElement

@@ -1,6 +1,6 @@
 ---
 title: '<li>'
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/li
+mdn_url: /en-US/docs/Web/HTML/Element/li
 tags:
     group: Text content
 api: HTMLLIElement

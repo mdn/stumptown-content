@@ -1,7 +1,7 @@
 ---
 title: '<embed>: The Embed External Content element'
 short_title: <embed>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/embed
+mdn_url: /en-US/docs/Web/HTML/Element/embed
 tags:
     group: Embedded content
 api: HTMLEmbedElement

@@ -1,7 +1,7 @@
 ---
 title: '<colgroup>'
 short_title: <colgroup>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/colgroup
+mdn_url: /en-US/docs/Web/HTML/Element/colgroup
 tags:
     group: Table content
 api: HTMLTableColElement

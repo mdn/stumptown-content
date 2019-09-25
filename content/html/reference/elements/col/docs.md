@@ -1,7 +1,7 @@
 ---
 title: '<col>'
 short_title: <col>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/col
+mdn_url: /en-US/docs/Web/HTML/Element/col
 tags:
     group: Table content
 api: HTMLTableColElement

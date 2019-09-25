@@ -1,6 +1,6 @@
 ---
 title: '<header>'
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/header
+mdn_url: /en-US/docs/Web/HTML/Element/header
 tags:
     group: Content sectioning
 api: HTMLElement

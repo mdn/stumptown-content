@@ -1,7 +1,7 @@
 ---
 title: '<details>: The Details disclosure element'
 short_title: <details>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/details
+mdn_url: /en-US/docs/Web/HTML/Element/details
 tags:
     group: Interactive elements
 api: HTMLDetailsElement

@@ -1,6 +1,6 @@
 ---
 title: '<form>'
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/form
+mdn_url: /en-US/docs/Web/HTML/Element/form
 tags:
     group: Forms
 api: HTMLFormElement

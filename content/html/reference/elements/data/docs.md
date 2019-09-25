@@ -1,7 +1,7 @@
 ---
 title: '<data>'
 short_title: <data>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/data
+mdn_url: /en-US/docs/Web/HTML/Element/data
 tags:
     group: Inline text semantics
 api: HTMLDataElement

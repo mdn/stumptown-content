@@ -1,7 +1,7 @@
 ---
 title: '<dt>: The Description Term element'
 short_title: <dt>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/dt
+mdn_url: /en-US/docs/Web/HTML/Element/dt
 tags:
     group: Text content
 api: HTMLElement

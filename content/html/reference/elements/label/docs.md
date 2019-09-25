@@ -1,6 +1,6 @@
 ---
 title: '<label>'
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/label
+mdn_url: /en-US/docs/Web/HTML/Element/label
 tags:
     group: Forms
 api: HTMLLabelElement

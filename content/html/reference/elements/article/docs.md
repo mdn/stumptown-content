@@ -1,7 +1,7 @@
 ---
 title: '<article>: The Article Contents element'
 short_title: <article>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/article
+mdn_url: /en-US/docs/Web/HTML/Element/article
 tags:
     group: Flow content
 api: HTMLElement

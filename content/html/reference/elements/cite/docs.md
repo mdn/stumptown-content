@@ -1,7 +1,7 @@
 ---
 title: '<cite>: The Citation element'
 short_title: <cite>
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/cite
+mdn_url: /en-US/docs/Web/HTML/Element/cite
 tags:
     group: Text content
 api: HTMLElement

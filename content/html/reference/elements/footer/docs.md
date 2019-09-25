@@ -1,6 +1,6 @@
 ---
 title: '<footer>'
-mdn_url: https://developer.mozilla.org/docs/Web/HTML/Element/footer
+mdn_url: /en-US/docs/Web/HTML/Element/footer
 tags:
     group: Content sectioning
 api: HTMLElement
