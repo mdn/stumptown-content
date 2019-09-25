@@ -50,7 +50,7 @@ function extractBCD(html) {
 
 async function scrapeFrontMatter(title, url, md, isGuidePage) {
   const fullURL = `${baseURL}${url}`;
-  let frontMatter = `title: ${title}\nmdn_url: ${fullURL}\n`;
+  let frontMatter = `title: '${title}'\nmdn_url: ${fullURL}\n`;
   if (!isGuidePage) {
     const withMacrosURL = `${fullURL}?raw`;
     const getWithMacros = await fetch(withMacrosURL);
