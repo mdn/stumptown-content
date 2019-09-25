@@ -13,7 +13,7 @@ const { ROOT } = require('./constants');
 
 function writeToFile(json, elementPath) {
     // 'elementPath' is the folder the source came from
-    // Like '/path/to/stumptown/content/html/element/video for example. 
+    // Like '/path/to/stumptown/content/html/element/video for example.
     const propertyName = path.basename(elementPath);
     const dirName = path.dirname(elementPath);
     const dest = path.join(dirName.replace(
@@ -28,6 +28,7 @@ function writeToFile(json, elementPath) {
     return dest;
 }
 
+const recipeCache = {};
 async function buildPageJSON(docsPath) {
     // open docs.md and parse front matter(data) from Markdown(content)
     const docsDirectory = path.dirname(docsPath);
@@ -47,8 +48,8 @@ async function buildPageJSON(docsPath) {
         switch (data.recipe) {
             case 'guide':
                 body = await guidePage.buildGuideContentJSON(docsDirectory, data, content);
-                // Guide pages are special because they don't have their own 
-                // directory. Instead, individual .md files share a directory. 
+                // Guide pages are special because they don't have their own
+                // directory. Instead, individual .md files share a directory.
                 // So we need to override the name of the directory to write to.
                 elementDirectory = path.join(docsDirectory, path.basename(docsPath).split('.')[0]);
                 break;
@@ -60,9 +61,16 @@ async function buildPageJSON(docsPath) {
                 elementDirectory = path.join(docsDirectory, path.basename(docsPath).split('.')[0]);
                 break;
             case 'html-element': {
-                    // for recipe-driven content, related_content is in the recipe
-                    const recipePath = path.join(__dirname, '..', '..', 'recipes', `${data.recipe}.yaml`);
-                    const recipe = yaml.safeLoad(fs.readFileSync(recipePath, 'utf8'));
+                    const cached = recipeCache[data.recipe];
+                    let recipe;
+                    if (cached !== undefined) {
+                      recipe = cached;
+                    } else {
+                      // for recipe-driven content, related_content is in the recipe
+                      const recipePath = path.join(__dirname, '..', '..', 'recipes', `${data.recipe}.yaml`);
+                      recipe = yaml.safeLoad(fs.readFileSync(recipePath, 'utf8'));
+                      recipeCache[data.recipe] = recipe;
+                    }
                     relatedContentSpec = recipe.related_content;
                     body = await recipePage.buildRecipePageJSON(docsDirectory, data, content, recipe);
                     // currently only reference-driven content supports contributors
