@@ -25,13 +25,17 @@ const parse = require('rehype-parse');
 const stringify = require('remark-stringify');
 const rehype2remark = require('rehype-remark');
 
-const fetch = require("node-fetch");
+const fetch = require('node-fetch');
 const fs = require('fs');
 const path = require('path');
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 
+const { scrapeFrontMatter } = require('./scrape-front-matter.js');
+
 const baseURL = 'https://developer.mozilla.org';
+
+let isGuidePage = false;
 
 /**
  * Converts the HTML -> Markdown using unified.
@@ -54,11 +58,6 @@ function writeDoc(subpath, name, doc) {
     fs.mkdirSync(destDir, { recursive: true });
   }
   fs.writeFileSync(dest, doc);
-}
-
-function addFrontMatter(title, url, md) {
-  const fullURL = `${baseURL}${url}`;
-  return `---\ntitle: ${title}\nmdn_url: ${fullURL}\n---\n${md}`;
 }
 
 function removeTitleAttributes(dom) {
@@ -112,7 +111,7 @@ function getPageJSON(url) {
 async function processDoc(relativeURL, title, destination) {
   const absoluteURL = baseURL + relativeURL;
   const md = String(await processSingleDocContent(absoluteURL));
-  const doc = addFrontMatter(title, relativeURL, md);
+  const doc = await scrapeFrontMatter(title, relativeURL, md, isGuidePage);
   writeDoc(destination, relativeURL.split('/').pop(), doc);
 }
 
@@ -122,6 +121,9 @@ async function processDoc(relativeURL, title, destination) {
  * Otherwise just process the given page.
  */
 async function main(args) {
+  if (args.includes('--guide-page')) {
+    isGuidePage = true;
+  }
   if (args.includes('--scrape-children')) {
     const childrenJSON = await getPageJSON(args[0] + '$children');
     childrenJSON.subpages.map(child => {
