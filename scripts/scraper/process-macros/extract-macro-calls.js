@@ -7,7 +7,7 @@
  * with which the macro was called in that invocation.
  */
 function extractMacroCalls(macroName, html) {
-  const regex = new RegExp(`{{\\ ?${macroName}\\((.*?)\\)}}`, 'gi');
+  const regex = new RegExp(`{{\\ ?${macroName}\\((.*?)\\) ?}}`, 'gi');
   let allInvocations = [];
   let thisInvocation = [];
 
