@@ -86,46 +86,45 @@ async function main(args) {
         );
     });
 
-    Promise.all(urls.map(getLocs))
-        .then(async values => {
-            const allPossible = {};
-            values.forEach(urls => {
-                urls.forEach(url_ => {
-                    const pathname = url.parse(url_).pathname;
-                    const locale = pathname.split("/")[1];
-                    allPossible[pathname] = locale;
-                });
+    try {
+        const values = await Promise.all(urls.map(getLocs));
+        const allPossible = {};
+        values.forEach(urls => {
+            urls.forEach(url_ => {
+                const pathname = url.parse(url_).pathname;
+                const locale = pathname.split("/")[1];
+                allPossible[pathname] = locale;
             });
-            let checked;
-            try {
-                checked = await checkAll(allPossible);
-            } catch (ex) {
-                console.error(ex);
-                process.exitCode = 2;
-                return;
-            }
-            const { fails, has } = checked;
-            console.log(
-                `\nIn conclusion: ${has.toLocaleString()} successful. ` +
-                    `${fails} fails.`
-            );
-            if (fails) {
-                console.log("More than 0 fails.");
-                process.exitCode = 2;
-            }
-            const L = Object.keys(allPossible).length;
-            const p = (100 * (fails + has)) / L;
-            console.log(
-                `\nFYI, we have ${has +
-                    fails} docs and there are ${L.toLocaleString()} possible (${p.toFixed(
-                    1
-                )}%).\n`
-            );
-        })
-        .catch(ex => {
-            console.error(ex);
-            process.exitCode = 1;
         });
+        let checked;
+        try {
+            checked = await checkAll(allPossible);
+        } catch (ex) {
+            console.error(ex);
+            process.exitCode = 2;
+            return;
+        }
+        const { fails, has } = checked;
+        console.log(
+            `\nIn conclusion: ${has.toLocaleString()} successful. ` +
+                `${fails} fails.`
+        );
+        if (fails) {
+            console.log("More than 0 fails.");
+            process.exitCode = 2;
+        }
+        const L = Object.keys(allPossible).length;
+        const p = (100 * (fails + has)) / L;
+        console.log(
+            `\nFYI, we have ${has +
+                fails} docs and there are ${L.toLocaleString()} possible (${p.toFixed(
+                1
+            )}%).\n`
+        );
+    } catch (ex) {
+        console.error(ex);
+        process.exitCode = 1;
+    }
 }
 
 main(process.argv.slice(2));
