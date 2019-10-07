@@ -19,34 +19,19 @@ The pages are 'processed' on the way. This means that they are:
 * converted to Markdown
 * given some front matter (title and mdn_url)
 */
-
-const unified = require('unified');
-const parse = require('rehype-parse');
-const stringify = require('remark-stringify');
-const rehype2remark = require('rehype-remark');
-
 const fetch = require('node-fetch');
 const fs = require('fs');
 const path = require('path');
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 
-const { scrapeFrontMatter } = require('./scrape-front-matter.js');
+const { toMarkdown } = require('./to-markdown.js');
+const { removeTitleAttributes, removeNode } = require('./clean-html.js');
+const { processInteractiveExample } = require('./process-macros/process-interactive-example');
+const { processCompat } = require('./process-macros/process-compat');
+const { processLiveSamples } = require('./process-macros/process-live-samples');
 
 const baseURL = 'https://developer.mozilla.org';
-
-let isGuidePage = false;
-
-/**
- * Converts the HTML -> Markdown using unified.
- */
-function toMarkdown(html) {
-  return unified()
-    .use(parse)
-    .use(rehype2remark)
-    .use(stringify)
-    .process(html);
-}
 
 /**
  * Just writes the doc out where we want.
@@ -60,59 +45,52 @@ function writeDoc(subpath, name, doc) {
   fs.writeFileSync(dest, doc);
 }
 
-function removeTitleAttributes(dom) {
-  const links = dom.window.document.querySelectorAll('a[title]');
-  for (let link of links) {
-    link.removeAttribute('title');
-  }
-}
-
-function removeSidebar(dom) {
-  const sidebar = dom.window.document.querySelector('section.Quick_links');
-  if (sidebar) {
-    sidebar.parentNode.removeChild(sidebar);
-  }
-}
-
-/**
- * 1. Convert the given HTML to JSDOM
- * 2. Do any cleaning we want
- * 3. Serialize the result back to HTML
- */
-function cleanHTML(html) {
-  const dom = new JSDOM(html);
-  removeTitleAttributes(dom);
-  removeSidebar(dom);
-  return dom.serialize();
-}
-
-/**
- * 1. Get the raw HTML from the given url.
- * 2. Pass the HTML to the cleaner
- * 3. Convert the clean HTML to Markdown and return it.
- */
-function processSingleDocContent(mdnURL) {
-  const mdnRaw = mdnURL + '?raw&macros';
-  return fetch(mdnRaw)
-    .then(result => result.text())
-    .then(text => cleanHTML(text))
-    .then(text => toMarkdown(text));
-}
-
 function getPageJSON(url) {
-  return fetch(url).then(result => result.json());
+  return fetch(url).then(response => response.json());
+}
+
+function getPageHTML(url) {
+  return fetch(url).then(response => response.text());
 }
 
 /**
- * 1. Get cleaned and converted Markdown from MDN
- * 2. Add front matter
- * 3. Save the resulting content to a file.
+ * Process macros in the page.
+ * This can result in:
+ *     - adding new front matter items (e.g. BCD query)
+ *     - change the page content (e.g. removing the BCD table)
+ *     - even creating new files (e.g. files comprising live samples)
+ */
+async function processMacros(dom, relativeURL, destination) {
+  // to process macros, we need the version before macros are executed
+  const mdnWithMacroCalls = await getPageHTML(baseURL + relativeURL + '?raw');
+  // `result` gets mutated by the functions that process macros
+  let result = {
+    frontMatter: '',
+    dom: dom
+  };
+  result = await processInteractiveExample(mdnWithMacroCalls, result);
+  result = await processCompat(mdnWithMacroCalls, result);
+  result = await processLiveSamples(mdnWithMacroCalls, result, destination);
+  return result;
+}
+
+/**
+ * Process a single MDN page.
+ * - convert it to a DOM fragment
+ * - do some generic cleanup (e.g. removing title attributes)
+ * - process various macro calls in the page.
+ * - convert the DOM->HTML->Markdown
+ * - write out the file, including front matter and content
  */
 async function processDoc(relativeURL, title, destination) {
-  const absoluteURL = baseURL + relativeURL;
-  const md = String(await processSingleDocContent(absoluteURL));
-  const doc = await scrapeFrontMatter(title, relativeURL, md, isGuidePage);
-  writeDoc(destination, relativeURL.split('/').pop(), doc);
+  const mdnPage = await getPageHTML(baseURL + relativeURL + '?raw&macros');
+  const dom = new JSDOM(mdnPage);
+  removeTitleAttributes(dom);
+  removeNode(dom, 'section.Quick_links');
+  const result = await processMacros(dom, relativeURL, destination);
+  const md = String(await toMarkdown(result.dom.serialize()));
+  const frontMatter = `---\ntitle: '${title}'\nmdn_url: ${baseURL + relativeURL}\n${result.frontMatter}---\n`;
+  writeDoc(destination, relativeURL.split('/').pop(), `${frontMatter}${md}`);
 }
 
 /**
@@ -121,9 +99,6 @@ async function processDoc(relativeURL, title, destination) {
  * Otherwise just process the given page.
  */
 async function main(args) {
-  if (args.includes('--guide-page')) {
-    isGuidePage = true;
-  }
   if (args.includes('--scrape-children')) {
     const childrenJSON = await getPageJSON(args[0] + '$children');
     childrenJSON.subpages.map(child => {
