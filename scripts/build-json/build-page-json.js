@@ -60,7 +60,8 @@ async function buildPageJSON(docsPath) {
                 // So we need to override the name of the directory to write to.
                 elementDirectory = path.join(docsDirectory, path.basename(docsPath).split('.')[0]);
                 break;
-            case 'html-element': {
+            case 'html-element':
+            case 'html-input-element': {
                     const cached = recipeCache[data.recipe];
                     let recipe;
                     if (cached !== undefined) {
