@@ -2,6 +2,7 @@
 title: '<aside>: The Aside element'
 short_title: <aside>
 mdn_url: /en-US/docs/Web/HTML/Element/aside
+spec_url: https://html.spec.whatwg.org/multipage/sections.html#the-aside-element
 tags:
     group: Flow content
 api: HTMLElement

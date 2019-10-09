@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.video.src
+spec_url: https://html.spec.whatwg.org/multipage/media.html#attr-media-src
 ---
 
 # `src`

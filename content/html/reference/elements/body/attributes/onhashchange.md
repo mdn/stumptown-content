@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.body.onhashchange
+spec_url: https://html.spec.whatwg.org/multipage/webappapis.html#handler-window-onhashchange
 ---
 
 # `onhashchange`

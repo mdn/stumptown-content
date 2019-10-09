@@ -2,6 +2,7 @@
 title: '<blockquote>: The Block Quotation element'
 short_title: <blockquote>
 mdn_url: /en-US/docs/Web/HTML/Element/blockquote
+spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-blockquote-element
 tags:
     group: Text content
 api: HTMLQuoteElement

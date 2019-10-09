@@ -2,6 +2,7 @@
 title: '<kbd>: The Keyboard Input element'
 short_title: <kbd>
 mdn_url: /en-US/docs/Web/HTML/Element/kbd
+spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-kbd-element
 tags:
     group: Inline text semantics
 api: HTMLElement

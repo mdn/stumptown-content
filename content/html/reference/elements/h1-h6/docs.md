@@ -2,6 +2,7 @@
 title: '<h1>–<h6>: The HTML Section Heading elements'
 short_title: <h1>-<h6>
 mdn_url: /en-US/docs/Web/HTML/Element/Heading_Elements
+spec_url: https://html.spec.whatwg.org/multipage/sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 tags:
     group: Content sectioning
 api: HTMLHeadingElement

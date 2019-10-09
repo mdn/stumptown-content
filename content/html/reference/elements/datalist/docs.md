@@ -2,6 +2,7 @@
 title: '<datalist>'
 short_title: <datalist>
 mdn_url: /en-US/docs/Web/HTML/Element/datalist
+spec_url: https://html.spec.whatwg.org/multipage/forms.html#the-datalist-element
 tags:
     group: Forms
 api: HTMLDataListElement

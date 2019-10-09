@@ -1,6 +1,7 @@
 ---
 title: '<label>'
 mdn_url: /en-US/docs/Web/HTML/Element/label
+spec_url: https://html.spec.whatwg.org/multipage/forms.html#the-label-element
 tags:
     group: Forms
 api: HTMLLabelElement

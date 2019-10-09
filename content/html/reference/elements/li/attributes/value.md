@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.li.value
+spec_url: https://html.spec.whatwg.org/multipage/grouping-content.html#attr-li-value
 ---
 
 # `value`

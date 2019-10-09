@@ -2,6 +2,7 @@
 title: '<code>: The Inline Code element'
 short_title: <code>
 mdn_url: /en-US/docs/Web/HTML/Element/code
+spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-code-element
 tags:
     group: Inline text semantics
 api: HTMLElement

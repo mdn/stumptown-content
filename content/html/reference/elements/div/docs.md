@@ -2,6 +2,7 @@
 title: '<div>: The Content Division element'
 short_title: <div>
 mdn_url: /en-US/docs/Web/HTML/Element/div
+spec_url: https://html.spec.whatwg.org/multipage/grouping-content.html#the-div-element
 tags:
     group: Text content
 api: HTMLDivElement

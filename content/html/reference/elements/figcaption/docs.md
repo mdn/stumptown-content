@@ -2,6 +2,7 @@
 title: '<figcaption>'
 short_title: <figcaption>
 mdn_url: /en-US/docs/Web/HTML/Element/figcaption
+spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-figcaption-element
 tags:
     group: Text content
 api: HTMLElement

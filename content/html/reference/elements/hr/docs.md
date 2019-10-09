@@ -2,6 +2,7 @@
 title: '<hr>: The Thematic Break (Horizontal Rule) element'
 short_title: <hr>
 mdn_url: /en-US/docs/Web/HTML/Element/hr
+spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-hr-element
 tags:
     group: Text content
 api: HTMLElement

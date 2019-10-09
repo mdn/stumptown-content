@@ -2,6 +2,7 @@
 title: '<figure>'
 short_title: <figure>
 mdn_url: /en-US/docs/Web/HTML/Element/figure
+spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-figure-element
 tags:
     group: Text content
 api: HTMLElement

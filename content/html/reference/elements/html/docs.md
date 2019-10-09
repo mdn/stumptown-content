@@ -2,6 +2,7 @@
 title: '<html>: The HTML Document / Root element'
 short_title: <html>
 mdn_url: /en-US/docs/Web/HTML/Element/html
+spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-html-element
 tags:
     group: Main root
 api: HTMLHtmlElement

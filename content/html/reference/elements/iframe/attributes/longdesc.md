@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.iframe.longdesc
+spec_url: https://html.spec.whatwg.org/multipage/obsolete.html#dom-iframe-longdesc
 ---
 
 # `longdesc`

@@ -2,6 +2,7 @@
 title: '<cite>: The Citation element'
 short_title: <cite>
 mdn_url: /en-US/docs/Web/HTML/Element/cite
+spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-cite-element
 tags:
     group: Text content
 api: HTMLElement

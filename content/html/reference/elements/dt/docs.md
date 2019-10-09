@@ -2,6 +2,7 @@
 title: '<dt>: The Description Term element'
 short_title: <dt>
 mdn_url: /en-US/docs/Web/HTML/Element/dt
+spec_url: https://html.spec.whatwg.org/multipage/grouping-content.html#the-dt-element
 tags:
     group: Text content
 api: HTMLElement

@@ -2,6 +2,7 @@
 title: '<b>: The Bring Attention To element'
 short_title: <b>
 mdn_url: /en-US/docs/Web/HTML/Element/b
+spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-b-element
 tags:
     group: Inline text semantics
 api: HTMLElement

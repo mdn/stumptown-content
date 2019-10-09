@@ -1,6 +1,7 @@
 ---
 title: '<footer>'
 mdn_url: /en-US/docs/Web/HTML/Element/footer
+spec_url: https://html.spec.whatwg.org/multipage/semantics#the-footer-element
 tags:
     group: Content sectioning
 api: HTMLElement

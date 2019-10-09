@@ -2,6 +2,7 @@
 title: '<button>: The Button element'
 short_title: <button>
 mdn_url: /en-US/docs/Web/HTML/Element/button
+spec_url: https://html.spec.whatwg.org/multipage/form-elements.html#the-button-element
 tags:
     group: Forms
 api: HTMLButtonElement

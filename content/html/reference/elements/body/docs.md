@@ -2,6 +2,7 @@
 title: '<body>: The Document Body element'
 short_title: <body>
 mdn_url: /en-US/docs/Web/HTML/Element/body
+spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-body-element
 tags:
     group: Sectioning root
 api: HTMLBodyElement

@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.video.autoplay
+spec_url: https://html.spec.whatwg.org/multipage/media.html#attr-media-autoplay
 ---
 
 # `autoplay`

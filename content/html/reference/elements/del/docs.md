@@ -2,6 +2,7 @@
 title: '<del>: The Deleted Text element'
 short_title: <del>
 mdn_url: /en-US/docs/Web/HTML/Element/del
+spec_url: https://html.spec.whatwg.org/multipage/edits.html#the-del-element
 tags:
     group: Demarcating edits
 api: HTMLModElement
