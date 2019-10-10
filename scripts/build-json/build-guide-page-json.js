@@ -1,6 +1,7 @@
 const path = require('path');
 const markdown = require('./markdown-converter');
 const examples = require('./compose-examples');
+const bcd = require('./resolve-bcd');
 
 async function processDirective(elementPath, directive) {
     const directiveComponents = directive.split(':');
@@ -10,6 +11,11 @@ async function processDirective(elementPath, directive) {
             return {
                 type: 'example',
                 value: await examples.packageExample(path.join(elementPath, directiveComponents[1]))
+            }
+        case 'embed-compat':
+            return {
+                type: 'browser_compatibility',
+                value: bcd.packageBCD(directiveComponents[1])
             }
         default:
             throw ('Unsupported guide directive');

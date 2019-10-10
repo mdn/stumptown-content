@@ -1,0 +1,14 @@
+title: Guides
+chapters:
+    - Block-level_elements/Block-level_elements.md
+    - Inline_elements/Inline_elements.md
+    - Link_types/Link_types.md
+    - Applying_color/Applying_color.md
+    - Date_and_time_formats/Date_and_time_formats.md
+    - Preloading_content/Preloading_content.md
+    - CORS_settings_attributes/CORS_settings_attributes.md
+    - CORS_enabled_image/CORS_enabled_image.md
+    - DASH_Adaptive_Streaming_for_HTML_5_Video/DASH_Adaptive_Streaming_for_HTML_5_Video.md
+    - Microdata/Microdata.md
+    - microformats/microformats.md
+    - Quirks_Mode_and_Standards_Mode/Quirks_Mode_and_Standards_Mode.md
