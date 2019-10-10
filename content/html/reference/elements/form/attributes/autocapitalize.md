@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.form.autocapitalize
+spec_url: non-standard
 ---
 
 # `autocapitalize`
