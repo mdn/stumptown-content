@@ -125,7 +125,7 @@ async function extractLiveSample(macroArgs, dom, examplesDir) {
 async function processLiveSamples(htmlWithMacroCalls, result, destination) {
   const macroCalls = extractMacroCalls('EmbedLiveSample', htmlWithMacroCalls);
   const examplesDir = path.join(process.cwd(), destination, 'examples');
-  if (macroCalls) {
+  if (macroCalls.length) {
     let lsFrontMatter = 'examples:\n';
     lsFrontMatter += macroCalls.map(macroCall => `    - examples/${macroCall[0]}\n`).join('');
     result.frontMatter += lsFrontMatter;
