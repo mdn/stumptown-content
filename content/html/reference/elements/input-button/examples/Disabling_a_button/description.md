@@ -2,7 +2,7 @@
 title: Disabling a button
 height: 200
 ---
-To disable a button, simply specify the `disabled` global attribute on it, like so:
+To disable a button, specify the `disabled` global attribute on it, like so:
 
     <input type="button" value="Disable me" disabled>
 
