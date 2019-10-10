@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.iframe.marginheight
+spec_url: https://html.spec.whatwg.org/multipage/obsolete.html#dom-iframe-marginheight
 ---
 
 # `marginheight`

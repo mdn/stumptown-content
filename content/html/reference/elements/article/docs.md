@@ -2,6 +2,7 @@
 title: '<article>: The Article Contents element'
 short_title: <article>
 mdn_url: /en-US/docs/Web/HTML/Element/article
+spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-article-element
 tags:
     group: Flow content
 api: HTMLElement

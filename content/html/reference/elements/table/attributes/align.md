@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.table.align
+spec_url: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-align
 ---
 
 # `align`

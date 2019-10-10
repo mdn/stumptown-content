@@ -2,6 +2,7 @@
 title: '<embed>: The Embed External Content element'
 short_title: <embed>
 mdn_url: /en-US/docs/Web/HTML/Element/embed
+spec_url: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-embed-element
 tags:
     group: Embedded content
 api: HTMLEmbedElement

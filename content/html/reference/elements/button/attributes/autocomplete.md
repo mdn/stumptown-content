@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.button.autocomplete
+spec_url: non-standard
 ---
 
 # `autocomplete`

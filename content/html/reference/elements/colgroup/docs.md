@@ -2,6 +2,7 @@
 title: '<colgroup>'
 short_title: <colgroup>
 mdn_url: /en-US/docs/Web/HTML/Element/colgroup
+spec_url: https://html.spec.whatwg.org/multipage/tables.html#the-colgroup-element
 tags:
     group: Table content
 api: HTMLTableColElement

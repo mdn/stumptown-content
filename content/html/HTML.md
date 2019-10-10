@@ -1,6 +1,7 @@
 ---
 title: "HTML: Hypertext Markup Language"
 mdn_url: /en-US/docs/Web/HTML
+spec_url: https://html.spec.whatwg.org/multipage/
 recipe: landing-page
 related_content: /content/related_content/html.yaml
 link_lists:

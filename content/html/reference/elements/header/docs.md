@@ -1,6 +1,7 @@
 ---
 title: '<header>'
 mdn_url: /en-US/docs/Web/HTML/Element/header
+spec_url: https://html.spec.whatwg.org/multipage/sections.html#the-header-element
 tags:
     group: Content sectioning
 api: HTMLElement

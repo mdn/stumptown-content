@@ -1,6 +1,7 @@
 ---
 title: '<form>'
 mdn_url: /en-US/docs/Web/HTML/Element/form
+spec_url: https://html.spec.whatwg.org/multipage/forms.html#the-form-element
 tags:
     group: Forms
 api: HTMLFormElement

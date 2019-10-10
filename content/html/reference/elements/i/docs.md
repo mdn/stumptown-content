@@ -1,6 +1,7 @@
 ---
 title: '<i>'
 mdn_url: /en-US/docs/Web/HTML/Element/i
+spec_url: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-i-element
 tags:
     group: Inline text semantics
 api: HTMLElement

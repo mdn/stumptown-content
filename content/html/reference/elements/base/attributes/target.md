@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.base.target
+spec_url: https://html.spec.whatwg.org/multipage/semantics.html#attr-base-target
 ---
 
 # `target`

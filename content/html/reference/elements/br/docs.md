@@ -2,6 +2,7 @@
 title: '<br>: The Line Break element'
 short_title: <br>
 mdn_url: /en-US/docs/Web/HTML/Element/br
+spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-br-element
 tags:
     group: Inline text semantics
 api: HTMLBRElement

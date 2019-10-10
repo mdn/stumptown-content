@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.col.span
+spec_url: https://html.spec.whatwg.org/multipage/tables.html#attr-col-span
 ---
 
 # `span`

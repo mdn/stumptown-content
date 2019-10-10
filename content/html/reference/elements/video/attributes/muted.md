@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.video.muted
+spec_url: https://html.spec.whatwg.org/multipage/media.html#attr-media-muted
 ---
 
 # `muted`

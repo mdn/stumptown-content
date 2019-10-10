@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.ins.cite
+spec_url: https://html.spec.whatwg.org/multipage/edits.html#attr-mod-cite
 ---
 
 # `cite`

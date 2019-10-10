@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.form.method
+spec_url: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-method
 ---
 
 # `method`
