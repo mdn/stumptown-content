@@ -13,7 +13,7 @@ const { ROOT } = require('./constants');
  */
 async function itemFromFile(includeShortDescriptions, filePath) {
   const {data, content} = matter(fs.readFileSync(filePath, 'utf8'));
-  if (!data || !data.recipe) {
+  if (!data || !data.mdn_url) {
     return null;
   }
   let shortDescriptions = [];
