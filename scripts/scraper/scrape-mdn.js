@@ -89,7 +89,7 @@ async function processDoc(relativeURL, title, destination) {
   removeNode(dom, 'section.Quick_links');
   const result = await processMacros(dom, relativeURL, destination);
   const md = String(await toMarkdown(result.dom.serialize()));
-  const frontMatter = `---\ntitle: '${title}'\nmdn_url: ${baseURL + relativeURL}\n${result.frontMatter}---\n`;
+  const frontMatter = `---\ntitle: '${title}'\nmdn_url: ${relativeURL}\n${result.frontMatter}---\n`;
   writeDoc(destination, relativeURL.split('/').pop(), `${frontMatter}${md}\n`);
 }
 
