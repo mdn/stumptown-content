@@ -1,3 +1,6 @@
+---
+spec_url: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-disabled
+---
 # `disabled`
 
 A Boolean attribute which, if present, indicates that the user should not be able to interact with the input. Disabled inputs are typically rendered with a dimmer color or using some other form of indication that the field is not available for use.

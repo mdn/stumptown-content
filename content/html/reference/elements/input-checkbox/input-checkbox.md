@@ -1,6 +1,7 @@
 ---
 title: '<input type="checkbox">'
 mdn_url: /en-US/docs/Web/HTML/Element/input/checkbox
+spec_url: https://html.spec.whatwg.org/multipage/input.html#checkbox-state-(type=checkbox)
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/input-checkbox.html
     height: html-standard
@@ -14,7 +15,6 @@ attributes:
         - ../input/attributes/name.md
         - ../input/attributes/readonly-checkbox.md
         - ../input/attributes/required.md
-        - ../input/attributes/tabindex.md
         - ../input/attributes/type.md
         - ../input/attributes/value-checkbox.md
     global: /content/html/global_attributes

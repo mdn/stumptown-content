@@ -1,3 +1,6 @@
+---
+spec_url: https://html.spec.whatwg.org/multipage/input.html#attr-input-checked
+---
 # `checked`
 
 A Boolean attribute indicating whether or not this checkbox is checked by default (when the page loads). It does _not_ indicate whether this checkbox is currently checked: if the checkbox’s state is changed, this content attribute does not reflect the change. (Only the [`HTMLInputElement`’s `checked` IDL attribute](/en-US/docs/Web/API/HTMLInputElement) is updated.)

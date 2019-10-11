@@ -1,3 +1,6 @@
+---
+spec_url: https://html.spec.whatwg.org/multipage/input.html#attr-input-required
+---
 # `required`
 
 A Boolean attribute which, if present, indicates that the user must specify a value for the input before the owning form can be submitted.

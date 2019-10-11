@@ -1,3 +1,6 @@
+---
+spec_url: https://html.spec.whatwg.org/multipage/interaction.html#attr-fe-autofocus
+---
 # `autofocus`
 
 A Boolean attribute which, if present, indicates that the input should automatically have focus when the page has finished loading (or when the [`<dialog>`](/en-US/docs/Web/HTML/Element/dialog) containing the element has been displayed).

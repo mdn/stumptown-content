@@ -2,6 +2,7 @@
 title: '<input>: The Input (Form Input) element'
 short_title: <input>
 mdn_url: /en-US/docs/Web/HTML/Element/input
+spec_url: https://html.spec.whatwg.org/multipage/input.html#the-input-element
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/input-text.html
     height: html-short

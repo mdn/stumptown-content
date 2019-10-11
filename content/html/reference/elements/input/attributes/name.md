@@ -1,3 +1,6 @@
+---
+spec_url: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-name
+---
 # `name`
 
 A string specifying a name for the input control. This name is submitted along with the control's value when the form data is submitted, as well as with the owning [`<form>`](/en-US/docs/Web/HTML/Element/form) element's [`elements`](/en-US/docs/Web/API/HTMLFormElement/elements) object.

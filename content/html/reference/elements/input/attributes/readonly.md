@@ -1,3 +1,6 @@
+---
+spec_url: https://html.spec.whatwg.org/multipage/input.html#attr-input-readonly
+---
 # `readonly`
 
 A Boolean attribute which, if present, indicates that the user should not be able to edit the value of the input.

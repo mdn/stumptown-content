@@ -1,3 +1,6 @@
+---
+spec_url: https://html.spec.whatwg.org/multipage/input.html#attr-input-value
+---
 # `value`
 
 The input control's value. When specified in the HTML, this is the initial value, and from then on it can be altered or retrieved at any time using JavaScript to access the respective [`HTMLInputElement`](/en-US/docs/Web/API/HTMLInputElement) object's `value` property. The `value` attribute is always optional.
