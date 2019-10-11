@@ -43,22 +43,13 @@ async function buildPageJSON(docsPath) {
         let body = null;
         let relatedContentSpec = data.related_content;
         let contributors = null;
-        let elementDirectory = docsDirectory;
 
         switch (data.recipe) {
             case 'guide':
                 body = await guidePage.buildGuideContentJSON(docsDirectory, data, content);
-                // Guide pages are special because they don't have their own
-                // directory. Instead, individual .md files share a directory.
-                // So we need to override the name of the directory to write to.
-                elementDirectory = path.join(docsDirectory, path.basename(docsPath).split('.')[0]);
                 break;
             case 'landing-page':
                 body = await landingPage.buildLandingPageJSON(docsDirectory, data, content);
-                // Landing pages are special because they don't have their own
-                // directory. Instead, individual .md files share a directory.
-                // So we need to override the name of the directory to write to.
-                elementDirectory = path.join(docsDirectory, path.basename(docsPath).split('.')[0]);
                 break;
             case 'html-element': {
                     const cached = recipeCache[data.recipe];
@@ -90,7 +81,7 @@ async function buildPageJSON(docsPath) {
           contributors: contributors
         };
 
-        destPath = writeToFile(item, elementDirectory);
+        destPath = writeToFile(item, docsDirectory);
     }
 
     return { docsPath, destPath };
