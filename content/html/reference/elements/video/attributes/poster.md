@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.video.poster
+spec_url: https://html.spec.whatwg.org/multipage/media.html#attr-video-poster
 ---
 
 # `poster`

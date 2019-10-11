@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.fieldset.form
+spec_url: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fae-form
 ---
 
 # `form`

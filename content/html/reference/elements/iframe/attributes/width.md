@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.iframe.width
+spec_url: https://html.spec.whatwg.org/multipage/embedded-content-other.html#attr-dim-width
 ---
 
 # `width`

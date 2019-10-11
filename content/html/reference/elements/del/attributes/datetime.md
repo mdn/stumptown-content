@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.del.datetime
+spec_url: https://html.spec.whatwg.org/multipage/edits.html#attr-mod-datetime
 ---
 
 # `datetime`
@@ -11,7 +12,7 @@ have an associated time stamp.
 
 See [Date and time formats used in HTML](/en-US/docs/Web/HTML/Date_and_time_formats)
 for information on how to format this value.
-    
+
 ## Type
 
 String

@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.iframe.importance
+spec_url: https://wicg.github.io/priority-hints/#solution-0
 ---
 
 # `importance`

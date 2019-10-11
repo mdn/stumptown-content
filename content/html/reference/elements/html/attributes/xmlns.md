@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.html.xmlns
+spec_url: https://html.spec.whatwg.org/#attributes-2:xmlns-namespace
 ---
 
 # `xmlns`

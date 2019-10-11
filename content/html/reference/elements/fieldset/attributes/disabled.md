@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.fieldset.disabled
+spec_url: https://html.spec.whatwg.org/multipage/form-elements.html#attr-fieldset-disabled
 ---
 
 # `disabled`
