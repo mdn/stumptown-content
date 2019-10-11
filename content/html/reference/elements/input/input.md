@@ -16,7 +16,6 @@ attributes:
         - ../input/attributes/name.md
         - ../input/attributes/readonly.md
         - ../input/attributes/required.md
-        - ../input/attributes/tabindex.md
         - ../input/attributes/type.md
         - ../input/attributes/value.md
     global: /content/html/global_attributes
