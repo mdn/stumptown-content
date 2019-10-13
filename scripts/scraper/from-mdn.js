@@ -75,8 +75,11 @@ function processDoc(filepath, uri, destination, digestPrefix) {
         }
         doc.redirect_url = json.redirectURL;
     } else {
-        // const dom = new JSDOM(documentData.bodyHTML.trim());
-        // const { document } = dom.window;
+        // JSDOM.fragment() is significantly less likely to leak compared
+        // to doing something like:
+        //   const dom = new JSDOM(htmlstring)
+        //   ...
+        //   dom.window.close();
         const document = JSDOM.fragment(documentData.bodyHTML.trim());
 
         // Remove those '<span class="alllinks"><a href="/en-US/docs/tag/Web">View All...</a></span>' links
@@ -102,23 +105,17 @@ function processDoc(filepath, uri, destination, digestPrefix) {
             throw err;
         }
 
-        let newDom = new JSDOM("");
+        let newDom = JSDOM.fragment("<div></div>");
         [...document.childNodes].forEach(child => {
             if (child.nodeName === "H2") {
-                sections.push(addSection(newDom.window.document, macroCalls));
-                newDom.window.close();
-                delete newDom;
-                newDom = new JSDOM("");
+                sections.push(addSection(newDom, macroCalls));
+                newDom = JSDOM.fragment("<div></div>");
             }
-            newDom.window.document.body.appendChild(child);
+            newDom.firstChild.appendChild(child);
         });
         if (newDom) {
-            sections.push(addSection(newDom.window.document, macroCalls));
-            newDom.window.close();
-            delete newDom;
+            sections.push(addSection(newDom, macroCalls));
         }
-        // dom.window.close();
-        // delete dom;
 
         doc.title = documentData.title;
         doc.body = sections;
@@ -130,9 +127,7 @@ function processDoc(filepath, uri, destination, digestPrefix) {
     if (!fs.existsSync(destDir)) {
         fs.mkdirSync(destDir, { recursive: true });
     }
-    // await writeFile(destination, JSON.stringify(doc, null, 2));
     fs.writeFileSync(destination, JSON.stringify(doc, null, 2));
-    // await writeFile(digestDestination, sourceDigest);
     fs.writeFileSync(digestDestination, sourceDigest);
     const m = process.memoryUsage().heapUsed / 1024 / 1024;
     console.log(`MEM: ${m.toFixed(2)} MB`);
@@ -149,6 +144,7 @@ function processDoc(filepath, uri, destination, digestPrefix) {
 
 function addSection(document, macroCalls) {
     // If the section is BCD scrap all the HTML
+
     if (macroCalls.Compat && document.querySelector("div.bc-data")) {
         let compat = macroCalls.Compat[0];
         if (Array.isArray(compat)) {
@@ -177,7 +173,7 @@ function addSection(document, macroCalls) {
             value: {
                 id,
                 title,
-                content: document.querySelector("body").innerHTML.trim()
+                content: document.firstChild.innerHTML.trim()
             }
         };
     }
@@ -185,7 +181,7 @@ function addSection(document, macroCalls) {
     return {
         type: "prose",
         value: {
-            content: document.querySelector("body").innerHTML.trim()
+            content: document.firstChild.innerHTML.trim()
         }
     };
 }
