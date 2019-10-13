@@ -16,154 +16,264 @@ const fs = require("fs");
 const path = require("path");
 const { JSDOM } = require("jsdom");
 const util = require("util");
+const crypto = require("crypto");
+
 const minimist = require("minimist");
 const buildOptions = require("minimist-options");
 const glob = require("glob");
 
-const { toMarkdown } = require("./to-markdown.js");
-// const { removeNode, removeTitleAttributes } = require("./clean-html.js");
-const {
-    processInteractiveExample
-} = require("./process-macros/process-interactive-example");
-const { processCompat } = require("./process-macros/process-compat");
-const { processLiveSamples } = require("./process-macros/process-live-samples");
-
-// const { JSDOM } = jsdom;
+const { packageBCD } = require("../build-json/resolve-bcd");
 
 // Turn callback based functions into functions you can "await".
 const globPromise = util.promisify(glob);
 const readFile = util.promisify(fs.readFile);
+const writeFile = util.promisify(fs.writeFile);
 
-/**
- * Just writes the doc out where we want.
- */
-function writeDoc(destination, subpath, name, doc) {
-    const dest = path.join(destination, subpath, name);
-    // const destDir = path.dirname(dest);
-    // if (!fs.existsSync(destDir)) {
-    //     fs.mkdirSync(destDir, { recursive: true });
-    // }
-    fs.writeFileSync(dest, doc);
-}
+function processDoc(filepath, uri, destination, digestPrefix) {
+    const digestDestination = destination + ".digest";
+    // const filecontent = await readFile(filepath, "utf8");
+    const filecontent = fs.readFileSync(filepath, "utf8");
 
-// function getPageJSON(url) {
-//     return fetch(url).then(response => response.json());
-// }
+    const hashSum = crypto.createHash("md5");
+    const sourceDigest = `${digestPrefix}.${hashSum
+        .update(filecontent)
+        .digest("hex")
+        .slice(0, 7)}`;
 
-// function getPageHTML(url) {
-//     return fetch(url).then(response => response.text());
-// }
-
-/**
- * Process macros in the page.
- * This can result in:
- *     - adding new front matter items (e.g. BCD query)
- *     - change the page content (e.g. removing the BCD table)
- *     - even creating new files (e.g. files comprising live samples)
- */
-async function processMacros(dom, kumaRaw, destination) {
-    // to process macros, we need the version before macros are executed
-    // const mdnWithMacroCalls = await getPageHTML(baseURL + relativeURL + "?raw");
-    // `result` gets mutated by the functions that process macros
-    let result = {
-        frontMatter: "",
-        dom: dom
+    let previousSourceDigest = null;
+    try {
+        // previousSourceDigest = await readFile(digestDestination, "utf8");
+        previousSourceDigest = fs.readFileSync(digestDestination, "utf8");
+    } catch (er) {
+        // Ignore
+    }
+    if (previousSourceDigest && sourceDigest === previousSourceDigest) {
+        // Already processed!
+        return null;
+    }
+    const doc = {
+        mdn_url: uri
     };
-    result = await processInteractiveExample(kumaRaw, result);
-    result = await processCompat(kumaRaw, result);
-    result = await processLiveSamples(kumaRaw, result, destination);
-    return result;
-}
-
-// /**
-//  * Process a single MDN page.
-//  * - convert it to a DOM fragment
-//  * - do some generic cleanup (e.g. removing title attributes)
-//  * - process various macro calls in the page.
-//  * - convert the DOM->HTML->Markdown
-//  * - write out the file, including front matter and content
-//  */
-// async function processDoc(relativeURL, title, destination) {
-//     const mdnPage = await getPageHTML(baseURL + relativeURL + "?raw&macros");
-//     const dom = new JSDOM(mdnPage);
-//     removeTitleAttributes(dom);
-//     removeNode(dom, "section.Quick_links");
-//     const result = await processMacros(dom, relativeURL, destination);
-//     const md = String(await toMarkdown(result.dom.serialize()));
-//     const frontMatter = `---\ntitle: '${title}'\nmdn_url: ${baseURL +
-//         relativeURL}\n${result.frontMatter}---\n`;
-//     writeDoc(destination, relativeURL.split("/").pop(), `${frontMatter}${md}`);
-// }
-
-// /**
-//  * If 'scrape-children' was passed, scrape the children of the given page
-//  * and process them as well as the parent.
-//  * Otherwise just process the given page.
-//  */
-// async function main(args) {
-//     if (args.includes("--scrape-children")) {
-//         const childrenJSON = await getPageJSON(args[0] + "$children");
-//         childrenJSON.subpages.map(child => {
-//             // the final component of the parent's URL
-//             // is used as a subdirectory for the children
-//             const subpath = args[0].split("/").pop();
-//             processDoc(child.url, child.title, path.join(args[1], subpath));
-//         });
-//     }
-//     const docJSON = await getPageJSON(args[0] + "$json");
-//     processDoc(docJSON.url, docJSON.title, args[1]);
-// }
-
-async function processDoc(filepath, uri, destination) {
-    const json = JSON.parse(await readFile(filepath, "utf8"));
-    console.log(json);
+    let json;
+    if (filecontent) {
+        // try {
+        json = JSON.parse(filecontent);
+        // } catch (err) {
+        //     console.log({ filecontent });
+        //     // cole.error(`filecontent: ${filecontent}`);
+        //     throw err;
+        // }
+    } else {
+        console.warn(`${filepath} is completely empty`);
+        return null;
+    }
     const { documentData } = json;
-    const frontMatter = [["title", documentData.title], ["mdn_url", uri]];
-    // Last but not least...
-    frontMatter.push(["recipe", "mdn-legacy"]);
 
-    const destDir = path.join(destination, uri);
+    if (!documentData) {
+        if (!json.redirectURL) {
+            throw new Error(`No idea how to deal with that! ${filecontent}`);
+        }
+        doc.redirect_url = json.redirectURL;
+    } else {
+        // const dom = new JSDOM(documentData.bodyHTML.trim());
+        // const { document } = dom.window;
+        const document = JSDOM.fragment(documentData.bodyHTML.trim());
+
+        // Remove those '<span class="alllinks"><a href="/en-US/docs/tag/Web">View All...</a></span>' links
+        [...document.querySelectorAll("span.alllinks")].forEach(node =>
+            node.parentNode.removeChild(node)
+        );
+        // Remove any completely empty '<p>', '<dl>' tags
+        [...document.querySelectorAll("p,dl,div")]
+            .filter(node => {
+                return !node.firstChild;
+            })
+            .forEach(node => node.parentNode.removeChild(node));
+
+        const sections = [];
+        if (!documentData.raw) {
+            throw new Error(`documentData in ${filepath} does not have 'raw'`);
+        }
+        let macroCalls;
+        try {
+            macroCalls = extractMacroCalls(documentData.raw);
+        } catch (err) {
+            console.log(`extractMacroCalls failed on: ${filepath}`);
+            throw err;
+        }
+
+        let newDom = new JSDOM("");
+        [...document.childNodes].forEach(child => {
+            if (child.nodeName === "H2") {
+                sections.push(addSection(newDom.window.document, macroCalls));
+                newDom.window.close();
+                delete newDom;
+                newDom = new JSDOM("");
+            }
+            newDom.window.document.body.appendChild(child);
+        });
+        if (newDom) {
+            sections.push(addSection(newDom.window.document, macroCalls));
+            newDom.window.close();
+            delete newDom;
+        }
+        // dom.window.close();
+        // delete dom;
+
+        doc.title = documentData.title;
+        doc.body = sections;
+        doc.sidebar = documentData.quickLinksHTML.trim();
+        doc.last_modified = documentData.lastModified;
+    }
+
+    const destDir = path.dirname(destination);
     if (!fs.existsSync(destDir)) {
         fs.mkdirSync(destDir, { recursive: true });
     }
-
-    const dom = new JSDOM(documentData.bodyHTML.trim());
-    const result = await processMacros(dom, documentData.raw, destDir);
-    console.log("RESULT:", result);
-
-    const md = String(await toMarkdown(documentData.bodyHTML.trim()));
-
-    const frontMatterString = frontMatter
-        .map(([key, value]) => `${key}: ${value}`)
-        .join("\n");
-    const body = `---\n${frontMatterString}\n---\n\n${md}\n`;
-
-    const sidebar = documentData.quickLinksHTML.trim();
-
-    // const name = uri.split("/").pop();
-    const mdName = `docs.md`;
-    const sidebarName = `sidebar.html`;
-
-    writeDoc(destination, uri.slice(1), mdName, body);
-    writeDoc(destination, uri.slice(1), sidebarName, sidebar);
+    // await writeFile(destination, JSON.stringify(doc, null, 2));
+    fs.writeFileSync(destination, JSON.stringify(doc, null, 2));
+    // await writeFile(digestDestination, sourceDigest);
+    fs.writeFileSync(digestDestination, sourceDigest);
+    const m = process.memoryUsage().heapUsed / 1024 / 1024;
+    console.log(`MEM: ${m.toFixed(2)} MB`);
+    // if (process.memoryUsage().heapUsed > 326099792) {
+    //     global.gc();
+    //     console.log(
+    //         "GC GC GC GC GC GC GC GC GC GC GC GC GC GC GC GC GC GC GC GC GC"
+    //     );
+    //     // await new Promise(resolve => setTimeout(resolve, 1000));
+    // }
+    //
+    return destination;
 }
 
-async function start(source, destination, searchfilter = "") {
-    const allFiles = await globPromise(path.join(source, "**/*.json"));
+function addSection(document, macroCalls) {
+    // If the section is BCD scrap all the HTML
+    if (macroCalls.Compat && document.querySelector("div.bc-data")) {
+        let compat = macroCalls.Compat[0];
+        if (Array.isArray(compat)) {
+            // In KumaScript there's a 2nd argument that is the depth.
+            // E.g. `{{compat("html.elements.link", 2)}}`
+            // XXX I *think* that's just a KumaScript thing and not
+            // related to the 'mdn-browser-compat-data' package.
+            compat = compat[0];
+        }
+        if (typeof compat !== "string") {
+            throw new Error(`Unrecognized Compat first argument: ${compat}`);
+        }
+        const bcdData = packageBCD(compat);
+        return {
+            type: "browser_compatibility",
+            value: bcdData
+        };
+    }
+    const h2 = document.querySelector("h2");
+    if (h2) {
+        const id = h2.id;
+        const title = h2.textContent;
+        h2.parentNode.removeChild(h2);
+        return {
+            type: "prose",
+            value: {
+                id,
+                title,
+                content: document.querySelector("body").innerHTML.trim()
+            }
+        };
+    }
+    // all else, leave as is
+    return {
+        type: "prose",
+        value: {
+            content: document.querySelector("body").innerHTML.trim()
+        }
+    };
+}
+
+async function start(source, outDir, searchfilter = "") {
+    // Every input file's content is a parameter to precheck if we've
+    // already consumed it before.
+    // But what if *this* very file here has changed but the inputs
+    // haven't? That's what this is for...
+    const selfDigest = crypto
+        .createHash("md5")
+        .update(await readFile(__filename))
+        .digest("hex")
+        .slice(0, 7);
+
+    const allFiles = await globPromise(path.join(source, "**/*.json"), {
+        // There are folders like 'manifest.json' which must be ignored.
+        nodir: true
+    });
     const files = allFiles
-        .map(p => {
-            return {
-                filepath: p,
-                uri: "/" + path.relative(source, path.dirname(p))
-            };
+        .map(filepath => {
+            let uri = "/";
+            if (path.basename(filepath) === "index.json") {
+                // E.g. /en-US/Web/HTML/Element/index.json
+                uri = "/" + path.relative(source, path.dirname(filepath));
+            } else {
+                // E.g. /en-US/Web/HTML/Element/video.json
+                uri =
+                    "/" +
+                    path.relative(source, filepath).replace(/\.json$/, "");
+            }
+            const destination = path.join(outDir, uri) + ".json";
+
+            // To respect the legacy have to put the "/docs/" in after the
+            // locale.
+            if (uri.split("/")[1] !== "docs") {
+                const parts = uri.split("/");
+                parts.splice(1, 0, "docs");
+                uri = parts.join("/");
+            }
+            return { filepath, uri, destination };
         })
         .filter(o => {
             return !searchfilter || o.uri.includes(searchfilter);
         });
-    return await Promise.all(
-        files.map(o => processDoc(o.filepath, o.uri, destination))
-    );
-    // console.log(values);
+    const filesLength = files.length;
+    return files.map((o, index) => {
+        const t0 = Date.now();
+        const wrote = processDoc(o.filepath, o.uri, o.destination, selfDigest);
+        const t1 = Date.now();
+        if (wrote) {
+            const p = (100 * (index + 1)) / filesLength;
+            console.log(
+                `(${index} - ${p.toFixed(1)}%) Wrote ${wrote} in ${t1 - t0}ms`
+            );
+        }
+
+        return wrote;
+    });
+}
+
+function extractMacroCalls(text) {
+    const calls = {};
+    for (const match of text.matchAll(/{{\s*(\w+)\s*\((.*?)\)\s*}}/g)) {
+        const macroName = match[1];
+        if (!calls[macroName]) {
+            calls[macroName] = [];
+        }
+        const macroArgs = evaluateMacroArgs(match[2].trim());
+        calls[macroName].push(macroArgs);
+    }
+    return calls;
+}
+
+function evaluateMacroArgs(argsString) {
+    if (argsString.startsWith("{") && argsString.endsWith("}")) {
+        return JSON.parse(argsString);
+    }
+    if (argsString.includes(",")) {
+        return eval(`[${argsString}]`);
+    }
+    // XXX A proper parser instead??
+    try {
+        return eval(argsString);
+    } catch (err) {
+        console.warn(`Unable to parse: ${argsString}`);
+        return argsString;
+    }
 }
 
 async function main(argv) {
@@ -202,8 +312,20 @@ Options:
         process.exit(1);
     }
     const [source, destination] = args["_"];
-    // const source = args[0];
-    // const destination = args[1];
-    start(source, destination, args["searchfilter"]);
+    const t0 = new Date();
+    const values = await start(source, destination, args["searchfilter"]);
+    const t1 = new Date();
+    const written = values.filter(v => v).length;
+    const skipped = values.length - written;
+    if (written) {
+        console.log(`Wrote ${written} files.`);
+        console.log(`Roughly ${((t1 - t0) / written).toFixed(1)}ms/page`);
+    }
+    if (skipped) {
+        console.log(
+            `Skipped ${skipped} files because unchanged digest inputs.`
+        );
+    }
+    console.log(`Total time: ${t1 - t0}ms.`);
 }
 main(process.argv.slice(2));
