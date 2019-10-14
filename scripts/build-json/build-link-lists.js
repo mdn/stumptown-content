@@ -30,21 +30,6 @@ async function itemFromFile(includeShortDescriptions, filePath) {
 }
 
 /**
- * Build a list of links from a special YAML file called a "chapter list"
- * that is just an ordered list of pages.
- */
-async function linkListFromChapterList(chapterListPath, includeShortDescriptions = false) {
-  const fullPath = path.join(ROOT, chapterListPath);
-  const fullDir = path.dirname(fullPath);
-  const chapterList = yaml.safeLoad(fs.readFileSync(fullPath, 'utf8'));
-  const chapterPaths = chapterList.chapters.map(chapter => path.join(fullDir, chapter));
-  return {
-    title: chapterList.title,
-    content: await Promise.all(chapterPaths.map(itemFromFile.bind(null, includeShortDescriptions)))
-  }
-}
-
-/**
  * Given a directory that should contain content for a single page,
  * extract the things needed for a link:
  *    - title, URL, and (if required) short description
@@ -61,11 +46,27 @@ async function itemFromDirectory(includeShortDescriptions, itemDirectory) {
 }
 
 /**
- * Build a list of links from a directory:
- * - list all directories under this one
- * - each of those directories is expected to contain content for a single page,
- * - we want to extract the things needed for a link:
- *    - title, URL, and (if required) short description
+ * Build a list of links from a special YAML file called a "chapter list".
+ *
+ * Each item in the list is a directory containing content for a single page.
+ */
+async function linkListFromChapterList(chapterListPath, includeShortDescriptions = false) {
+  const fullPath = path.join(ROOT, chapterListPath);
+  const fullDir = path.dirname(fullPath);
+  const chapterList = yaml.safeLoad(fs.readFileSync(fullPath, 'utf8'));
+  const chapterPaths = chapterList.chapters.map(chapter => path.join(fullDir, chapter));
+  return {
+    title: chapterList.title,
+    content: await Promise.all(chapterPaths.map(itemFromDirectory.bind(null, includeShortDescriptions)))
+  }
+}
+
+/**
+ * Build a list of links from a directory.
+ *
+ * List all directories immediately under this one.
+ *
+ * Each of those directories is expected to contain content for a single page.
  */
 async function linkListFromDirectory(title, directory, includeShortDescriptions = false) {
   const fullPath = path.join(ROOT, directory);
@@ -78,13 +79,15 @@ async function linkListFromDirectory(title, directory, includeShortDescriptions 
 }
 
 /**
- * Build a list of links from an array of file paths
+ * Build a list of links from an array of paths.
+ *
+ * Each path is a directory containing content for a single page.
  */
 async function linkListFromFilePaths(title, filePaths, includeShortDescriptions = false) {
   const fullFilePaths = filePaths.map(filePath => path.join(ROOT, filePath));
   return {
     title: title,
-    content: await Promise.all(fullFilePaths.map(itemFromFile.bind(null, includeShortDescriptions)))
+    content: await Promise.all(fullFilePaths.map(itemFromDirectory.bind(null, includeShortDescriptions)))
   }
 }
 
