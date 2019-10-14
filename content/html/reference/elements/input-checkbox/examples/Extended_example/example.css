@@ -1,0 +1,23 @@
+html {
+  font-family: sans-serif;
+}
+
+form {
+  width: 600px;
+  margin: 0 auto;
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+fieldset {
+  background: cyan;
+  border: 5px solid blue;
+}
+
+legend {
+  padding: 10px;
+  background: blue;
+  color: cyan;
+}

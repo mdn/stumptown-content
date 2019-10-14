@@ -62,8 +62,20 @@ async function packageAttribute(attributePath) {
     return attribute;
 }
 
-function packageAttributes(root) {
-    const attributePaths = fs.readdirSync(root).map(relative => path.join(root, relative));
+function getAttributePaths(root, attributesKey) {
+  if (Array.isArray(attributesKey)) {
+    return attributesKey.map(relative => path.join(root, relative));
+  }
+  else {
+    const attributesDirectory = path.join(root, attributesKey);
+    if (fs.lstatSync(attributesDirectory).isDirectory()) {
+      return fs.readdirSync(attributesDirectory).map(relative => path.join(attributesDirectory, relative));
+    }
+  }
+}
+
+function packageAttributes(root, attributesKey) {
+    const attributePaths = getAttributePaths(root, attributesKey);
     return Promise.all(attributePaths.map(packageAttribute));
 }
 

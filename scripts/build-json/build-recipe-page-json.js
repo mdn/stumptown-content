@@ -18,8 +18,7 @@ async function processMetaIngredient(elementPath, ingredientName, data) {
             return packageBCD(data.browser_compatibility);
         case 'attributes':
             if (data.attributes.element_specific) {
-                const attributesPath = path.join(elementPath, data.attributes.element_specific);
-                return await packageAttributes(attributesPath);
+                return await packageAttributes(elementPath, data.attributes.element_specific);
             } else {
                 return [];
             }
