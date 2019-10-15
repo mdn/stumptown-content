@@ -119,7 +119,7 @@ function processDoc(filepath, uri, destination, digestPrefix) {
 
         doc.title = documentData.title;
         doc.body = sections;
-        doc.sidebar = documentData.quickLinksHTML.trim();
+        doc.sidebarHTML = documentData.quickLinksHTML.trim();
         doc.last_modified = documentData.lastModified;
     }
 
@@ -129,16 +129,6 @@ function processDoc(filepath, uri, destination, digestPrefix) {
     }
     fs.writeFileSync(destination, JSON.stringify(doc, null, 2));
     fs.writeFileSync(digestDestination, sourceDigest);
-    const m = process.memoryUsage().heapUsed / 1024 / 1024;
-    console.log(`MEM: ${m.toFixed(2)} MB`);
-    // if (process.memoryUsage().heapUsed > 326099792) {
-    //     global.gc();
-    //     console.log(
-    //         "GC GC GC GC GC GC GC GC GC GC GC GC GC GC GC GC GC GC GC GC GC"
-    //     );
-    //     // await new Promise(resolve => setTimeout(resolve, 1000));
-    // }
-    //
     return destination;
 }
 
@@ -186,7 +176,7 @@ function addSection(document, macroCalls) {
     };
 }
 
-async function start(source, outDir, searchfilter = "") {
+async function start(source, outDir, searchfilter = "", showmemory = false) {
     // Every input file's content is a parameter to precheck if we've
     // already consumed it before.
     // But what if *this* very file here has changed but the inputs
@@ -219,7 +209,7 @@ async function start(source, outDir, searchfilter = "") {
             // locale.
             if (uri.split("/")[1] !== "docs") {
                 const parts = uri.split("/");
-                parts.splice(1, 0, "docs");
+                parts.splice(2, 0, "docs");
                 uri = parts.join("/");
             }
             return { filepath, uri, destination };
@@ -234,9 +224,11 @@ async function start(source, outDir, searchfilter = "") {
         const t1 = Date.now();
         if (wrote) {
             const p = (100 * (index + 1)) / filesLength;
-            console.log(
-                `(${index} - ${p.toFixed(1)}%) Wrote ${wrote} in ${t1 - t0}ms`
-            );
+            console.log(`(${p.toFixed(1)}%) Wrote ${wrote} in ${t1 - t0}ms`);
+            if (showmemory) {
+                const m = process.memoryUsage().heapUsed / 1024 / 1024;
+                console.log(`MEM: ${m.toFixed(2)} MB`);
+            }
         }
 
         return wrote;
@@ -284,6 +276,11 @@ async function main(argv) {
             alias: "s",
             default: "",
             type: "string"
+        },
+        showmemory: {
+            alias: ["m"],
+            default: false,
+            type: "boolean"
         }
     });
     const args = minimist(argv, options);
@@ -295,6 +292,7 @@ Usage:
 Options:
   -h, --help           prints this
   -s, --search         search filter when finding from the source directory
+  -m, --show-memory    print amount of memory used
 `);
     }
 
@@ -309,7 +307,12 @@ Options:
     }
     const [source, destination] = args["_"];
     const t0 = new Date();
-    const values = await start(source, destination, args["searchfilter"]);
+    const values = await start(
+        source,
+        destination,
+        args["searchfilter"],
+        args.showmemory
+    );
     const t1 = new Date();
     const written = values.filter(v => v).length;
     const skipped = values.length - written;
@@ -322,6 +325,6 @@ Options:
             `Skipped ${skipped} files because unchanged digest inputs.`
         );
     }
-    console.log(`Total time: ${t1 - t0}ms.`);
+    console.log(`Total time: ${((t1 - t0) / 1000).toFixed(1)}ms.`);
 }
 main(process.argv.slice(2));
