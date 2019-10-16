@@ -26,14 +26,6 @@ async function collectRecipes(start = "recipes") {
     return collectedRecipes;
 }
 
-/**
- * Check if an mdast tree has a recipe attached (by the `./valid-recipe` plugin).
- */
-function hasRecipe(tree) {
-    return tree && tree.data && tree.data.recipe !== undefined;
-}
-
 module.exports = {
-    collectRecipes,
-    hasRecipe
+    collectRecipes
 };

@@ -1,6 +1,5 @@
 const visit = require("unist-util-visit");
 
-const { hasRecipe } = require("./recipes");
 const { isHeadingLevel2, remarkToSlug } = require("./heading-utils");
 
 const ruleId = "stumptown-linter:missing-section";
@@ -27,7 +26,7 @@ function requiredSections(recipe) {
  */
 function attacher() {
     return async function transformer(tree, file) {
-        if (hasRecipe(tree)) {
+        if (tree && tree.data && tree.data.recipe !== undefined) {
             const expectedSections = requiredSections(tree.data.recipe);
             const actualSections = [];
 

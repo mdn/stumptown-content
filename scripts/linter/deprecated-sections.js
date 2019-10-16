@@ -1,6 +1,5 @@
 const visit = require("unist-util-visit");
 
-const { hasRecipe } = require("./recipes");
 const {
     isHeadingLevel2,
     remarkToSlug,
@@ -18,7 +17,7 @@ function attacher(options) {
     const deprecatedSections = options.sections;
 
     return async function transformer(tree, file) {
-        if (hasRecipe(tree)) {
+        if (tree && tree.data && tree.data.recipe !== undefined) {
             visit(tree, isHeadingLevel2, node => {
                 const slug = remarkToSlug(node);
                 const deprecations =
