@@ -20,7 +20,8 @@ function attacher(options) {
     return function transformer(tree, file) {
         visit(tree, "yaml", node => {
             const validRecipes = Object.keys(recipes);
-            const recipe = node.data.yaml.recipe;
+            const recipe =
+                node.data && node.data.yaml ? node.data.yaml.recipe : undefined;
 
             if (recipe === undefined) {
                 if (expectRecipe(file.path)) {

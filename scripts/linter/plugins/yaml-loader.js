@@ -10,10 +10,7 @@ function attacher() {
             try {
                 node.data = { yaml: yaml.safeLoad(node.value) || {} };
             } catch (error) {
-                const message = file.message(
-                    `${error.name}: ${error.message}`,
-                    node
-                );
+                const message = file.message(error, node);
                 message.fatal = true;
             }
         });
