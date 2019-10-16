@@ -1,6 +1,13 @@
 const visit = require("unist-util-visit");
+const path = require("path");
 
 const ruleId = "stumptown-linter:frontmatter-valid-recipe";
+
+function expectRecipe(filePath) {
+    const basename = path.basename(filePath, ".md");
+    const parentDir = path.basename(path.dirname(filePath));
+    return basename === parentDir;
+}
 
 /**
  * If a tree contains a YAML (frontmatter) node and it contains a recipe, then confirm that it's a recognized recipe.
@@ -16,12 +23,18 @@ function attacher(options) {
             const recipe = node.data.yaml.recipe;
 
             if (recipe === undefined) {
-                // Uncomment this next line to see what files we're _not_ checking
-                // file.message("files without a recipe are not linted");
-                return;
-            }
-
-            if (validRecipes.includes(recipe)) {
+                if (expectRecipe(file.path)) {
+                    const message = file.message(
+                        "recipe frontmattter expected from file path but not defined",
+                        node,
+                        ruleId
+                    );
+                    message.fatal = true;
+                } else {
+                    // Uncomment this next line to see what files we're _not_ checking against recipes
+                    // file.message("files without a recipe are not linted");
+                }
+            } else if (validRecipes.includes(recipe)) {
                 tree.data = tree.data || {};
                 tree.data.recipe = recipes[recipe];
                 tree.data.recipeName = recipe;
