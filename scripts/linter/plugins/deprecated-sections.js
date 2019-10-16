@@ -3,9 +3,9 @@ const visit = require("unist-util-visit");
 const ruleId = "stumptown-linter:deprecated-section";
 
 /**
- * A unified plugin that warns on deprecated sections in Markdown files, if the root node has `tree.data.recipeName`.
+ * A unified plugin that warns on deprecated sections in Markdown files, if `tree.data.recipeName` is set.
  *
- * `options.sections` -- an object consisting of recipe names keyed to arrays of deprecated section slugs.
+ * `options.sections` -- an object consisting of recipe names keyed to arrays of deprecated section slugs
  */
 function attacher(options) {
     const deprecatedSections = options.sections;

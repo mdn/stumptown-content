@@ -2,7 +2,7 @@ const fsPromises = require("fs").promises;
 const path = require("path");
 
 /**
- * Walks the content directory tree (`start`) yielding Markdown or `meta.yaml` files with `recipe` frontmatter.
+ * Walks the content directory tree (`start`) yielding Markdown files.
  */
 async function* walkContent(start = "content") {
     const files = await fsPromises.readdir(start, { withFileTypes: true });
@@ -17,7 +17,7 @@ async function* walkContent(start = "content") {
 }
 
 /**
- * Return an array of paths to (probably) lintable Markdown or YAML files.
+ * Return an array of paths to Markdown files.
  */
 async function collectDocs() {
     const candidateDocs = [];

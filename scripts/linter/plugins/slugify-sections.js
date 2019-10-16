@@ -1,8 +1,7 @@
-const visit = require("unist-util-visit");
-
 const remark2retext = require("remark-retext");
 const stringify = require("retext-stringify");
 const unified = require("unified");
+const visit = require("unist-util-visit");
 
 /**
  * Convert an mdast node to plain text.

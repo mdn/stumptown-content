@@ -1,5 +1,5 @@
-const visit = require("unist-util-visit");
 const path = require("path");
+const visit = require("unist-util-visit");
 
 const ruleId = "stumptown-linter:frontmatter-valid-recipe";
 
