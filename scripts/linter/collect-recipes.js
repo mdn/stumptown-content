@@ -9,10 +9,10 @@ const collectedRecipes = {};
  */
 async function collectRecipes(start = "recipes") {
     async function loadRecipes() {
-        const files = await fsPromises.readdir(start, { withFileTypes: true });
+        const files = await fsPromises.readdir(start);
         for (const f of files) {
-            const fp = path.join(start, f.name);
-            const recipeName = path.basename(f.name, ".yaml");
+            const fp = path.join(start, f);
+            const recipeName = path.basename(f, ".yaml");
             const yamlObj = yaml.safeLoad(await fsPromises.readFile(fp));
 
             collectedRecipes[recipeName] = yamlObj;
