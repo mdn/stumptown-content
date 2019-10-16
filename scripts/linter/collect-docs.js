@@ -7,16 +7,11 @@ const path = require("path");
 async function* walkContent(start = "content") {
     const files = await fsPromises.readdir(start, { withFileTypes: true });
 
-    const hasMeta = files.map(f => f.name).includes("meta.yaml");
-    if (hasMeta) {
-        yield path.join(start, "meta.yaml");
-    } else {
-        for (const f of files) {
-            if (f.name.endsWith(".md")) {
-                yield path.join(start, f.name);
-            } else if (f.isDirectory()) {
-                yield* walkContent(path.join(start, f.name));
-            }
+    for (const f of files) {
+        if (f.name.endsWith(".md")) {
+            yield path.join(start, f.name);
+        } else if (f.isDirectory()) {
+            yield* walkContent(path.join(start, f.name));
         }
     }
 }
