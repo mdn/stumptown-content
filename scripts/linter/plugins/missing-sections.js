@@ -8,7 +8,7 @@ const ruleId = "stumptown-linter:missing-section";
 function requiredSections(recipe) {
     const proseRequiredIngredients = recipe.body.filter(
         ingredient =>
-            ingredient.startsWith && // ignore non-string ingredients
+            typeof ingredient === "string" &&
             ingredient.startsWith("prose.") &&
             !ingredient.endsWith("?") &&
             !ingredient.endsWith("*")
