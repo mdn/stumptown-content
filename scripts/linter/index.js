@@ -6,7 +6,7 @@ const stringify = require("remark-stringify");
 const unified = require("unified");
 const vfile = require("to-vfile");
 
-const { collectRecipes } = require("./recipes");
+const collectRecipes = require("./collect-recipes");
 const collectDocs = require("./collect-docs");
 const deprecatedSections = require("./deprecated-sections");
 const missingSections = require("./missing-sections");

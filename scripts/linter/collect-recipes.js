@@ -26,6 +26,4 @@ async function collectRecipes(start = "recipes") {
     return collectedRecipes;
 }
 
-module.exports = {
-    collectRecipes
-};
+module.exports = collectRecipes;
