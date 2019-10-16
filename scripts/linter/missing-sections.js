@@ -5,7 +5,7 @@ const { isHeadingLevel2, remarkToSlug } = require("./heading-utils");
 const ruleId = "stumptown-linter:missing-section";
 
 /**
- * Re
+ * Given a recipe, return a list of section slugs for required for that recipe.
  */
 function requiredSections(recipe) {
     const proseRequiredIngredients = recipe.body.filter(
