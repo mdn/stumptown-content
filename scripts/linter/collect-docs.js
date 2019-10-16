@@ -17,23 +17,13 @@ async function* walkContent(start = "content") {
 }
 
 /**
- * Checks if there's a recipe name in `filePath`.
- */
-async function isRootDoc(filePath) {
-    const file = await fsPromises.readFile(filePath);
-    return /^recipe: [\w-]+$/gm.test(file);
-}
-
-/**
  * Return an array of paths to (probably) lintable Markdown or YAML files.
  */
 async function collectDocs() {
     const candidateDocs = [];
 
     for await (const candidateDoc of walkContent()) {
-        if (await isRootDoc(candidateDoc)) {
-            candidateDocs.push(candidateDoc);
-        }
+        candidateDocs.push(candidateDoc);
     }
 
     return candidateDocs;

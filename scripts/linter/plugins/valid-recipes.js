@@ -15,6 +15,12 @@ function attacher(options) {
             const validRecipes = Object.keys(recipes);
             const recipe = node.data.yaml.recipe;
 
+            if (recipe === undefined) {
+                // Uncomment this next line to see what files we're _not_ checking
+                // file.message("files without a recipe are not linted");
+                return;
+            }
+
             if (validRecipes.includes(recipe)) {
                 tree.data = tree.data || {};
                 tree.data.recipe = recipes[recipe];

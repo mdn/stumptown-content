@@ -8,7 +8,7 @@ function attacher() {
     return function transformer(tree, file) {
         visit(tree, "yaml", node => {
             try {
-                node.data = { yaml: yaml.safeLoad(node.value) };
+                node.data = { yaml: yaml.safeLoad(node.value) || {} };
             } catch (error) {
                 const message = file.message(
                     `${error.name}: ${error.message}`,
