@@ -8,7 +8,9 @@ const namedSections = [
     "Attributes",
     "Usage notes",
     "Accessibility concerns",
-    "See also"
+    "See also",
+    "Value",
+    "Validation"
 ];
 
 function sectionNameToSlug(sectionName) {
