@@ -7,10 +7,10 @@ const vfile = require("to-vfile");
 
 const collectRecipes = require("./collect-recipes");
 const collectDocs = require("./collect-docs");
-const deprecatedSections = require("./deprecated-sections");
-const missingSections = require("./missing-sections");
-const validRecipe = require("./valid-recipes");
-const yamlLoader = require("./yaml-loader");
+const deprecatedSections = require("./plugins/deprecated-sections");
+const missingSections = require("./plugins/missing-sections");
+const validRecipe = require("./plugins/valid-recipes");
+const yamlLoader = require("./plugins/yaml-loader");
 
 async function main() {
     const recipes = await collectRecipes();

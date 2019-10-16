@@ -1,6 +1,6 @@
 const visit = require("unist-util-visit");
 
-const { isHeadingLevel2, remarkToSlug } = require("./heading-utils");
+const { isHeadingLevel2, remarkToSlug } = require("../heading-utils");
 
 const ruleId = "stumptown-linter:missing-section";
 

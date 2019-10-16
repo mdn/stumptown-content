@@ -4,7 +4,7 @@ const {
     isHeadingLevel2,
     remarkToSlug,
     remarkToText
-} = require("./heading-utils");
+} = require("../heading-utils");
 
 const ruleId = "stumptown-linter:deprecated-section";
 
