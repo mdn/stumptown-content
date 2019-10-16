@@ -1,11 +1,5 @@
 const visit = require("unist-util-visit");
 
-const {
-    isHeadingLevel2,
-    remarkToSlug,
-    remarkToText
-} = require("../heading-utils");
-
 const ruleId = "stumptown-linter:deprecated-section";
 
 /**
@@ -18,19 +12,21 @@ function attacher(options) {
 
     return async function transformer(tree, file) {
         if (tree && tree.data && tree.data.recipe !== undefined) {
-            visit(tree, isHeadingLevel2, node => {
-                const slug = remarkToSlug(node);
-                const deprecations =
-                    deprecatedSections[tree.data.recipeName] || [];
+            const deprecations = deprecatedSections[tree.data.recipeName] || [];
 
-                if (deprecations.includes(slug)) {
-                    file.message(
-                        `"${remarkToText(node)}" is a deprecated section`,
-                        node,
-                        ruleId
-                    );
+            visit(
+                tree,
+                node => node.data && node.data.slug,
+                node => {
+                    if (deprecations.includes(node.data.slug)) {
+                        file.message(
+                            `"${node.data.slug}" is a deprecated section`,
+                            node,
+                            ruleId
+                        );
+                    }
                 }
-            });
+            );
         }
     };
 }

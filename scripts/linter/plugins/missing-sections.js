@@ -1,7 +1,5 @@
 const visit = require("unist-util-visit");
 
-const { isHeadingLevel2, remarkToSlug } = require("../heading-utils");
-
 const ruleId = "stumptown-linter:missing-section";
 
 /**
@@ -30,10 +28,11 @@ function attacher() {
             const expectedSections = requiredSections(tree.data.recipe);
             const actualSections = [];
 
-            visit(tree, isHeadingLevel2, node => {
-                const slug = remarkToSlug(node);
-                actualSections.push(slug);
-            });
+            visit(
+                tree,
+                node => node.data && node.data.slug,
+                node => actualSections.push(node.data.slug)
+            );
 
             for (const section of expectedSections) {
                 if (!actualSections.includes(section)) {

@@ -1,3 +1,5 @@
+const visit = require("unist-util-visit");
+
 const remark2retext = require("remark-retext");
 const stringify = require("retext-stringify");
 const unified = require("unified");
@@ -28,8 +30,18 @@ function isHeadingLevel2(node) {
     return node.type === "heading" && node.depth == 2;
 }
 
-module.exports = {
-    isHeadingLevel2,
-    remarkToSlug,
-    remarkToText
-};
+/**
+ * A unified plugin that sets `data.slug` for H2s.
+ */
+function attacher() {
+    return async function transformer(tree) {
+        if (tree && tree.data && tree.data.recipe !== undefined) {
+            visit(tree, isHeadingLevel2, node => {
+                const slug = remarkToSlug(node);
+                node.data = { ...node.data, slug };
+            });
+        }
+    };
+}
+
+module.exports = attacher;

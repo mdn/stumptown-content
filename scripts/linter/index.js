@@ -9,6 +9,7 @@ const collectRecipes = require("./collect-recipes");
 const collectDocs = require("./collect-docs");
 const deprecatedSections = require("./plugins/deprecated-sections");
 const missingSections = require("./plugins/missing-sections");
+const slugifySections = require("./plugins/slugify-sections");
 const validRecipe = require("./plugins/valid-recipes");
 const yamlLoader = require("./plugins/yaml-loader");
 
@@ -21,6 +22,7 @@ async function main() {
         .use(frontmatter, ["yaml"])
         .use(yamlLoader)
         .use(validRecipe, { recipes })
+        .use(slugifySections)
         .use(deprecatedSections, {
             sections: {
                 "html-element": ["usage_notes"],
