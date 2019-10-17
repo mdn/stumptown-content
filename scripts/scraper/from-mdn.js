@@ -20,14 +20,11 @@ const crypto = require("crypto");
 
 const minimist = require("minimist");
 const buildOptions = require("minimist-options");
-const glob = require("glob");
 
 const { packageBCD } = require("../build-json/resolve-bcd");
 
 // Turn callback based functions into functions you can "await".
-const globPromise = util.promisify(glob);
 const readFile = util.promisify(fs.readFile);
-const writeFile = util.promisify(fs.writeFile);
 
 function processDoc(filepath, uri, destination, digestPrefix) {
     const digestDestination = destination + ".digest";
@@ -56,13 +53,7 @@ function processDoc(filepath, uri, destination, digestPrefix) {
     };
     let json;
     if (filecontent) {
-        // try {
         json = JSON.parse(filecontent);
-        // } catch (err) {
-        //     console.log({ filecontent });
-        //     // cole.error(`filecontent: ${filecontent}`);
-        //     throw err;
-        // }
     } else {
         console.warn(`${filepath} is completely empty`);
         return null;
@@ -176,6 +167,20 @@ function addSection(document, macroCalls) {
     };
 }
 
+// https://www.peterbe.com/plog/nodejs-fs-walk-or-glob-or-fast-glob
+function walk(directory, extension = ".json", filepaths = []) {
+    const files = fs.readdirSync(directory);
+    for (let filename of files) {
+        const filepath = path.join(directory, filename);
+        if (fs.statSync(filepath).isDirectory()) {
+            walk(filepath, extension, filepaths);
+        } else if (path.extname(filename) === extension) {
+            filepaths.push(filepath);
+        }
+    }
+    return filepaths;
+}
+
 async function start(source, outDir, searchfilter = "", showmemory = false) {
     // Every input file's content is a parameter to precheck if we've
     // already consumed it before.
@@ -187,10 +192,7 @@ async function start(source, outDir, searchfilter = "", showmemory = false) {
         .digest("hex")
         .slice(0, 7);
 
-    const allFiles = await globPromise(path.join(source, "**/*.json"), {
-        // There are folders like 'manifest.json' which must be ignored.
-        nodir: true
-    });
+    const allFiles = walk(source);
     const files = allFiles
         .map(filepath => {
             let uri = "/";
