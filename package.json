@@ -24,7 +24,6 @@
         "test": "npm run lint-js && npm run lint-md && npm run spell-md"
     },
     "dependencies": {
-        "glob": "7.1.4",
         "gray-matter": "4.0.2",
         "js-yaml": "3.13.1",
         "jsdom": "15.2.0",
