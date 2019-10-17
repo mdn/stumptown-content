@@ -5,6 +5,7 @@ const matter = require('gray-matter');
 
 const { packageContributors } = require('./resolve-contributors');
 const related = require('./related-content');
+const specifications = require('./build-specs');
 const guidePage = require('./build-guide-page-json');
 const landingPage = require('./build-landing-page-json');
 const recipePage = require('./build-recipe-page-json');
@@ -77,6 +78,7 @@ async function buildPageJSON(docsPath) {
         const item = {
           title: data.title,
           mdn_url: data.mdn_url,
+          specifications: specifications.buildSpecs(data.spec_url),
           related_content: await related.buildRelatedContent(relatedContentSpec),
           body: body,
           contributors: contributors

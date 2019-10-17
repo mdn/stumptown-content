@@ -7,6 +7,8 @@ const jsdom = require('jsdom');
 
 const { JSDOM } = jsdom;
 
+const specifications = require('./build-specs');
+
 function extractFromSiblings(node, terminatorTags, contentType) {
     let content = '';
     let sib = node.nextSibling;
@@ -38,7 +40,7 @@ function packageValues(dom) {
 
 async function packageAttribute(attributePath) {
     const attributeMD = fs.readFileSync(attributePath, 'utf8');
-    const {content} = matter(attributeMD);
+    const {data, content} = matter(attributeMD);
     const contentHTML = await markdown.markdownToHTML(content);
     const dom = JSDOM.fragment(contentHTML);
     const attribute = {};
@@ -58,6 +60,9 @@ async function packageAttribute(attributePath) {
     if (h2Headings.length === 2) {
         attribute.values = packageValues(dom);
     }
+
+    // extract the specifications
+    attribute.specifications = specifications.buildSpecs(data.spec_url);
 
     return attribute;
 }
