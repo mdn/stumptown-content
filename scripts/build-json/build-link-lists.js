@@ -36,11 +36,13 @@ async function itemFromFile(includeShortDescriptions, filePath) {
  */
 async function itemFromDirectory(includeShortDescriptions, itemDirectory) {
   const items = fs.readdirSync(itemDirectory, {withFileTypes: true});
-  const filenames = items.filter(item => !item.isDirectory()).map(item => path.join(itemDirectory, item.name));
+  const filenames = items.filter(item => !item.isDirectory())
+    .filter(item => item.name.endsWith('.md'))
+    .map(item => path.join(itemDirectory, item.name));
   let content =  await Promise.all(filenames.map(itemFromFile.bind(null, includeShortDescriptions)));
   content = content.filter(e => !!e);
   if (content.length !== 1) {
-    throw(`${itemDirectory} should contain exactly one buildable item`);
+    throw new Error(`${itemDirectory} should contain exactly one buildable item (not ${content.length})`);
   }
   return content[0];
 }
