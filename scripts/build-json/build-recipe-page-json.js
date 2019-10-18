@@ -15,7 +15,12 @@ async function processMetaIngredient(elementPath, ingredientName, data) {
             }
             return packageInteractiveExample(data.interactive_example);
         case 'browser_compatibility':
-            return {query: data.browser_compatibility, data: packageBCD(data.browser_compatibility)};
+            return {
+              title: 'Browser compatibility',
+              id: 'browser_compatibility',
+              query: data.browser_compatibility,
+              data: packageBCD(data.browser_compatibility)
+            };
         case 'attributes':
             if (data.attributes.element_specific) {
                 return await packageAttributes(elementPath, data.attributes.element_specific);
@@ -24,7 +29,11 @@ async function processMetaIngredient(elementPath, ingredientName, data) {
             }
         case 'examples': {
           const examplesPaths = data.examples.map(relativePath => path.join(elementPath, relativePath));
-          return await packageExamples(examplesPaths);
+          return {
+            title: 'Examples',
+            id: 'examples',
+            examples: await packageExamples(examplesPaths)
+          };
         }
         case 'info_box':
             // TODO: implement packaging for info boxes

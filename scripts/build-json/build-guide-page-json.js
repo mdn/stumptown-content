@@ -14,8 +14,11 @@ async function processDirective(elementPath, directive) {
             }
         case 'embed-compat':
             return {
-                type: 'browser_compatibility',
-                value: bcd.packageBCD(directiveComponents[1])
+                type: 'browser_compatibility_table',
+                value: {
+                  query: directiveComponents[1],
+                  data: packageBCD(directiveComponents[1])
+                }
             }
         default:
             throw ('Unsupported guide directive');
