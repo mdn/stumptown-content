@@ -12,7 +12,9 @@ This article provides a basic guide to how `<link rel="preload">` works.
 
 You most commonly use `<link>` to load a CSS file to style your page with:
 
-    <link rel="stylesheet" href="styles/main.css">
+```html
+<link rel="stylesheet" href="styles/main.css">
+```
 
 Here however, we will use a `rel` value of `preload`, which turns `<link>` into a preloader for any resource we want. You will also need to specify:
 
@@ -21,22 +23,23 @@ Here however, we will use a `rel` value of `preload`, which turns `<link>` into 
 
 A simple example might look like this (see our [JS and CSS example source](https://github.com/mdn/html-examples/tree/master/link-rel-preload/js-and-css), and [also live](https://mdn.github.io/html-examples/link-rel-preload/js-and-css/)):
 
-    <head>
-      <meta charset="utf-8">
-      <title>JS and CSS preload example</title>
+```html
+<head>
+  <meta charset="utf-8">
+  <title>JS and CSS preload example</title
+  <link rel="preload" href="style.css" as="style">
+  <link rel="preload" href="main.js" as="script">
 
-      <link rel="preload" href="style.css" as="style">
-      <link rel="preload" href="main.js" as="script">
+  <link rel="stylesheet" href="style.css">
+</head>
 
-      <link rel="stylesheet" href="style.css">
-    </head>
+<body>
+  <h1>bouncing balls</h1>
+  <canvas></canvas>
 
-    <body>
-      <h1>bouncing balls</h1>
-      <canvas></canvas>
-
-      <script src="main.js" defer></script>
-    </body>
+  <script src="main.js" defer></script>
+</body>
+```
 
 Here we preload our CSS and JavaScript files so they will be available as soon as they are required for the rendering of the page later on. This example is trivial, as the browser probably discovers the `<link rel="stylesheet">` and `<script>` elements in the same chunk of HTML as the preloads, but the benefits can be seen much more clearly the later resources are discovered and the larger they are. For example:
 
@@ -76,19 +79,21 @@ Many different content types can be preloaded. The possible `as` attribute value
 
 You can see an example of this in our video example (see the [full source code](https://github.com/mdn/html-examples/tree/master/link-rel-preload/video), and also [the live version](https://mdn.github.io/html-examples/link-rel-preload/video/)):
 
-    <head>
-      <meta charset="utf-8">
-      <title>Video preload example</title>
+```html
+<head>
+  <meta charset="utf-8">
+  <title>Video preload example</title>
 
-      <link rel="preload" href="sintel-short.mp4" as="video" type="video/mp4">
-    </head>
-    <body>
-      <video controls>
-        <source src="sintel-short.mp4" type="video/mp4">
-        <source src="sintel-short.webm" type="video/webm">
-        <p>Your browser doesn't support HTML5 video. Here is a <a href="sintel-short.mp4">link to the video</a> instead.</p>
-      </video>
-    </body>
+  <link rel="preload" href="sintel-short.mp4" as="video" type="video/mp4">
+</head>
+<body>
+  <video controls>
+    <source src="sintel-short.mp4" type="video/mp4">
+    <source src="sintel-short.webm" type="video/webm">
+    <p>Your browser doesn't support HTML5 video. Here is a <a href="sintel-short.mp4">link to the video</a> instead.</p>
+  </video>
+</body>
+```
 
 So in this case, browsers that support MP4 videos will preload and use the MP4, making the video player hopefully smoother/more responsive for users. Browsers that don't support MP4 can still load the WebM version, but don't get the advantages of preloading. This shows how preloading content can be combined with the philosophy of progressive enhancement.
 
@@ -100,18 +105,20 @@ One interesting case where this applies, even if the fetch is not cross-origin, 
 
 Let's use this case as an example. You can see the full [example source code on GitHub](https://github.com/mdn/html-examples/tree/master/link-rel-preload/fonts) ([also see it live](https://mdn.github.io/html-examples/link-rel-preload/fonts/)):
 
-    <head>
-      <meta charset="utf-8">
-      <title>Web font example</title>
+```html
+<head>
+  <meta charset="utf-8">
+  <title>Web font example</title>
 
-      <link rel="preload" href="fonts/cicle_fina-webfont.woff2" as="font" type="font/woff2" crossorigin>
-      <link rel="preload" href="fonts/zantroke-webfont.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/cicle_fina-webfont.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/zantroke-webfont.woff2" as="font" type="font/woff2" crossorigin>
 
-      <link href="style.css" rel="stylesheet">
-    </head>
-    <body>
-      …
-    </body>
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  …
+</body>
+```
 
 Not only are we providing the MIME type hints in the `type` attributes, but we are also providing the `crossorigin` attribute to handle the CORS issue.
 
@@ -121,31 +128,33 @@ One nice feature of `<link>` elements is their ability to accept `media` attribu
 
 Let's look at an example (see it on GitHub — [source code](https://github.com/mdn/html-examples/tree/master/link-rel-preload/media), [live example](https://mdn.github.io/html-examples/link-rel-preload/media/)):
 
-    <head>
-      <meta charset="utf-8">
-      <title>Responsive preload example</title>
+```html
+<head>
+  <meta charset="utf-8">
+  <title>Responsive preload example</title>
 
-      <link rel="preload" href="bg-image-narrow.png" as="image" media="(max-width: 600px)">
-      <link rel="preload" href="bg-image-wide.png" as="image" media="(min-width: 601px)">
+  <link rel="preload" href="bg-image-narrow.png" as="image" media="(max-width: 600px)">
+  <link rel="preload" href="bg-image-wide.png" as="image" media="(min-width: 601px)">
 
-      <link rel="stylesheet" href="main.css">
-    </head>
-    <body>
-      <header>
-        <h1>My site</h1>
-      </header>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <header>
+    <h1>My site</h1>
+  </header>
 
-      <script>
-        var mediaQueryList = window.matchMedia("(max-width: 600px)");
-        var header = document.querySelector('header');
+  <script>
+    var mediaQueryList = window.matchMedia("(max-width: 600px)");
+    var header = document.querySelector('header');
 
-        if (mediaQueryList.matches) {
-          header.style.backgroundImage = 'url(bg-image-narrow.png)';
-        } else {
-          header.style.backgroundImage = 'url(bg-image-wide.png)';
-        }
-      </script>
-    </body>
+    if (mediaQueryList.matches) {
+      header.style.backgroundImage = 'url(bg-image-narrow.png)';
+    } else {
+      header.style.backgroundImage = 'url(bg-image-wide.png)';
+    }
+  </script>
+</body>
+```
 
 We include `media` attributes on our `<link>` elements so that a narrow image is preloaded if the user has a narrow viewport, and a wider image is loaded if they have a wide viewport. We use [`Window.matchMedia`](/en-US/docs/Web/API/Window/matchMedia) / [`MediaQueryList`](/en-US/docs/Web/API/MediaQueryList) to do this (see [Testing media queries](/en-US/docs/Web/CSS/Media_Queries/Testing_media_queries) for more).
 
@@ -157,7 +166,7 @@ This doesn't have to be limited to images, or even files of the same type — th
 
 Another nice thing about these preloads is that you can execute them with script. For example, here we create a [`HTMLLinkElement`](/en-US/docs/Web/API/HTMLLinkElement) instance, then attach it to the DOM:
 
-```javascript
+```js
     var preloadLink = document.createElement("link");
     preloadLink.href = "myscript.js";
     preloadLink.rel = "preload";
@@ -167,7 +176,7 @@ Another nice thing about these preloads is that you can execute them with script
 
 This means that the browser will preload the `myscript.js` file, but not actually use it yet. To use it, you could do this:
 
-```javascript
+```js
     var preloadedScript = document.createElement("script");
     preloadedScript.src = "myscript.js";
     document.body.appendChild(preloadedScript);
