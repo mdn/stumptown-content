@@ -2,7 +2,6 @@
 
 module.exports = code
 
-const is = require('hast-util-is-element');
 const has = require('hast-util-has-property');
 const toText = require('hast-util-to-text');
 const trim = require('trim-trailing-lines');
