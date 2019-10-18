@@ -1,7 +1,7 @@
 const path = require('path');
 const markdown = require('./markdown-converter');
-const examples = require('./compose-examples');
-const bcd = require('./resolve-bcd');
+const { packageExample } = require('./compose-examples');
+const { packageBCD } = require('./resolve-bcd');
 
 async function processDirective(elementPath, directive) {
     const directiveComponents = directive.split(':');
@@ -10,7 +10,7 @@ async function processDirective(elementPath, directive) {
         case 'embed-example':
             return {
                 type: 'example',
-                value: await examples.packageExample(path.join(elementPath, directiveComponents[1]))
+                value: await packageExample(path.join(elementPath, directiveComponents[1]))
             }
         case 'embed-compat':
             return {
