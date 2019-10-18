@@ -4,7 +4,7 @@ mdn_url: /en-US/docs/Web/HTML/Preloading_content
 related_content: /content/related_content/html.yaml
 recipe: guide
 ---
-The `preload` value of the [`<link>`](/en-US/docs/Web/HTML/Element/link) element's `rel` attribute lets you declare fetch requests in the HTML's [`<head>`](/en-US/docs/Web/HTML/Element/head), specifying resources that your page will need very soon, which you want to start loading early in the page lifecycle, before browsers' main rendering machinery kicks in. This ensures they are available earlier and are less likely to block the page's render, improving performance.
+The `preload` value of the [`<link>`](/en-US/docs/Web/HTML/Element/link) element's `rel` attribute lets you declare fetch requests in the HTML's [`<head>`](/en-US/docs/Web/HTML/Element/head), specifying resources that your page will need very soon, which you want to start loading early in the page life cycle, before browsers' main rendering machinery kicks in. This ensures they are available earlier and are less likely to block the page's render, improving performance.
 
 This article provides a basic guide to how `<link rel="preload">` works.
 
@@ -58,7 +58,7 @@ Many different content types can be preloaded. The possible `as` attribute value
 - `audio`: Audio file, as typically used in [`<audio>`](/en-US/docs/Web/HTML/Element/audio).
 - `document`: An HTML document intended to be embedded by a [`<frame>`](/en-US/docs/Web/HTML/Element/frame) or [`<iframe>`](/en-US/docs/Web/HTML/Element/iframe).
 - `embed`: A resource to be embedded inside an [`<embed>`](/en-US/docs/Web/HTML/Element/embed) element.
-- `fetch`: Resource to be accessed by a fetch or XHR request, such as an ArrayBuffer or JSON file.
+- `fetch`: Resource to be accessed by a fetch or XHR request, such as an `ArrayBuffer` or JSON file.
 - `font`: Font file.
 - `image`: Image file.
 - `object`: A resource to be embedded inside an [`<object>`](/en-US/docs/Web/HTML/Element/object) element.
@@ -90,7 +90,7 @@ You can see an example of this in our video example (see the [full source code](
       </video>
     </body>
 
-So in this case, browsers that support MP4s will preload and use the MP4, making the video player hopefully smoother/more responsive for users. Browsers that don't support MP4 can still load the WebM version, but don't get the advantages of preloading. This shows how preloading content can be combined with the philosophy of progressive enhancement.
+So in this case, browsers that support MP4 videos will preload and use the MP4, making the video player hopefully smoother/more responsive for users. Browsers that don't support MP4 can still load the WebM version, but don't get the advantages of preloading. This shows how preloading content can be combined with the philosophy of progressive enhancement.
 
 ## Cross-origin fetches
 
@@ -179,13 +179,13 @@ This is useful when you want to preload a script, but then defer execution until
 
 Other preloading features exist, but none are quite as fit for purpose as `<link rel="preload">`:
 
-- `<link rel="prefetch">` has been supported in browsers for a long time, but it is intended for prefetching resources that will be used in the **_next_** navigation/page load (e.g. when you go to the next page). This is fine, but isn't useful for the current page! In addition, browsers will give `prefetch` resources a lower priority than `preload` ones — the current page is more important than the next. See [Link prefetching FAQ](/en-US/docs/Web/HTTP/Link_prefetching_FAQ) for more details.
+- `<link rel="prefetch">` has been supported in browsers for a long time, but it is intended for fetching resources that will be used in the **_next_** navigation/page load (e.g. when you go to the next page). This is fine, but isn't useful for the current page! In addition, browsers will give `prefetch` resources a lower priority than `preload` ones — the current page is more important than the next. See [Link prefetching FAQ](/en-US/docs/Web/HTTP/Link_prefetching_FAQ) for more details.
 - `<link rel="prerender">` renders a specified webpage in the background, speeding up its load if the user navigates to it. Because of the potential to waste users bandwidth, Chrome treats `prerender` as a [NoState prefetch](https://developers.google.com/web/updates/2018/07/nostate-prefetch) instead.
-- `<link rel="subresource">` __ was supported in Chrome a while ago, and was intended to tackle the same issue as `preload`, but it had a problem: there was no way to work out a priority for the items (`as` didn't exist back then), so they all got fetched with fairly low priority.
+- `<link rel="subresource">` was supported in Chrome a while ago, and was intended to tackle the same issue as `preload`, but it had a problem: there was no way to work out a priority for the items (`as` didn't exist back then), so they all got fetched with fairly low priority.
 -   There are a number of script-based resource loaders out there, but they don't have any power over the browser's fetch prioritization queue, and are subject to much the same performance problems.
 
 {{{{{embed-compat:html.elements.link.rel.preload}}}}}
 
 ## See also
 
-- [Preload: What Is It Good For?](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/) by Yoav Weiss
+- [Preload: What Is It Good For?](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/)

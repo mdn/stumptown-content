@@ -22,7 +22,7 @@ You can use the following [`<script>`](/en-US/docs/Web/HTML/Element/script) elem
 
     <script src="https://example.com/example-framework.js" crossorigin="anonymous"></script>
 
-### Example: Webmanifest with credentials
+### Example: Web manifest with credentials
 
 The `use-credentials` value must be used when fetching a manifest that requires credentials, even if the file is from the same origin.
 
