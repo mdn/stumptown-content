@@ -1,14 +1,5 @@
 title: Guides
 chapters:
-    - Block-level_elements
-    - Inline_elements
-    - Link_types
     - Applying_color
-    - Date_and_time_formats
     - Preloading_content
     - CORS_settings_attributes
-    - CORS_enabled_image
-    - DASH_Adaptive_Streaming_for_HTML_5_Video
-    - Microdata
-    - microformats
-    - Quirks_Mode_and_Standards_Mode
