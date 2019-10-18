@@ -40,4 +40,4 @@ The `use-credentials` value must be used when fetching a manifest that requires 
 
 ## See also
 
--   [Cross-Origin Resource Sharing (CORS)](/en-US/docs/Web/HTTP/CORS)
+- [Cross-Origin Resource Sharing (CORS)](/en-US/docs/Web/HTTP/CORS)
