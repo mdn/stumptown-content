@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.canvas.moz-opaque
+spec_url: non-standard
 ---
 
 # `moz-opaque`

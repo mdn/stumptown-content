@@ -1,16 +1,16 @@
 ---
 title: "HTML: Hypertext Markup Language"
 mdn_url: /en-US/docs/Web/HTML
+spec_url: https://html.spec.whatwg.org/multipage/
 recipe: landing-page
 related_content: /content/related_content/html.yaml
 link_lists:
   - title: Learn HTML
     pages:
-      - "/content/learn/html/Introduction_to_HTML.md"
-      - "/content/learn/html/Multimedia_and_embedding.md"
+      - "/content/learn/html/Introduction_to_HTML"
   - title: Reference
     pages:
-      - "/content/html/reference/elements.md"
+      - "/content/html/reference/elements"
 ---
 **HTML** (HyperText Markup Language) is the most basic building block of the Web. It defines the meaning and structure of web content. Other technologies besides HTML are generally used to describe a web page's appearance/presentation ([CSS](/en-US/docs/Web/CSS)) or functionality/behavior ([JavaScript](/en-US/docs/Web/JavaScript)).
 

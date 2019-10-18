@@ -1,11 +1,12 @@
 ---
 browser-compatibility: html.elements.table.rules
+spec_url: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-rules
 ---
 
 # `rules`
 
 This enumerated attribute defines where rules, i.e. lines, should appear in a table.
-  
+
 **Do not use this attribute**. The [`<table>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table) element should be styled using [CSS](https://developer.mozilla.org/en-US/docs/CSS).
 
 ## Values

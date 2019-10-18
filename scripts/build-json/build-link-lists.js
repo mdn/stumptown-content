@@ -13,6 +13,9 @@ const { ROOT } = require('./constants');
  */
 async function itemFromFile(includeShortDescriptions, filePath) {
   const {data, content} = matter(fs.readFileSync(filePath, 'utf8'));
+  if (!data || !data.mdn_url) {
+    return null;
+  }
   let shortDescriptions = [];
   if (includeShortDescriptions) {
     const prose = await proseSlicer.packageProse(content);
@@ -27,8 +30,27 @@ async function itemFromFile(includeShortDescriptions, filePath) {
 }
 
 /**
- * Build a list of links from a special YAML file called a "chapter list"
- * that is just an ordered list of pages.
+ * Given a directory that should contain content for a single page,
+ * extract the things needed for a link:
+ *    - title, URL, and (if required) short description
+ */
+async function itemFromDirectory(includeShortDescriptions, itemDirectory) {
+  const items = fs.readdirSync(itemDirectory, {withFileTypes: true});
+  const filenames = items.filter(item => !item.isDirectory())
+    .filter(item => item.name.endsWith('.md'))
+    .map(item => path.join(itemDirectory, item.name));
+  let content =  await Promise.all(filenames.map(itemFromFile.bind(null, includeShortDescriptions)));
+  content = content.filter(e => !!e);
+  if (content.length !== 1) {
+    throw new Error(`${itemDirectory} should contain exactly one buildable item (not ${content.length})`);
+  }
+  return content[0];
+}
+
+/**
+ * Build a list of links from a special YAML file called a "chapter list".
+ *
+ * Each item in the list is a directory containing content for a single page.
  */
 async function linkListFromChapterList(chapterListPath, includeShortDescriptions = false) {
   const fullPath = path.join(ROOT, chapterListPath);
@@ -37,33 +59,37 @@ async function linkListFromChapterList(chapterListPath, includeShortDescriptions
   const chapterPaths = chapterList.chapters.map(chapter => path.join(fullDir, chapter));
   return {
     title: chapterList.title,
-    content: await Promise.all(chapterPaths.map(itemFromFile.bind(null, includeShortDescriptions)))
+    content: await Promise.all(chapterPaths.map(itemFromDirectory.bind(null, includeShortDescriptions)))
   }
 }
 
 /**
- * Build a list of links from a directory:
- * - list all the children of this directory.
+ * Build a list of links from a directory.
+ *
+ * List all directories immediately under this one.
+ *
+ * Each of those directories is expected to contain content for a single page.
  */
 async function linkListFromDirectory(title, directory, includeShortDescriptions = false) {
   const fullPath = path.join(ROOT, directory);
-  let itemDirectories = fs.readdirSync(path.join(ROOT, directory), {withFileTypes: true});
-  itemDirectories = itemDirectories.filter(item => item.isDirectory());
-  itemDirectories = itemDirectories.map(itemDirectory => path.join(fullPath, itemDirectory.name, 'docs.md'));
+  let itemDirectories = fs.readdirSync(fullPath, {withFileTypes: true}).filter(item => item.isDirectory());
+  itemDirectories = itemDirectories.map(itemDirectory => path.join(fullPath, itemDirectory.name));
   return {
     title: title,
-    content: await Promise.all(itemDirectories.map(itemFromFile.bind(null, includeShortDescriptions)))
+    content: await Promise.all(itemDirectories.map(itemFromDirectory.bind(null, includeShortDescriptions)))
   }
 }
 
 /**
- * Build a list of links from an array of file paths
+ * Build a list of links from an array of paths.
+ *
+ * Each path is a directory containing content for a single page.
  */
 async function linkListFromFilePaths(title, filePaths, includeShortDescriptions = false) {
   const fullFilePaths = filePaths.map(filePath => path.join(ROOT, filePath));
   return {
     title: title,
-    content: await Promise.all(fullFilePaths.map(itemFromFile.bind(null, includeShortDescriptions)))
+    content: await Promise.all(fullFilePaths.map(itemFromDirectory.bind(null, includeShortDescriptions)))
   }
 }
 

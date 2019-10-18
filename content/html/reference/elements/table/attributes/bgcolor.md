@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.table.bgcolor
+spec_url: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-bgcolor
 ---
 
 # `bgcolor`

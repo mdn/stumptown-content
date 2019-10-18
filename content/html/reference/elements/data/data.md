@@ -1,0 +1,35 @@
+---
+title: '<data>'
+short_title: <data>
+mdn_url: /en-US/docs/Web/HTML/Element/data
+spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-data-element
+tags:
+    group: Inline text semantics
+api: HTMLDataElement
+permitted_aria_roles: unknown
+tag_omission: none
+interactive_example:
+    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/data.html
+    height: html-short
+browser_compatibility: html.elements.data
+examples:
+    - examples/simple-example
+attributes:
+    element_specific: ./attributes
+    global: /content/html/global_attributes
+recipe: html-element
+---
+
+## Short description
+
+The **HTML `<data>` element** links a given content with a
+machine-readable translation.
+
+## Overview
+
+If the content is time- or date-related, the
+[`<time>`](/en-US/docs/Web/HTML/Element/time) element must be used.
+
+## See also
+
+- The HTML [`<time>`](/en-US/docs/Web/HTML/Element/time) element.

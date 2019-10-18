@@ -1,5 +1,6 @@
 ---
 browser-compatibility: html.elements.button.type
+spec_url: https://html.spec.whatwg.org/multipage/form-elements.html#attr-button-type
 ---
 
 # `type`
