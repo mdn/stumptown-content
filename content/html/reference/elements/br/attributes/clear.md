@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.br.clear
-spec_url: https://html.spec.whatwg.org/multipage/obsolete.html#attr-br-clear
+specifications: https://html.spec.whatwg.org/multipage/obsolete.html#attr-br-clear
 ---
 
 # `clear`

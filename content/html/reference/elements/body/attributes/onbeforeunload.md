@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.body.onbeforeunload
-spec_url: https://html.spec.whatwg.org/multipage/webappapis.html#handler-window-onbeforeunload
+specifications: https://html.spec.whatwg.org/multipage/webappapis.html#handler-window-onbeforeunload
 ---
 
 # `onbeforeunload`

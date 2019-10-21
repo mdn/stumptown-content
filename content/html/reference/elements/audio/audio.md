@@ -2,7 +2,7 @@
 title: '<audio>: The Embed Audio element'
 short_title: <audio>
 mdn_url: /en-US/docs/Web/HTML/Element/audio
-spec_url: https://html.spec.whatwg.org/multipage/embedded-content.html#the-audio-element
+specifications: https://html.spec.whatwg.org/multipage/embedded-content.html#the-audio-element
 tags:
     group: Image and multimedia
 api: HTMLAudioElement

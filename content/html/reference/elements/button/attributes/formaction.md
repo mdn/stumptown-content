@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.button.formaction
-spec_url: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-formaction
+specifications: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-formaction
 ---
 
 # `formaction`

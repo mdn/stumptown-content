@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.canvas.width
-spec_url: https://html.spec.whatwg.org/multipage/canvas.html#attr-canvas-width
+specifications: https://html.spec.whatwg.org/multipage/canvas.html#attr-canvas-width
 ---
 
 # `width`

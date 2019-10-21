@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.iframe.referrerpolicy
-spec_url: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-referrerpolicy
+specifications: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-referrerpolicy
 ---
 
 # `referrerpolicy`

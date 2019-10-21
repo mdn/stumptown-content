@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.body.onlanguagechange
-spec_url: https://html.spec.whatwg.org/multipage/webappapis.html#handler-window-onlanguagechange
+specifications: https://html.spec.whatwg.org/multipage/webappapis.html#handler-window-onlanguagechange
 ---
 
 # `onlanguagechange`

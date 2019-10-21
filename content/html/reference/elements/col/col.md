@@ -2,7 +2,7 @@
 title: '<col>'
 short_title: <col>
 mdn_url: /en-US/docs/Web/HTML/Element/col
-spec_url: https://html.spec.whatwg.org/multipage/tables.html#the-col-element
+specifications: https://html.spec.whatwg.org/multipage/tables.html#the-col-element
 tags:
     group: Table content
 api: HTMLTableColElement

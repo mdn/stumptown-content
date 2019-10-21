@@ -2,7 +2,7 @@
 title: '<dfn>: The Definition element'
 short_title: <dfn>
 mdn_url: /en-US/docs/Web/HTML/Element/dfn
-spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-dfn-element
+specifications: https://html.spec.whatwg.org/multipage/semantics.html#the-dfn-element
 tags:
     group: Inline text semantics
 api: HTMLElement

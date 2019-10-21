@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.iframe.srcdoc
-spec_url: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-srcdoc
+specifications: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-srcdoc
 ---
 
 # `srcdoc`

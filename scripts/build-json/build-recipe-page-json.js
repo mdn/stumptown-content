@@ -16,11 +16,11 @@ async function processMetaIngredient(elementPath, ingredientName, data) {
             }
             return packageInteractiveExample(data.interactive_example);
         case 'specifications':
-            // spec_url is optional
-            if (!data.spec_url) {
+            // specifications is optional
+            if (!data.specifications) {
                 return null;
             }
-            return packageSpecs(data.spec_url);
+            return packageSpecs(data.specifications);
         case 'browser_compatibility':
             return {query: data.browser_compatibility, data: packageBCD(data.browser_compatibility)};
         case 'attributes':

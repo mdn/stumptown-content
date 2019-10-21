@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.label.for
-spec_url: https://html.spec.whatwg.org/multipage/forms.html#attr-label-for
+specifications: https://html.spec.whatwg.org/multipage/forms.html#attr-label-for
 ---
 
 # `for`

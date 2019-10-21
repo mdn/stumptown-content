@@ -2,7 +2,7 @@
 title: '<bdi>: The Bidirectional Isolate element'
 short_title: <bdi>
 mdn_url: /en-US/docs/Web/HTML/Element/bdi
-spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-bdi-element
+specifications: https://html.spec.whatwg.org/multipage/semantics.html#the-bdi-element
 tags:
     group: Inline text semantics
 api: HTMLElement

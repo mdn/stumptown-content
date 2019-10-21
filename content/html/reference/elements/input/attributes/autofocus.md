@@ -1,5 +1,5 @@
 ---
-spec_url: https://html.spec.whatwg.org/multipage/interaction.html#attr-fe-autofocus
+specifications: https://html.spec.whatwg.org/multipage/interaction.html#attr-fe-autofocus
 ---
 # `autofocus`
 

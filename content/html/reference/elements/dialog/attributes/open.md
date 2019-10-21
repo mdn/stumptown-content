@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.dialog.open
-spec_url: https://html.spec.whatwg.org/multipage/interactive-elements.html#attr-dialog-open
+specifications: https://html.spec.whatwg.org/multipage/interactive-elements.html#attr-dialog-open
 ---
 
 # `open`

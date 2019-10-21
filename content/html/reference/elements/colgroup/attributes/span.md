@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.colgroup.span
-spec_url: https://html.spec.whatwg.org/multipage/tables.html#attr-colgroup-span
+specifications: https://html.spec.whatwg.org/multipage/tables.html#attr-colgroup-span
 ---
 
 # `span`

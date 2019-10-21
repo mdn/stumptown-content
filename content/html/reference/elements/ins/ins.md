@@ -1,7 +1,7 @@
 ---
 title: '<ins>'
 mdn_url: /en-US/docs/Web/HTML/Element/ins
-spec_url: https://html.spec.whatwg.org/multipage/edits.html#the-ins-element
+specifications: https://html.spec.whatwg.org/multipage/edits.html#the-ins-element
 tags:
     group: Inline text semantics
 api: HTMLModElement

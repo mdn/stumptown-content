@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.video.crossorigin
-spec_url: https://html.spec.whatwg.org/multipage/media.html#attr-media-crossorigin
+specifications: https://html.spec.whatwg.org/multipage/media.html#attr-media-crossorigin
 ---
 
 # `crossorigin`

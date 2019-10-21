@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.table.summary
-spec_url: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-summary
+specifications: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-summary
 ---
 
 # `summary`

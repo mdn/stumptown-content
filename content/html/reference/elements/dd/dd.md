@@ -2,7 +2,7 @@
 title: '<dd>: The Description Details element'
 short_title: <dd>
 mdn_url: /en-US/docs/Web/HTML/Element/dd
-spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-dd-element
+specifications: https://html.spec.whatwg.org/multipage/semantics.html#the-dd-element
 tags:
     group: Text content
 api: HTMLElement

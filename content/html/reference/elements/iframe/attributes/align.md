@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.iframe.align
-spec_url: https://html.spec.whatwg.org/#attr-iframe-align
+specifications: https://html.spec.whatwg.org/#attr-iframe-align
 ---
 
 # `align`

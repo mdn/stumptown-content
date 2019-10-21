@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.video.width
-spec_url: https://html.spec.whatwg.org/multipage/embedded-content-other.html#attr-dim-width
+specifications: https://html.spec.whatwg.org/multipage/embedded-content-other.html#attr-dim-width
 ---
 
 # `width`

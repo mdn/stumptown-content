@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.embed.type
-spec_url: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-embed-type
+specifications: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-embed-type
 ---
 
 # `type`

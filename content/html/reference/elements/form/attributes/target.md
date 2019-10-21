@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.form.target
-spec_url: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-target
+specifications: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-target
 ---
 
 # `target`

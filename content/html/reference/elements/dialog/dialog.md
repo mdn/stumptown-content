@@ -2,7 +2,7 @@
 title: '<dialog>: The Dialog element'
 short_title: <dialog>
 mdn_url: /en-US/docs/Web/HTML/Element/dialog
-spec_url: https://html.spec.whatwg.org/multipage/forms.html#the-dialog-element
+specifications: https://html.spec.whatwg.org/multipage/forms.html#the-dialog-element
 tags:
     group: Interactive elements
 api: HTMLDialogElement

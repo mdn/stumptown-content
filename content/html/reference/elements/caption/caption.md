@@ -2,7 +2,7 @@
 title: '<caption>: The Table Caption element'
 short_title: <caption>
 mdn_url: /en-US/docs/Web/HTML/Element/caption
-spec_url: https://html.spec.whatwg.org/multipage/tables.html#the-caption-element
+specifications: https://html.spec.whatwg.org/multipage/tables.html#the-caption-element
 tags:
     group: Table content
 api: HTMLTableCaptionElement

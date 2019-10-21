@@ -2,7 +2,7 @@
 title: '<data>'
 short_title: <data>
 mdn_url: /en-US/docs/Web/HTML/Element/data
-spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-data-element
+specifications: https://html.spec.whatwg.org/multipage/semantics.html#the-data-element
 tags:
     group: Inline text semantics
 api: HTMLDataElement

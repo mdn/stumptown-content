@@ -2,7 +2,7 @@
 title: '<fieldset>: The Field Set element'
 short_title: <fieldset>
 mdn_url: /en-US/docs/Web/HTML/Element/fieldset
-spec_url: https://html.spec.whatwg.org/multipage/form-elements.html#the-fieldset-element
+specifications: https://html.spec.whatwg.org/multipage/form-elements.html#the-fieldset-element
 tags:
     group: Forms
 api: HTMLFieldSetElement
