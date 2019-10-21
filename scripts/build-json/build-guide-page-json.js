@@ -9,12 +9,14 @@ async function processDirective(elementPath, directive) {
     switch (directiveName) {
         case 'embed-example':
             return {
-                type: 'example',
-                value: await packageExample(path.join(elementPath, directiveComponents[1]))
+                type: 'examples',
+                value: {
+                  examples: [await packageExample(path.join(elementPath, directiveComponents[1]))]
+                }
             }
         case 'embed-compat':
             return {
-                type: 'browser_compatibility_table',
+                type: 'browser_compatibility',
                 value: {
                   query: directiveComponents[1],
                   data: packageBCD(directiveComponents[1])
