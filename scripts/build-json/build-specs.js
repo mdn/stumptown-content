@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-
+const yaml = require('js-yaml');
 const { ROOT } = require('./constants');
 
 function packageSpecs(specUrls) {
@@ -11,8 +11,7 @@ function packageSpecs(specUrls) {
   }
 
   const dataDir = path.resolve(ROOT, 'content', 'data');
-  const file = fs.readFileSync(path.join(dataDir, 'specifications.json'), 'utf8');
-  const specMap = JSON.parse(file);
+  const specMap = yaml.safeLoad(fs.readFileSync(path.join(dataDir, 'specifications.yaml'), 'utf8'));
 
   function findTitle(specUrl) {
     let title = ''

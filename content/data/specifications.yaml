@@ -1,0 +1,7 @@
+# Allowed specification domains and their titles
+# Never add historical specfications to this allow list
+
+html.spec.whatwg.org: 'WHATWG HTML Living Standard'
+w3c.github.io/webappsec-cspee": 'Content Security Policy: Embedded Enforcement'
+w3c.github.io/webappsec-feature-policy: 'Feature Policy'
+wicg.github.io/priority-hints: 'Priority Hints'
