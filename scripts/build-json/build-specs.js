@@ -11,7 +11,7 @@ function packageSpecs(specUrls) {
   }
 
   const dataDir = path.resolve(ROOT, 'content', 'data');
-  const file = fs.readFileSync(dataDir + '/specifications.json', 'utf8');
+  const file = fs.readFileSync(path.join(dataDir, 'specifications.json'), 'utf8');
   const specMap = JSON.parse(file);
 
   function findTitle(specUrl) {
@@ -22,7 +22,7 @@ function packageSpecs(specUrls) {
       }
     });
     if (title === '') {
-      console.error(`Domain for "${specUrl}" not found in data/specifications.json`);
+      throw new Error(`Domain for "${specUrl}" not found in data/specifications.json`);
     }
     return title;
   }
