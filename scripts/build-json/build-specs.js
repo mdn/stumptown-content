@@ -21,7 +21,7 @@ function packageSpecs(specifications) {
       }
     });
     if (title === '') {
-      throw new Error(`Domain for "${specification}" not found in data/specifications.json`);
+      throw new Error(`Domain for "${specification}" not found in data/specifications.yaml`);
     }
     return title;
   }
