@@ -13,5 +13,6 @@ body:
     - meta.animatable
     - meta.initial-value
     - meta.shorthand-for
+- meta.specifications
 - meta.browser-compatibility
 - prose.see-also

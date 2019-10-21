@@ -5,6 +5,7 @@ const { packageExamples } = require('./compose-examples');
 const { packageAttributes } = require('./compose-attributes');
 const { packageInteractiveExample } = require('./compose-interactive-example');
 const { packageProse } = require('./slice-prose');
+const { packageSpecs } = require('./build-specs');
 
 async function processMetaIngredient(elementPath, ingredientName, data) {
     switch (ingredientName) {
@@ -14,6 +15,12 @@ async function processMetaIngredient(elementPath, ingredientName, data) {
                 return null;
             }
             return packageInteractiveExample(data.interactive_example);
+        case 'specifications':
+            // spec_url is optional
+            if (!data.spec_url) {
+                return null;
+            }
+            return packageSpecs(data.spec_url);
         case 'browser_compatibility':
             return {query: data.browser_compatibility, data: packageBCD(data.browser_compatibility)};
         case 'attributes':

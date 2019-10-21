@@ -10,5 +10,6 @@ body:
 - prose.*
 - meta.examples
 - meta.info_box
+- meta.specifications
 - meta.browser_compatibility
 - prose.see_also

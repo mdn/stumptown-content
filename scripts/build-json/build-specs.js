@@ -3,12 +3,8 @@ const path = require('path');
 
 const { ROOT } = require('./constants');
 
-function buildSpecs(specUrls) {
+function packageSpecs(specUrls) {
 
-  // spec_url is optional, return nothing so there is no specifications property
-  if (!specUrls) {
-    return;
-  }
   // spec_url can be just "non-standard", route it through in that case
   if (specUrls === 'non-standard') {
     return specUrls;
@@ -48,5 +44,5 @@ function buildSpecs(specUrls) {
 }
 
 module.exports = {
-  buildSpecs
+  packageSpecs
 }
