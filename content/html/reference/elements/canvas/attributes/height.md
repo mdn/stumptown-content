@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.canvas.height
-spec_url: https://html.spec.whatwg.org/multipage/canvas.html#attr-canvas-height
+specifications: https://html.spec.whatwg.org/multipage/canvas.html#attr-canvas-height
 ---
 
 # `height`

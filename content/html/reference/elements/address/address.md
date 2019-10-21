@@ -2,7 +2,7 @@
 title: '<address>: The Contact Address element'
 short_title: <address>
 mdn_url: /en-US/docs/Web/HTML/Element/address
-spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-address-element
+specifications: https://html.spec.whatwg.org/multipage/semantics.html#the-address-element
 tags:
     group: Content sectioning
 api: HTMLElement

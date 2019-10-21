@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.del.datetime
-spec_url: https://html.spec.whatwg.org/multipage/edits.html#attr-mod-datetime
+specifications: https://html.spec.whatwg.org/multipage/edits.html#attr-mod-datetime
 ---
 
 # `datetime`

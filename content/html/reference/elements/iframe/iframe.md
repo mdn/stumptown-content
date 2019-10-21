@@ -2,7 +2,7 @@
 title: '<iframe>: The Inline Frame element'
 short_title: <iframe>
 mdn_url: /en-US/docs/Web/HTML/Element/iframe
-spec_url: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-iframe-element
+specifications: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-iframe-element
 tags:
     group: Embedded content
 api: HTMLIFrameElement

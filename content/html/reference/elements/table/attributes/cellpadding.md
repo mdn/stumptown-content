@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.table.cellpadding
-spec_url: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-cellpadding
+specifications: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-cellpadding
 ---
 
 # `cellpadding`

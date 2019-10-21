@@ -2,7 +2,7 @@
 title: '<video>: The Video Embed element'
 short_title: <video>
 mdn_url: /en-US/docs/Web/HTML/Element/video
-spec_url: https://html.spec.whatwg.org/multipage/media.html#the-video-element
+specifications: https://html.spec.whatwg.org/multipage/media.html#the-video-element
 tags:
     group: Image and multimedia
 api: HTMLVideoElement

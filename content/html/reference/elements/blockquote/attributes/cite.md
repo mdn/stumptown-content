@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.blockquote.cite
-spec_url: https://html.spec.whatwg.org/multipage/grouping-content.html#attr-blockquote-cite
+specifications: https://html.spec.whatwg.org/multipage/grouping-content.html#attr-blockquote-cite
 ---
 
 # `cite`

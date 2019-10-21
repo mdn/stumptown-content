@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.button.formtarget
-spec_url: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-formtarget
+specifications: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-formtarget
 ---
 
 # `formtarget`

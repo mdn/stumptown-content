@@ -2,7 +2,7 @@
 title: '<details>: The Details disclosure element'
 short_title: <details>
 mdn_url: /en-US/docs/Web/HTML/Element/details
-spec_url: https://html.spec.whatwg.org/multipage/interactive-elements.html#the-details-element
+specifications: https://html.spec.whatwg.org/multipage/interactive-elements.html#the-details-element
 tags:
     group: Interactive elements
 api: HTMLDetailsElement

@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.video.preload
-spec_url: https://html.spec.whatwg.org/multipage/media.html#attr-media-preload
+specifications: https://html.spec.whatwg.org/multipage/media.html#attr-media-preload
 ---
 
 # `preload`

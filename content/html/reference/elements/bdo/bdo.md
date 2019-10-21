@@ -2,7 +2,7 @@
 title: '<bdo>: The Bidirectional Text Override element'
 short_title: <bdo>
 mdn_url: /en-US/docs/Web/HTML/Element/bdo
-spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-bdo-element
+specifications: https://html.spec.whatwg.org/multipage/semantics.html#the-bdo-element
 tags:
     group: Inline text semantics
 api: HTMLElement

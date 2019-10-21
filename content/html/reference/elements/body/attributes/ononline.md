@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.body.ononline
-spec_url: https://html.spec.whatwg.org/multipage/webappapis.html#handler-window-ononline
+specifications: https://html.spec.whatwg.org/multipage/webappapis.html#handler-window-ononline
 ---
 
 # `ononline`

@@ -2,7 +2,7 @@
 title: '<canvas>: The Graphics Canvas element'
 short_title: <canvas>
 mdn_url: /en-US/docs/Web/HTML/Element/canvas
-spec_url: https://html.spec.whatwg.org/multipage/scripting.html#the-canvas-element
+specifications: https://html.spec.whatwg.org/multipage/scripting.html#the-canvas-element
 tags:
     group: Scripting
 api: HTMLCanvasElement

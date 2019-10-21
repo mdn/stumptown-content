@@ -2,7 +2,7 @@
 title: '<em>: The Emphasis element'
 short_title: <em>
 mdn_url: /en-US/docs/Web/HTML/Element/em
-spec_url: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-em-element
+specifications: https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-em-element
 tags:
     group: Inline text semantics
 api: HTMLElement

@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.base.href
-spec_url: https://html.spec.whatwg.org/multipage/semantics.html#attr-base-href
+specifications: https://html.spec.whatwg.org/multipage/semantics.html#attr-base-href
 ---
 
 # `href`

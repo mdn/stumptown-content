@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.form.accept-charset
-spec_url: https://html.spec.whatwg.org/multipage/forms.html#attr-form-accept-charset
+specifications: https://html.spec.whatwg.org/multipage/forms.html#attr-form-accept-charset
 ---
 
 # `accept-charset`

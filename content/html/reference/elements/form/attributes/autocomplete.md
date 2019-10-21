@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.form.autocomplete
-spec_url: https://html.spec.whatwg.org/multipage/forms.html#attr-form-autocomplete
+specifications: https://html.spec.whatwg.org/multipage/forms.html#attr-form-autocomplete
 ---
 
 # `autocomplete`

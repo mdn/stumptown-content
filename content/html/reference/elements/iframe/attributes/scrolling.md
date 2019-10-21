@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.iframe.scrolling
-spec_url: https://html.spec.whatwg.org/multipage/obsolete.html#attr-iframe-scrolling
+specifications: https://html.spec.whatwg.org/multipage/obsolete.html#attr-iframe-scrolling
 ---
 
 # `scrolling`

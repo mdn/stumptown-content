@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.form.name
-spec_url: https://html.spec.whatwg.org/multipage/forms.html#attr-form-name
+specifications: https://html.spec.whatwg.org/multipage/forms.html#attr-form-name
 ---
 
 # `name`

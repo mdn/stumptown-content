@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.body.onpopstate
-spec_url: https://html.spec.whatwg.org/multipage/webappapis.html#handler-window-onpopstate
+specifications: https://html.spec.whatwg.org/multipage/webappapis.html#handler-window-onpopstate
 ---
 
 # `onpopstate`

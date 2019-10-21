@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.table.border
-spec_url: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-border
+specifications: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-border
 ---
 
 # `border`

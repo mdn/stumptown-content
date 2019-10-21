@@ -2,7 +2,7 @@
 title: '<base>: The Document Base URL element'
 short_title: <base>
 mdn_url: /en-US/docs/Web/HTML/Element/base
-spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-base-element
+specifications: https://html.spec.whatwg.org/multipage/semantics.html#the-base-element
 tags:
     group: Document metadata
 api: HTMLBaseElement

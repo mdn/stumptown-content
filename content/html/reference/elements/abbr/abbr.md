@@ -2,7 +2,7 @@
 title: '<abbr>: The Abbreviation element'
 short_title: <abbr>
 mdn_url: /en-US/docs/Web/HTML/Element/abbr
-spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-abbr-element
+specifications: https://html.spec.whatwg.org/multipage/semantics.html#the-abbr-element
 tags:
     group: Inline text semantics
 api: HTMLElement

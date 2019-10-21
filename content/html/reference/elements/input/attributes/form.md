@@ -1,5 +1,5 @@
 ---
-spec_url: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fae-form
+specifications: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fae-form
 ---
 # `form`
 

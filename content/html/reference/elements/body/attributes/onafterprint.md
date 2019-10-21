@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.body.onafterprint
-spec_url: https://html.spec.whatwg.org/multipage/webappapis.html#handler-window-onafterprint
+specifications: https://html.spec.whatwg.org/multipage/webappapis.html#handler-window-onafterprint
 ---
 
 # `onafterprint`

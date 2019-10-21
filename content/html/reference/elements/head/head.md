@@ -2,7 +2,7 @@
 title: '<head>: The Document Metadata (Header) element'
 short_title: <head>
 mdn_url: /en-US/docs/Web/HTML/Element/head
-spec_url: https://html.spec.whatwg.org/multipage/semantics.html#the-head-element
+specifications: https://html.spec.whatwg.org/multipage/semantics.html#the-head-element
 tags:
     group: Document metadata
 api: HTMLHeadElement

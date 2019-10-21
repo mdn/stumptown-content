@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.table.rules
-spec_url: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-rules
+specifications: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-rules
 ---
 
 # `rules`

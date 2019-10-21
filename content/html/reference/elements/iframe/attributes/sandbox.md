@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.iframe.sandbox
-spec_url: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox
+specifications: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox
 ---
 
 # `sandbox`

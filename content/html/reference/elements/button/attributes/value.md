@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.button.value
-spec_url: https://html.spec.whatwg.org/multipage/form-elements.html#attr-button-value
+specifications: https://html.spec.whatwg.org/multipage/form-elements.html#attr-button-value
 ---
 
 # `value`

@@ -2,7 +2,7 @@
 title: '<table>: The Table element'
 short_title: <table>
 mdn_url: /en-US/docs/Web/HTML/Element/table
-spec_url: https://html.spec.whatwg.org/multipage/tables.html#the-table-element
+specifications: https://html.spec.whatwg.org/multipage/tables.html#the-table-element
 tags:
     group: Flow content
 api: HTMLTableElement

@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.body.onoffline
-spec_url: https://html.spec.whatwg.org/multipage/webappapis.html#handler-window-onoffline
+specifications: https://html.spec.whatwg.org/multipage/webappapis.html#handler-window-onoffline
 ---
 
 # `onoffline`

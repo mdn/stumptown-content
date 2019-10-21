@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.button.formnovalidate
-spec_url: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-formnovalidate
+specifications: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-formnovalidate
 ---
 
 # `formnovalidate`

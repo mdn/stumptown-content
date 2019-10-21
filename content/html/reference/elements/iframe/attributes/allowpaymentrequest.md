@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.iframe.allowpaymentrequest
-spec_url:
+specifications:
   - https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-allowpaymentrequest
   - https://w3c.github.io/webappsec-feature-policy/#iframe-allowpaymentrequest-attribute
 ---

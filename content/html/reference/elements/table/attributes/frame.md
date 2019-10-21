@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.table.frame
-spec_url: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-frame
+specifications: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-frame
 ---
 
 # `frame`

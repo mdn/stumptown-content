@@ -1,5 +1,5 @@
 ---
-spec_url: https://html.spec.whatwg.org/multipage/input.html#attr-input-readonly
+specifications: https://html.spec.whatwg.org/multipage/input.html#attr-input-readonly
 ---
 # `readonly`
 

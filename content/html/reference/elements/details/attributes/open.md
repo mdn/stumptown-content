@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.details.open
-spec_url: https://html.spec.whatwg.org/multipage/interactive-elements.html#attr-details-open
+specifications: https://html.spec.whatwg.org/multipage/interactive-elements.html#attr-details-open
 ---
 
 # `open`

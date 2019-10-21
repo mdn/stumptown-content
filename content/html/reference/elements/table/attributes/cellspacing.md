@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.table.cellspacing
-spec_url: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-cellspacing
+specifications: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-cellspacing
 ---
 
 # `cellspacing`

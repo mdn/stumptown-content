@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.button.formenctype
-spec_url: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-formenctype
+specifications: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-formenctype
 ---
 
 # `formenctype`

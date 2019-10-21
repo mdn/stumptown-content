@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.form.enctype
-spec_url: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-enctype
+specifications: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-enctype
 ---
 
 # `enctype`

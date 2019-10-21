@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.fieldset.name
-spec_url: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-name
+specifications: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-name
 ---
 
 # `name`

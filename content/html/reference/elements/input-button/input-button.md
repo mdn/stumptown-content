@@ -1,7 +1,7 @@
 ---
 title: '<input type="button">'
 mdn_url: /en-US/docs/Web/HTML/Element/input/button
-spec_url: https://html.spec.whatwg.org/multipage/input.html#button-state-(type=button)
+specifications: https://html.spec.whatwg.org/multipage/input.html#button-state-(type=button)
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/input-button.html
     height: html-short

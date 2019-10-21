@@ -1,7 +1,7 @@
 ---
 title: '<legend>'
 mdn_url: /en-US/docs/Web/HTML/Element/legend
-spec_url: https://html.spec.whatwg.org/multipage/forms.html#the-legend-element
+specifications: https://html.spec.whatwg.org/multipage/forms.html#the-legend-element
 tags:
     group: Forms
 api: HTMLLegendElement

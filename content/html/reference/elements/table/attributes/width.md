@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.table.width
-spec_url: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-width
+specifications: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-width
 ---
 
 # `width`

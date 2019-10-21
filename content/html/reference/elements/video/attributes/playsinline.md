@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.video.playsinline
-spec_url: https://html.spec.whatwg.org/multipage/media.html#attr-video-playsinline
+specifications: https://html.spec.whatwg.org/multipage/media.html#attr-video-playsinline
 ---
 
 # `playsinline`

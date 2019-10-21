@@ -2,7 +2,7 @@
 title: '<dl>: The Description List element'
 short_title: <dl>
 mdn_url: /en-US/docs/Web/HTML/Element/dl
-spec_url: https://html.spec.whatwg.org/multipage/grouping-content.html#the-dl-element
+specifications: https://html.spec.whatwg.org/multipage/grouping-content.html#the-dl-element
 tags:
     group: Text content
 api: HTMLDListElement

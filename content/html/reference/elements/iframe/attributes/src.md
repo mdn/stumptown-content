@@ -1,6 +1,6 @@
 ---
 browser-compatibility: html.elements.iframe.src
-spec_url: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-src
+specifications: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-src
 ---
 
 # `src`
