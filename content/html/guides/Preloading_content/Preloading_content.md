@@ -193,6 +193,8 @@ Other preloading features exist, but none are quite as fit for purpose as `<link
 - `<link rel="subresource">` was supported in Chrome a while ago, and was intended to tackle the same issue as `preload`, but it had a problem: there was no way to work out a priority for the items (`as` didn't exist back then), so they all got fetched with fairly low priority.
 - There are a number of script-based resource loaders out there, but they don't have any power over the browser's fetch prioritization queue, and are subject to much the same performance problems.
 
+## Browser compatibility
+
 {{{{{embed-compat:html.elements.link.rel.preload}}}}}
 
 ## See also
