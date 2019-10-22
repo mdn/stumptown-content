@@ -91,6 +91,7 @@ async function processDoc(relativeURL, title, destination) {
   const md = String(await toMarkdown(result.dom.serialize()));
   const frontMatter = `---\ntitle: '${title}'\nmdn_url: ${relativeURL}\n${result.frontMatter}---\n`;
   writeDoc(destination, relativeURL.split('/').pop(), `${frontMatter}${md}\n`);
+  dom.window.close();
 }
 
 /**
