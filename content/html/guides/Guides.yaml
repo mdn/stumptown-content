@@ -1,3 +1,5 @@
 title: Guides
 chapters:
     - Applying_color
+    - Preloading_content
+    - CORS_settings_attributes
