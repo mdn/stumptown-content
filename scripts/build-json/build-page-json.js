@@ -29,7 +29,7 @@ function writeToFile(json, elementPath) {
 }
 
 const recipeCache = {};
-async function buildPageJSON(docsPath) {
+function buildPageJSON(docsPath) {
     // open docs.md and parse front matter(data) from Markdown(content)
     const docsDirectory = path.dirname(docsPath);
     const docs = fs.readFileSync(docsPath, 'utf8');
@@ -46,10 +46,10 @@ async function buildPageJSON(docsPath) {
 
         switch (data.recipe) {
             case 'guide':
-                body = await guidePage.buildGuideContentJSON(docsDirectory, data, content);
+                body = guidePage.buildGuideContentJSON(docsDirectory, data, content);
                 break;
             case 'landing-page':
-                body = await landingPage.buildLandingPageJSON(docsDirectory, data, content);
+                body = landingPage.buildLandingPageJSON(docsDirectory, data, content);
                 break;
             case 'html-element':
             case 'html-input-element': {
@@ -64,9 +64,9 @@ async function buildPageJSON(docsPath) {
                       recipeCache[data.recipe] = recipe;
                     }
                     relatedContentSpec = recipe.related_content;
-                    body = await recipePage.buildRecipePageJSON(docsDirectory, data, content, recipe);
+                    body = recipePage.buildRecipePageJSON(docsDirectory, data, content, recipe);
                     // currently only reference-driven content supports contributors
-                    contributors = await packageContributors(path.join(docsDirectory, 'contributors.md'))
+                    contributors = packageContributors(path.join(docsDirectory, 'contributors.md'))
                     break;
                 }
             default:
@@ -77,7 +77,7 @@ async function buildPageJSON(docsPath) {
         const item = {
           title: data.title,
           mdn_url: data.mdn_url,
-          related_content: await related.buildRelatedContent(relatedContentSpec),
+          related_content: related.buildRelatedContent(relatedContentSpec),
           body: body,
           contributors: contributors
         };

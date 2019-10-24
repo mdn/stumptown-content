@@ -11,14 +11,14 @@ const { ROOT } = require('./constants');
  * If `includeShortDescriptions` is `true`, and the file includes  short description,
  * then include that, too.
  */
-async function itemFromFile(includeShortDescriptions, filePath) {
+function itemFromFile(includeShortDescriptions, filePath) {
   const {data, content} = matter(fs.readFileSync(filePath, 'utf8'));
   if (!data || !data.mdn_url) {
     return null;
   }
   let shortDescriptions = [];
   if (includeShortDescriptions) {
-    const prose = await proseSlicer.packageProse(content);
+    const prose = proseSlicer.packageProse(content);
     shortDescriptions = prose.filter(section => section.value.id === 'short_description');
   }
   return {
@@ -34,12 +34,12 @@ async function itemFromFile(includeShortDescriptions, filePath) {
  * extract the things needed for a link:
  *    - title, URL, and (if required) short description
  */
-async function itemFromDirectory(includeShortDescriptions, itemDirectory) {
+function itemFromDirectory(includeShortDescriptions, itemDirectory) {
   const items = fs.readdirSync(itemDirectory, {withFileTypes: true});
   const filenames = items.filter(item => !item.isDirectory())
     .filter(item => item.name.endsWith('.md'))
     .map(item => path.join(itemDirectory, item.name));
-  let content =  await Promise.all(filenames.map(itemFromFile.bind(null, includeShortDescriptions)));
+  let content =  filenames.map(itemFromFile.bind(null, includeShortDescriptions));
   content = content.filter(e => !!e);
   if (content.length !== 1) {
     throw new Error(`${itemDirectory} should contain exactly one buildable item (not ${content.length})`);
@@ -52,14 +52,14 @@ async function itemFromDirectory(includeShortDescriptions, itemDirectory) {
  *
  * Each item in the list is a directory containing content for a single page.
  */
-async function linkListFromChapterList(chapterListPath, includeShortDescriptions = false) {
+function linkListFromChapterList(chapterListPath, includeShortDescriptions = false) {
   const fullPath = path.join(ROOT, chapterListPath);
   const fullDir = path.dirname(fullPath);
   const chapterList = yaml.safeLoad(fs.readFileSync(fullPath, 'utf8'));
   const chapterPaths = chapterList.chapters.map(chapter => path.join(fullDir, chapter));
   return {
     title: chapterList.title,
-    content: await Promise.all(chapterPaths.map(itemFromDirectory.bind(null, includeShortDescriptions)))
+    content: chapterPaths.map(itemFromDirectory.bind(null, includeShortDescriptions))
   }
 }
 
@@ -70,13 +70,13 @@ async function linkListFromChapterList(chapterListPath, includeShortDescriptions
  *
  * Each of those directories is expected to contain content for a single page.
  */
-async function linkListFromDirectory(title, directory, includeShortDescriptions = false) {
+function linkListFromDirectory(title, directory, includeShortDescriptions = false) {
   const fullPath = path.join(ROOT, directory);
   let itemDirectories = fs.readdirSync(fullPath, {withFileTypes: true}).filter(item => item.isDirectory());
   itemDirectories = itemDirectories.map(itemDirectory => path.join(fullPath, itemDirectory.name));
   return {
     title: title,
-    content: await Promise.all(itemDirectories.map(itemFromDirectory.bind(null, includeShortDescriptions)))
+    content: itemDirectories.map(itemFromDirectory.bind(null, includeShortDescriptions))
   }
 }
 
@@ -85,11 +85,11 @@ async function linkListFromDirectory(title, directory, includeShortDescriptions 
  *
  * Each path is a directory containing content for a single page.
  */
-async function linkListFromFilePaths(title, filePaths, includeShortDescriptions = false) {
+function linkListFromFilePaths(title, filePaths, includeShortDescriptions = false) {
   const fullFilePaths = filePaths.map(filePath => path.join(ROOT, filePath));
   return {
     title: title,
-    content: await Promise.all(fullFilePaths.map(itemFromDirectory.bind(null, includeShortDescriptions)))
+    content: fullFilePaths.map(itemFromDirectory.bind(null, includeShortDescriptions))
   }
 }
 

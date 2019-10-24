@@ -52,8 +52,8 @@ function getSectionValue(node) {
     }
 }
 
-async function packageProse(proseMD) {
-    const proseHTML = await markdown.markdownToHTML(proseMD);
+function packageProse(proseMD) {
+    const proseHTML = markdown.markdownToHTML(proseMD);
     const dom = JSDOM.fragment(proseHTML);
     const sections = [];
     let node = dom.firstChild;

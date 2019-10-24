@@ -9,12 +9,12 @@ function findItems(directory, searchPaths, filepaths = []) {
     const files = fs.readdirSync(directory);
     for (let filename of files) {
         const filepath = path.join(directory, filename);
-        if (path.extname(filename) === '.md') {
+        if (fs.statSync(filepath).isDirectory()) {
+            findItems(filepath, searchPaths, filepaths);
+        } else if (path.extname(filename) === '.md') {
             if (!searchPaths.length || searchPaths.some(s => filepath.includes(s))) {
                 filepaths.push(filepath);
             }
-        } else if (fs.statSync(filepath).isDirectory()) {
-            findItems(filepath, searchPaths, filepaths);
         }
     }
     return filepaths;
@@ -32,10 +32,10 @@ function buildJSON(searchPaths) {
     function printPath(p) {
         return p.replace(cwd, '');
     }
-    items.forEach(async item => {
+    items.forEach(item => {
         let built
         try {
-            built = await buildPage.buildPageJSON(item);
+            built = buildPage.buildPageJSON(item);
             const { docsPath, destPath } = built;
             if (destPath !== null) {
                 console.log(`Packaged ${printPath(docsPath)} to ${printPath(destPath)}`);
@@ -45,7 +45,6 @@ function buildJSON(searchPaths) {
             console.error(error);
             errors++;
         }
-
     })
     return errors;
 }

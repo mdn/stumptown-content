@@ -4,10 +4,10 @@ const path = require('path');
 const matter = require('gray-matter');
 const markdown = require('./markdown-converter');
 
-async function packageDescription(examplePath) {
+function packageDescription(examplePath) {
     const descriptionMD = fs.readFileSync(path.join(examplePath, 'description.md'), 'utf8');
     const {data, content} = matter(descriptionMD);
-    data.content = await markdown.markdownToHTML(content);
+    data.content = markdown.markdownToHTML(content);
     return data;
 }
 
@@ -32,15 +32,15 @@ function packageSources(examplePath) {
     return exampleSource;
 }
 
-async function packageExample(examplePath) {
+function packageExample(examplePath) {
     return {
-        description: await packageDescription(examplePath),
+        description: packageDescription(examplePath),
         sources: packageSources(examplePath)
     }
 }
 
 function packageExamples(paths) {
-    return Promise.all(paths.map(packageExample));
+    return paths.map(packageExample);
 }
 
 module.exports = {
