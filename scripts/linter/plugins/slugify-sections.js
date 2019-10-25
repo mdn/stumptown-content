@@ -33,7 +33,7 @@ function isHeadingLevel2(node) {
  * A unified plugin that sets `data.slug` for H2s.
  */
 function attacher() {
-    return async function transformer(tree) {
+    return function transformer(tree) {
         if (tree && tree.data && tree.data.recipe !== undefined) {
             visit(tree, isHeadingLevel2, node => {
                 const slug = remarkToSlug(node);
