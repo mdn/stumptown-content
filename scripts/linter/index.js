@@ -14,7 +14,7 @@ const validRecipe = require("./plugins/valid-recipes");
 const walkDocs = require("./walk-docs");
 const yamlLoader = require("./plugins/yaml-loader");
 
-async function main() {
+function main() {
     const recipes = collectRecipes();
 
     const markdownParser = unified()
@@ -35,8 +35,8 @@ async function main() {
     const reportedFiles = [];
 
     for (const fp of walkDocs()) {
-        const file = await vfile.read(fp);
-        await markdownParser().process(file);
+        const file = vfile.readSync(fp);
+        markdownParser().processSync(file);
         reportedFiles.push(file);
     }
 
