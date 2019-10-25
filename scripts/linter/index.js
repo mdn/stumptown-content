@@ -6,11 +6,11 @@ const unified = require("unified");
 const vfile = require("to-vfile");
 
 const collectRecipes = require("./collect-recipes");
-const collectDocs = require("./collect-docs");
 const deprecatedSections = require("./plugins/deprecated-sections");
 const missingSections = require("./plugins/missing-sections");
 const slugifySections = require("./plugins/slugify-sections");
 const validRecipe = require("./plugins/valid-recipes");
+const walkDocs = require("./walk-docs");
 const yamlLoader = require("./plugins/yaml-loader");
 
 async function main() {
@@ -31,11 +31,9 @@ async function main() {
         })
         .use(missingSections);
 
-    const filePaths = await collectDocs();
-
     const reportedFiles = [];
 
-    for (const fp of filePaths) {
+    for await (const fp of walkDocs()) {
         const file = await vfile.read(fp);
         await markdownParser().process(file);
         reportedFiles.push(file);
