@@ -15,7 +15,7 @@ const walkDocs = require("./walk-docs");
 const yamlLoader = require("./plugins/yaml-loader");
 
 async function main() {
-    const recipes = await collectRecipes();
+    const recipes = collectRecipes();
 
     const markdownParser = unified()
         .use(parse)
