@@ -10,7 +10,7 @@ const ruleId = "stumptown-linter:deprecated-section";
 function attacher(options) {
     const deprecatedSections = options.sections;
 
-    return async function transformer(tree, file) {
+    return function transformer(tree, file) {
         if (tree && tree.data && tree.data.recipe !== undefined) {
             const deprecations = deprecatedSections[tree.data.recipeName] || [];
 
