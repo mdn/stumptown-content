@@ -1,6 +1,7 @@
 const frontmatter = require("remark-frontmatter");
 const parse = require("remark-parse");
 const report = require("vfile-reporter");
+const statistics = require("vfile-statistics");
 const stringify = require("remark-stringify");
 const unified = require("unified");
 const vfile = require("to-vfile");
@@ -40,6 +41,9 @@ async function main() {
     }
 
     console.error(report(reportedFiles, { quiet: true }));
+
+    const exitCode = statistics(reportedFiles).fatal ? 1 : 0;
+    process.exit(exitCode);
 }
 
 if (require.main === module) {
