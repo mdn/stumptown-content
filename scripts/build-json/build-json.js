@@ -20,34 +20,38 @@ function findItems(directory, searchPaths, filepaths = []) {
     return filepaths;
 }
 
-function buildJSON(searchPaths) {
-    let errors = 0;
+async function buildJSON(searchPaths) {
     const items = findItems(path.resolve(ROOT, 'content'), searchPaths);
     if (!items.length && searchPaths.length) {
         console.error("No elements found");
-        errors++;
+        return 1;
     }
 
     const cwd = process.cwd() + path.sep;
     function printPath(p) {
         return p.replace(cwd, '');
     }
-    items.forEach(async item => {
-        let built
+
+    const results = await Promise.all(items.map(async item => {
         try {
-            built = await buildPage.buildPageJSON(item);
+            const built = await buildPage.buildPageJSON(item);
             const { docsPath, destPath } = built;
             if (destPath !== null) {
                 console.log(`Packaged ${printPath(docsPath)} to ${printPath(destPath)}`);
             }
+            return true;
         } catch (error) {
             console.warn(`Failed to build page JSON from ${item}`);
             console.error(error);
-            errors++;
+            return false;
         }
-
-    })
-    return errors;
+    }));
+    if (!results.every(Boolean)) {
+        throw new Error('At least one document failed');
+    }
 }
 
-process.exitCode = buildJSON(process.argv.slice(2));
+buildJSON(process.argv.slice(2)).catch(() => {
+    console.warn("At least one document failed.");
+    process.exitCode = 1;
+});
