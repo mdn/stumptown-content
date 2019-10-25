@@ -34,7 +34,7 @@ async function main() {
 
     const reportedFiles = [];
 
-    for await (const fp of walkDocs()) {
+    for (const fp of walkDocs()) {
         const file = await vfile.read(fp);
         await markdownParser().process(file);
         reportedFiles.push(file);
