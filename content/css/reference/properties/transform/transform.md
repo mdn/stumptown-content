@@ -1,3 +1,16 @@
+---
+title: transform
+mdn-url: https://developer.mozilla.org/docs/Web/CSS/transform
+recipe: css-property
+interactive-example: https://interactive-examples.mdn.mozilla.net/pages/css/transform.html
+formal-syntax: 'none | <transform-list>'
+animatable: true
+initial-value: none
+browser-compatibility: css.properties.transform
+examples:
+    - examples/simple-example
+---
+
 ## Short description
 
 The **`transform`** [CSS](/en-US/docs/Web/CSS) property lets you rotate,

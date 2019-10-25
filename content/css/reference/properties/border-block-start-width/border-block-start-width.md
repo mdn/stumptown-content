@@ -1,3 +1,16 @@
+---
+title: border-block-start-width
+mdn-url: https://developer.mozilla.org/docs/Web/CSS/border-block-start-width
+recipe: css-property
+interactive-example: https://interactive-examples.mdn.mozilla.net/pages/css/border-block-start-width.html
+formal-syntax: <'border-top-width'>
+animatable: discrete
+initial-value: medium
+browser-compatibility: css.properties.border-block-start-width
+examples:
+    - examples/simple-example
+---
+
 ## Short description
 
 The **`border-block-start-width`** [CSS](/en-US/docs/Web/CSS)

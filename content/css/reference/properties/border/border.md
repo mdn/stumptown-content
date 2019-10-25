@@ -1,3 +1,20 @@
+---
+title: border
+mdn-url: https://developer.mozilla.org/docs/Web/CSS/border
+recipe: css-property
+interactive-example: https://interactive-examples.mdn.mozilla.net/pages/css/border.html
+formal-syntax: '<line-width> || <line-style> || <color>'
+shorthand-for:
+    - border-width
+    - border-style
+    - border-color
+animatable:
+initial-value:
+browser-compatibility: css.properties.border
+examples:
+    - examples/simple-example
+---
+
 ## Short description
 
 The **`border`** [CSS](/en-US/docs/CSS) property sets an element's
