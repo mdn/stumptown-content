@@ -8,10 +8,10 @@ async function* walkContent(start = "content") {
     const files = await fsPromises.readdir(start, { withFileTypes: true });
 
     for (const f of files) {
-        if (f.name.endsWith(".md")) {
-            yield path.join(start, f.name);
-        } else if (f.isDirectory()) {
+        if (f.isDirectory()) {
             yield* walkContent(path.join(start, f.name));
+        } else if (f.name.endsWith(".md")) {
+            yield path.join(start, f.name);
         }
     }
 }
