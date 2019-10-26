@@ -118,7 +118,7 @@ body:
 
 This describes what must be present (and in some cases what _may_ be present) in all HTML element pages, and the order in which items must appear. Each distinct type of page in MDN - CSS property pages, Web API method pages, JS function pages - will have one of these files, although some of them will be very similar.
 
-The first item, `related_content`, points to a special YAML file that describes other pages related to this one. It's used to build a sidebar for this page (but could have other uses too).
+The first item, `related_content`, points to a special YAML file that describes other pages related to this one. It's used to build a sidebar for this page (but could have other uses too). See [Related content](#related-content).
 
 The other item, `body`, describes the structure of the page content. Each property under here names a piece of the page.
 
@@ -177,7 +177,7 @@ mdn_url: /en-US/docs/Web/HTML/Element/b
 
 **Note: It's arguable whether these three items should actually be in the recipe, but they are applicable to every page, so it seemed redundant.**
 
-See [meta ingredient details](#meta-ingredients-details) for detailed descriptions of each meta ingredient.
+See [meta ingredient details](#meta-ingredient-details) for detailed descriptions of each meta ingredient.
 
 ### Prose ingredients
 
@@ -220,7 +220,7 @@ This was formerly known as the
 
 Heading names are mapped to identifiers by being lowercased and having spaces converted to underscores. So we can see here that the `<br>` docs include all the three mandatory prose sections, and none of the optional sections.
 
-As for `prose.*`, this is a mechanism for authors to include custom sections with any heading they choose. For example, the `<iframe>` page wants a heading "Scripting". The `<br>` page, though, doesn't make use of this.
+As for `prose.*`, this is a mechanism for authors to include custom sections with any heading they choose. For example, the `<iframe>` page wants a heading "Scripting".
 
 ## Meta ingredient details
 
