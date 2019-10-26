@@ -1,5 +1,19 @@
 # Writers' guide to stumptown
 
+**Table of contents:**
+* [stumptown-content and stumptown-renderer](#stumptown-content-and-stumptown-renderer)
+* [The content directory](#the-content-directory)
+* [Recipe files](#recipe-files)
+* [Meta ingredient details](#meta-ingredient-details)
+* [Landing pages](#landing-pages)
+* [Guide pages](#guide-pages)
+* [Related content](#related-content)
+* [Chapter lists](#chapter-lists)
+* [Specifications](#specifications-1)
+* [Contributors](#contributors)
+
+## stumptown-content and stumptown-renderer
+
 This document describes stumptown from the point of view of a technical writer.
 
 We can think of the MDN documentation landscape like this:
