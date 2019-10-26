@@ -402,7 +402,7 @@ If `height` is omitted, then stumptown treats this example as just a static exam
 
 **Note: we have also considered having a less implicit way to signal whether or not an example is live (https://github.com/mdn/stumptown-content/issues/45 ).**
 
-The rest of this file is a prose description of the example.
+The rest of the "description.md" file is a prose description of the example.
 
 #### example.\*
 
@@ -681,7 +681,7 @@ Items listed in the `specifications` front matter property must match one of the
 specifications: https://html.spec.whatwg.org/multipage/semantics.html#the-abbr-element
 ```
 
-**Note: I don't see a reason why this adds a scheme, but the scheme is not present in "specifications.yaml".**
+**Note: I don't see a reason why the front matter property includes a scheme, but the scheme is not present in "specifications.yaml".**
 
 ## Contributors
 
