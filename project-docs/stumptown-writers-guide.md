@@ -30,7 +30,7 @@ The "stumptown-renderer" repository implements the most important consumer of st
 
 Almost all of this document focuses on the stumptown-content repository, since this is where authors spend their time. Authors do not need to understand what's going on inside stumptown-renderer, and they do not need to understand the JSON structures that stumptown-content builds. However, they will need to use stumptown-renderer so they can see what their content looks like when rendered as MDN pages.
 
-## The ./content directory
+## The /content directory
 
 All content created by writers lives in the ./content directory. This directory contains a collection of Markdown and YAML files. Markdown is used for prose content, and YAML is used to tell stumptown where it can find other content (such as BCD) and how it should combine prose content with other content. The Markdown files often also contain YAML in the form of front matter.
 
