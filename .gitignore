@@ -1,4 +1,6 @@
 # Local node installation
 node_modules/
 packaged
+kumapackaged
 legacycontent
+.from-mdn-cache.json

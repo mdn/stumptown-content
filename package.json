@@ -24,6 +24,7 @@
         "test": "npm run lint-js && npm run lint-md && npm run spell-md"
     },
     "dependencies": {
+        "cheerio": "1.0.0-rc.3",
         "gray-matter": "4.0.2",
         "js-yaml": "3.13.1",
         "jsdom": "15.2.0",
