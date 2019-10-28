@@ -14,10 +14,7 @@ function markdownToHTML(md) {
     .use(remark2rehype)
     .use(raw)
     .use(stringify)
-    .process(md)
-    .then((html) => {
-      return String(html);
-    });
+    .processSync(md).toString();
 }
 
 module.exports = {

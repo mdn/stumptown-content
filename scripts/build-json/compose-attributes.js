@@ -36,10 +36,10 @@ function packageValues(dom) {
     return values;
 }
 
-async function packageAttribute(attributePath) {
+function packageAttribute(attributePath) {
     const attributeMD = fs.readFileSync(attributePath, 'utf8');
     const {content} = matter(attributeMD);
-    const contentHTML = await markdown.markdownToHTML(content);
+    const contentHTML = markdown.markdownToHTML(content);
     const dom = JSDOM.fragment(contentHTML);
     const attribute = {};
     // extract the name property

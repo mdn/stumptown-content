@@ -7,7 +7,7 @@ const { packageInteractiveExample } = require('./compose-interactive-example');
 const { packageProse } = require('./slice-prose');
 const { packageSpecs } = require('./build-specs');
 
-async function processMetaIngredient(elementPath, ingredientName, data) {
+function processMetaIngredient(elementPath, ingredientName, data) {
     switch (ingredientName) {
         case 'interactive_example':
             // interactive_example is optional
@@ -30,7 +30,7 @@ async function processMetaIngredient(elementPath, ingredientName, data) {
             };
         case 'attributes':
             if (data.attributes.element_specific) {
-                return await packageAttributes(elementPath, data.attributes.element_specific);
+                return packageAttributes(elementPath, data.attributes.element_specific);
             } else {
                 return [];
             }
@@ -39,7 +39,7 @@ async function processMetaIngredient(elementPath, ingredientName, data) {
           return {
             title: 'Examples',
             id: 'examples',
-            examples: await packageExamples(examplesPaths)
+            examples: packageExamples(examplesPaths)
           };
         }
         case 'info_box':
@@ -51,17 +51,17 @@ async function processMetaIngredient(elementPath, ingredientName, data) {
     }
 }
 
-async function buildRecipePageJSON(elementPath, data, content, recipe) {
+function buildRecipePageJSON(elementPath, data, content, recipe) {
     const body = [];
 
-    const proseSections = await packageProse(content);
+    const proseSections = packageProse(content);
 
     // for each ingredient in the recipe, process the item's ingredient
     for (let ingredient of recipe.body) {
         const [ingredientType, ingredientName] = ingredient.replace(/\?$/, '').split('.');
         if (ingredientType === 'meta') {
             // non-prose ingredients, which are specified in front matter
-            const value = await processMetaIngredient(elementPath, ingredientName, data);
+            const value = processMetaIngredient(elementPath, ingredientName, data);
             if (value !== null) {
                 body.push({
                   type: ingredientName,

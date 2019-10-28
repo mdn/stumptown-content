@@ -31,22 +31,22 @@ function buildLinkList(listSpec) {
  * Each link contains a title and a URL, and may optionally also contain
  * a short description.
  */
-async function buildLandingPageJSON(elementPath, data, content) {
+function buildLandingPageJSON(elementPath, data, content) {
     const overview = {
         type: "prose",
         value: {
             title: "Overview",
             id: "overview",
-            content: await markdown.markdownToHTML(content)
+            content: markdown.markdownToHTML(content)
         }
     };
-    const linkLists = await Promise.all(data.link_lists.map(async listSpec => {
-        const linkList = await buildLinkList(listSpec);
+    const linkLists = data.link_lists.map(listSpec => {
+        const linkList = buildLinkList(listSpec);
         return {
             type: "link_list",
             value: linkList
         };
-    }));
+    });
     return [ overview, ...linkLists];
 }
 
