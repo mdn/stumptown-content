@@ -36,7 +36,7 @@ All content created by writers lives in the ./content directory. This directory 
 
 Not all Markdown files under ./content correspond directly to MDN pages, but most of them do. Those that do all contain YAML front matter which contains a property named `recipe`. This property tells stumptown what kind of page this content wants to be.
 
-Let's look at one of these Markdown files. It's located at ./content/html/reference/elements/br/docs.md, and is the content for the [HTML `<b>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/b) page:
+Let's look at one of these Markdown files. It's located at ./content/html/reference/elements/b/docs.md, and is the content for the [HTML `<b>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/b) page:
 
 ```
 ---
@@ -142,7 +142,7 @@ Here are just the `meta` ingredients from the recipe:
 - meta.browser_compatibility
 ```
 
-Looking back at our docs file for the `<br>` element, we should see that each `meta` item has a corresponding property in the front matter:
+Looking back at our docs file for the `<b>` element, we should see that each `meta` item has a corresponding property in the front matter:
 
 ```yaml
 ---
@@ -195,7 +195,7 @@ Here are just the prose ingredients from the recipe:
 
 So there are three mandatory prose sections, three optional ones, and one weird `prose.*` thing.
 
-Here again is the prose part of the `<br>` doc:
+Here again is the prose part of the `<b>` doc:
 
 ```
 ## Short description
@@ -218,7 +218,7 @@ This was formerly known as the
 
 ```
 
-Heading names are mapped to identifiers by being lowercased and having spaces converted to underscores. So we can see here that the `<br>` docs include all the three mandatory prose sections, and none of the optional sections.
+Heading names are mapped to identifiers by being lowercased and having spaces converted to underscores. So we can see here that the `<b>` docs include all the three mandatory prose sections, and none of the optional sections.
 
 As for `prose.*`, this is a mechanism for authors to include custom sections with any heading they choose. For example, the `<iframe>` page wants a heading "Scripting".
 
