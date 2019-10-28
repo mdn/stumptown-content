@@ -175,7 +175,7 @@ short_title: <b>
 mdn_url: /en-US/docs/Web/HTML/Element/b
 ```
 
-**Note: It's arguable whether these three items should actually be in the recipe, but they are applicable to every page, so it seemed redundant.**
+**Note: It's arguable whether these three items should actually be in the recipe, but they are applicable to every page, so it seemed redundant. Filed as https://github.com/mdn/stumptown-content/issues/203.**
 
 See [meta ingredient details](#meta-ingredient-details) for detailed descriptions of each meta ingredient.
 
@@ -287,7 +287,7 @@ In this example, there are two element-specific attributes, found at "../input/a
 
 Paths may be given as an absolute path from the stumptown root directory, or a path relative to the file containing the ingredient.
 
-**Note: I think we should remove `global`, since everyone always has it and it always has the same value.**
+**Note: I think we should remove `global`, since everyone always has it and it always has the same value. Filed as https://github.com/mdn/stumptown-content/issues/202.**
 
 Each element-specific attribute is described in its own Markdown file, with its own syntax.
 
@@ -331,6 +331,8 @@ The H1 heading must be in `code format` and its content must be the name of the 
 # `crossorigin`
 ```
 
+**Note: We should not use code format here or in the "Values" bit. Filed as https://github.com/mdn/stumptown-content/issues/198.**
+
 Prose immediately after this describes the attribute.
 
 Some attributes, such as the `crossorigin` attribute above, can take special enumerated values. For such attributes, the description should be followed by an H2 with the text "Values":
@@ -357,7 +359,7 @@ After this there is an string describing the type of this attribute. The followi
 
 An object used to specify static or live samples to include in the page.
 
-**Note: this does not specify interactive examples, because we'd have to rewrite the live sample system if we wanted to do that.**
+**Note: this does not specify interactive examples, because we'd have to rewrite the interactive example system if we wanted to do that.**
 
 It is given as an array of paths to directories. Each directory contains a single example:
 
@@ -368,7 +370,7 @@ examples:
     - examples/multiple-source-elements
 ```
 
-**Note: it looks like this is using a different path convention from attributes. We should be consistent here.**
+**Note: it looks like this is using a different path convention from attributes. We should be consistent here. Filed as https://github.com/mdn/stumptown-content/issues/204.**
 
 Examples will be included in the rendered output in the order given here: so for example you may want to present the basic example first in the array, then more complex ones.
 
@@ -379,7 +381,7 @@ Each example is specified as a directory containing four files, one mandatory an
 -   "example.css"
 -   "example.js"
 
-**Note: we don't yet support "hidden" sources One suggestion was just to call them "hidden.css" etc.**
+**Note: we don't yet support "hidden" sources One suggestion was just to call them "hidden.css" etc. Filed as https://github.com/mdn/stumptown-content/issues/205.**
 
 #### description.md
 
