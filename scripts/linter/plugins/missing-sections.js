@@ -23,7 +23,7 @@ function requiredSections(recipe) {
  * A unified plugin that warns on missing sections in Markdown files, if the root node has `tree.data.recipe`.
  */
 function attacher() {
-    return async function transformer(tree, file) {
+    return function transformer(tree, file) {
         if (tree && tree.data && tree.data.recipe !== undefined) {
             const expectedSections = requiredSections(tree.data.recipe);
             const actualSections = [];
