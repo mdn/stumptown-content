@@ -32,11 +32,11 @@ Almost all of this document focuses on the stumptown-content repository, since t
 
 ## The /content directory
 
-All content created by writers lives in the ./content directory. This directory contains a collection of Markdown and YAML files. Markdown is used for prose content, and YAML is used to tell stumptown where it can find other content (such as BCD) and how it should combine prose content with other content. The Markdown files often also contain YAML in the form of front matter.
+All content created by writers lives in the /content directory. This directory contains a collection of Markdown and YAML files. Markdown is used for prose content, and YAML is used to tell stumptown where it can find other content (such as BCD) and how it should combine prose content with other content. The Markdown files often also contain YAML in the form of front matter.
 
-Not all Markdown files under ./content correspond directly to MDN pages, but most of them do. Those that do all contain YAML front matter which contains a property named `recipe`. This property tells stumptown what kind of page this content wants to be.
+Not all Markdown files under /content correspond directly to MDN pages, but most of them do. Those that do all contain YAML front matter which contains a property named `recipe`. This property tells stumptown what kind of page this content wants to be.
 
-Let's look at one of these Markdown files. It's located at ./content/html/reference/elements/b/docs.md, and is the content for the [HTML `<b>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/b) page:
+Let's look at one of these Markdown files. It's located at /content/html/reference/elements/b/docs.md, and is the content for the [HTML `<b>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/b) page:
 
 ```
 ---
