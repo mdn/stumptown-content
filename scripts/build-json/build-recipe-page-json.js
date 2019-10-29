@@ -6,6 +6,7 @@ const { packageAttributes } = require('./compose-attributes');
 const { packageInteractiveExample } = require('./compose-interactive-example');
 const { packageProse } = require('./slice-prose');
 const { packageSpecs } = require('./build-specs');
+const { buildLinkList } = require('./build-link-lists');
 
 function processMetaIngredient(elementPath, ingredientName, data) {
     switch (ingredientName) {
@@ -41,6 +42,9 @@ function processMetaIngredient(elementPath, ingredientName, data) {
             id: 'examples',
             examples: packageExamples(examplesPaths)
           };
+        }
+        case 'link_lists': {
+          return data.link_lists.map(buildLinkList);
         }
         case 'info_box':
             // TODO: implement packaging for info boxes

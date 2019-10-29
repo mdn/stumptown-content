@@ -1,18 +1,15 @@
 body:
-- prose.short-description
-- meta.interactive-example
+- prose.short_description
+- meta.interactive_example
 - prose.overview
-- prose.syntax-overview
-- prose.example-syntax
+- prose.syntax_overview
+- prose.example_syntax
 - meta.values
-- meta.formal-syntax
+- meta.formal_syntax
 - prose.*
-- prose.accessibility-concerns?
+- prose.accessibility_concerns?
 - meta.examples
-- meta.info-box:
-    - meta.animatable
-    - meta.initial-value
-    - meta.shorthand-for
+- meta.info_box
 - meta.specifications
-- meta.browser-compatibility
-- prose.see-also
+- meta.browser_compatibility
+- prose.see_also
