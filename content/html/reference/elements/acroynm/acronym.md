@@ -24,7 +24,7 @@ This element only has [global attributes](/en-US/docs/HTML/global_attributes), w
 
 This element implements the [`HTMLElement`](/en-US/docs/Web/API/HTMLElement) interface.
 
-**Implementation note:**Up to Gecko 1.9.2 inclusive, Firefox implements the [`HTMLSpanElement`](/en-US/docs/Web/API/HTMLSpanElement) interface for this element.
+**Implementation note:** Up to Gecko 1.9.2 inclusive, Firefox implements the [`HTMLSpanElement`](/en-US/docs/Web/API/HTMLSpanElement) interface for this element.
 
 ## Example
 
