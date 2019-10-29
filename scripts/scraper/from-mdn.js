@@ -45,9 +45,6 @@ function processDoc({ filepath, uri, destination, digestPrefix, cache }) {
         // Already processed!
         return [processing.ALREADY, null];
     }
-    const doc = {
-        mdn_url: uri
-    };
     let json;
     if (filecontent) {
         json = JSON.parse(filecontent);
@@ -57,21 +54,25 @@ function processDoc({ filepath, uri, destination, digestPrefix, cache }) {
     }
     const { documentData } = json;
 
+    const doc = {};
     if (!documentData) {
         if (!json.redirectURL) {
             throw new Error(`No idea how to deal with that! ${filecontent}`);
         }
         doc.redirect_url = json.redirectURL;
+        doc.mdn_url = json.absoluteURL || apiURLtoRealURL(uri);
     } else if (!documentData.bodyHTML) {
         return [processing.NO_HTML, null];
     } else {
+        doc.mdn_url = documentData.absoluteURL;
+
         const $ = cheerio.load(
             `<div id="_body">${documentData.bodyHTML}</div>`
         );
 
         // Remove those '<span class="alllinks"><a href="/en-US/docs/tag/Web">View All...</a></span>' links
         // Remove any completely empty <p>, <dl>, or <div> tags.
-        $("p:empty,dl:empty,div:empty,s  pan.alllinks").remove();
+        $("p:empty,dl:empty,div:empty,span.alllinks").remove();
 
         if (documentData.raw === undefined) {
             throw new Error(`documentData in ${filepath} does not have 'raw'`);
@@ -131,6 +132,22 @@ function processDoc({ filepath, uri, destination, digestPrefix, cache }) {
     return [processing.PROCESSED, destination];
 }
 
+/** If we all we have is the slug as it's known in the v1 API, we don't
+ * know what the absolute URL ought to be we have to deduce it.
+ * For example, a slug like 'Foo/Bar/baz' in locale 'en-US' might be called
+ * '/api/v1/doc/en-US/Foo/Bar/baz' here.
+ * So figure out a way to return '/en-US/docs/Foo/Bar/baz'
+ */
+function apiURLtoRealURL(uri) {
+    if (!uri.startsWith("/api/v1/doc/")) {
+        throw new Error(`No idea how to process this! ${uri}`);
+    }
+    uri = uri.replace("/api/v1/doc/", "/");
+    const split = uri.split("/");
+    split.splice(2, 0, "docs");
+    return split.join("/");
+}
+
 function logError(err, msg) {
     console.warn(msg, err);
     fs.appendFileSync(currentErrorLogFile, `${msg}: ${err}`);
@@ -158,11 +175,15 @@ function addSection($, macroCalls) {
             value: bcdData
         };
     }
-    // Maybe this should check that the h2 is first
+
+    // Maybe this should check that the h2 is first??
     const h2s = $.find("h2");
     if (h2s.length === 1) {
         const id = h2s.attr("id");
         const title = h2s.text();
+        // XXX Maybe this is a bad idea.
+        // See https://wiki.developer.mozilla.org/en-US/docs/MDN/Contribute/Structures/Page_types/API_reference_page_template
+        // where the <h2> needs to be INSIDE the `<div class="note">`.
         h2s.remove();
         return {
             type: "prose",
@@ -261,18 +282,21 @@ function start(
         }
         const destination = path.join(outDir, uri) + ".json";
 
-        // To respect the legacy have to put the "/docs/" in after the
-        // locale.
-        if (uri.split("/")[1] !== "docs") {
-            const parts = uri.split("/");
-            parts.splice(2, 0, "docs");
-            uri = parts.join("/");
-        }
+        // // To respect the legacy have to put the "/docs/" in after the
+        // // locale.
+        // if (uri.split("/")[1] !== "docs") {
+        //     const parts = uri.split("/");
+        //     parts.splice(2, 0, "docs");
+        //     uri = parts.join("/");
+        // }
         return { filepath, uri, destination };
     });
     // .filter(o => {
     //     return !searchfilter || o.uri.includes(searchfilter);
     // });
+
+    progressBar = new ProgressBar();
+    progressBar.init(files.length);
 
     const filesLength = files.length;
 
@@ -291,6 +315,9 @@ function start(
                 dumpCache();
                 throw err;
             }
+        }
+        if (quiet) {
+            progressBar.update(index + 1);
         }
 
         const t1 = Date.now();
@@ -324,15 +351,81 @@ function start(
         }
         return result;
     });
+    if (quiet) {
+        progressBar.clear();
+    }
     dumpCache();
     return results;
 }
 
-const RECOGNIZED_MACRO_NAMES = ["Compat"];
+class ProgressBar {
+    constructor() {
+        this.total;
+        this.current;
+        this.barLength = process.stdout.columns - 22;
+    }
+
+    init(total) {
+        this.total = total;
+        this.current = 0;
+        this.update(this.current);
+    }
+
+    update(current) {
+        this.current = current;
+        const currentProgress = this.current / this.total;
+        this.draw(currentProgress);
+    }
+
+    draw(currentProgress) {
+        const filledBarLength = (currentProgress * this.barLength).toFixed(0);
+        const emptyBarLength = this.barLength - filledBarLength;
+
+        const filledBar = this.getBar(filledBarLength, "·");
+        const emptyBar = this.getBar(emptyBarLength, " ");
+        const percentageProgress = (currentProgress * 100).toFixed(1);
+
+        process.stdout.clearLine();
+        process.stdout.cursorTo(0);
+        process.stdout.write(
+            `Progress: [${filledBar}${emptyBar}] | ${percentageProgress}%`
+        );
+    }
+    clear() {
+        process.stdout.write("\n");
+    }
+
+    getBar(length, char, color = a => a) {
+        let str = "";
+        for (let i = 0; i < length; i++) {
+            str += char;
+        }
+        return color(str);
+    }
+}
 
 function extractMacroCalls(text) {
+    const RECOGNIZED_MACRO_NAMES = ["Compat"];
+
+    function evaluateMacroArgs(argsString) {
+        if (argsString.startsWith("{") && argsString.endsWith("}")) {
+            return JSON.parse(argsString);
+        }
+        if (argsString.includes(",")) {
+            return eval(`[${argsString}]`);
+        }
+        // XXX A proper parser instead??
+        return eval(argsString);
+    }
+
     const calls = {};
-    for (const match of text.matchAll(/{{\s*(\w+)\s*\((.*?)\)\s*}}/g)) {
+    /**
+     * Note that the text can have escaped macros. For example:
+     *
+     *    This is how you write a macros: \{{Compat("foo.bar")}}
+     *
+     */
+    for (const match of text.matchAll(/[^\\]{{\s*(\w+)\s*\((.*?)\)\s*}}/g)) {
         const macroName = match[1];
         if (RECOGNIZED_MACRO_NAMES.includes(macroName)) {
             if (!calls[macroName]) {
@@ -345,22 +438,6 @@ function extractMacroCalls(text) {
     return calls;
 }
 
-function evaluateMacroArgs(argsString) {
-    if (argsString.startsWith("{") && argsString.endsWith("}")) {
-        return JSON.parse(argsString);
-    }
-    if (argsString.includes(",")) {
-        return eval(`[${argsString}]`);
-    }
-    // XXX A proper parser instead??
-    try {
-        return eval(argsString);
-    } catch (err) {
-        console.warn(`Unable to parse: ${argsString}`);
-        return argsString;
-    }
-}
-
 function countResults(results) {
     const counts = {};
 
@@ -371,6 +448,21 @@ function countResults(results) {
         counts[result]++;
     }
     return counts;
+}
+
+function ppMilliseconds(ms) {
+    // If the number of millseconds is really large, use seconds. Or minutes
+    // even.
+    if (ms > 1000 * 60 * 5) {
+        const seconds = ms / 1000;
+        const minutes = seconds / 60;
+        return `${minutes.toFixed(1)} minutes`;
+    } else if (ms > 1000) {
+        const seconds = ms / 1000;
+        return `${seconds.toFixed(1)} seconds`;
+    } else {
+        return `${ms.toFixed(1)} milliseconds`;
+    }
 }
 
 function main(argv) {
@@ -440,20 +532,22 @@ Options:
     const counts = countResults(results);
     const written = counts[processing.PROCESSED];
     if (written) {
-        console.log(`Wrote ${written} files.`);
+        console.log(`Wrote ${written.toLocaleString()} files.`);
         console.log(`Roughly ${((t1 - t0) / written).toFixed(1)}ms/page`);
     }
     const skipped = counts[processing.ALREADY];
     if (skipped) {
         console.log(
-            `Skipped ${skipped} files because unchanged digest inputs.`
+            `Skipped ${skipped.toLocaleString()} files because unchanged digest inputs.`
         );
     }
     const emptyOrNoHtml = counts[processing.EMPTY] + counts[processing.NO_HTML];
     if (emptyOrNoHtml) {
-        console.log(`Skipped ${emptyOrNoHtml} empty or no HTML files.`);
+        console.log(
+            `Skipped ${emptyOrNoHtml.toLocaleString()} empty or no HTML files.`
+        );
     }
-    console.log(`Total time: ${((t1 - t0) / 1000).toFixed(1)}s.`);
+    console.log(`Total time: ${ppMilliseconds(t1 - t0)}.`);
     if (
         fs.existsSync(currentErrorLogFile) &&
         fs.statSync(currentErrorLogFile).size
