@@ -9,6 +9,7 @@ const vfile = require("to-vfile");
 const collectRecipes = require("./collect-recipes");
 const deprecatedSections = require("./plugins/deprecated-sections");
 const missingSections = require("./plugins/missing-sections");
+const requiredFrontmatter = require("./plugins/required-frontmatter");
 const slugifySections = require("./plugins/slugify-sections");
 const validRecipe = require("./plugins/valid-recipes");
 const walkDocs = require("./walk-docs");
@@ -23,6 +24,7 @@ function main() {
         .use(frontmatter, ["yaml"])
         .use(yamlLoader)
         .use(validRecipe, { recipes })
+        .use(requiredFrontmatter)
         .use(slugifySections)
         .use(deprecatedSections, {
             sections: {
