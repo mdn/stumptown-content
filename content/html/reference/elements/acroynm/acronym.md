@@ -1,11 +1,12 @@
 ---
+recipe: html-element
 title: '<acronym>'
 mdn_url: /en-US/docs/Web/HTML/Element/acronym
 browser_compatibility: html.elements.acronym
-recipe: html-element
 attributes:
   global: /content/html/global_attributes
 examples: []
+specifications: https://www.w3.org/TR/html401/struct/text.html#edef-ACRONYM
 ---
 
 ## Short description
@@ -41,12 +42,6 @@ Though the purpose of this tag is purely for the convenience of the author, its 
 -   A few browsers not only add a dotted underline, but also put it in small caps; to avoid this styling, adding something like [`font-variant`](/en-US/docs/Web/CSS/font-variant)`: none` in the CSS takes care of this case.
 
 It is therefore recommended that web authors either explicitly style this element, or accept some cross-browser variation.
-
-## Specifications
-
-| Specification                                                                                                                                    | Status         | Comment |
-| ------------------------------------------------------------------------------------------------------------------------------------------------ | -------------- | ------- |
-| [HTML 4.01 Specification   The definition of '&lt;acronym>' in that specification.](https://www.w3.org/TR/html401/struct/text.html#edef-ACRONYM) | Recommendation |         |
 
 ## Browser compatibility
 
