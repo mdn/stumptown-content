@@ -5,7 +5,8 @@ mdn_url: /en-US/docs/Web/HTML/Element/acronym
 browser_compatibility: html.elements.acronym
 attributes:
   global: /content/html/global_attributes
-examples: []
+examples:
+  - examples/example
 specifications: non-standard
 ---
 
@@ -26,12 +27,6 @@ This element only has [global attributes](/en-US/docs/HTML/global_attributes), w
 This element implements the [`HTMLElement`](/en-US/docs/Web/API/HTMLElement) interface.
 
 **Implementation note:** Up to Gecko 1.9.2 inclusive, Firefox implements the [`HTMLSpanElement`](/en-US/docs/Web/API/HTMLSpanElement) interface for this element.
-
-## Example
-
-```html
-<p>The <acronym title="World Wide Web">WWW</acronym> is only a component of the Internet.</p>
-```
 
 ## Default styling
 
