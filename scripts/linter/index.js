@@ -34,6 +34,10 @@ function main(args) {
 
     const reportedFiles = [];
 
+    if (args.length === 0) {
+        args.push(undefined); // use default starting directory
+    }
+
     for (const arg of args) {
         for (const fp of walkDocs(arg)) {
             const file = vfile.readSync(fp);
