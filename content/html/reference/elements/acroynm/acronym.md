@@ -6,7 +6,7 @@ browser_compatibility: html.elements.acronym
 attributes:
   global: /content/html/global_attributes
 examples: []
-specifications: https://www.w3.org/TR/html401/struct/text.html#edef-ACRONYM
+specifications: non-standard
 ---
 
 ## Short description
