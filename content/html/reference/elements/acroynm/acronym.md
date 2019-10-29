@@ -18,17 +18,13 @@ The HTML Acronym Element (`<acronym>`) allows authors to clearly indicate a sequ
 
 This element has been removed in HTML5 and shouldn't be used anymore. Instead web developers should use the [`<abbr>`](/en-US/docs/Web/HTML/Element/abbr) element.
 
-## Attributes
-
-This element only has [global attributes](/en-US/docs/HTML/global_attributes), which are common to all elements.
-
 ## DOM Interface
 
 This element implements the [`HTMLElement`](/en-US/docs/Web/API/HTMLElement) interface.
 
 **Implementation note:** Up to Gecko 1.9.2 inclusive, Firefox implements the [`HTMLSpanElement`](/en-US/docs/Web/API/HTMLSpanElement) interface for this element.
 
-## Default styling
+## Styling
 
 Though the purpose of this tag is purely for the convenience of the author, its default styling varies from one browser to another:
 
