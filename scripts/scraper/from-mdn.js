@@ -137,14 +137,17 @@ function processDoc({ filepath, uri, destination, digestPrefix, cache }) {
  * '/api/v1/doc/en-US/Foo/Bar/baz' here.
  * So figure out a way to return '/en-US/docs/Foo/Bar/baz'
  */
+const urlRegex = /.*\/api\/v1\/doc\/(\D+)\//;
 function apiURLtoRealURL(uri) {
-  if (!uri.startsWith("/api/v1/doc/")) {
+  let result = urlRegex.exec(uri);
+  if (!result || result.length !== 2) {
     throw new Error(`No idea how to process this! ${uri}`);
   }
-  uri = uri.replace("/api/v1/doc/", "/");
-  const split = uri.split("/");
-  split.splice(2, 0, "docs");
-  return split.join("/");
+
+  let tail = uri.replace(result[0], "");
+  let locale = result[1];
+
+  return "/" + locale + "/docs/" + tail;
 }
 
 function logError(err, msg) {
