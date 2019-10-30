@@ -15,7 +15,7 @@ const validRecipe = require("./plugins/valid-recipes");
 const walkDocs = require("./walk-docs");
 const yamlLoader = require("./plugins/yaml-loader");
 
-function main() {
+function main(args) {
     const recipes = collectRecipes();
 
     const markdownParser = unified()
@@ -36,10 +36,16 @@ function main() {
 
     const reportedFiles = [];
 
-    for (const fp of walkDocs()) {
-        const file = vfile.readSync(fp);
-        markdownParser().processSync(file);
-        reportedFiles.push(file);
+    if (args.length === 0) {
+        args.push("content");
+    }
+
+    for (const arg of args) {
+        for (const fp of walkDocs(arg)) {
+            const file = vfile.readSync(fp);
+            markdownParser().processSync(file);
+            reportedFiles.push(file);
+        }
     }
 
     console.error(report(reportedFiles, { quiet: true }));
@@ -49,5 +55,5 @@ function main() {
 }
 
 if (require.main === module) {
-    main();
+    main(process.argv.slice(2));
 }
