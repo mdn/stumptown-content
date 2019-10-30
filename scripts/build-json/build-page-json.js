@@ -52,6 +52,7 @@ function buildPageJSON(docsPath) {
                 body = landingPage.buildLandingPageJSON(docsDirectory, data, content);
                 break;
             case 'html-element':
+            case 'html-global-attribute':
             case 'html-input-element': {
                     const cached = recipeCache[data.recipe];
                     let recipe;
