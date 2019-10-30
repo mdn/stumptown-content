@@ -169,10 +169,10 @@ function addSection($, macroCalls) {
         if (typeof compat !== "string") {
             throw new Error(`Unrecognized Compat first argument: ${compat}`);
         }
-        const bcdData = packageBCD(compat);
+        const data = packageBCD(compat);
         return {
             type: "browser_compatibility",
-            value: bcdData
+            value: {data, query: compat}
         };
     }
 
