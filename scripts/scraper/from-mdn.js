@@ -155,8 +155,6 @@ function logError(err, msg) {
 }
 
 function addSection($, macroCalls) {
-    throw new Error("crap!");
-
     // If the section is BCD scrap all the HTML
     if (macroCalls.Compat && $.find("div.bc-data").length) {
         // XXX WRONG!! THERE MIGHT BE MORE THAN ONE!
@@ -563,8 +561,13 @@ Options:
     const counts = countResults(results);
     const written = counts[processing.PROCESSED];
     if (written) {
-        console.log(`Wrote ${written.toLocaleString()} files.`);
-        console.log(`Roughly ${((t1 - t0) / written).toFixed(1)}ms/page`);
+        const timeRate = (t1 - t0) / written;
+        const docsRate = (1000 * written) / (t1 - t0);
+        console.log(
+            `Wrote ${written.toLocaleString()} files. ` +
+                `Roughly ${timeRate.toFixed(1)} ms/doc ` +
+                `(${docsRate.toFixed(1)} docs/s)`
+        );
     }
     const skipped = counts[processing.ALREADY];
     if (skipped) {
