@@ -19,6 +19,7 @@ const crypto = require("crypto");
 const minimist = require("minimist");
 const buildOptions = require("minimist-options");
 const cheerio = require("cheerio");
+const matchAll = require("string.prototype.matchall");
 
 const { packageBCD } = require("../build-json/resolve-bcd");
 
@@ -172,7 +173,7 @@ function addSection($, macroCalls) {
         const data = packageBCD(compat);
         return {
             type: "browser_compatibility",
-            value: {data, query: compat}
+            value: { data, query: compat }
         };
     }
 
@@ -425,7 +426,7 @@ function extractMacroCalls(text) {
      *    This is how you write a macros: \{{Compat("foo.bar")}}
      *
      */
-    for (const match of text.matchAll(/[^\\]{{\s*(\w+)\s*\((.*?)\)\s*}}/g)) {
+    for (const match of matchAll(text, /[^\\]{{\s*(\w+)\s*\((.*?)\)\s*}}/g)) {
         const macroName = match[1];
         if (RECOGNIZED_MACRO_NAMES.includes(macroName)) {
             if (!calls[macroName]) {
