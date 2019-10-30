@@ -5,13 +5,6 @@ const ruleId = "stumptown-linter:frontmatter-required-keys";
  */
 function required(recipe) {
     return recipe.body
-        .map(entry => {
-            if (typeof entry === "string") {
-                return entry;
-            } else {
-                return Object.keys(entry)[0];
-            }
-        })
         .filter(
             entry =>
                 typeof entry === "string" &&
