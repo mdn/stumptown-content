@@ -9,10 +9,7 @@ body:
 - prose.*
 - prose.accessibility-concerns?
 - meta.examples
-- meta.info-box:
-    - meta.animatable
-    - meta.initial-value
-    - meta.shorthand-for
+- meta.info-box?
 - meta.specifications
 - meta.browser-compatibility
 - prose.see-also

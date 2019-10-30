@@ -9,7 +9,7 @@ body:
 - prose.accessibility_concerns?
 - prose.*
 - meta.examples
-- meta.info_box
+- meta.info_box?
 - meta.specifications
 - meta.browser_compatibility
 - prose.see_also
