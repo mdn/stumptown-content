@@ -3,6 +3,7 @@ recipe: html-element
 title: '<acronym>'
 mdn_url: /en-US/docs/Web/HTML/Element/acronym
 browser_compatibility: html.elements.acronym
+api: HTMLElement
 attributes:
   global: /content/html/global_attributes
 examples:
@@ -17,12 +18,6 @@ The HTML Acronym Element (`<acronym>`) allows authors to clearly indicate a sequ
 ## Overview
 
 This element has been removed in HTML5 and shouldn't be used anymore. Instead web developers should use the [`<abbr>`](/en-US/docs/Web/HTML/Element/abbr) element.
-
-## DOM Interface
-
-This element implements the [`HTMLElement`](/en-US/docs/Web/API/HTMLElement) interface.
-
-**Implementation note:** Up to Gecko 1.9.2 inclusive, Firefox implements the [`HTMLSpanElement`](/en-US/docs/Web/API/HTMLSpanElement) interface for this element.
 
 ## Styling
 
