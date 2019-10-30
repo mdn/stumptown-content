@@ -286,7 +286,7 @@ function start(
         return { filepath, uri, destination };
     });
 
-    progressBar = new ProgressBar();
+    progressBar = new ProgressBar({ includeMemory: showmemory });
     progressBar.init(files.length);
 
     const filesLength = files.length;
@@ -344,62 +344,94 @@ function start(
         } else {
             throw new Error(`Unrecognized enum ${result}`);
         }
-        if (showmemory) {
-            const m = process.memoryUsage().heapUsed / 1024 / 1024;
-            console.log(`MEM: ${m.toFixed(2)} MB`);
-        }
         return result;
     });
     if (quiet) {
-        progressBar.clear();
+        progressBar.stop();
     }
     dumpCache();
     return results;
 }
 
 class ProgressBar {
-    constructor() {
+    constructor({ prefix = "Progress: ", includeMemory = false }) {
         this.total;
         this.current;
-        this.barLength = process.stdout.columns - 22;
+        this.prefix = prefix;
+        this.includeMemory = includeMemory;
+        // console.log(prefix.length + "100.0%".length);
+        this.barLength =
+            process.stdout.columns - prefix.length - "100.0%".length - 5;
+        if (includeMemory) {
+            this.barLength -= 10;
+        }
+
+        this.updateFrequency = 0.01; // every 1%
     }
 
     init(total) {
         this.total = total;
         this.current = 0;
+        this.every = Math.round(total * this.updateFrequency);
         this.update(this.current);
     }
 
     update(current) {
         this.current = current;
-        const currentProgress = this.current / this.total;
-        this.draw(currentProgress);
+        // if (this.current % this.every === 0) {
+        this.draw(this.current / this.total);
+        // }
     }
 
     draw(currentProgress) {
-        const filledBarLength = (currentProgress * this.barLength).toFixed(0);
+        const filledBarLength = Math.round(currentProgress * this.barLength);
         const emptyBarLength = this.barLength - filledBarLength;
 
-        const filledBar = this.getBar(filledBarLength, "·");
-        const emptyBar = this.getBar(emptyBarLength, " ");
-        const percentageProgress = (currentProgress * 100).toFixed(1);
+        const filledBar = this.getBar(filledBarLength, "█");
+        const emptyBar = this.getBar(emptyBarLength, "░");
 
+        // const percentageProgress = (currentProgress * 100).toFixed(1);
+        const percentageProgress = this.rJust(
+            `${(currentProgress * 100).toFixed(1)}%`,
+            "100.0%".length
+        );
+
+        let out = `${this.prefix}[${filledBar}${emptyBar}] | ${percentageProgress}`;
+        if (this.includeMemory) {
+            const bytes = process.memoryUsage().heapUsed;
+            out += ` | ${this.rJust(this.humanFileSize(bytes))}`;
+        }
         process.stdout.clearLine();
         process.stdout.cursorTo(0);
-        process.stdout.write(
-            `Progress: [${filledBar}${emptyBar}] | ${percentageProgress}%`
-        );
+        process.stdout.write(out);
     }
-    clear() {
+
+    stop() {
         process.stdout.write("\n");
     }
 
-    getBar(length, char, color = a => a) {
-        let str = "";
-        for (let i = 0; i < length; i++) {
-            str += char;
+    humanFileSize(size) {
+        if (size < 1024) return size + " B";
+        let i = Math.floor(Math.log(size) / Math.log(1024));
+        let num = size / Math.pow(1024, i);
+        let round = Math.round(num);
+        num =
+            round < 10 ? num.toFixed(2) : round < 100 ? num.toFixed(1) : round;
+        return `${num} ${"KMGTPEZY"[i - 1]}B`;
+    }
+    rJust(str, length) {
+        while (str.length < length) {
+            str = ` ${str}`;
         }
-        return color(str);
+        return str;
+    }
+
+    getBar(length, char, color = a => a) {
+        return color(
+            Array(length)
+                .fill(char)
+                .join("")
+        );
     }
 }
 
