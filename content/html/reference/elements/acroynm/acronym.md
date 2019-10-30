@@ -34,10 +34,6 @@ Though the purpose of this tag is purely for the convenience of the author, its 
 
 It is therefore recommended that web authors either explicitly style this element, or accept some cross-browser variation.
 
-## Browser compatibility
-
-The compatibility table in this page is generated from structured data. If you'd like to contribute to the data, please check out <https://github.com/mdn/browser-compat-data> and send us a pull request.
-
 ## See also
 
 -   The [`<abbr>`](/en-US/docs/Web/HTML/Element/abbr) HTML element
