@@ -35,7 +35,7 @@ function main(args) {
     const reportedFiles = [];
 
     if (args.length === 0) {
-        args.push(undefined); // use default starting directory
+        args.push("content");
     }
 
     for (const arg of args) {
