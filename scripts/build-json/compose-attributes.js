@@ -76,7 +76,7 @@ function getAttributePaths(root, attributesKey) {
 
 function packageAttributes(root, attributesKey) {
     const attributePaths = getAttributePaths(root, attributesKey);
-    return Promise.all(attributePaths.map(packageAttribute));
+    return attributePaths.map(packageAttribute);
 }
 
 module.exports = {
