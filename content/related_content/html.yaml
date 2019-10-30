@@ -9,3 +9,5 @@
   children:
   - title: Elements
     directory: "/content/html/reference/elements"
+  - title: Global attributes
+    directory: "/content/html/reference/global_attributes"

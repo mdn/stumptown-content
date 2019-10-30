@@ -11,6 +11,7 @@ link_lists:
   - title: Reference
     pages:
       - "/content/html/reference/elements"
+      - "/content/html/reference/global_attributes"
 ---
 **HTML** (HyperText Markup Language) is the most basic building block of the Web. It defines the meaning and structure of web content. Other technologies besides HTML are generally used to describe a web page's appearance/presentation ([CSS](/en-US/docs/Web/CSS)) or functionality/behavior ([JavaScript](/en-US/docs/Web/JavaScript)).
 
