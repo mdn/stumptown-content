@@ -8,7 +8,7 @@ function required(recipe) {
         .map(entry => {
             if (typeof entry === "string") {
                 return entry;
-            } else if (typeof entry === "object") {
+            } else {
                 return Object.keys(entry)[0];
             }
         })
