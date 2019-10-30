@@ -1,0 +1,12 @@
+# Backup files
+*~
+
+# Scripts in the root
+/*.js
+
+# Specific files
+/package.json
+
+# exclude these directories
+/content/
+/node_modules/
