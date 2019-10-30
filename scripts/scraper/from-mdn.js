@@ -155,8 +155,9 @@ function logError(err, msg) {
 }
 
 function addSection($, macroCalls) {
-    // If the section is BCD scrap all the HTML
+    throw new Error("crap!");
 
+    // If the section is BCD scrap all the HTML
     if (macroCalls.Compat && $.find("div.bc-data").length) {
         // XXX WRONG!! THERE MIGHT BE MORE THAN ONE!
         let compat = macroCalls.Compat[0];
@@ -282,25 +283,15 @@ function start(
             uri = "/" + path.relative(source, filepath).replace(/\.json$/, "");
         }
         const destination = path.join(outDir, uri) + ".json";
-
-        // // To respect the legacy have to put the "/docs/" in after the
-        // // locale.
-        // if (uri.split("/")[1] !== "docs") {
-        //     const parts = uri.split("/");
-        //     parts.splice(2, 0, "docs");
-        //     uri = parts.join("/");
-        // }
         return { filepath, uri, destination };
     });
-    // .filter(o => {
-    //     return !searchfilter || o.uri.includes(searchfilter);
-    // });
 
     progressBar = new ProgressBar();
     progressBar.init(files.length);
 
     const filesLength = files.length;
 
+    let countForgivenesses = 0;
     const results = files.map((o, index) => {
         const t0 = Date.now();
         let wrote;
@@ -311,6 +302,13 @@ function start(
             console.log(`File that failed: ${o.filepath}`);
             if (forgiving) {
                 console.warn(err);
+                countForgivenesses++;
+                if (countForgivenesses > 100) {
+                    // One or two errors might be fine but if it's just too
+                    // many there's probably something fundamentally broken.
+                    // Better give up and study the errors and warnings.
+                    throw new Error("Too many errors to forgive. I give up!");
+                }
                 return;
             } else {
                 dumpCache();
