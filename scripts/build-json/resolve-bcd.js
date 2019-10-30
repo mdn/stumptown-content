@@ -1,12 +1,12 @@
-const bcd = require('mdn-browser-compat-data');
+const bcd = require("mdn-browser-compat-data");
 
 function packageBCD(query) {
-    let data = query.split('.').reduce(function(prev, curr) {
-        return prev ? prev[curr] : undefined
+    let data = query.split(".").reduce(function(prev, curr) {
+        return prev ? prev[curr] : undefined;
     }, bcd);
     return data;
 }
 
 module.exports = {
     packageBCD
-}
+};
