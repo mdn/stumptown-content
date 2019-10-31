@@ -1,7 +1,7 @@
 function removeTitleAttributes(dom) {
-  const links = dom.window.document.querySelectorAll('a[title]');
+  const links = dom.window.document.querySelectorAll("a[title]");
   for (let link of links) {
-    link.removeAttribute('title');
+    link.removeAttribute("title");
   }
 }
 
