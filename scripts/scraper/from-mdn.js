@@ -61,7 +61,15 @@ function processDoc({ filepath, uri, destination, digestPrefix, cache }) {
       throw new Error(`No idea how to deal with that! ${filecontent}`);
     }
     doc.redirect_url = json.redirectURL;
-    doc.mdn_url = json.absoluteURL || apiURLtoRealURL(uri);
+
+    if (json._original_key && !json.absoluteURL) {
+      // If this happened, the program that downloaded all the Kuma JSON
+      // files had to rewrite the name of the file on disk because the S3
+      // key doesn't make sense.
+      doc.mdn_url = apiURLtoRealURL(json._original_key).replace(/\.json$/, "");
+    } else {
+      doc.mdn_url = json.absoluteURL || apiURLtoRealURL(uri);
+    }
   } else if (!documentData.bodyHTML) {
     return [processing.NO_HTML, null];
   } else {
@@ -106,7 +114,6 @@ function processDoc({ filepath, uri, destination, digestPrefix, cache }) {
         }
         c = 0;
       }
-      // console.log("CHILD:", child.tagName);
       c++;
       section.append(child);
     });
@@ -126,7 +133,6 @@ function processDoc({ filepath, uri, destination, digestPrefix, cache }) {
     fs.mkdirSync(destDir, { recursive: true });
   }
   fs.writeFileSync(destination, JSON.stringify(doc, null, 2));
-  // fs.writeFileSync(digestDestination, sourceDigest);
   cache[filepath] = sourceDigest;
   return [processing.PROCESSED, destination];
 }
@@ -137,8 +143,12 @@ function processDoc({ filepath, uri, destination, digestPrefix, cache }) {
  * '/api/v1/doc/en-US/Foo/Bar/baz' here.
  * So figure out a way to return '/en-US/docs/Foo/Bar/baz'
  */
-const urlRegex = /.*\/api\/v1\/doc\/(\D+)\//;
+// const urlRegex = /.*\/api\/v1\/doc\/(\D+)\//;
+const urlRegex = /api\/v1\/doc\/(\D+)\//;
 function apiURLtoRealURL(uri) {
+  // if (uri.startsWith('api/v1/doc/')) {
+  //   return
+  // }
   let result = urlRegex.exec(uri);
   if (!result || result.length !== 2) {
     throw new Error(`No idea how to process this! ${uri}`);
@@ -290,12 +300,13 @@ function start(
 
   const filesLength = files.length;
 
-  let countForgivenesses = 0;
+  // Initialize a map of results from processDoc to their count.
   const counts = {};
   Object.values(processing).forEach(key => {
     counts[key] = 0;
   });
 
+  let countForgivenesses = 0;
   files.forEach((o, index) => {
     const t0 = Date.now();
     let wrote;
@@ -498,7 +509,6 @@ function main(argv) {
       type: "boolean"
     },
     forgiving: {
-      // alias: ["m"],
       default: false,
       type: "boolean"
     },
