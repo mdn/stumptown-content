@@ -1,11 +1,11 @@
-const jsdom = require('jsdom');
+const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-const { toMarkdown } = require('../to-markdown.js');
-const { removeTitleAttributes } = require('../clean-html.js');
-const { extractMacroCalls } = require('./extract-macro-calls');
+const { toMarkdown } = require("../to-markdown.js");
+const { removeTitleAttributes } = require("../clean-html.js");
+const { extractMacroCalls } = require("./extract-macro-calls");
 
 /**
  * A given live sample has a 'scope' in the page content. Within its scope,
@@ -16,42 +16,44 @@ const { extractMacroCalls } = require('./extract-macro-calls');
  * in this function.
  */
 function getSampleScope(startNode, dom) {
-
   // for each possible start tag, list the tags that tell us when to stop
   const stopCollectingMap = {
-      H1: ['H1'],
-      H2: ['H1', 'H2'],
-      H3: ['H1', 'H2', 'H3'],
-      H4: ['H1', 'H2', 'H3', 'H4'],
-      H5: ['H1', 'H2', 'H3', 'H4', 'H5'],
-      H6: ['H1', 'H2', 'H3', 'H4', 'H5', 'H6']
+    H1: ["H1"],
+    H2: ["H1", "H2"],
+    H3: ["H1", "H2", "H3"],
+    H4: ["H1", "H2", "H3", "H4"],
+    H5: ["H1", "H2", "H3", "H4", "H5"],
+    H6: ["H1", "H2", "H3", "H4", "H5", "H6"]
   };
 
-  const headingTags = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'];
+  const headingTags = ["H1", "H2", "H3", "H4", "H5", "H6"];
 
   if (!headingTags.includes(startNode.tagName)) {
-      return startNode;
+    return startNode;
   }
 
-  const container = dom.window.document.createElement('DIV');
+  const container = dom.window.document.createElement("DIV");
   let sibling = startNode.nextSibling;
-  while (sibling && !stopCollectingMap[startNode.tagName].includes(sibling.tagName)) {
-      sibling.parentNode.removeChild(sibling);
-      container.appendChild(sibling);
-      sibling = startNode.nextSibling;
+  while (
+    sibling &&
+    !stopCollectingMap[startNode.tagName].includes(sibling.tagName)
+  ) {
+    sibling.parentNode.removeChild(sibling);
+    container.appendChild(sibling);
+    sibling = startNode.nextSibling;
   }
   startNode.parentNode.removeChild(startNode);
   return container;
 }
 
 function scrapeCodeComponents(container, type) {
-    const codeComponents = container.querySelectorAll(`pre.${type}`);
-    let source = '';
-    for (let codeComponent of codeComponents) {
-      source += codeComponent.textContent;
-      codeComponent.parentNode.removeChild(codeComponent);
-    }
-    return source;
+  const codeComponents = container.querySelectorAll(`pre.${type}`);
+  let source = "";
+  for (let codeComponent of codeComponents) {
+    source += codeComponent.textContent;
+    codeComponent.parentNode.removeChild(codeComponent);
+  }
+  return source;
 }
 
 function writeSource(destDir, filename, source) {
@@ -67,11 +69,11 @@ function writeExampleContents(exampleContents, examplesDir) {
   }
   const frontMatter = `---\ntitle: ${exampleContents.title}\nheight: ${exampleContents.height}\n---`;
   const descriptionContents = `${frontMatter}\n${exampleContents.description}`;
-  const descriptionDest = path.join(examplesDir, 'description.md');
+  const descriptionDest = path.join(examplesDir, "description.md");
   fs.writeFileSync(descriptionDest, descriptionContents);
-  writeSource(examplesDir, 'example.html', exampleContents.htmlSource);
-  writeSource(examplesDir, 'example.css', exampleContents.cssSource);
-  writeSource(examplesDir, 'example.js', exampleContents.jsSource);
+  writeSource(examplesDir, "example.html", exampleContents.htmlSource);
+  writeSource(examplesDir, "example.css", exampleContents.cssSource);
+  writeSource(examplesDir, "example.js", exampleContents.jsSource);
 }
 
 /**
@@ -100,15 +102,15 @@ async function extractLiveSample(macroArgs, dom, examplesDir) {
   const startNode = dom.window.document.querySelector(`#${macroArgs[0]}`);
   const container = getSampleScope(startNode, dom);
   const exampleContents = {
-      title: startNode.tagName === 'DIV'? macroArgs[0]: startNode.textContent,
-      width: macroArgs[1] || '100%',
-      height: macroArgs[2] || '192',
-      htmlSource: scrapeCodeComponents(container, 'html'),
-      jsSource: scrapeCodeComponents(container, 'js'),
-      cssSource: scrapeCodeComponents(container, 'css'),
-      // The scrapeCodeComponents calls remove code blocks from `container`,
-      // so must go *before* this line, which just sweeps up whatever's left.
-      description: String(await toMarkdown(container.innerHTML))
+    title: startNode.tagName === "DIV" ? macroArgs[0] : startNode.textContent,
+    width: macroArgs[1] || "100%",
+    height: macroArgs[2] || "192",
+    htmlSource: scrapeCodeComponents(container, "html"),
+    jsSource: scrapeCodeComponents(container, "js"),
+    cssSource: scrapeCodeComponents(container, "css"),
+    // The scrapeCodeComponents calls remove code blocks from `container`,
+    // so must go *before* this line, which just sweeps up whatever's left.
+    description: String(await toMarkdown(container.innerHTML))
   };
   writeExampleContents(exampleContents, path.join(examplesDir, macroArgs[0]));
   if (container.parentNode) {
@@ -123,11 +125,13 @@ async function extractLiveSample(macroArgs, dom, examplesDir) {
  * For each EmbedLiveSample call, we call extractLiveSample to do the dirty work.
  */
 async function processLiveSamples(htmlWithMacroCalls, result, destination) {
-  const macroCalls = extractMacroCalls('EmbedLiveSample', htmlWithMacroCalls);
-  const examplesDir = path.join(process.cwd(), destination, 'examples');
+  const macroCalls = extractMacroCalls("EmbedLiveSample", htmlWithMacroCalls);
+  const examplesDir = path.join(process.cwd(), destination, "examples");
   if (macroCalls.length) {
-    let lsFrontMatter = 'examples:\n';
-    lsFrontMatter += macroCalls.map(macroCall => `    - examples/${macroCall[0]}\n`).join('');
+    let lsFrontMatter = "examples:\n";
+    lsFrontMatter += macroCalls
+      .map(macroCall => `    - examples/${macroCall[0]}\n`)
+      .join("");
     result.frontMatter += lsFrontMatter;
     if (!fs.existsSync(examplesDir)) {
       fs.mkdirSync(examplesDir);
