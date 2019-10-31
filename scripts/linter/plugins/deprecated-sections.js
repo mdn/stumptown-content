@@ -8,27 +8,27 @@ const ruleId = "stumptown-linter:deprecated-section";
  * `options.sections` -- an object consisting of recipe names keyed to arrays of deprecated section slugs
  */
 function attacher(options) {
-    const deprecatedSections = options.sections;
+  const deprecatedSections = options.sections;
 
-    return function transformer(tree, file) {
-        if (tree && tree.data && tree.data.recipe !== undefined) {
-            const deprecations = deprecatedSections[tree.data.recipeName] || [];
+  return function transformer(tree, file) {
+    if (tree && tree.data && tree.data.recipe !== undefined) {
+      const deprecations = deprecatedSections[tree.data.recipeName] || [];
 
-            visit(
-                tree,
-                node => node.data && node.data.slug,
-                node => {
-                    if (deprecations.includes(node.data.slug)) {
-                        file.message(
-                            `"${node.data.slug}" is a deprecated section`,
-                            node,
-                            ruleId
-                        );
-                    }
-                }
+      visit(
+        tree,
+        node => node.data && node.data.slug,
+        node => {
+          if (deprecations.includes(node.data.slug)) {
+            file.message(
+              `"${node.data.slug}" is a deprecated section`,
+              node,
+              ruleId
             );
+          }
         }
-    };
+      );
+    }
+  };
 }
 
 module.exports = attacher;
