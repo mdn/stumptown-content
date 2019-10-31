@@ -3,73 +3,73 @@ const jsdom = require("jsdom");
 
 const { JSDOM } = jsdom;
 const namedSections = [
-    "Short description",
-    "Overview",
-    "Attributes",
-    "Usage notes",
-    "Accessibility concerns",
-    "See also",
-    "Value",
-    "Validation"
+  "Short description",
+  "Overview",
+  "Attributes",
+  "Usage notes",
+  "Accessibility concerns",
+  "See also",
+  "Value",
+  "Validation"
 ];
 
 function sectionNameToSlug(sectionName) {
-    return sectionName.toLowerCase().replace(" ", "_");
+  return sectionName.toLowerCase().replace(" ", "_");
 }
 
 function extractFromSiblings(node, terminatorTag, contentType) {
-    let content = "";
-    let sib = node.nextSibling;
-    while (sib && sib.nodeName != terminatorTag) {
-        if (sib.outerHTML) {
-            if (contentType === "html") {
-                content += sib.outerHTML;
-            } else if (contentType === "text") {
-                content += sib.textContent;
-            }
-        }
-        sib = sib.nextSibling;
+  let content = "";
+  let sib = node.nextSibling;
+  while (sib && sib.nodeName != terminatorTag) {
+    if (sib.outerHTML) {
+      if (contentType === "html") {
+        content += sib.outerHTML;
+      } else if (contentType === "text") {
+        content += sib.textContent;
+      }
     }
-    return content;
+    sib = sib.nextSibling;
+  }
+  return content;
 }
 
 function getSectionValue(node) {
-    const sectionName = node.textContent.trim();
-    const sectionContent = extractFromSiblings(node, "H2", "html");
+  const sectionName = node.textContent.trim();
+  const sectionContent = extractFromSiblings(node, "H2", "html");
 
-    if (namedSections.includes(sectionName)) {
-        const sectionId = sectionNameToSlug(sectionName);
-        return {
-            title: sectionName,
-            id: sectionId,
-            content: sectionContent
-        };
-    } else {
-        return {
-            title: sectionName,
-            content: sectionContent
-        };
-    }
+  if (namedSections.includes(sectionName)) {
+    const sectionId = sectionNameToSlug(sectionName);
+    return {
+      title: sectionName,
+      id: sectionId,
+      content: sectionContent
+    };
+  } else {
+    return {
+      title: sectionName,
+      content: sectionContent
+    };
+  }
 }
 
 function packageProse(proseMD) {
-    const proseHTML = markdown.markdownToHTML(proseMD);
-    const dom = JSDOM.fragment(proseHTML);
-    const sections = [];
-    let node = dom.firstChild;
-    while (node) {
-        if (node.nodeName === "H2") {
-            const sectionValue = getSectionValue(node);
-            sections.push({
-                type: "prose",
-                value: sectionValue
-            });
-        }
-        node = node.nextSibling;
+  const proseHTML = markdown.markdownToHTML(proseMD);
+  const dom = JSDOM.fragment(proseHTML);
+  const sections = [];
+  let node = dom.firstChild;
+  while (node) {
+    if (node.nodeName === "H2") {
+      const sectionValue = getSectionValue(node);
+      sections.push({
+        type: "prose",
+        value: sectionValue
+      });
     }
-    return sections;
+    node = node.nextSibling;
+  }
+  return sections;
 }
 
 module.exports = {
-    packageProse
+  packageProse
 };
