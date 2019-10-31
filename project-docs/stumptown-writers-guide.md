@@ -396,7 +396,7 @@ height: 192
 ---
 ```
 
-If `height` is included, then stumptown treats this example as a live sample, and `height` is the height of the "Result" iframe in pixels (the iframe always gets full page width).
+If `height` is included, then stumptown treats this example as a live sample, and `height` is the height of the "Result" iframe in pixels (the iframe always gets full page width). The renderer will render the example like a live sample in the current MDN (that is, displaying the sources, and the output in an iframe).
 
 If `height` is omitted, then stumptown treats this example as just a static example.
 
@@ -687,13 +687,6 @@ specifications: https://html.spec.whatwg.org/multipage/semantics.html#the-abbr-e
 
 ## Contributors
 
-Markdown files in stumptown that can be built into pages must have a "contributors.md" file in the same directory. The content of this file is a comma-separated list of Markdown links to MDN user profiles, one for each MDN use who contributed to this page:
+Markdown files in stumptown that can be built into pages must have a "contributors.md" file in the same directory. This lists contributions made to the original page in the Kuma Wiki. This file is created when the page is first migrated from the Wiki and should then be treated as read only.
 
-```
-[mfuji09](/en-US/profiles/mfuji09),
-[jswisher](/en-US/profiles/jswisher),
-[vadimhp](/en-US/profiles/vadimhp),
-[SphinxKnight](/en-US/profiles/SphinxKnight)
-```
-
-**Note: this is the most hacky and least acceptable piece of stumptown. In particular, I think that legacy contributor information should not live in /content, because it is read-only: authors should never need to be aware of it. But this is only one of its problems.**
+**Note: this approach to attributing legacy contributions is very likely to change in future, and contributors.md will be moved out of /content.**
