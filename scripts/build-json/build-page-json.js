@@ -29,19 +29,15 @@ function writeToFile(json, elementPath) {
 
 const recipeCache = {};
 function getRecipeUsingCache(recipeName) {
-  const cached = recipeCache[recipeName];
   let recipe;
-  if (cached !== undefined) {
-    recipe = cached;
-  } else {
-    const recipePath = path.join(__dirname, '..', '..', 'recipes', `${recipeName}.yaml`);
-    if (!fs.existsSync(recipePath)) {
-      throw new Error(`Not a supported recipe: ${recipeName}`);
-    }
-    recipe = yaml.safeLoad(fs.readFileSync(recipePath, 'utf8'));
-    recipeCache[recipeName] = recipe;
+  if (recipe in recipeCache === false) {
+      const recipePath = path.join(__dirname, '..', '..', 'recipes', `${recipeName}.yaml`);
+      if (!fs.existsSync(recipePath)) {
+        throw new Error(`Not a supported recipe: ${recipeName}`);
+      }
+      recipeCache[recipeName] = yaml.safeLoad(fs.readFileSync(recipePath, 'utf8'));
   }
-  return recipe;
+  return recipeCache[recipeName];
 }
 
 function buildPageJSON(docsPath) {
