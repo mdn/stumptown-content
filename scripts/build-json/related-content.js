@@ -1,10 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const yaml = require('js-yaml');
+const fs = require("fs");
+const path = require("path");
+const yaml = require("js-yaml");
 
-const { ROOT } = require('./constants');
+const { ROOT } = require("./constants");
 
-const links = require('./build-link-lists');
+const links = require("./build-link-lists");
 
 /**
  * Build a section.
@@ -14,18 +14,21 @@ const links = require('./build-link-lists');
  * - `directory`: the name of a directory whose children to list
  */
 function buildSection(sectionSpec) {
-  if (sectionSpec.children) {
-    return {
-      title: sectionSpec.title,
-      content: sectionSpec.children.map(buildSection)
-    };
-  } else if (sectionSpec.chapter_list) {
-    return links.linkListFromChapterList(sectionSpec.chapter_list);
-  } else if (sectionSpec.directory)  {
-    return links.linkListFromDirectory(sectionSpec.title, sectionSpec.directory);
-  } else {
-    throw('Related content section must contain a property called "children", "chapter_list", or "directory"');
-  }
+    if (sectionSpec.children) {
+        return {
+            title: sectionSpec.title,
+            content: sectionSpec.children.map(buildSection)
+        };
+    } else if (sectionSpec.chapter_list) {
+        return links.linkListFromChapterList(sectionSpec.chapter_list);
+    } else if (sectionSpec.directory) {
+        return links.linkListFromDirectory(
+            sectionSpec.title,
+            sectionSpec.directory
+        );
+    } else {
+        throw 'Related content section must contain a property called "children", "chapter_list", or "directory"';
+    }
 }
 
 /**
@@ -34,17 +37,19 @@ function buildSection(sectionSpec) {
  */
 const relatedContentCache = {};
 function buildRelatedContent(specName) {
-  const cached = relatedContentCache[specName];
-  if (cached !== undefined) {
-    return cached;
-  }
-  const spec = yaml.safeLoad(fs.readFileSync(path.join(ROOT, specName), 'utf8'));
-  const result = spec.map(buildSection);
-  // race condition would only result in reassigning the same value here
-  relatedContentCache[specName] = result; // eslint-disable-line require-atomic-updates
-  return result;
+    const cached = relatedContentCache[specName];
+    if (cached !== undefined) {
+        return cached;
+    }
+    const spec = yaml.safeLoad(
+        fs.readFileSync(path.join(ROOT, specName), "utf8")
+    );
+    const result = spec.map(buildSection);
+    // race condition would only result in reassigning the same value here
+    relatedContentCache[specName] = result; // eslint-disable-line require-atomic-updates
+    return result;
 }
 
 module.exports = {
     buildRelatedContent
-}
+};

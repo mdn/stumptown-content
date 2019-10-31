@@ -1,12 +1,12 @@
-const { extractMacroCalls } = require('./extract-macro-calls');
-const { removeNode } = require('../clean-html.js');
+const { extractMacroCalls } = require("./extract-macro-calls");
+const { removeNode } = require("../clean-html.js");
 
 function processCompat(htmlWithMacroCalls, result) {
-  const macroCalls = extractMacroCalls('Compat', htmlWithMacroCalls);
+  const macroCalls = extractMacroCalls("Compat", htmlWithMacroCalls);
   if (macroCalls.length) {
     result.frontMatter += `browser_compatibility: ${macroCalls[0][0]}\n`;
   }
-  removeNode(result.dom, 'div.bc-data');
+  removeNode(result.dom, "div.bc-data");
   return result;
 }
 

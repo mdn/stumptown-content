@@ -1,12 +1,12 @@
 ---
 title: transform
-mdn-url: https://developer.mozilla.org/docs/Web/CSS/transform
+mdn_url: https://developer.mozilla.org/docs/Web/CSS/transform
 recipe: css-property
-interactive-example: https://interactive-examples.mdn.mozilla.net/pages/css/transform.html
-formal-syntax: 'none | <transform-list>'
+interactive_example: https://interactive-examples.mdn.mozilla.net/pages/css/transform.html
+formal_syntax: 'none | <transform-list>'
 animatable: true
-initial-value: none
-browser-compatibility: css.properties.transform
+initial_value: none
+browser_compatibility: css.properties.transform
 examples:
     - examples/simple-example
 ---

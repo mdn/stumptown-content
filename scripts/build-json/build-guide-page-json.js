@@ -1,39 +1,43 @@
-const path = require('path');
-const markdown = require('./markdown-converter');
-const { packageExample } = require('./compose-examples');
-const { packageBCD } = require('./resolve-bcd');
+const path = require("path");
+const markdown = require("./markdown-converter");
+const { packageExample } = require("./compose-examples");
+const { packageBCD } = require("./resolve-bcd");
 
 function processDirective(elementPath, directive) {
-    const directiveComponents = directive.split(':');
+    const directiveComponents = directive.split(":");
     const directiveName = directiveComponents[0];
     switch (directiveName) {
-        case 'embed-example':
+        case "embed-example":
             return {
-                type: 'examples',
+                type: "examples",
                 value: {
-                  examples: [packageExample(path.join(elementPath, directiveComponents[1]))]
+                    examples: [
+                        packageExample(
+                            path.join(elementPath, directiveComponents[1])
+                        )
+                    ]
                 }
-            }
-        case 'embed-compat':
+            };
+        case "embed-compat":
             return {
-                type: 'browser_compatibility',
+                type: "browser_compatibility",
                 value: {
-                  query: directiveComponents[1],
-                  data: packageBCD(directiveComponents[1])
+                    query: directiveComponents[1],
+                    data: packageBCD(directiveComponents[1])
                 }
-            }
+            };
         default:
-            throw ('Unsupported guide directive');
+            throw "Unsupported guide directive";
     }
 }
 
 function processProse(elementPath, proseMD) {
     return {
-        type: 'prose',
+        type: "prose",
         value: {
-          content: markdown.markdownToHTML(proseMD)
+            content: markdown.markdownToHTML(proseMD)
         }
-    }
+    };
 }
 
 function buildGuideContentJSON(elementPath, data, content) {
@@ -42,9 +46,9 @@ function buildGuideContentJSON(elementPath, data, content) {
     for (let section of sections) {
         let match = section.match(/{{{{{(.*)}}}}}/);
         if (match) {
-             result.push(processDirective(elementPath, match[1]));
+            result.push(processDirective(elementPath, match[1]));
         } else {
-             result.push(processProse(elementPath, section));
+            result.push(processProse(elementPath, section));
         }
     }
     return result;
@@ -52,4 +56,4 @@ function buildGuideContentJSON(elementPath, data, content) {
 
 module.exports = {
     buildGuideContentJSON
-}
+};

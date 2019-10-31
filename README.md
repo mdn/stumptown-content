@@ -13,6 +13,20 @@ npm install
 
 ## Development
 
+### Linting content
+
+Before building, run checks on the content first. To lint content, run:
+
+```sh
+npm run lint-md
+```
+
+Alternatively, to partially lint content, add arguments for one or more paths to the content to be linted. For example:
+
+```sh
+npm run lint-md content/html/reference/elements/abbr
+```
+
 ### Building content
 
 Stumptown builds the content into JSON files (located under `/packaged`). In order to build all of the files, use:
