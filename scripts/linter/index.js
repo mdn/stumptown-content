@@ -28,7 +28,7 @@ function main(args) {
     .use(slugifySections)
     .use(deprecatedSections, {
       sections: {
-        "html-element": ["usage_notes"],
+        "html-element": ["usage_notes", "specifications"],
         "css-property": ["usage_notes"]
       }
     })
