@@ -90,6 +90,13 @@ async function processDoc(relativeURL, title, destination) {
   removeTitleAttributes(dom);
   removeNode(dom, "section.Quick_links");
   const result = await processMacros(dom, relativeURL, destination);
+
+  // Remove Browser compatability section, now that its been consumed by
+  // `processMacros`. This will work as long as there's at least one section
+  // after BCD, which should be the case.
+  removeNode(dom, "#Browser_compatibility ~ :not(H2)");
+  removeNode(dom, "#Browser_compatibility");
+
   const md = String(await toMarkdown(result.dom.serialize()));
   const frontMatter = `---\ntitle: '${title}'\nmdn_url: ${relativeURL}\n${result.frontMatter}---\n`;
   writeDoc(destination, relativeURL.split("/").pop(), `${frontMatter}${md}\n`);
