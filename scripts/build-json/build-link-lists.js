@@ -93,8 +93,28 @@ function linkListFromFilePaths(title, filePaths, includeShortDescriptions = fals
   }
 }
 
+/**
+ * Build a link list from a spec.
+ * There are three ways to specify the list:
+ * - as an array of paths to individual pages
+ * - as a path to a "chapter list" file listing pages to include
+ * - as a directory containing pages to include
+ */
+function buildLinkList(listSpec) {
+    if (listSpec.pages) {
+        return linkListFromFilePaths(listSpec.title, listSpec.pages, true);
+    } else if (listSpec.chapter_list) {
+        return linkListFromChapterList(listSpec.chapter_list, true);
+    } else if (listSpec.directory) {
+        return linkListFromDirectory(listSpec.title, listSpec.directory, true);
+    } else {
+        throw new Error(`Unrecognized list spec '${JSON.stringify(listSpec)}'`);
+    }
+}
+
 module.exports = {
     linkListFromChapterList,
     linkListFromDirectory,
-    linkListFromFilePaths
+    linkListFromFilePaths,
+    buildLinkList
 }

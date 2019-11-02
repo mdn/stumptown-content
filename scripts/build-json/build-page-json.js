@@ -6,7 +6,6 @@ const matter = require('gray-matter');
 const { packageContributors } = require('./resolve-contributors');
 const related = require('./related-content');
 const guidePage = require('./build-guide-page-json');
-const landingPage = require('./build-landing-page-json');
 const recipePage = require('./build-recipe-page-json');
 const { ROOT } = require('./constants');
 
@@ -29,6 +28,18 @@ function writeToFile(json, elementPath) {
 }
 
 const recipeCache = {};
+function getRecipeUsingCache(recipeName) {
+  let recipe;
+  if (recipe in recipeCache === false) {
+      const recipePath = path.join(__dirname, '..', '..', 'recipes', `${recipeName}.yaml`);
+      if (!fs.existsSync(recipePath)) {
+        throw new Error(`Not a supported recipe: ${recipeName}`);
+      }
+      recipeCache[recipeName] = yaml.safeLoad(fs.readFileSync(recipePath, 'utf8'));
+  }
+  return recipeCache[recipeName];
+}
+
 function buildPageJSON(docsPath) {
     // open docs.md and parse front matter(data) from Markdown(content)
     const docsDirectory = path.dirname(docsPath);
@@ -39,38 +50,24 @@ function buildPageJSON(docsPath) {
     let destPath = null;
 
     // check whether this is a buildable item
-    if (data && data.recipe) {
+    // skip css-property for now, until we have fixed the data there
+    if (data && data.recipe && data.recipe !== 'css-property') {
         let body = null;
         let relatedContentSpec = data.related_content;
         let contributors = null;
-
-        switch (data.recipe) {
-            case 'guide':
-                body = guidePage.buildGuideContentJSON(docsDirectory, data, content);
-                break;
-            case 'landing-page':
-                body = landingPage.buildLandingPageJSON(docsDirectory, data, content);
-                break;
-            case 'html-element':
-            case 'html-input-element': {
-                    const cached = recipeCache[data.recipe];
-                    let recipe;
-                    if (cached !== undefined) {
-                      recipe = cached;
-                    } else {
-                      // for recipe-driven content, related_content is in the recipe
-                      const recipePath = path.join(__dirname, '..', '..', 'recipes', `${data.recipe}.yaml`);
-                      recipe = yaml.safeLoad(fs.readFileSync(recipePath, 'utf8'));
-                      recipeCache[data.recipe] = recipe;
-                    }
-                    relatedContentSpec = recipe.related_content;
-                    body = recipePage.buildRecipePageJSON(docsDirectory, data, content, recipe);
-                    // currently only reference-driven content supports contributors
-                    contributors = packageContributors(path.join(docsDirectory, 'contributors.md'))
-                    break;
-                }
-            default:
-                throw new Error(`Not a supported recipe: ${data.recipe}`);
+        // special-case guide pages
+        if (data.recipe === 'guide') {
+            body = guidePage.buildGuideContentJSON(docsDirectory, data, content);
+        } else {
+            const recipe = getRecipeUsingCache(data.recipe);
+            // related content may be specified in the recipe or in the front matter directly.
+            // prefer the version in the front matter
+            if (!relatedContentSpec) {
+              relatedContentSpec = recipe.related_content;
+            }
+            body = recipePage.buildRecipePageJSON(docsDirectory, data, content, recipe);
+            // currently only recipe-driven content supports contributors
+            contributors = packageContributors(path.join(docsDirectory, 'contributors.md'))
         }
 
         // build the item
