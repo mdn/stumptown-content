@@ -183,7 +183,12 @@ function addSection($, macroCalls) {
     const data = packageBCD(compat);
     return {
       type: "browser_compatibility",
-      value: { data, query: compat }
+      value: {
+        title: "Browser compatibility",
+        id: "browser_compatibility",
+        data,
+        query: compat
+      }
     };
   }
 
