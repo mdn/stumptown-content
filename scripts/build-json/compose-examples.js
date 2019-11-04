@@ -5,48 +5,48 @@ const matter = require("gray-matter");
 const markdown = require("./markdown-converter");
 
 function packageDescription(examplePath) {
-    const descriptionMD = fs.readFileSync(
-        path.join(examplePath, "description.md"),
-        "utf8"
-    );
-    const { data, content } = matter(descriptionMD);
-    data.content = markdown.markdownToHTML(content);
-    return data;
+  const descriptionMD = fs.readFileSync(
+    path.join(examplePath, "description.md"),
+    "utf8"
+  );
+  const { data, content } = matter(descriptionMD);
+  data.content = markdown.markdownToHTML(content);
+  return data;
 }
 
 function packageSources(examplePath) {
-    const exampleSource = {};
+  const exampleSource = {};
 
-    const jsPath = path.join(examplePath, "example.js");
-    if (fs.existsSync(jsPath)) {
-        exampleSource.js = fs.readFileSync(jsPath, "utf8");
-    }
+  const jsPath = path.join(examplePath, "example.js");
+  if (fs.existsSync(jsPath)) {
+    exampleSource.js = fs.readFileSync(jsPath, "utf8");
+  }
 
-    const cssPath = path.join(examplePath, "example.css");
-    if (fs.existsSync(cssPath)) {
-        exampleSource.css = fs.readFileSync(cssPath, "utf8");
-    }
+  const cssPath = path.join(examplePath, "example.css");
+  if (fs.existsSync(cssPath)) {
+    exampleSource.css = fs.readFileSync(cssPath, "utf8");
+  }
 
-    const htmlPath = path.join(examplePath, "example.html");
-    if (fs.existsSync(htmlPath)) {
-        exampleSource.html = fs.readFileSync(htmlPath, "utf8");
-    }
+  const htmlPath = path.join(examplePath, "example.html");
+  if (fs.existsSync(htmlPath)) {
+    exampleSource.html = fs.readFileSync(htmlPath, "utf8");
+  }
 
-    return exampleSource;
+  return exampleSource;
 }
 
 function packageExample(examplePath) {
-    return {
-        description: packageDescription(examplePath),
-        sources: packageSources(examplePath)
-    };
+  return {
+    description: packageDescription(examplePath),
+    sources: packageSources(examplePath)
+  };
 }
 
 function packageExamples(paths) {
-    return paths.map(packageExample);
+  return paths.map(packageExample);
 }
 
 module.exports = {
-    packageExamples,
-    packageExample
+  packageExamples,
+  packageExample
 };

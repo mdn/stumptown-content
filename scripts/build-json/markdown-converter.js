@@ -9,15 +9,15 @@ const raw = require("rehype-raw");
  * Using `raw` enables us to process HTML embedded in the Markdown.
  */
 function markdownToHTML(md) {
-    return unified()
-        .use(parse)
-        .use(remark2rehype)
-        .use(raw)
-        .use(stringify)
-        .processSync(md)
-        .toString();
+  return unified()
+    .use(parse)
+    .use(remark2rehype)
+    .use(raw)
+    .use(stringify)
+    .processSync(md)
+    .toString();
 }
 
 module.exports = {
-    markdownToHTML
+  markdownToHTML
 };
