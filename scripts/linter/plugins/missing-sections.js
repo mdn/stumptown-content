@@ -31,7 +31,9 @@ function attacher() {
       visit(
         tree,
         node => node.data && node.data.slug,
-        node => actualSections.push(node.data.slug)
+        node => {
+          actualSections.push(`h${node.depth}.` + node.data.slug);
+        }
       );
 
       for (const section of expectedSections) {
