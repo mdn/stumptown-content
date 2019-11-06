@@ -1,4 +1,8 @@
 related_content: /content/related_content/html.yaml
+data:
+- title
+- short_title?
+- mdn_url
 body:
 - prose.short_description
 - meta.interactive_example?

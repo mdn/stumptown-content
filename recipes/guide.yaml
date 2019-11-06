@@ -1,2 +1,6 @@
 # The recipe for guide pages doesn't specify anything, because guide pages are unstructured.
+data:
+- title
+- short_title?
+- mdn_url
 body: []
