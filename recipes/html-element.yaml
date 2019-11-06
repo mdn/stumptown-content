@@ -5,15 +5,15 @@ data:
 - mdn_url
 body:
 - prose.short_description
-- meta.interactive_example?
+- data.interactive_example?
 - prose.overview
 - prose.attributes_text?
-- meta.attributes
+- data.attributes
 - prose.styling?
 - prose.accessibility_concerns?
 - prose.*
-- meta.examples
-- meta.info_box?
-- meta.specifications
-- meta.browser_compatibility
+- data.examples
+- data.info_box?
+- data.specifications
+- data.browser_compatibility
 - prose.see_also

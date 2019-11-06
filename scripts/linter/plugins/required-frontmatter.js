@@ -8,10 +8,10 @@ function required(recipe) {
     .filter(
       entry =>
         typeof entry === "string" &&
-        entry.startsWith("meta.") &&
+        entry.startsWith("data.") &&
         !entry.endsWith("?")
     )
-    .map(entry => entry.match("meta.(.*)")[1]);
+    .map(entry => entry.match("data.(.*)")[1]);
 }
 
 /**
