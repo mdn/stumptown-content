@@ -67,7 +67,7 @@ function buildRecipePageJSON(elementPath, data, content, recipe) {
     const [ingredientType, ingredientName] = ingredient
       .replace(/\?$/, "")
       .split(".");
-    if (ingredientType === "meta") {
+    if (ingredientType === "data") {
       // non-prose ingredients, which are specified in front matter
       const value = processMetaIngredient(elementPath, ingredientName, data);
       if (value !== null) {

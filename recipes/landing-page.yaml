@@ -1,3 +1,7 @@
+data:
+- title
+- short_title?
+- mdn_url
 body:
 - prose.overview
-- meta.link_lists
+- data.link_lists
