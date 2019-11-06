@@ -1,16 +1,16 @@
 ---
 title: border
-mdn-url: https://developer.mozilla.org/docs/Web/CSS/border
+mdn_url: https://developer.mozilla.org/docs/Web/CSS/border
 recipe: css-property
-interactive-example: https://interactive-examples.mdn.mozilla.net/pages/css/border.html
-formal-syntax: '<line-width> || <line-style> || <color>'
-shorthand-for:
+interactive_example: https://interactive-examples.mdn.mozilla.net/pages/css/border.html
+formal_syntax: '<line-width> || <line-style> || <color>'
+shorthand_for:
     - border-width
     - border-style
     - border-color
 animatable:
-initial-value:
-browser-compatibility: css.properties.border
+initial_value:
+browser_compatibility: css.properties.border
 examples:
     - examples/simple-example
 ---

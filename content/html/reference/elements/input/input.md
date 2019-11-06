@@ -20,7 +20,7 @@ attributes:
         - ../input/attributes/value.md
     global: /content/html/global_attributes
 examples:
-    - examples/examples_overview
+    - examples/Examples_overview
     - examples/Styling_input_elements
     - examples/Custom_error_messages
 recipe: html-element

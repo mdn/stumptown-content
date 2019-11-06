@@ -1,8 +1,8 @@
-const unified = require('unified');
-const parse = require('remark-parse');
-const stringify = require('rehype-stringify');
-const remark2rehype = require('remark-rehype');
-const raw = require('rehype-raw');
+const unified = require("unified");
+const parse = require("remark-parse");
+const stringify = require("rehype-stringify");
+const remark2rehype = require("remark-rehype");
+const raw = require("rehype-raw");
 
 /**
  * Converts Markdown -> HTML using unified.
@@ -14,9 +14,10 @@ function markdownToHTML(md) {
     .use(remark2rehype)
     .use(raw)
     .use(stringify)
-    .processSync(md).toString();
+    .processSync(md)
+    .toString();
 }
 
 module.exports = {
-    markdownToHTML
-}
+  markdownToHTML
+};

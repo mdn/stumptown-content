@@ -1,15 +1,17 @@
+data:
+  - title
+  - short_title?
+  - mdn_url
 body:
-- prose.short-description
-- meta.interactive-example
-- prose.overview
-- prose.syntax-overview
-- prose.example-syntax
-- meta.values
-- meta.formal-syntax
-- prose.*
-- prose.accessibility-concerns?
-- meta.examples
-- meta.info-box?
-- meta.specifications
-- meta.browser-compatibility
-- prose.see-also
+  - prose.short_description
+  - data.interactive_example
+  - prose.overview
+  - prose.syntax_overview
+  - prose.example_syntax
+  - data.formal_syntax
+  - prose.*
+  - prose.accessibility_concerns?
+  - data.examples
+  - data.info_box?
+  - data.browser_compatibility
+  - prose.see_also

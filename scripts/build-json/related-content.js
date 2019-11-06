@@ -1,10 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const yaml = require('js-yaml');
+const fs = require("fs");
+const path = require("path");
+const yaml = require("js-yaml");
 
-const { ROOT } = require('./constants');
+const { ROOT } = require("./constants");
 
-const links = require('./build-link-lists');
+const links = require("./build-link-lists");
 
 /**
  * Build a section.
@@ -21,10 +21,13 @@ function buildSection(sectionSpec) {
     };
   } else if (sectionSpec.chapter_list) {
     return links.linkListFromChapterList(sectionSpec.chapter_list);
-  } else if (sectionSpec.directory)  {
-    return links.linkListFromDirectory(sectionSpec.title, sectionSpec.directory);
+  } else if (sectionSpec.directory) {
+    return links.linkListFromDirectory(
+      sectionSpec.title,
+      sectionSpec.directory
+    );
   } else {
-    throw('Related content section must contain a property called "children", "chapter_list", or "directory"');
+    throw 'Related content section must contain a property called "children", "chapter_list", or "directory"';
   }
 }
 
@@ -38,7 +41,9 @@ function buildRelatedContent(specName) {
   if (cached !== undefined) {
     return cached;
   }
-  const spec = yaml.safeLoad(fs.readFileSync(path.join(ROOT, specName), 'utf8'));
+  const spec = yaml.safeLoad(
+    fs.readFileSync(path.join(ROOT, specName), "utf8")
+  );
   const result = spec.map(buildSection);
   // race condition would only result in reassigning the same value here
   relatedContentCache[specName] = result; // eslint-disable-line require-atomic-updates
@@ -46,5 +51,5 @@ function buildRelatedContent(specName) {
 }
 
 module.exports = {
-    buildRelatedContent
-}
+  buildRelatedContent
+};
