@@ -28,7 +28,6 @@ const { JSDOM } = jsdom;
 const { toMarkdown } = require("./to-markdown.js");
 const {
   removeBrowserCompatibility,
-  removeHiddenDivs,
   removeNode,
   removeTitleAttributes
 } = require("./clean-html.js");
@@ -93,7 +92,6 @@ async function processDoc(relativeURL, title, destination) {
   const mdnPage = await getPageHTML(baseURL + relativeURL + "?raw&macros");
   const dom = new JSDOM(mdnPage);
   removeTitleAttributes(dom);
-  removeHiddenDivs(dom);
   removeNode(dom, "section.Quick_links");
 
   const result = await processMacros(dom, relativeURL, destination);
