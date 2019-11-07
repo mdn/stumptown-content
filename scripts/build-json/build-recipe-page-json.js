@@ -9,18 +9,18 @@ const { packageSpecs } = require("./build-specs");
 const { buildLinkList } = require("./build-link-lists");
 
 function processMetaIngredient(elementPath, ingredientName, data) {
+  // If an ingredient is missing in the data, just return null
+  // Assume that the linter checks for required ingredients
+  if (!data[ingredientName]) {
+    return null;
+  }
   switch (ingredientName) {
     case "interactive_example":
-      // interactive_example is optional
-      if (!data.interactive_example) {
-        return null;
-      }
-      return packageInteractiveExample(data.interactive_example);
+      return {
+        type: "interactive_example",
+        value: packageInteractiveExample(data.interactive_example)
+      };
     case "specifications":
-      // specifications is optional
-      if (!data.specifications) {
-        return null;
-      }
       return packageSpecs(data.specifications);
     case "browser_compatibility":
       return {
@@ -48,6 +48,16 @@ function processMetaIngredient(elementPath, ingredientName, data) {
     case "link_lists": {
       return data.link_lists.map(buildLinkList);
     }
+    case "static_methods":
+      return buildLinkList({
+        title: "Static methods",
+        directory: data.static_methods
+      });
+    case "instance_methods":
+      return buildLinkList({
+        title: "Instance methods",
+        directory: data.instance_methods
+      });
     case "info_box":
       // TODO: implement packaging for info boxes
       // See: https://github.com/mdn/stumptown-content/issues/106
@@ -61,7 +71,6 @@ function buildRecipePageJSON(elementPath, data, content, recipe) {
   const body = [];
 
   const proseSections = packageProse(content);
-
   // for each ingredient in the recipe, process the item's ingredient
   for (let ingredient of recipe.body) {
     const [ingredientType, ingredientName] = ingredient

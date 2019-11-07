@@ -1,0 +1,5 @@
+# JavaScript sidebar
+- title: Reference
+  children:
+  - title: Classes
+    directory: "/content/javascript/reference/classes"
