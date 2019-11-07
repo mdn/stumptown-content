@@ -38,7 +38,7 @@ const hugeBin = BigInt("0b11111111111111111111111111111111111111111111111111111"
 
 ### Type information
 
-When tested against `typeof`, a `BigInt` will give "bigint":
+When tested against `typeof`, a `BigInt` will give `"bigint"`:
 
 ```js
 typeof 1n === 'bigint'; // true
@@ -53,7 +53,7 @@ typeof Object(1n) === 'object'; // true
 
 ### Operators
 
-The following operators may be used with `BigInt`s (or object-wrapped `BigInt`s): `+`, `*`, `-`, `**`, `%`. [Bitwise operators](/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) are supported as well, except `>>>` (zero-fill right shift) as all BigInts are signed. Also unsupported is the unary operator (`+`), [in order to not break asm.js](https://github.com/tc39/proposal-bigint/blob/master/ADVANCED.md#dont-break-asmjs).
+The following operators may be used with `BigInt`s (or object-wrapped `BigInt`s): `+`, `*`, `-`, `**`, `%`. [Bitwise operators](/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) are supported as well, except `>>>` (zero-fill right shift) as all `BigInt` objects are signed. Also unsupported is the unary operator (`+`), [in order to not break asm.js](https://github.com/tc39/proposal-bigint/blob/master/ADVANCED.md#dont-break-asmjs).
 
 ```js
 const previousMaxSafe = BigInt(Number.MAX_SAFE_INTEGER);

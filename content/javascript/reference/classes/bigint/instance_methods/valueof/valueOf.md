@@ -25,7 +25,7 @@ bigIntObj.valueOf()
 
 ### Return value
 
-A BigInt representing the primitive value of the specified [`BigInt`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt) object.
+A `BigInt` representing the primitive value of the specified [`BigInt`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt) object.
 
 ## See also
 

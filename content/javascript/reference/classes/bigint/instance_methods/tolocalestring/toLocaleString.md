@@ -15,7 +15,7 @@ browser_compatibility: javascript.builtins.BigInt.toLocaleString
 
 ## Short description
 
-The **`toLocaleString()`** method returns a string with a language-sensitive representation of this BigInt.
+The **`toLocaleString()`** method returns a string with a language-sensitive representation of this `BigInt`.
 
 ## Syntax
 
@@ -29,7 +29,7 @@ The `locales` and `options` arguments customize the behavior of the function and
 
 -   `locales` Optional
 
-    A string with a BCP 47 language tag, or an array of such strings. For the general form and interpretation of the `locales` argument, see the [Intl page](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation). The following Unicode extension key is allowed:
+    A string with a BCP 47 language tag, or an array of such strings. For the general form and interpretation of the `locales` argument, see the [`Intl` page](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation). The following Unicode extension key is allowed:
 
     -   `nu`
 
@@ -41,7 +41,7 @@ The `locales` and `options` arguments customize the behavior of the function and
 
     -   `localeMatcher`
 
-        The locale matching algorithm to use. Possible values are `"lookup"` and `"best fit"`; the default is `"best fit"`. For information about this option, see the [Intl page](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_negotiation).
+        The locale matching algorithm to use. Possible values are `"lookup"` and `"best fit"`; the default is `"best fit"`. For information about this option, see the [`Intl` page](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_negotiation).
 
     -   `style`
 
@@ -83,7 +83,7 @@ The `locales` and `options` arguments customize the behavior of the function and
 
 ### Return value
 
-A string with a language-sensitive representation of the given BigInt.
+A string with a language-sensitive representation of the given `BigInt`.
 
 ## Performance
 

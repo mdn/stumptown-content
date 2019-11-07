@@ -13,7 +13,7 @@ browser_compatibility: javascript.builtins.BigInt.asUintN
 
 ## Short description
 
-The **`BigInt.asUintN`** static method is used to wrap a BigInt value to an unsigned integer between between 0 and 2width-1.
+The **`BigInt.asUintN`** static method is used to wrap a `BigInt` value to an unsigned integer between between 0 and `2width-1`.
 
 ## Syntax
 

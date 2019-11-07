@@ -13,7 +13,7 @@ browser_compatibility: javascript.builtins.BigInt.asIntN
 
 ## Short description
 
-The **`BigInt.asIntN`** static method is used to wrap a BigInt value to a signed integer between -2width-1 and 2width-1-1.
+The **`BigInt.asIntN`** static method is used to wrap a `BigInt` value to a signed integer between -`2width-1` and `2width-1-1`.
 
 The source for this interactive example is stored in a GitHub repository. If you'd like to contribute to the interactive examples project, please clone <https://github.com/mdn/interactive-examples> and send us a pull request.
 
