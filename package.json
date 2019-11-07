@@ -16,12 +16,12 @@
         "prettier-check": "prettier --check scripts/**/*.js **/*.yaml",
         "prettier-format": "prettier --write scripts/**/*.js **/*.yaml",
         "lint-md": "node scripts/linter",
-        "lint-js": "eslint scripts/**/*.js && npm run prettier-check",
+        "lint-code": "eslint scripts/**/*.js && npm run prettier-check",
         "build-json": "node scripts/build-json/build-json.js",
         "scrape-mdn": "node scripts/scraper/scrape-mdn.js",
         "ci-checks": "node scripts/ci/git.js",
         "spell-md": "mdspell -a -n -r -x --en-us 'content/**/!(*contributors).md'",
-        "test": "npm run lint-js && npm run lint-md && npm run spell-md"
+        "test": "npm run lint-code && npm run lint-md && npm run spell-md"
     },
     "dependencies": {
         "gray-matter": "4.0.2",
