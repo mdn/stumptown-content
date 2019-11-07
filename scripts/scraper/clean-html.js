@@ -12,7 +12,15 @@ function removeNode(dom, selector) {
   }
 }
 
+function removeHiddenDivs(dom) {
+  const hiddenDivs = dom.window.document.querySelectorAll("div.hidden");
+  for (const hiddenDiv of hiddenDivs) {
+    hiddenDiv.parentNode.removeChild(hiddenDiv);
+  }
+}
+
 module.exports = {
-  removeTitleAttributes,
-  removeNode
+  removeHiddenDivs,
+  removeNode,
+  removeTitleAttributes
 };

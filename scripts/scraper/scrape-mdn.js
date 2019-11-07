@@ -26,7 +26,11 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
 const { toMarkdown } = require("./to-markdown.js");
-const { removeTitleAttributes, removeNode } = require("./clean-html.js");
+const {
+  removeTitleAttributes,
+  removeNode,
+  removeHiddenDivs
+} = require("./clean-html.js");
 const {
   processInteractiveExample
 } = require("./process-macros/process-interactive-example");
@@ -88,7 +92,9 @@ async function processDoc(relativeURL, title, destination) {
   const mdnPage = await getPageHTML(baseURL + relativeURL + "?raw&macros");
   const dom = new JSDOM(mdnPage);
   removeTitleAttributes(dom);
+  removeHiddenDivs(dom);
   removeNode(dom, "section.Quick_links");
+
   const result = await processMacros(dom, relativeURL, destination);
 
   // Remove Browser compatability section, now that its been consumed by
