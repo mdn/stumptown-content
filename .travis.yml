@@ -7,9 +7,7 @@ branches:
 
 script:
   - npm run ci-checks
-  - npm run lint-js
-  - npm run lint-md
-  - npm run spell-md
+  - npm test
   # Note, in a near future we're going to want to build-json for *everything*
   # and not just the 'html' section.
   - npm run build-json html
