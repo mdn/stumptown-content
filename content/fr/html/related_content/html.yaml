@@ -1,0 +1,11 @@
+# HTML sidebar
+- title: Learn HTML
+  children:
+  - chapter_list: "/content/en-US/learn/html/Introduction_to_HTML.yaml"
+- title: Guides
+  children:
+  - chapter_list: "/content/en-US/html/guides/Guides.yaml"
+- title: Reference
+  children:
+  - title: Elements
+    directory: "/content/fr/html/reference/elements"
