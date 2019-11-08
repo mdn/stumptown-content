@@ -36,13 +36,13 @@ function buildSection(sectionSpec) {
  * At the top level a related content object is an array of sections.
  */
 const relatedContentCache = {};
-function buildRelatedContent(specName) {
+function buildRelatedContent(specName, locale) {
   const cached = relatedContentCache[specName];
   if (cached !== undefined) {
     return cached;
   }
   const spec = yaml.safeLoad(
-    fs.readFileSync(path.join(ROOT, specName), "utf8")
+    fs.readFileSync(path.join(ROOT, "content", locale, specName), "utf8")
   );
   const result = spec.map(buildSection);
   // race condition would only result in reassigning the same value here
