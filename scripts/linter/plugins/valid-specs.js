@@ -33,16 +33,11 @@ function attacher() {
                         const message = file.message(`"${spec}" is not a valid specification link (anchored deep link required).`, node, ruleId);
                         message.fatal = true;
                     }
-                    // Spec URLs should be allow-listed, so that we don't list any outdated specs
-                    let found = false;
-                    Object.keys(specMap).forEach((key) => {
-                        if (spec.includes(key)) {
-                            found = true;
-                        }
-                      });
-                    if (!found) {
-                      const message = file.message(`Domain for "${spec}" not found in data/specifications.yaml`, node, ruleId);
-                      message.fatal = true;
+                    // Spec URLs should be allow-listed, so that we don't list any outdated specs.
+                    const allowedSpecs = Object.keys(specMap);
+                    if (!allowedSpecs.some(key => spec.includes(key))) {
+                        const message = file.message(`Domain for "${spec}" not found in data/specifications.yaml`, node, ruleId);
+                        message.fatal = true;
                     }
                 });
             }
