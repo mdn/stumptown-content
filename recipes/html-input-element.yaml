@@ -1,21 +1,21 @@
-related_content: /content/related_content/html.yaml
+related_content: /related_content/html.yaml
 data:
-- title
-- short_title?
-- mdn_url
+  - title
+  - short_title?
+  - mdn_url
 body:
-- prose.short_description
-- data.interactive_example?
-- prose.overview
-- prose.value
-- prose.validation
-- prose.attributes_text?
-- data.attributes
-- prose.styling?
-- prose.accessibility_concerns?
-- prose.*
-- data.examples
-- data.info_box?
-- data.specifications
-- data.browser_compatibility
-- prose.see_also
+  - prose.short_description
+  - data.interactive_example?
+  - prose.overview
+  - prose.value
+  - prose.validation
+  - prose.attributes_text?
+  - data.attributes
+  - prose.styling?
+  - prose.accessibility_concerns?
+  - prose.*
+  - data.examples
+  - data.info_box?
+  - data.specifications
+  - data.browser_compatibility
+  - prose.see_also
