@@ -20,8 +20,8 @@
         "build-json": "node scripts/build-json/build-json.js",
         "scrape-mdn": "node scripts/scraper/scrape-mdn.js",
         "ci-checks": "node scripts/ci/git.js",
-        "spell-md": "mdspell -a -n -r -x --en-us 'content/**/!(*contributors).md'",
-        "test": "npm run lint-js && npm run lint-md && npm run spell-md"
+        "spell-md-en": "mdspell -a -n -r -x --en-us 'content/en-US/**/!(*contributors).md'",
+        "test": "npm run lint-js && npm run lint-md && npm run spell-md-en"
     },
     "dependencies": {
         "gray-matter": "4.0.2",
