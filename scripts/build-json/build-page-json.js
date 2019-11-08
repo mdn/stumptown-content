@@ -50,6 +50,9 @@ function getRecipeUsingCache(recipeName) {
 function buildPageJSON(docsPath) {
   // open docs.md and parse front matter(data) from Markdown(content)
   const docsDirectory = path.dirname(docsPath);
+  const locale = path
+    .relative("content", path.relative(ROOT, docsDirectory))
+    .split(path.sep)[0];
   const docs = fs.readFileSync(docsPath, "utf8");
   const { data, content } = matter(docs);
 
@@ -88,7 +91,7 @@ function buildPageJSON(docsPath) {
     const item = {
       title: data.title,
       mdn_url: data.mdn_url,
-      related_content: related.buildRelatedContent(relatedContentSpec),
+      related_content: related.buildRelatedContent(relatedContentSpec, locale),
       body: body,
       contributors: contributors
     };
