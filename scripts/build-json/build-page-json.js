@@ -5,6 +5,7 @@ const matter = require("gray-matter");
 
 const { packageContributors } = require("./resolve-contributors");
 const related = require("./related-content");
+const localization = require("./localization");
 const guidePage = require("./build-guide-page-json");
 const recipePage = require("./build-recipe-page-json");
 const { ROOT } = require("./constants");
@@ -86,11 +87,14 @@ function buildPageJSON(docsPath) {
         path.join(docsDirectory, "contributors.md")
       );
     }
+    // Identify the other locales for this document
+    const locales = localization.buildLocalesForDoc(docsPath);
 
     // build the item
     const item = {
       title: data.title,
       mdn_url: data.mdn_url,
+      locales: locales,
       related_content: related.buildRelatedContent(relatedContentSpec, locale),
       body: body,
       contributors: contributors
