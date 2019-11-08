@@ -26,7 +26,11 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
 const { toMarkdown } = require("./to-markdown.js");
-const { removeTitleAttributes, removeNode } = require("./clean-html.js");
+const {
+  removeBrowserCompatibility,
+  removeNode,
+  removeTitleAttributes
+} = require("./clean-html.js");
 const {
   processInteractiveExample
 } = require("./process-macros/process-interactive-example");
@@ -89,7 +93,11 @@ async function processDoc(relativeURL, title, destination) {
   const dom = new JSDOM(mdnPage);
   removeTitleAttributes(dom);
   removeNode(dom, "section.Quick_links");
+
   const result = await processMacros(dom, relativeURL, destination);
+
+  removeBrowserCompatibility(dom);
+
   const md = String(await toMarkdown(result.dom.serialize()));
   const frontMatter = `---\ntitle: '${title}'\nmdn_url: ${relativeURL}\n${result.frontMatter}---\n`;
   writeDoc(destination, relativeURL.split("/").pop(), `${frontMatter}${md}\n`);
