@@ -35,7 +35,7 @@ function removeBrowserCompatibility(dom) {
   );
   hiddenElements.forEach(hidden => hidden.remove());
 
-  if (sectionWrapper.childNodes.length > 0) {
+  if (sectionWrapper.hasChildNodes()) {
     console.error("There's unexpected content in the BCD section.");
     console.error(sectionWrapper.innerHTML);
     process.exit(1);
