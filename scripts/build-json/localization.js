@@ -56,7 +56,6 @@ function buildLocalesForDoc(docPath) {
     }
   });
   localizedURLs.sort((localeA, localeB) => localeA.locale > localeB.locale);
-  console.table(localizedURLs);
   return localizedURLs;
 }
 
