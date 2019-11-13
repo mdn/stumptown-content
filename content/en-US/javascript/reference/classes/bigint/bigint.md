@@ -2,8 +2,8 @@
 recipe: javascript-class
 title: 'BigInt'
 mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt
-static_methods: /content/javascript/reference/classes/bigint/static_methods
-instance_methods: /content/javascript/reference/classes/bigint/instance_methods
+static_methods: /content/en-US/javascript/reference/classes/bigint/static_methods
+instance_methods: /content/en-US/javascript/reference/classes/bigint/instance_methods
 examples:
     - examples/calculating_primes
 specifications: https://tc39.es/ecma262/#sec-bigint-objects
