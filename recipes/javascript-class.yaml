@@ -1,0 +1,19 @@
+related_content: /content/related_content/javascript.yaml
+data:
+  - title
+  - short_title?
+  - mdn_url
+body:
+  - prose.short_description
+  - data.interactive_example?
+  - prose.description?
+  - data.class_constructor?
+  - data.static_properties?
+  - data.static_methods?
+  - data.instance_properties?
+  - data.instance_methods?
+  - prose.*
+  - data.examples
+  - data.specifications
+  - data.browser_compatibility
+  - prose.see_also
