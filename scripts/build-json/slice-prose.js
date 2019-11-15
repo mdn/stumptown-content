@@ -5,6 +5,8 @@ const { JSDOM } = jsdom;
 const namedSections = [
   "Short description",
   "Overview",
+  "Syntax",
+  "Description",
   "Attributes",
   "Usage notes",
   "Accessibility concerns",
