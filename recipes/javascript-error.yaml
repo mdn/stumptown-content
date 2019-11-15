@@ -1,0 +1,12 @@
+related_content: /content/related_content/javascript.yaml
+data:
+  - title
+  - short_title?
+  - mdn_url
+body:
+  - prose.short_description
+  - prose.message
+  - prose.error_type
+  - prose.what_went_wrong
+  - data.examples
+  - prose.see_also
