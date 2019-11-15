@@ -14,6 +14,7 @@ const slugifySections = require("./plugins/slugify-sections");
 const validRecipe = require("./plugins/valid-recipes");
 const walkDocs = require("./walk-docs");
 const yamlLoader = require("./plugins/yaml-loader");
+const validSpecs = require("./plugins/valid-specs");
 
 function main(args) {
   const recipes = collectRecipes();
@@ -25,6 +26,7 @@ function main(args) {
     .use(yamlLoader)
     .use(validRecipe, { recipes })
     .use(requiredFrontmatter)
+    .use(validSpecs)
     .use(slugifySections)
     .use(deprecatedSections, {
       sections: {
