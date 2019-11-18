@@ -16,10 +16,7 @@ function processMetaIngredient(elementPath, ingredientName, data) {
   }
   switch (ingredientName) {
     case "interactive_example":
-      return {
-        type: "interactive_example",
-        value: packageInteractiveExample(data.interactive_example)
-      };
+      return packageInteractiveExample(data.interactive_example);
     case "specifications":
       return packageSpecs(data.specifications);
     case "browser_compatibility":

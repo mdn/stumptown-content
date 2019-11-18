@@ -1,4 +1,4 @@
-related_content: /related_content/html.yaml
+related_content: related_content/html.yaml
 data:
   - title
   - short_title?

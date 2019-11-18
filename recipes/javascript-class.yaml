@@ -1,4 +1,4 @@
-related_content: /content/related_content/javascript.yaml
+related_content: related_content/javascript.yaml
 data:
   - title
   - short_title?
