@@ -13,9 +13,11 @@ const argv = require("yargs")
   .demandCommand(1, "Not enough URLs")
   .describe("n", "Dry run (lint)")
   .alias("n", "dry-run")
-  .alias("q", "quiet")
   .describe("q", "Suppess success messages")
-  .boolean(["n", "q"]).argv;
+  .alias("q", "quiet")
+  .describe("v", "Expand linter notes, if applicable")
+  .alias("v", "verbose")
+  .boolean(["n", "q", "v"]).argv;
 
 async function run() {
   const vfiles = [];
@@ -24,7 +26,7 @@ async function run() {
     vfiles.push(await toVFile(opt));
   }
 
-  console.log(reporter(vfiles, { quiet: argv.q }));
+  console.log(reporter(vfiles, { quiet: argv.quiet, verbose: argv.verbose }));
 }
 
 run();
