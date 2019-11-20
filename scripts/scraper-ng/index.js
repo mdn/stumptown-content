@@ -1,5 +1,7 @@
-const toVFile = require("./url-to-vfile");
+const rehype = require("rehype");
 const reporter = require("vfile-reporter");
+
+const toVFile = require("./url-to-vfile");
 
 const examplePage = "https://developer.mozilla.org/…/div";
 const examplePath = "https://developer.mozilla.org/…/div";
@@ -19,11 +21,31 @@ const argv = require("yargs")
   .alias("v", "verbose")
   .boolean(["n", "q", "v"]).argv;
 
+// TODO: add Markdown conversion
+// TODO: add YAML frontmatter insertion
+const processor = rehype().use([require("./rules/html-has-bcd-table")]);
+
 async function run() {
   const vfiles = [];
 
   for (const opt of argv._) {
-    vfiles.push(await toVFile(opt));
+    const file = await toVFile(opt);
+
+    // If any messages are fatal, then don't process the file contents (as it
+    // probably doesn't exist)
+    const hasFatalError = file.messages.reduce(
+      (prev, curr) => prev || curr.fatal,
+      false
+    );
+    if (!hasFatalError) {
+      await processor.process(file);
+    }
+
+    // TODO: write processed file to disk
+    // Implementation notes:
+    // - "rename" vfile (i.e., change file.path) to a real destination path
+    // - write file.contents to disk
+    vfiles.push(file);
   }
 
   console.log(reporter(vfiles, { quiet: argv.quiet, verbose: argv.verbose }));
