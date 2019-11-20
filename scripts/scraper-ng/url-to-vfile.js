@@ -8,7 +8,7 @@ const fetch = require("node-fetch");
  * - `pathname` is the URL pathname (e.g.,
  *   `https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span` becomes
  *   `/en-US/docs/Web/HTML/Element/span`)
- * - `contents` is the contents of the fetched page with query parameters `raw` and `macros`
+ * - `contents` is the contents of the fetched page with query parameters `raw`
  * - `data.url` is the original URL
  *
  */
@@ -39,7 +39,7 @@ async function toVFile(url) {
 
 function toRawMacros(url) {
   const u = new URL(url);
-  u.search = `?raw&macros`;
+  u.search = `?raw`;
 
   return u;
 }
