@@ -21,9 +21,13 @@ const argv = require("yargs")
   .alias("v", "verbose")
   .boolean(["n", "q", "v"]).argv;
 
-// TODO: add Markdown conversion
+const processor = rehype()
+  .use([require("./plugins/kumascript-macros")])
+  .use([
+    require("./rules/html-has-bcd-table"),
+    require("./rules/html-warn-macros")
+  ]);
 // TODO: add YAML frontmatter insertion
-const processor = rehype().use([require("./rules/html-has-bcd-table")]);
 
 async function run() {
   const vfiles = [];
