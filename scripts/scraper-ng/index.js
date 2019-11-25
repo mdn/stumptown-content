@@ -23,7 +23,7 @@ const processor = rehype()
   .use([require("./plugins/kumascript-macros")])
   .use([
     require("./rules/html-require-compat-macro"),
-    require("./rules/html-warn-macros")
+    [require("./rules/html-warn-macros"), ["Compat"]]
   ]);
 // TODO: add YAML frontmatter insertion
 

@@ -6,10 +6,16 @@ module.exports = rule("html-warn-on-macros", warnOnMacros);
 /**
  * Issue a warning for each macro
  */
-function warnOnMacros(tree, file) {
+function warnOnMacros(tree, file, allowedMacros) {
+  allowedMacros = Array.isArray(allowedMacros) ? allowedMacros : [];
+
   visit(
     tree,
-    node => node.type === "text" && node.data && node.data.macroName,
+    node =>
+      node.type === "text" &&
+      node.data &&
+      node.data.macroName &&
+      !allowedMacros.includes(node.data.macroName),
     (node, ancestors) => {
       // Because macro nodes are generated, they don't have position
       // information. The parent node's position is used instead.
