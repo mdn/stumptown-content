@@ -3,16 +3,14 @@ const reporter = require("vfile-reporter");
 
 const toVFile = require("./url-to-vfile");
 
-const examplePage = "https://developer.mozilla.org/…/div";
-const examplePath = "https://developer.mozilla.org/…/div";
-const secondExample = "https://developer.mozilla.org/…/span";
+const examplePage =
+  "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div";
 
 const argv = require("yargs")
   .usage("Usage: $0 <url> …")
   .example(`$0 ${examplePage}`, "scrape a page")
-  .example(`$0 -n ${examplePath}`, "dry run (lint)")
-  .example(`$0 -n ${examplePath} ${secondExample}`, "scrape many URLs")
-  .demandCommand(1, "Not enough URLs")
+  .example(`$0 -n ${examplePage}`, "dry run (lint)")
+  .demandCommand(1, 1, "A URL is required", "Too many arguments")
   .describe("n", "Dry run (lint)")
   .alias("n", "dry-run")
   .describe("q", "Suppress success messages")
