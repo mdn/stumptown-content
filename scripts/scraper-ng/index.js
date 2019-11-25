@@ -30,25 +30,23 @@ const processor = rehype()
 async function run() {
   const vfiles = [];
 
-  for (const opt of argv._) {
-    const file = await toVFile(opt);
+  const file = await toVFile(argv._[0]);
 
-    // If any messages are fatal, then don't process the file contents (as it
-    // probably doesn't exist)
-    const hasFatalError = file.messages.reduce(
-      (prev, curr) => prev || curr.fatal,
-      false
-    );
-    if (!hasFatalError) {
-      await processor.process(file);
-    }
-
-    // TODO: write processed file to disk
-    // Implementation notes:
-    // - "rename" vfile (i.e., change file.path) to a real destination path
-    // - write file.contents to disk
-    vfiles.push(file);
+  // If any messages are fatal, then don't process the file contents (as it
+  // probably doesn't exist)
+  const hasFatalError = file.messages.reduce(
+    (prev, curr) => prev || curr.fatal,
+    false
+  );
+  if (!hasFatalError) {
+    await processor.process(file);
   }
+
+  // TODO: write processed file to disk
+  // Implementation notes:
+  // - "rename" vfile (i.e., change file.path) to a real destination path
+  // - write file.contents to disk
+  vfiles.push(file);
 
   console.log(reporter(vfiles, { quiet: argv.quiet, verbose: argv.verbose }));
 }
