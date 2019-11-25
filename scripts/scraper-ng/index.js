@@ -24,7 +24,7 @@ const argv = require("yargs")
 const processor = rehype()
   .use([require("./plugins/kumascript-macros")])
   .use([
-    require("./rules/html-has-bcd-table"),
+    require("./rules/html-require-compat-macro"),
     require("./rules/html-warn-macros")
   ]);
 // TODO: add YAML frontmatter insertion
