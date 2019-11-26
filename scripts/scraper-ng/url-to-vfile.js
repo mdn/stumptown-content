@@ -1,5 +1,6 @@
-const vfile = require("vfile");
 const fetch = require("node-fetch");
+const isVFileMessage = require("is-vfile-message");
+const vfile = require("vfile");
 
 /**
  * Returns a promise for the creation of a `VFile` object with the following
@@ -25,12 +26,13 @@ async function toVFile(url) {
     if (response.ok) {
       f.contents = await response.text();
     } else {
-      const message = f.message(`${response.status} ${response.statusText}`);
-      message.fatal = true;
+      f.fail(`${response.status} ${response.statusText}`);
     }
   } catch (err) {
-    f.message(err.message);
-    f.fatal = true;
+    if (!isVFileMessage(err)) {
+      const message = f.message(err.message);
+      message.fatal = true;
+    }
     return f;
   }
 
