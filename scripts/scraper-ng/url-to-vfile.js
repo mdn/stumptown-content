@@ -22,7 +22,7 @@ async function toVFile(url) {
   });
 
   try {
-    const response = await fetch(toRawMacros(url));
+    const response = await fetch(toRaw(url));
     if (response.ok) {
       f.contents = await response.text();
     } else {
@@ -39,7 +39,7 @@ async function toVFile(url) {
   return f;
 }
 
-function toRawMacros(url) {
+function toRaw(url) {
   const u = new URL(url);
   u.search = `?raw`;
 
