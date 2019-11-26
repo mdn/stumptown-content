@@ -21,10 +21,7 @@ const argv = require("yargs")
 
 const processor = rehype()
   .use([require("./plugins/kumascript-macros")])
-  .use([
-    require("./rules/html-require-compat-macro"),
-    [require("./rules/html-warn-macros"), ["Compat"]]
-  ]);
+  .use([require("./preset")]);
 // TODO: add YAML frontmatter insertion
 
 async function run() {
