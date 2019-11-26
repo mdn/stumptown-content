@@ -18,7 +18,8 @@ function warnOnMacros(tree, file, allowedMacros) {
       // Because macro nodes are generated, they don't have position
       // information. The parent node's position is used instead.
       const parent = ancestors[ancestors.length - 1];
-      file.message(`Macro: ${node.data.macroName}`, parent);
+      const message = file.message(`Macro: ${node.data.macroName}`, parent);
+      message.note = `With arguments: ${JSON.stringify(node.data.macroParams)}`;
     }
   );
 }

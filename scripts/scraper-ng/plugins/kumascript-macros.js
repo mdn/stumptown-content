@@ -12,7 +12,7 @@ function kumascriptMacrosPlugin() {
     findAndReplace(tree, macroRegex, match => {
       const groups = match.match(new RegExp(macroRegex.source, ""));
       const macroName = groups[1];
-      const macroParams = groups[2];
+      const macroParams = processParams(groups[2]);
 
       return {
         type: "text",
@@ -24,6 +24,21 @@ function kumascriptMacrosPlugin() {
       };
     });
   };
+}
+
+function processParams(paramsString) {
+  return paramsString
+    .split(",")
+    .map(param => dequote(param.trim(), ["'", '"']));
+}
+
+function dequote(str, quoteChars) {
+  for (const char of quoteChars) {
+    if (str.startsWith(char) && str.endsWith(char)) {
+      return str.slice(1, -1);
+    }
+  }
+  return str;
 }
 
 module.exports = kumascriptMacrosPlugin;
