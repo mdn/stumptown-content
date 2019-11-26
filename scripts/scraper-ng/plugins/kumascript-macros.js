@@ -5,12 +5,12 @@ const findAndReplace = require("hast-util-find-and-replace");
  * with data about the macro calls.
  */
 
-const macroRegex = /{{ ?(\w+)\((.*?)\) ?}}/;
+const macroRegex = /{{ ?(\w+)\((.*?)\) ?}}/g;
 
 function kumascriptMacrosPlugin() {
   return function transformer(tree) {
     findAndReplace(tree, macroRegex, match => {
-      const groups = match.match(macroRegex);
+      const groups = match.match(new RegExp(macroRegex.source, ""));
       const macroName = groups[1];
       const macroParams = groups[2];
 
