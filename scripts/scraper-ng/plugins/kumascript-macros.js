@@ -5,8 +5,6 @@ const findAndReplace = require("hast-util-find-and-replace");
  * with data about the macro calls.
  */
 
-module.exports = kumascriptMacrosPlugin;
-
 const macroRegex = /{{ ?(\w+)\((.*?)\) ?}}/;
 
 function kumascriptMacrosPlugin() {
@@ -27,3 +25,5 @@ function kumascriptMacrosPlugin() {
     });
   };
 }
+
+module.exports = kumascriptMacrosPlugin;

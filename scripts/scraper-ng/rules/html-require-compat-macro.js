@@ -1,8 +1,6 @@
 const rule = require("unified-lint-rule");
 const visit = require("unist-util-visit");
 
-module.exports = rule("html-require-compat-macro", requireCompatMacro);
-
 function requireCompatMacro(tree, file) {
   let foundCompat = false;
 
@@ -23,3 +21,5 @@ function requireCompatMacro(tree, file) {
     message.fatal = true;
   }
 }
+
+module.exports = rule("html-require-compat-macro", requireCompatMacro);
