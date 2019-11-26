@@ -2,7 +2,8 @@ const rule = require("unified-lint-rule");
 const visit = require("unist-util-visit-parents");
 
 /**
- * Issue a warning for each macro
+ * Issue a warning for each macro call (except for the array of macro names in
+ * `allowedMacros`)
  */
 function warnOnMacros(tree, file, allowedMacros) {
   allowedMacros = Array.isArray(allowedMacros) ? allowedMacros : [];
