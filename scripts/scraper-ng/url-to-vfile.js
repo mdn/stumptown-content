@@ -17,19 +17,19 @@ async function toVFile(url) {
   const f = vfile({
     path: pathname,
     cwd: null,
-    data: { url: url }
+    data: { url }
   });
 
   try {
     const response = await fetchPage(toRaw(url));
-      f.contents = await response.text();
+    f.contents = await response.text();
   } catch (err) {
-      const message = f.message(err.message);
-      message.fatal = true;
-    }
-
-    return f;
+    const message = f.message(err.message);
+    message.fatal = true;
   }
+
+  return f;
+}
 
 async function fetchPage(url) {
   const response = await fetch(url);
