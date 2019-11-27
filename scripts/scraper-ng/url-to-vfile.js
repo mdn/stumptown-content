@@ -1,5 +1,4 @@
 const fetch = require("node-fetch");
-const isVFileMessage = require("is-vfile-message");
 const vfile = require("vfile");
 
 /**
@@ -22,21 +21,22 @@ async function toVFile(url) {
   });
 
   try {
-    const response = await fetch(toRaw(url));
-    if (response.ok) {
+    const response = await fetchPage(toRaw(url));
       f.contents = await response.text();
-    } else {
-      f.fail(`${response.status} ${response.statusText}`);
-    }
   } catch (err) {
-    if (!isVFileMessage(err)) {
       const message = f.message(err.message);
       message.fatal = true;
     }
+
     return f;
   }
 
-  return f;
+async function fetchPage(url) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw Error(`${response.status} ${response.statusText}`);
+  }
+  return response;
 }
 
 function toRaw(url) {
