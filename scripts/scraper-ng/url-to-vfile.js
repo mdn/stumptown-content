@@ -1,21 +1,26 @@
 const fetch = require("node-fetch");
 const vfile = require("vfile");
 
+const mdnUrl = require("./mdn-url");
+
 /**
- * Returns a promise for the creation of a `VFile` object with the following
- * details:
+ * Returns a promise for the creation a `VFile` object with the following
+ * properties:
  *
- * - `pathname` is the URL pathname (e.g.,
+ * - `pathname` - the URL pathname (e.g.,
  *   `https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span` becomes
  *   `/en-US/docs/Web/HTML/Element/span`)
- * - `contents` is the contents of the fetched page with query parameters `raw`
- * - `data.url` is the original URL
+ * - `contents` - the HTML of the fetched page with the `raw` query parameter
+ * - `data.url` - the absolute URI (without the `raw` query paramter)
  *
+ * @param {string} input - An absolute reference or URI for an MDN page
+ * @returns {vfile} The `VFile` representing the page
  */
-async function toVFile(url) {
-  const { pathname } = new URL(url);
+async function toVFile(input) {
+  const url = mdnUrl(input);
+
   const f = vfile({
-    path: pathname,
+    path: url.pathname,
     cwd: null,
     data: { url }
   });
