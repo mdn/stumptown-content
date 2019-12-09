@@ -11,7 +11,7 @@ const mdnUrl = require("./mdn-url");
  *   `https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span` becomes
  *   `/en-US/docs/Web/HTML/Element/span`)
  * - `contents` - the HTML of the fetched page with the `raw` query parameter
- * - `data.url` - the absolute URI (without the `raw` query paramter)
+ * - `data.url` - the absolute URL (without the `raw` query paramter)
  *
  * @param {string} input - An absolute reference or URI for an MDN page
  * @returns {vfile} The `VFile` representing the page
