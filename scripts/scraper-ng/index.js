@@ -35,11 +35,8 @@ const processor = rehype()
 async function run() {
   const root = await fetchTree(argv._[0]);
   const urls = argv.noSubpages ? [root.url] : flattenTree(root);
-  const toProcess = urls.map(toVFile);
-  const processed = [];
-
-  for (const f of toProcess) {
-    const file = await f;
+  const files = urls.map(async url => {
+    const file = await toVFile(url);
     const hasFatalError = file.messages.reduce(
       (prev, curr) => prev || curr.fatal,
       false
@@ -47,8 +44,9 @@ async function run() {
     if (!hasFatalError) {
       await processor.process(file);
     }
-    processed.push(file);
-  }
+    return file;
+  });
+  const processed = await Promise.all(files);
 
   console.log(
     reporter(processed, { quiet: argv.quiet, verbose: argv.verbose })
