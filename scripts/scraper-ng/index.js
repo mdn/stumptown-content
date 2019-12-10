@@ -36,6 +36,10 @@ const processor = rehype()
 async function run() {
   const root = await fetchTree(argv._[0]);
   const urls = argv.noSubpages ? [root.url] : flattenTree(root);
+
+  console.log(`Preparing to lint ${urls.length} pages…`);
+  await new Promise(resolve => setTimeout(resolve, 2000)); // give 2 seconds to gracefully bail out
+
   const limiter = RateLimit(4, { uniformDistribution: true });
   const files = urls.map(async url => {
     await limiter();
