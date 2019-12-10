@@ -1,3 +1,4 @@
+const { RateLimit } = require("async-sema");
 const fetch = require("node-fetch");
 const rehype = require("rehype");
 const reporter = require("vfile-reporter");
@@ -35,7 +36,9 @@ const processor = rehype()
 async function run() {
   const root = await fetchTree(argv._[0]);
   const urls = argv.noSubpages ? [root.url] : flattenTree(root);
+  const limiter = RateLimit(4, { uniformDistribution: true });
   const files = urls.map(async url => {
+    await limiter();
     const file = await toVFile(url);
     const hasFileErrors = file.messages.length > 0;
     if (!hasFileErrors) {
