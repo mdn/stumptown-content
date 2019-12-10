@@ -61,7 +61,7 @@ async function fetchTree(input) {
     throw Error(`${response.status} ${response.statusText}`);
   }
 
-  return await response.json();
+  return response.json();
 }
 
 function flattenTree(root) {
