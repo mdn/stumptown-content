@@ -37,11 +37,8 @@ async function run() {
   const urls = argv.noSubpages ? [root.url] : flattenTree(root);
   const files = urls.map(async url => {
     const file = await toVFile(url);
-    const hasFatalError = file.messages.reduce(
-      (prev, curr) => prev || curr.fatal,
-      false
-    );
-    if (!hasFatalError) {
+    const hasFileErrors = file.messages.length > 0;
+    if (!hasFileErrors) {
       await processor.process(file);
     }
     return file;
