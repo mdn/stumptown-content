@@ -20,6 +20,7 @@
         "build-json": "node scripts/build-json/build-json.js",
         "scrape-mdn": "node scripts/scraper/scrape-mdn.js",
         "ci-checks": "node scripts/ci/git.js",
+        "mdn-sitemap-compare": "node scripts/linting/mdn-sitemap-compare.js",
         "spell-md-en": "mdspell -a -n -r -x --en-us 'content/en-US/**/!(*contributors).md'",
         "test": "npm run lint-code && npm run lint-md && npm run spell-md-en"
     },
