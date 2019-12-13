@@ -1,6 +1,6 @@
 ---
 title: border-block-start-width
-mdn_url: https://developer.mozilla.org/docs/Web/CSS/border-block-start-width
+mdn_url: /en-US/docs/Web/CSS/border-block-start-width
 recipe: css-property
 interactive_example: https://interactive-examples.mdn.mozilla.net/pages/css/border-block-start-width.html
 formal_syntax: <'border-top-width'>
