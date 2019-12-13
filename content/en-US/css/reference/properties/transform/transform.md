@@ -1,6 +1,6 @@
 ---
 title: transform
-mdn_url: https://developer.mozilla.org/docs/Web/CSS/transform
+mdn_url: /en-US/docs/Web/CSS/transform
 recipe: css-property
 interactive_example: https://interactive-examples.mdn.mozilla.net/pages/css/transform.html
 formal_syntax: 'none | <transform-list>'
