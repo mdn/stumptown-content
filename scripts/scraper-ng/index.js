@@ -43,6 +43,7 @@ async function run() {
   const limiter = RateLimit(4, { uniformDistribution: true });
   const files = urls.map(async url => {
     await limiter();
+    if (!argv.quiet) console.log(`Fetching ${url}`);
     const file = await toVFile(url);
     const hasFileErrors = file.messages.length > 0;
     if (!hasFileErrors) {
