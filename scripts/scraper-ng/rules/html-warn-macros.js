@@ -20,13 +20,29 @@ function attacher(allowedMacros) {
         // information. The parent node's position is used instead.
         const parent = ancestors[ancestors.length - 1];
         const message = file.message(`Macro: ${node.data.macroName}`, parent);
-        message.ruleId = `html-warn-on-macros:${node.data.macroName}`;
+        message.ruleId = `html-warn-on-macros:${normalizeMacroName(
+          node.data.macroName
+        )}`;
         message.note = `With arguments: ${JSON.stringify(
           node.data.macroParams
         )}`;
       }
     );
   };
+}
+
+/**
+ * Make the case of a macro consistent with other possible invocations of this
+ * macro.
+ *
+ * The right thing to do probably involves finding out the canonical name of
+ * every macro, but for now, this just lower cases the name.
+ *
+ * @param {String} name - a macro name
+ * @returns {String}
+ */
+function normalizeMacroName(name) {
+  return name.toLowerCase();
 }
 
 module.exports = attacher;
