@@ -2,7 +2,7 @@ const chalk = require("chalk");
 const statistics = require("vfile-statistics");
 
 /**
- * Generate a summary report of the messages for the given `VFile`, `Array.<VFile>`, or `Error`.
+ * Generate a summary report of VFile messages.
  *
  * @param {(VFile|Array.<VFile>|Error)} files - `VFile`, `Array.<VFile>`, or `Error`
  * @param {Object} options
@@ -16,6 +16,7 @@ function reporter(files) {
 
   // A single Error
   if ("name" in files && "message" in files) {
+    // We might want to implement the full reporter API at some point, but not now.
     throw Error("Not implemented");
   }
 
@@ -24,11 +25,48 @@ function reporter(files) {
     files = [files];
   }
 
-  // Do the things with the files
+  // Actually generate the summary
   return summarize(files);
 }
 
 function summarize(files) {
+  const count = countRules(files);
+
+  const sortedRules = Object.entries(count)
+    .map(([ruleId, details]) => ({
+      ruleId,
+      ...details
+    }))
+    .sort((a, b) => a.count - b.count)
+    .reverse();
+
+  const ruleFields = sortedRules.map(formatRule);
+
+  const columns = ruleFields[0].length;
+  const widths = ruleFields.map(rule => rule.map(field => field.length));
+  const maxWidths = widths.reduce(
+    (prev, curr) => prev.map((number, index) => Math.max(number, curr[index])),
+    Array(columns).fill(0)
+  );
+
+  const paddedFields = ruleFields.map(rule =>
+    rule.map((field, columnNumber) => field.padEnd(maxWidths[columnNumber]))
+  );
+
+  const prologue = [""];
+  const body = paddedFields.map(field => field.join("  "));
+  const epilogue = ["", formatStats(files, body)];
+
+  return [].concat(prologue, body, epilogue).join("\n");
+}
+
+/**
+ * Count each message ruleId found in the array of vfiles.
+ *
+ * @param {Array.<VFile>} files
+ * @returns
+ */
+function countRules(files) {
   const rules = {};
 
   for (const file of files) {
@@ -45,34 +83,15 @@ function summarize(files) {
     }
   }
 
-  const rulesArray = Object.entries(rules)
-    .map(([ruleId, details]) => ({
-      ruleId,
-      ...details
-    }))
-    .sort((a, b) => a.count - b.count)
-    .reverse();
-
-  const lineParts = rulesArray.map(formatRule);
-
-  const columns = lineParts[0].length;
-  const partWidths = lineParts.map(parts => parts.map(part => part.length));
-  const maxWidths = partWidths.reduce(
-    (prev, curr) => prev.map((number, index) => Math.max(number, curr[index])),
-    Array(columns).fill(0)
-  );
-
-  const paddedLineParts = lineParts.map(line =>
-    line.map((part, columnNumber) => part.padEnd(maxWidths[columnNumber]))
-  );
-
-  const prologue = [""];
-  const body = paddedLineParts.map(line => line.join("  "));
-  const epilogue = ["", formatStats(files, body)];
-
-  return [].concat(prologue, body, epilogue).join("\n");
+  return rules;
 }
 
+/**
+ * Make an array of human-readable strings describing the rule and its count.
+ *
+ * @param {Object}
+ * @returns
+ */
 function formatRule({ count, fatal, reason, ruleId }) {
   const plural = count > 1 ? "s" : "";
   const severity = fatal
@@ -81,6 +100,13 @@ function formatRule({ count, fatal, reason, ruleId }) {
   return [reason, `${count} ${severity}`, ruleId];
 }
 
+/**
+ * Make a human-readable string of statistics from the summary.
+ *
+ * @param {Array.<VFile>} files
+ * @param {Array.<String>} summaryLines
+ * @returns {String}
+ */
 function formatStats(files, summaryLines) {
   const { fatal, nonfatal, total } = statistics(files);
 
