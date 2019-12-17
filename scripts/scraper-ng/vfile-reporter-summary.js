@@ -1,4 +1,5 @@
 const chalk = require("chalk");
+const statistics = require("vfile-statistics");
 
 /**
  * Generate a summary report of the messages for the given `VFile`, `Array.<VFile>`, or `Error`.
@@ -52,7 +53,7 @@ function summarize(files) {
     .sort((a, b) => a.count - b.count)
     .reverse();
 
-  const lineParts = rulesArray.map(humanize);
+  const lineParts = rulesArray.map(formatRule);
 
   const columns = lineParts[0].length;
   const partWidths = lineParts.map(parts => parts.map(part => part.length));
@@ -65,17 +66,42 @@ function summarize(files) {
     line.map((part, columnNumber) => part.padEnd(maxWidths[columnNumber]))
   );
 
-  // TODO: Add stats at the end, with number of pages, etc.
+  const prologue = [""];
+  const body = paddedLineParts.map(line => line.join("  "));
+  const epilogue = ["", formatStats(files, body)];
 
-  return paddedLineParts.map(line => line.join("\t")).join("\n");
+  return [].concat(prologue, body, epilogue).join("\n");
 }
 
-function humanize({ count, fatal, reason, ruleId }) {
+function formatRule({ count, fatal, reason, ruleId }) {
   const plural = count > 1 ? "s" : "";
   const severity = fatal
     ? chalk.red(`error${plural}`)
     : chalk.yellow(`warning${plural}`);
   return [reason, `${count} ${severity}`, ruleId];
+}
+
+function formatStats(files, summaryLines) {
+  const { fatal, nonfatal, total } = statistics(files);
+
+  const plural = num => (num === 1 ? "" : "s");
+
+  const notices = total > 0 ? `${total} notice${plural(total)}` : "";
+  const errors =
+    fatal > 0 ? `${chalk.red("✖")} ${fatal} error${plural(fatal)}` : "";
+  const warnings =
+    nonfatal > 0
+      ? `${chalk.yellow("⚠")} ${nonfatal} warning${plural(nonfatal)}`
+      : "";
+
+  const breakdown = [notices, errors, warnings].filter(Boolean).join(", ");
+  const parenthetical = breakdown ? `(${breakdown})` : "";
+
+  return [
+    `${summaryLines.length} notice type${plural(summaryLines.length)}`,
+    parenthetical,
+    `in ${files.length} file${plural(files.length)}`
+  ].join(" ");
 }
 
 module.exports = reporter;
