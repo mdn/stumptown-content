@@ -1,9 +1,10 @@
 const { RateLimit } = require("async-sema");
 const fetch = require("node-fetch");
+const fileReporter = require("vfile-reporter");
 const rehype = require("rehype");
-const reporter = require("vfile-reporter");
 
 const mdnUrl = require("./mdn-url");
+const summaryReporter = require("./vfile-reporter-summary");
 const toVFile = require("./url-to-vfile");
 
 const examplePage =
@@ -65,6 +66,7 @@ async function run() {
   });
   const processed = await Promise.all(files);
 
+  const reporter = argv.summary ? summaryReporter : fileReporter;
   console.log(
     reporter(processed, { quiet: argv.quiet, verbose: argv.verbose })
   );
