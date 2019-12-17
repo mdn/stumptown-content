@@ -1,3 +1,5 @@
+const chalk = require("chalk");
+
 /**
  * Generate a summary report of the messages for the given `VFile`, `Array.<VFile>`, or `Error`.
  *
@@ -69,9 +71,11 @@ function summarize(files) {
 }
 
 function humanize({ count, fatal, reason, ruleId }) {
-  const severity = fatal ? "error" : "warning";
   const plural = count > 1 ? "s" : "";
-  return [`${reason}`, `${count} ${severity}${plural}`, `${ruleId}`];
+  const severity = fatal
+    ? chalk.red(`error${plural}`)
+    : chalk.yellow(`warning${plural}`);
+  return [reason, `${count} ${severity}`, ruleId];
 }
 
 module.exports = reporter;
