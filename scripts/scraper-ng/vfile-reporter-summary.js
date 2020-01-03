@@ -91,10 +91,8 @@ function countRules(files) {
  * @returns
  */
 function formatRule({ count, fatal, reason, ruleId }) {
-  const plural = count > 1 ? "s" : "";
-  const severity = fatal
-    ? chalk.red(`error${plural}`)
-    : chalk.yellow(`warning${plural}`);
+  const s = plural(count);
+  const severity = fatal ? chalk.red(`error${s}`) : chalk.yellow(`warning${s}`);
   return [reason, `${count} ${severity}`, ruleId];
 }
 
@@ -107,8 +105,6 @@ function formatRule({ count, fatal, reason, ruleId }) {
  */
 function formatStats(files, summaryLines) {
   const { fatal, nonfatal, total } = statistics(files);
-
-  const plural = num => (num === 1 ? "" : "s");
 
   const notices = total > 0 ? `${total} notice${plural(total)}` : "";
   const errors =
@@ -126,6 +122,16 @@ function formatStats(files, summaryLines) {
     parenthetical,
     `in ${files.length} file${plural(files.length)}`
   ].join(" ");
+}
+
+/**
+ * Return an "s" or an empty string, depending on the value of `num`.
+ *
+ * @param {Number} num
+ * @returns {String} "s" or an empty string
+ */
+function plural(num) {
+  return num === 1 ? "" : "s";
 }
 
 module.exports = reporter;
