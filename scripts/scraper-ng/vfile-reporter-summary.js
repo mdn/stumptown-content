@@ -5,7 +5,6 @@ const statistics = require("vfile-statistics");
  * Generate a summary report of VFile messages.
  *
  * @param {(VFile|Array.<VFile>|Error)} files - `VFile`, `Array.<VFile>`, or `Error`
- * @param {Object} options
  * @returns A string
  */
 function reporter(files) {
