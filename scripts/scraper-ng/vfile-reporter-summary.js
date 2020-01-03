@@ -53,7 +53,7 @@ function summarize(files) {
     rule.map((field, columnNumber) => field.padEnd(maxWidths[columnNumber]))
   );
 
-  const prologue = [""];
+  const prologue = ["", chalk`{yellow {underline Summary}}`];
   const body = paddedFields.map(field => field.join("  "));
   const epilogue = ["", formatStats(files, body)];
 
