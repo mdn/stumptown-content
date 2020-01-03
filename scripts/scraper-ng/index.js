@@ -2,6 +2,7 @@ const { RateLimit } = require("async-sema");
 const fetch = require("node-fetch");
 const fileReporter = require("vfile-reporter");
 const rehype = require("rehype");
+const yargs = require("yargs");
 
 const mdnUrl = require("./mdn-url");
 const summaryReporter = require("./vfile-reporter-summary");
@@ -11,7 +12,7 @@ const examplePage =
   "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div";
 const exampleShorthand = "/en-US/docs/Web/HTML/Element/div";
 
-const { argv } = require("yargs")
+const { argv } = yargs
   .parserConfiguration({ "boolean-negation": false })
   .usage("Usage: $0 <url>")
   .example(`$0 ${examplePage}`, "scrape a page and all its subpages")
@@ -39,7 +40,9 @@ const { argv } = require("yargs")
   .alias("v", "verbose")
 
   .demandCommand(1, 1, "A URL is required", "Too many arguments")
-  .boolean(["n", "no-subpages", "q", "s", "v"]);
+  .boolean(["n", "no-subpages", "q", "s", "v"])
+
+  .wrap(yargs.terminalWidth());
 
 const processor = rehype()
   .use([require("./plugins/kumascript-macros")])
