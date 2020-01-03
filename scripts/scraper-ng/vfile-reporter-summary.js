@@ -36,8 +36,7 @@ function summarize(files) {
       ruleId,
       ...details
     }))
-    .sort((a, b) => a.count - b.count)
-    .reverse();
+    .sort((a, b) => b.count - a.count);
 
   const ruleFields = sortedRules.map(formatRule);
 
