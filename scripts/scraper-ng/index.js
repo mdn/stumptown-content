@@ -1,32 +1,48 @@
 const { RateLimit } = require("async-sema");
 const fetch = require("node-fetch");
+const fileReporter = require("vfile-reporter");
 const rehype = require("rehype");
-const reporter = require("vfile-reporter");
+const yargs = require("yargs");
 
 const mdnUrl = require("./mdn-url");
+const summaryReporter = require("./vfile-reporter-summary");
 const toVFile = require("./url-to-vfile");
 
 const examplePage =
   "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div";
 const exampleShorthand = "/en-US/docs/Web/HTML/Element/div";
 
-const argv = require("yargs")
+const { argv } = yargs
   .parserConfiguration({ "boolean-negation": false })
   .usage("Usage: $0 <url>")
   .example(`$0 ${examplePage}`, "scrape a page and all its subpages")
   .example(`$0 ${exampleShorthand}`, "omit the protocol and domain")
-  .example(`$0 --no-subpages ${exampleShorthand}`, "one page only")
+
+  .describe("n", "Dry run (lint-only)")
+  .alias("n", "dry-run")
   .example(`$0 -n ${exampleShorthand}`, "dry run (lint)")
-  .demandCommand(1, 1, "A URL is required", "Too many arguments")
+
   .describe("no-subpages", "Don't walk the entire tree from the URL")
   .default("no-subpages", false)
-  .describe("n", "Dry run (lint)")
-  .alias("n", "dry-run")
-  .describe("q", "Suppress success messages")
+  .example(`$0 --no-subpages ${exampleShorthand}`, "one page only")
+
+  .describe("q", "Suppress success and progress messages")
   .alias("q", "quiet")
+
+  .describe("summary", "Summarize messages across all pages")
+  .alias("s", "summary")
+  .example(
+    `$0 --summary ${exampleShorthand}`,
+    "summary of report of message types"
+  )
+
   .describe("v", "Expand linter notes, if applicable")
   .alias("v", "verbose")
-  .boolean(["n", "q", "v", "no-subpages"]).argv;
+
+  .demandCommand(1, 1, "A URL is required", "Too many arguments")
+  .boolean(["n", "no-subpages", "q", "s", "v"])
+
+  .wrap(yargs.terminalWidth());
 
 const processor = rehype()
   .use([require("./plugins/kumascript-macros")])
@@ -54,8 +70,14 @@ async function run() {
   const processed = await Promise.all(files);
 
   console.log(
-    reporter(processed, { quiet: argv.quiet, verbose: argv.verbose })
+    fileReporter(processed, { quiet: argv.quiet, verbose: argv.verbose })
   );
+
+  if (argv.summary) {
+    console.log(
+      summaryReporter(processed, { quiet: argv.quiet, verbose: argv.verbose })
+    );
+  }
 }
 
 async function fetchTree(input) {

@@ -20,7 +20,7 @@ function requireMacros(tree, file, required = []) {
   );
 
   for (const macro of required) {
-    file.message(`One or more ${macro} macro calls required but not found`);
+    file.message(`${macro} macro call required but not found`);
   }
 }
 
