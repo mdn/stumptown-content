@@ -14,7 +14,7 @@ function reporter(files) {
   }
 
   // A single Error
-  if ("name" in files && "message" in files) {
+  if (files instanceof Error) {
     // We might want to implement the full reporter API at some point, but not now.
     throw Error("Not implemented");
   }
