@@ -5,7 +5,7 @@ const statistics = require("vfile-statistics");
  * Generate a summary report of VFile messages.
  *
  * @param {(VFile|Array.<VFile>|Error)} files - `VFile`, `Array.<VFile>`, or `Error`
- * @returns A string
+ * @returns {String} the summary as a string
  */
 function reporter(files) {
   // Undefined or `null`
@@ -62,7 +62,9 @@ function summarize(files) {
  * Count each message ruleId found in the array of vfiles.
  *
  * @param {Array.<VFile>} files
- * @returns
+ * @returns {Object} An object such that each key is a `ruleId` and each value
+ * is an object consisting of a `count` (an integer), a VFile message `reason`,
+ * and whether the message is `fatal`.
  */
 function countRules(files) {
   const rules = {};
@@ -88,7 +90,7 @@ function countRules(files) {
  * Make an array of human-readable strings describing the rule and its count.
  *
  * @param {Object}
- * @returns
+ * @returns {Array.<String>} An array of strings: a VFile message reason, a count and severity, and a ruleId.
  */
 function formatRule({ count, fatal, reason, ruleId }) {
   const s = plural(count);
@@ -99,9 +101,9 @@ function formatRule({ count, fatal, reason, ruleId }) {
 /**
  * Make a human-readable string of statistics from the summary.
  *
- * @param {Array.<VFile>} files
- * @param {Array.<String>} summaryLines
- * @returns {String}
+ * @param {Array.<VFile>} files - an array of VFiles
+ * @param {Array.<String>} summaryLines - an array of lines from the summary
+ * @returns {String} a string of statistics
  */
 function formatStats(files, summaryLines) {
   const { fatal, nonfatal, total } = statistics(files);
