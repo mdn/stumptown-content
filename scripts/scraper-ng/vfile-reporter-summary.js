@@ -20,7 +20,7 @@ function reporter(files) {
   }
 
   // A single file
-  if (!("length" in files)) {
+  if (!Array.isArray(files)) {
     files = [files];
   }
 
