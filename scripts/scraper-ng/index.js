@@ -69,10 +69,15 @@ async function run() {
   });
   const processed = await Promise.all(files);
 
-  const reporter = argv.summary ? summaryReporter : fileReporter;
   console.log(
-    reporter(processed, { quiet: argv.quiet, verbose: argv.verbose })
+    fileReporter(processed, { quiet: argv.quiet, verbose: argv.verbose })
   );
+
+  if (argv.summary) {
+    console.log(
+      summaryReporter(processed, { quiet: argv.quiet, verbose: argv.verbose })
+    );
+  }
 }
 
 async function fetchTree(input) {
