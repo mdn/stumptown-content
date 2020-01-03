@@ -5,7 +5,9 @@ const visit = require("unist-util-visit-parents");
  * `allowedMacros`)
  */
 function attacher(allowedMacros) {
-  allowedMacros = Array.isArray(allowedMacros) ? allowedMacros : [];
+  allowedMacros = Array.isArray(allowedMacros)
+    ? allowedMacros.map(normalizeMacroName)
+    : [];
 
   return function warnOnMacros(tree, file) {
     visit(
@@ -14,7 +16,7 @@ function attacher(allowedMacros) {
         node.type === "text" &&
         node.data &&
         node.data.macroName &&
-        !allowedMacros.includes(node.data.macroName),
+        !allowedMacros.includes(normalizeMacroName(node.data.macroName)),
       (node, ancestors) => {
         // Because macro nodes are generated, they don't have position
         // information. The parent node's position is used instead.
