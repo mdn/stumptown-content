@@ -16,7 +16,7 @@
         "prettier-check": "prettier --check scripts/**/*.js **/*.yaml",
         "prettier-format": "prettier --write scripts/**/*.js **/*.yaml",
         "lint-md": "node scripts/linter",
-        "lint-code": "eslint scripts/**/*.js && npm run prettier-check",
+        "lint-code": "eslint \"scripts/**/*.js\" && npm run prettier-check",
         "build-json": "node scripts/build-json/build-json.js",
         "scrape-mdn": "node scripts/scraper/scrape-mdn.js",
         "ci-checks": "node scripts/ci/git.js",
