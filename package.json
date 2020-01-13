@@ -13,8 +13,8 @@
         "url": "https://github.com/mdn/stumptown-content/issues"
     },
     "scripts": {
-        "prettier-check": "prettier --check scripts/**/*.js **/*.yaml",
-        "prettier-format": "prettier --write scripts/**/*.js **/*.yaml",
+        "prettier-check": "prettier --check \"scripts/**/*.js\" \"**/*.yaml\"",
+        "prettier-format": "prettier --write \"scripts/**/*.js\" \"**/*.yaml\"",
         "lint-md": "node scripts/linter",
         "lint-code": "eslint \"scripts/**/*.js\" && npm run prettier-check",
         "build-json": "node scripts/build-json/build-json.js",
