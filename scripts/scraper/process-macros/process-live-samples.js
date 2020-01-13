@@ -1,10 +1,7 @@
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
 const fs = require("fs");
 const path = require("path");
 
 const { toMarkdown } = require("../to-markdown.js");
-const { removeTitleAttributes } = require("../clean-html.js");
 const { extractMacroCalls } = require("./extract-macro-calls");
 
 /**
