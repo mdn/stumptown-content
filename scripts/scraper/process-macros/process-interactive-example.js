@@ -23,9 +23,7 @@ function processInteractiveExample(htmlWithMacroCalls, result) {
     htmlWithMacroCalls
   );
   if (macroCalls[0]) {
-    const url = `https://interactive-examples.mdn.mozilla.net/${
-      macroCalls[0][0]
-    }`;
+    const url = `https://interactive-examples.mdn.mozilla.net/${macroCalls[0][0]}`;
     const height = getInteractiveExampleHeight(macroCalls[0][1]);
     result.frontMatter += `interactive_example:\n    url: ${url}\n    height: ${height}\n`;
   }
