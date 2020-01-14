@@ -45,7 +45,10 @@ const { argv } = yargs
   .wrap(yargs.terminalWidth());
 
 const processor = rehype()
-  .use([require("./plugins/kumascript-macros")])
+  .use([
+    require("./plugins/kuma-metadata"),
+    require("./plugins/kumascript-macros")
+  ])
   .use([require("./preset")]);
 // TODO: add YAML frontmatter insertion
 
