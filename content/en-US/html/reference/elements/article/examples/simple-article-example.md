@@ -1,3 +1,9 @@
+---
+---
+This example demonstrates the use of `<article>` in part of a page from a file review site.
+Each film gets its own article, and each user review of the film gets a sub-article within that.
+
+```html
 <article class="film_review">
   <header>
     <h2>Jurassic Park</h2>
@@ -35,3 +41,4 @@
     </p>
   </footer>
 </article>
+```
