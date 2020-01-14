@@ -13,15 +13,15 @@
         "url": "https://github.com/mdn/stumptown-content/issues"
     },
     "scripts": {
-        "prettier-check": "prettier --check scripts/**/*.js **/*.yaml",
-        "prettier-format": "prettier --write scripts/**/*.js **/*.yaml",
+        "prettier-check": "prettier --check \"scripts/**/*.js\" \"**/*.yaml\"",
+        "prettier-format": "prettier --write \"scripts/**/*.js\" \"**/*.yaml\"",
         "lint-md": "node scripts/linter",
-        "lint-code": "eslint scripts/**/*.js && npm run prettier-check",
+        "lint-code": "eslint \"scripts/**/*.js\" && npm run prettier-check",
         "build-json": "node scripts/build-json/build-json.js",
         "scrape-mdn": "node scripts/scraper/scrape-mdn.js",
         "ci-checks": "node scripts/ci/git.js",
         "mdn-sitemap-compare": "node scripts/linting/mdn-sitemap-compare.js",
-        "spell-md-en": "mdspell -a -n -r -x --en-us 'content/en-US/**/!(*contributors).md'",
+        "spell-md-en": "mdspell -a -n -r -x --en-us \"content/en-US/**/!(*contributors).md\"",
         "test": "npm run lint-code && npm run lint-md && npm run spell-md-en"
     },
     "dependencies": {
