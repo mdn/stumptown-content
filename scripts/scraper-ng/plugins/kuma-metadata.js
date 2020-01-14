@@ -2,6 +2,14 @@ const fetch = require("node-fetch");
 
 const limiter = require("../rate-limiter");
 
+/**
+ * Add MDN `$json` data to the VFile's `data` attribute:
+ *
+ * - `VFile.data.tags` - An array of tags for the page
+ * - `VFile.data.title` - The title of the page
+ *
+ * @returns {Function} A unified plugin
+ */
 function kumaMetadataPlugin() {
   return async function transformer(tree, file) {
     try {
