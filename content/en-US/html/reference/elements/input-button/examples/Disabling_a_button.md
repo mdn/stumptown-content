@@ -13,3 +13,26 @@ If the `disabled` attribute isn't specified, the button inherits its `disabled` 
 The example below shows this in action. The `disabled` attribute is set on the `<fieldset>` when the first button is pressed — this causes all three buttons to be disabled until the two second timeout has passed.
 
 **Note**: Firefox will, unlike other browsers, by default, [persist the dynamic disabled state](http://stackoverflow.com/questions/5985839/bug-with-firefox-disabled-attribute-of-input-not-resetting-when-refreshing) of a [`<button>`](/en-US/docs/Web/HTML/Element/button) across page loads. Use the `autocomplete` attribute to control this feature.
+
+```html
+<fieldset>
+  <legend>Button group</legend>
+  <input type="button" value="Button 1">
+  <input type="button" value="Button 2">
+  <input type="button" value="Button 3">
+</fieldset>
+```
+
+```js
+const button = document.querySelector('input');
+const fieldset = document.querySelector('fieldset');
+
+button.addEventListener('click', disableButton);
+
+function disableButton() {
+  fieldset.disabled = true;
+  window.setTimeout(function() {
+    fieldset.disabled = false;
+  }, 2000);
+}
+```

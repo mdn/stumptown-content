@@ -1,3 +1,52 @@
+---
+title: A simple drawing app
+height: 600
+---
+This example shows a very simple drawing app created using a [`<canvas>`](/en-US/docs/Web/HTML/Element/canvas) element and some simple CSS and JavaScript. The top two controls allow you to choose the color and size of the drawing pen. The button, when clicked, invokes a function that clears the canvas.
+
+```html
+<div class="toolbar">
+  <input type="color" aria-label="select pen color">
+  <input type="range" min="2" max="50" value="30" aria-label="select pen size"><span class="output">30</span>
+  <input type="button" value="Clear canvas">
+</div>
+
+<canvas class="myCanvas">
+  <p>Add suitable fallback here.</p>
+</canvas>
+```
+
+```css
+body {
+  background: #ccc;
+  margin: 0;
+  overflow: hidden;
+}
+
+.toolbar {
+  background: #ccc;
+  width: 150px;
+  height: 75px;
+  padding: 5px;
+}
+
+input[type="color"], input[type="button"] {
+  width: 90%;
+  margin: 0 auto;
+  display: block;
+}
+
+input[type="range"] {
+  width: 70%;
+}
+
+span {
+  position: relative;
+  bottom: 5px;
+}
+```
+
+```js
 var canvas = document.querySelector('.myCanvas');
 var width = canvas.width = window.innerWidth;
 var height = canvas.height = window.innerHeight-85;
@@ -58,3 +107,4 @@ function draw() {
 }
 
 draw();
+```

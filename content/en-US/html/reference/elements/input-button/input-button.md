@@ -16,10 +16,10 @@ attributes:
         - ../input/attributes/value.md
     global: /content/html/global_attributes
 examples:
-    - examples/A_simple_button
-    - examples/Adding_keyboard_shortcuts_to_buttons
-    - examples/Disabling_a_button
-    - examples/Drawing_app
+    - examples/A_simple_button.md
+    - examples/Adding_keyboard_shortcuts_to_buttons.md
+    - examples/Disabling_a_button.md
+    - examples/Drawing_app.md
 recipe: html-input-element
 ---
 ## Short description
