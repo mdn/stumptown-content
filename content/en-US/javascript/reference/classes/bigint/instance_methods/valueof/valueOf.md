@@ -6,7 +6,7 @@ interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/js/bigint-valueof.html
     height: html-standard
 examples:
-    - examples/using-valueof
+    - examples/using-valueof.md
 specifications: https://tc39.es/ecma262/#sec-bigint.prototype.valueof
 browser_compatibility: javascript.builtins.BigInt.valueOf
 ---

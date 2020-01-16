@@ -14,10 +14,10 @@ interactive_example:
     height: html-short
 browser_compatibility: html.elements.abbr
 examples:
-    - examples/baliser-une-abréviation
-    - examples/mettre-en-forme-une-abréviation
-    - examples/fournir-une-forme-étendue
-    - examples/définir-une-abréviation
+    - examples/baliser-une-abréviation.md
+    - examples/mettre-en-forme-une-abréviation.md
+    - examples/fournir-une-forme-étendue.md
+    - examples/définir-une-abréviation.md
 attributes:
     global: /content/fr/html/global_attributes
 recipe: html-element

@@ -6,9 +6,9 @@ interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/js/bigint-tolocalestring.html
     height: html-standard
 examples:
-    - examples/using-tolocalestring
-    - examples/using-locales
-    - examples/using-options
+    - examples/using-tolocalestring.md
+    - examples/using-locales.md
+    - examples/using-options.md
 specifications: https://tc39.es/ecma402/#sup-bigint.prototype.tolocalestring
 browser_compatibility: javascript.builtins.BigInt.toLocaleString
 ---

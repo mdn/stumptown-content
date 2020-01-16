@@ -20,9 +20,9 @@ attributes:
         - ../input/attributes/value.md
     global: /content/html/global_attributes
 examples:
-    - examples/Examples_overview
-    - examples/Styling_input_elements
-    - examples/Custom_error_messages
+    - examples/Examples_overview.md
+    - examples/Styling_input_elements.md
+    - examples/Custom_error_messages.md
 recipe: html-element
 ---
 ## Short description

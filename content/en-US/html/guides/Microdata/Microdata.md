@@ -58,7 +58,7 @@ In some cases, search engines covering specific regions may provide locally-spec
 
 ## Example
 
-{{{{{embed-example:examples/Microdata_example}}}}}
+{{{{{embed-example:examples/Microdata_example.md}}}}}
 
 ## Browser compatibility
 

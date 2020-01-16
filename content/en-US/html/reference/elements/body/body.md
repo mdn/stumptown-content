@@ -10,7 +10,7 @@ permitted_aria_roles: none
 tag_omission: yes
 browser_compatibility: html.elements.body
 examples:
-    - examples/simple-example
+    - examples/simple-example.md
 attributes:
     global: /content/html/global_attributes
 recipe: html-element

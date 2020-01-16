@@ -5,7 +5,7 @@ mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt
 static_methods: /content/en-US/javascript/reference/classes/bigint/static_methods
 instance_methods: /content/en-US/javascript/reference/classes/bigint/instance_methods
 examples:
-    - examples/calculating_primes
+    - examples/calculating_primes.md
 specifications: https://tc39.es/ecma262/#sec-bigint-objects
 browser_compatibility: javascript.builtins.BigInt
 ---

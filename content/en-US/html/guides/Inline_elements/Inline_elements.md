@@ -10,9 +10,9 @@ An inline element does not start on a new line and only takes up as much width a
 
 ## Inline vs. block-level elements: a demonstration
 
-{{{{{embed-example:examples/Inline}}}}}
+{{{{{embed-example:examples/Inline.md}}}}}
 
-{{{{{embed-example:examples/Block-level}}}}}
+{{{{{embed-example:examples/Block-level.md}}}}}
 
 ## Changing element levels
 
