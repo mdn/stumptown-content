@@ -8,7 +8,7 @@ const limiter = require("../rate-limiter");
  * - `VFile.data.tags` - An array of tags for the page
  * - `VFile.data.title` - The title of the page
  *
- * @returns {Function} A unified plugin
+ * @returns {Function} A unified transformer
  */
 function kumaMetadataPlugin() {
   return async function transformer(tree, file) {
@@ -25,6 +25,12 @@ function kumaMetadataPlugin() {
   };
 }
 
+/**
+ * Fetch the `$json` data for an MDN URL.
+ *
+ * @param {URL} - an MDN URL
+ * @returns {Promise} - A promise for the `$json` URL's JSON data
+ */
 async function fetchJson(url) {
   await limiter;
   const response = await fetch(toJson(url));
@@ -37,6 +43,12 @@ async function fetchJson(url) {
   return response.json();
 }
 
+/**
+ * Append `$json` to a URL.
+ *
+ * @param {URL} url
+ * @returns {URL} A URL
+ */
 function toJson(url) {
   const jsonUrl = new URL(url);
   jsonUrl.pathname += "$json";
