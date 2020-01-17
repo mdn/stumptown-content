@@ -18,6 +18,19 @@ const { argv } = yargs
   .example(`$0 ${examplePage}`, "scrape a page and all its subpages")
   .example(`$0 ${exampleShorthand}`, "omit the protocol and domain")
 
+  .describe("level", "Minimum message level")
+  .nargs("level", 1)
+  .default("level", "info")
+  .example(`$0 --level=error ${exampleShorthand}`, "only show errors")
+
+  .describe("ignore", "Filter out a comma-separated rule ID list")
+  .nargs("ignore", 1)
+  .default("ignore", "")
+  .example(
+    `$0 --ignore=html-warn-on-macros ${exampleShorthand}`,
+    "hide macro errors"
+  )
+
   .describe("n", "Dry run (lint-only)")
   .alias("n", "dry-run")
   .example(`$0 -n ${exampleShorthand}`, "dry run (lint)")
@@ -69,13 +82,18 @@ async function run() {
   });
   const processed = await Promise.all(files);
 
+  const filtered = filterMessages(processed, {
+    level: argv.level,
+    ignore: argv.ignore.split(",")
+  });
+
   console.log(
-    fileReporter(processed, { quiet: argv.quiet, verbose: argv.verbose })
+    fileReporter(filtered, { quiet: argv.quiet, verbose: argv.verbose })
   );
 
   if (argv.summary) {
     console.log(
-      summaryReporter(processed, { quiet: argv.quiet, verbose: argv.verbose })
+      summaryReporter(filtered, { quiet: argv.quiet, verbose: argv.verbose })
     );
   }
 }
@@ -99,6 +117,68 @@ function flattenTree(root) {
   }
 
   return urls;
+}
+
+/**
+ * Filter a list of `VFile` objects's messages.
+ *
+ * The `options` argument is an object with members:
+ *
+ * - `level`: a message level to accept ("info", "warning", or "error")
+ * - `ignore`: an array of rule ID strings to ignore
+ *
+ * @param {Array<VFile>} files - an array of VFile objects
+ * @param {Object} options - options for filtering messages
+ * @returns {Array<VFile>} the array of VFile objects
+ */
+function filterMessages(files, options) {
+  for (const f of files) {
+    f.messages = f.messages.filter(msg => {
+      return (
+        isLevelOrHigher(msg, options.level) && !isIgnored(msg, options.ignore)
+      );
+    });
+  }
+  return files;
+}
+
+/**
+ * Check if a message is at or above a certain level.
+ *
+ * @param {VFileMessage} message - The message to check
+ * @param {"info"|"warning"|"error"} level
+ * @returns {Boolean} `true` or `false`
+ */
+function isLevelOrHigher(message, level) {
+  switch (level) {
+    case "info":
+      return true; // all messages are info or higher
+    case "warning":
+      return message.fatal !== null;
+    case "error":
+      return message.fatal === true;
+    default:
+      return true;
+  }
+}
+
+/**
+ * Check if a message rule is in a list of rule IDs to be ignored.
+ *
+ * Rules are matched with a trailing `.*` regular expression. For example,
+ * `some-rule-` will match `some-rule-one` and `some-rule-two`.
+ *
+ * @param {VFileMessage} message - The message to check
+ * @param {Array<String>} ignorableRules - A list of rule IDs to ignore
+ * @returns {Boolean} `true` or `false`
+ */
+function isIgnored(message, ignorableRules) {
+  for (const rule of ignorableRules) {
+    if (RegExp(rule + ".*").test(message.ruleId)) {
+      return true;
+    }
+  }
+  return false;
 }
 
 run();
