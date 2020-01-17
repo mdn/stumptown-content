@@ -47,6 +47,7 @@ const { argv } = yargs
 const processor = rehype()
   .use([
     require("./plugins/kuma-metadata"),
+    require("./plugins/annotate-recipe"),
     require("./plugins/kumascript-macros")
   ])
   .use([require("./preset")]);
