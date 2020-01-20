@@ -38,7 +38,7 @@ const signatures = [
  *
  * @returns A unified transformer.
  */
-function annotateRecipePlugin() {
+function identifyRecipesPlugin() {
   return function transformer(tree, file) {
     const tagSet = new Set(file.data.tags);
 
@@ -84,4 +84,4 @@ function hasAll(set, subset) {
   return true;
 }
 
-module.exports = annotateRecipePlugin;
+module.exports = identifyRecipesPlugin;
