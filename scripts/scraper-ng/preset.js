@@ -4,10 +4,13 @@ const requiredMacros = ["Compat"];
 module.exports = {
   settings: {},
   plugins: [
-    // Signature for adding linting rules (that use unified-lint-rule):
+    // Signature for adding linting rules that use unified-lint-rule:
     //   [require('./rules/rule-name'), [severity, settings]]
-    // Or you can default to 'warn' without including severity
+    // For non-unified-lint-rule rules (or to default to 'warn'), omit serverity:
     //   [require('./rules/rule-name'), settings]
+    // For rules that don't need settings of any kind:
+    //   [require('./rules/rule-name')]
+    [require("./rules/file-require-recipe")],
     [require("./rules/html-require-macros"), ["error", requiredMacros]],
     [require("./rules/html-warn-macros"), allowedMacros]
   ]
