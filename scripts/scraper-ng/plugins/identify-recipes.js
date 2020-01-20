@@ -64,7 +64,7 @@ function identifyRecipesPlugin() {
  * @returns {String} An absolute path to a recipe file
  */
 function recipe(name) {
-  return path.resolve(__dirname, "../../recipes", name + ".yaml");
+  return path.resolve(__dirname, "../../../recipes", name + ".yaml");
 }
 
 /**
