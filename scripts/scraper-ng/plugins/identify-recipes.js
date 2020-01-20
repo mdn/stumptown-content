@@ -16,7 +16,7 @@ const signatures = [
   {
     recipePath: recipe("javascript-error"),
     conditions: {
-      tags: ["JavaScript", "Error"]
+      tags: ["JavaScript", "Error", "Constructor"]
     }
   },
   {
