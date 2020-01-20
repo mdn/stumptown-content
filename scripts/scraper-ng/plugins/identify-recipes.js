@@ -41,20 +41,19 @@ const signatures = [
 function identifyRecipesPlugin() {
   return function transformer(tree, file) {
     const tagSet = new Set(file.data.tags);
+    const recipes = [];
 
     for (const { recipePath, conditions } of signatures) {
       if (hasAll(tagSet, conditions.tags)) {
-        file.data.recipePath = recipePath;
-        return;
+        recipes.push(recipePath);
       }
     }
 
-    const message = file.message(
-      "No recipe matched this page",
-      undefined,
-      "require-recipe"
-    );
-    message.fatal = true;
+    if (recipes.length === 1) {
+      file.data.recipePath = recipes[0];
+    } else if (recipes.length > 1) {
+      file.data.recipePath = recipes;
+    }
   };
 }
 
