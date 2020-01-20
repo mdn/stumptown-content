@@ -69,24 +69,13 @@ function recipe(name) {
 }
 
 /**
- * Check if some tags contains some other tags.
- *
- * @param {Set<String>} actualTags
- * @param {Set<String} expectedTags
- * @returns {Boolean} `true` or `false`
- */
-function hasAll(actualTags, expectedTags) {
-  return isSuperset(actualTags, expectedTags);
-}
-
-/**
- * Check if a set is a subset of another set.
+ * Check if a set of tags contains some other set of tags.
  *
  * @param {Set} set
  * @param {Set} subset
  * @returns {Boolean} `true` or `false`
  */
-function isSuperset(set, subset) {
+function hasAll(set, subset) {
   for (let elem of subset) {
     if (!set.has(elem)) {
       return false;
