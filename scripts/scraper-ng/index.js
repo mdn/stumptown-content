@@ -84,7 +84,7 @@ async function run() {
 
   const filtered = filterMessages(processed, {
     level: argv.level,
-    ignore: argv.ignore.split(",")
+    ignore: argv.ignore !== "" ? argv.ignore.split(",") : []
   });
 
   console.log(
