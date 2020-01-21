@@ -19,7 +19,7 @@ interactive_example:
     height: html-standard
 browser_compatibility: html.elements.article
 examples:
-    - examples/simple-article-example
+    - examples/simple-article-example.md
 attributes:
     global: /content/html/global_attributes
 recipe: html-element

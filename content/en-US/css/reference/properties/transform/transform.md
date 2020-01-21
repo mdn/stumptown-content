@@ -8,7 +8,7 @@ animatable: true
 initial_value: none
 browser_compatibility: css.properties.transform
 examples:
-    - examples/simple-example
+    - examples/simple-example.md
 ---
 
 ## Short description

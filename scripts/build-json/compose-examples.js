@@ -1,44 +1,51 @@
 const fs = require("fs");
-const path = require("path");
-
 const matter = require("gray-matter");
 const markdown = require("./markdown-converter");
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
 
-function packageDescription(examplePath) {
-  const descriptionMD = fs.readFileSync(
-    path.join(examplePath, "description.md"),
-    "utf8"
+/**
+ * Given:
+ * - "language": a language identifier
+ * - "dom": a JSDOM object representing the complete example
+ * - "sources": a JSON object to contain example source code
+ * This function will:
+ * - Find the node containing the example source for the language
+ * - Remove the node from "dom"
+ * - Add the content of the example source to "sources"
+ */
+function extractSource(language, dom, sources) {
+  const sourceNode = dom.window.document.querySelector(
+    `pre>code[class="language-${language}"`
   );
-  const { data, content } = matter(descriptionMD);
-  data.content = markdown.markdownToHTML(content);
-  return data;
+  if (sourceNode) {
+    const preNode = sourceNode.parentNode;
+    preNode.parentNode.removeChild(preNode);
+    sources[language] = sourceNode.textContent;
+  }
 }
 
-function packageSources(examplePath) {
-  const exampleSource = {};
-
-  const jsPath = path.join(examplePath, "example.js");
-  if (fs.existsSync(jsPath)) {
-    exampleSource.js = fs.readFileSync(jsPath, "utf8");
-  }
-
-  const cssPath = path.join(examplePath, "example.css");
-  if (fs.existsSync(cssPath)) {
-    exampleSource.css = fs.readFileSync(cssPath, "utf8");
-  }
-
-  const htmlPath = path.join(examplePath, "example.html");
-  if (fs.existsSync(htmlPath)) {
-    exampleSource.html = fs.readFileSync(htmlPath, "utf8");
-  }
-
-  return exampleSource;
-}
-
+/**
+ * Given a path to an example file, extract the pieces of the example
+ * (metadata, description, example sources)
+ * and return them as a JSON object.
+ */
 function packageExample(examplePath) {
+  const exampleMD = fs.readFileSync(examplePath, "utf8");
+  const { data, content } = matter(exampleMD);
+  const contentHTML = markdown.markdownToHTML(content);
+  const dom = new JSDOM(contentHTML);
+
+  const sources = {};
+  extractSource("html", dom, sources);
+  extractSource("css", dom, sources);
+  extractSource("js", dom, sources);
+
+  data.content = dom.window.document.body.innerHTML;
+
   return {
-    description: packageDescription(examplePath),
-    sources: packageSources(examplePath)
+    description: data,
+    sources: sources
   };
 }
 

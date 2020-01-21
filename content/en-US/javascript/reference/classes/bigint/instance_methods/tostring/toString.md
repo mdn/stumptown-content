@@ -6,8 +6,8 @@ interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/js/bigint-tostring.html
     height: html-standard
 examples:
-    - examples/using-tostring
-    - examples/negative-zero-bigint
+    - examples/using-tostring.md
+    - examples/negative-zero-bigint.md
 specifications: https://tc39.es/ecma262/#sec-bigint.prototype.tostring
 browser_compatibility: javascript.builtins.BigInt.toString
 ---

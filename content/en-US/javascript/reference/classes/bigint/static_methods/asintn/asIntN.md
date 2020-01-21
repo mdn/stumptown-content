@@ -6,7 +6,7 @@ interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/js/bigint-asintn.html
     height: html-standard
 examples:
-    - examples/64-bit-ranges
+    - examples/64-bit-ranges.md
 specifications: https://tc39.es/ecma262/#sec-bigint.asintn
 browser_compatibility: javascript.builtins.BigInt.asIntN
 ---

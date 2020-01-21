@@ -14,8 +14,8 @@ interactive_example:
     height: html-standard
 browser_compatibility: html.elements.video
 examples:
-    - examples/exemple-simple
-    - examples/exemple-avec-plusieurs-sources
+    - examples/exemple-simple.md
+    - examples/exemple-avec-plusieurs-sources.md
 attributes:
     element_specific: ./attributes
     global: /content/fr/html/global_attributes
