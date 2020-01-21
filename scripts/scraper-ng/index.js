@@ -1,9 +1,9 @@
-const { RateLimit } = require("async-sema");
 const fetch = require("node-fetch");
 const fileReporter = require("vfile-reporter");
 const rehype = require("rehype");
 const yargs = require("yargs");
 
+const limiter = require("./rate-limiter");
 const mdnUrl = require("./mdn-url");
 const summaryReporter = require("./vfile-reporter-summary");
 const toVFile = require("./url-to-vfile");
@@ -45,7 +45,11 @@ const { argv } = yargs
   .wrap(yargs.terminalWidth());
 
 const processor = rehype()
-  .use([require("./plugins/kumascript-macros")])
+  .use([
+    require("./plugins/kuma-metadata"),
+    require("./plugins/identify-recipes"),
+    require("./plugins/kumascript-macros")
+  ])
   .use([require("./preset")]);
 // TODO: add YAML frontmatter insertion
 
@@ -56,7 +60,6 @@ async function run() {
   console.log(`Preparing to lint ${urls.length} pages…`);
   await new Promise(resolve => setTimeout(resolve, 2000)); // give 2 seconds to gracefully bail out
 
-  const limiter = RateLimit(4, { uniformDistribution: true });
   const files = urls.map(async url => {
     await limiter();
     if (!argv.quiet) console.log(`Fetching ${url}`);
