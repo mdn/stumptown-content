@@ -7,7 +7,7 @@ const normalizeMacroName = require("../normalize-macro-name");
  * with data about the macro calls.
  */
 
-const macroRegex = /{{ ?(\w+)\((.*?)\) ?}}/g;
+const macroRegex = /{{ ?(\w+)\(?(.*?)\)? ?}}/g;
 
 function kumascriptMacrosPlugin() {
   return function transformer(tree) {
