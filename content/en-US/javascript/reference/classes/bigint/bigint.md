@@ -2,6 +2,7 @@
 recipe: javascript-class
 title: 'BigInt'
 mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt
+class_constructor: /content/en-US/javascript/reference/classes/bigint/bigint
 static_methods: /content/en-US/javascript/reference/classes/bigint/static_methods
 instance_methods: /content/en-US/javascript/reference/classes/bigint/instance_methods
 examples:
