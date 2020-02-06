@@ -6,7 +6,7 @@ const { packageAttributes } = require("./compose-attributes");
 const { packageInteractiveExample } = require("./compose-interactive-example");
 const { packageProse } = require("./slice-prose");
 const { packageSpecs } = require("./build-specs");
-const { buildLinkList } = require("./build-link-lists");
+const { buildLinkList, linkListFromFilePaths } = require("./build-link-lists");
 
 function processMetaIngredient(elementPath, ingredientName, data) {
   // If an ingredient is missing in the data, just return null
@@ -45,6 +45,12 @@ function processMetaIngredient(elementPath, ingredientName, data) {
     case "link_lists": {
       return data.link_lists.map(buildLinkList);
     }
+    case "class_constructor":
+      return linkListFromFilePaths(
+        "Constructor",
+        [data.class_constructor],
+        true
+      );
     case "static_methods":
       return buildLinkList({
         title: "Static methods",
