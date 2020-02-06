@@ -2,6 +2,12 @@ const path = require("path");
 
 const signatures = [
   {
+    recipePath: recipe("javascript-namespace"),
+    conditions: {
+      tags: ["JavaScript", "Namespace"]
+    }
+  },
+  {
     recipePath: recipe("javascript-class"),
     conditions: {
       tags: ["JavaScript", "Class"]
@@ -16,7 +22,7 @@ const signatures = [
   {
     recipePath: recipe("javascript-error"),
     conditions: {
-      tags: ["JavaScript", "Errors"]
+      tags: ["JavaScript", "Error"]
     }
   },
   {
@@ -29,6 +35,24 @@ const signatures = [
     recipePath: recipe("javascript-property"),
     conditions: {
       tags: ["JavaScript", "Property"]
+    }
+  },
+  {
+    recipePath: recipe("javascript-language-feature"),
+    conditions: {
+      tags: ["JavaScript", "Language feature"]
+    }
+  },
+  {
+    recipePath: recipe("landing-page"),
+    conditions: {
+      tags: ["Landing page"]
+    }
+  },
+  {
+    recipePath: recipe("guide"),
+    conditions: {
+      tags: ["Guide"]
     }
   }
 ];
