@@ -22,7 +22,8 @@
         "ci-checks": "node scripts/ci/git.js",
         "mdn-sitemap-compare": "node scripts/linting/mdn-sitemap-compare.js",
         "spell-md-en": "mdspell -a -n -r -x --en-us \"content/en-US/**/!(*contributors).md\"",
-        "test": "npm run lint-code && npm run lint-md && npm run spell-md-en"
+        "test": "npm run lint-code && npm run lint-md && npm run spell-md-en",
+        "update-kumascript-parser": "echo '// Do not modify. \n// Originally from https://github.com/mdn/kumascript/trunk/src/parser.js\n// See also https://github.com/mdn/kumascript/blob/master/LICENSE\n' > scripts/scraper-ng/vendor/parser.js && svn cat https://github.com/mdn/kumascript/trunk/src/parser.js >> scripts/scraper-ng/vendor/parser.js"
     },
     "dependencies": {
         "async-sema": "^3.1.0",
