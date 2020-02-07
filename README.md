@@ -2,6 +2,25 @@
 
 [![Build Status](https://travis-ci.org/mdn/stumptown-content.svg?branch=master)](https://travis-ci.org/mdn/stumptown-content)
 
+## Overview
+
+This project aims to change the way we create and represent MDN's documentation. The idea is to maintain our documentation in GitHub, and to explicitly represent (and lint for) structure for the reference documentation, rather than just treating pages as unstructured blobs of HTML.
+
+In this model, people write documentation in a mixture of Markdown (for prose) and YAML (for data). There are rules about what a writer can and must include in the documentation for a given item, and the repository will enforce these rules in CI tests. For example, we might require that the documentation for every CSS property must include browser compatibility data. The ["writers' guide to stumptown" document](https://github.com/mdn/stumptown-content/blob/master/project-docs/stumptown-writers-guide.md) provides an informal overview of how documentation is written and maintained.
+
+This repository also includes scripts that convert this documentation as-authored into a single JSON object for each item.
+
+The most important consumer of this JSON would be the MDN website itself. The [stumptown-renderer](https://github.com/mdn/stumptown-renderer) repository is a prototype implementation of a new version of MDN powered by stumptown-content.
+
+But it's our intention to make the JSON available to other consumers too. Providing the content as structured JSON means that a consumer can reliably access particular pieces of the content. For example:
+
+- names and short descriptions for all the CSS properties
+- sets of executable examples
+- the specifications that define a particular item
+- the list of methods defined for a JavaScript object
+
+**Please note that at the moment we're still at an early and quite experimental stage.**
+
 ## Installation
 
 First [fork](https://help.github.com/en/articles/fork-a-repo) then [clone the repo on your machine](https://help.github.com/en/articles/cloning-a-repository-from-github).
