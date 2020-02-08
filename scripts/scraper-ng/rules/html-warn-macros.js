@@ -1,4 +1,4 @@
-const visit = require("unist-util-visit-parents");
+const visit = require("unist-util-visit");
 
 const normalizeMacroName = require("../normalize-macro-name");
 
@@ -19,11 +19,8 @@ function attacher(allowedMacros) {
         node.data &&
         node.data.macroName &&
         !allowedMacros.includes(node.data.macroName),
-      (node, ancestors) => {
-        // Because macro nodes are generated, they don't have position
-        // information. The parent node's position is used instead.
-        const parent = ancestors[ancestors.length - 1];
-        const message = file.message(`Macro: ${node.data.macroCall}`, parent);
+      node => {
+        const message = file.message(`Macro: ${node.data.macroCall}`, node);
         message.ruleId = `html-warn-on-macros:${node.data.macroName}`;
         message.note = `With arguments: ${JSON.stringify(
           node.data.macroParams

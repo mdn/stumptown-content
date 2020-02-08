@@ -1,8 +1,8 @@
 const fetch = require("node-fetch");
 const fileReporter = require("vfile-reporter");
-const rehype = require("rehype");
 const yargs = require("yargs");
 
+const kumascriptRehype = require("./plugins/kumascript-rehype-parse");
 const limiter = require("./rate-limiter");
 const mdnUrl = require("./mdn-url");
 const summaryReporter = require("./vfile-reporter-summary");
@@ -44,11 +44,10 @@ const { argv } = yargs
 
   .wrap(yargs.terminalWidth());
 
-const processor = rehype()
+const processor = kumascriptRehype()
   .use([
     require("./plugins/kuma-metadata"),
-    require("./plugins/identify-recipes"),
-    require("./plugins/kumascript-macros")
+    require("./plugins/identify-recipes")
   ])
   .use([require("./preset")]);
 // TODO: add YAML frontmatter insertion

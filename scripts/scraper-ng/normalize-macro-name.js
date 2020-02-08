@@ -9,7 +9,9 @@
  * @returns {String}
  */
 function normalizeMacroName(name) {
-  return name.toLowerCase();
+  // This is the same method that KumaScript itself uses for normalization
+  // https://github.com/mdn/kumascript/blob/f6ecd0b/src/render.js#L54
+  return name.replace(/:/g, "-").toLowerCase();
 }
 
 module.exports = normalizeMacroName;
