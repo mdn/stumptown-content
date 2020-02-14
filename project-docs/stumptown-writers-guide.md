@@ -581,7 +581,7 @@ It's specified as an array of objects. Each object describes a section of the re
 * `children` or `directory` or `chapter_list`:
     * if `directory`, then this section contains links to all pages in the given directory
     * if `chapter_list` then this section contains links to all pages are specified using a link list or `chapter_list`, then this is a link list, specified using a directory or a chapter list.
-    if `children`, then this section itself contains sections: this enables you to nest groups of links to an arbitrary depth.
+    * if `children`, then this section itself contains sections: this enables you to nest groups of links to an arbitrary depth.
 
 So for example, here's a "related content" file for HTML:
 
