@@ -7,26 +7,36 @@ const proseSlicer = require("./slice-prose");
 const { ROOT } = require("./constants");
 
 /**
- * Get a single link (title and URL) from a file path.
- * If `includeShortDescriptions` is `true`, and the file includes  short description,
- * then include that, too.
+ * Given a path to an MD file containing the content for a page,
+ * return an object containing:
+ * - data: the content's front matter as a JSON object
+ * - prose: the content's Markdown
  */
-function itemFromFile(includeShortDescriptions, filePath) {
-  const { data, content } = matter(fs.readFileSync(filePath, "utf8"));
-  if (!data || !data.mdn_url) {
-    return null;
-  }
-  let shortDescriptions = [];
-  if (includeShortDescriptions) {
-    const prose = proseSlicer.packageProse(content);
-    shortDescriptions = prose.filter(
-      section => section.value.id === "short_description"
-    );
-  }
+function contentFromFile(filePath) {
+  const item = matter(fs.readFileSync(filePath, "utf8"));
   return {
-    title: data.title,
-    short_title: data.short_title || null,
-    mdn_url: data.mdn_url,
+    data: item.data,
+    prose: item.content // we want to call this "prose" not "content"
+  };
+}
+
+/**
+ * Given an object containing:
+ *     - "data": the front matter for the page, containing things like title
+ *     - "prose": the prose content for the page, containing things like short
+ *     description
+ * Creates an object representing a link to a page.
+ */
+function linkFromContent(content) {
+  let shortDescriptions = [];
+  const prose = proseSlicer.packageProse(content.prose);
+  shortDescriptions = prose.filter(
+    section => section.value.id === "short_description"
+  );
+  return {
+    title: content.data.title,
+    short_title: content.data.short_title || null,
+    mdn_url: content.data.mdn_url,
     short_description:
       (shortDescriptions.length && shortDescriptions[0].value.content) || null
   };
@@ -35,24 +45,23 @@ function itemFromFile(includeShortDescriptions, filePath) {
 /**
  * Given a directory that should contain content for a single page,
  * extract the things needed for a link:
- *    - title, URL, and (if required) short description
+ *    - title, URL, and short description
  */
-function itemFromDirectory(includeShortDescriptions, itemDirectory) {
-  const items = fs.readdirSync(itemDirectory, { withFileTypes: true });
-  const filenames = items
-    .filter(item => !item.isDirectory())
-    .filter(item => item.name.endsWith(".md"))
-    .map(item => path.join(itemDirectory, item.name));
-  let content = filenames.map(
-    itemFromFile.bind(null, includeShortDescriptions)
-  );
-  content = content.filter(e => !!e);
-  if (content.length !== 1) {
+function buildLinkItem(itemDirectory) {
+  const dirEntries = fs.readdirSync(itemDirectory, { withFileTypes: true });
+  const filenames = dirEntries
+    .filter(entry => !entry.isDirectory())
+    .filter(entry => entry.name.endsWith(".md"))
+    .map(entry => path.join(itemDirectory, entry.name));
+  let items = filenames
+    .map(contentFromFile)
+    .filter(item => item.data.mdn_url !== undefined);
+  if (items.length !== 1) {
     throw new Error(
-      `${itemDirectory} should contain exactly one buildable item (not ${content.length})`
+      `${itemDirectory} should contain exactly one buildable item (not ${items.length})`
     );
   }
-  return content[0];
+  return linkFromContent(items[0]);
 }
 
 /**
@@ -60,10 +69,7 @@ function itemFromDirectory(includeShortDescriptions, itemDirectory) {
  *
  * Each item in the list is a directory containing content for a single page.
  */
-function linkListFromChapterList(
-  chapterListPath,
-  includeShortDescriptions = false
-) {
+function linkListFromChapterList(chapterListPath) {
   const fullPath = path.join(ROOT, chapterListPath);
   const fullDir = path.dirname(fullPath);
   const chapterList = yaml.safeLoad(fs.readFileSync(fullPath, "utf8"));
@@ -72,9 +78,7 @@ function linkListFromChapterList(
   );
   return {
     title: chapterList.title,
-    content: chapterPaths.map(
-      itemFromDirectory.bind(null, includeShortDescriptions)
-    )
+    content: chapterPaths.map(buildLinkItem)
   };
 }
 
@@ -85,11 +89,7 @@ function linkListFromChapterList(
  *
  * Each of those directories is expected to contain content for a single page.
  */
-function linkListFromDirectory(
-  title,
-  directory,
-  includeShortDescriptions = false
-) {
+function linkListFromDirectory(title, directory) {
   const fullPath = path.join(ROOT, directory);
   let itemDirectories = fs
     .readdirSync(fullPath, { withFileTypes: true })
@@ -99,9 +99,7 @@ function linkListFromDirectory(
   );
   return {
     title: title,
-    content: itemDirectories.map(
-      itemFromDirectory.bind(null, includeShortDescriptions)
-    )
+    content: itemDirectories.map(buildLinkItem)
   };
 }
 
@@ -110,17 +108,11 @@ function linkListFromDirectory(
  *
  * Each path is a directory containing content for a single page.
  */
-function linkListFromFilePaths(
-  title,
-  filePaths,
-  includeShortDescriptions = false
-) {
+function linkListFromFilePaths(title, filePaths) {
   const fullFilePaths = filePaths.map(filePath => path.join(ROOT, filePath));
   return {
     title: title,
-    content: fullFilePaths.map(
-      itemFromDirectory.bind(null, includeShortDescriptions)
-    )
+    content: fullFilePaths.map(buildLinkItem)
   };
 }
 
@@ -133,19 +125,18 @@ function linkListFromFilePaths(
  */
 function buildLinkList(listSpec) {
   if (listSpec.pages) {
-    return linkListFromFilePaths(listSpec.title, listSpec.pages, true);
+    return linkListFromFilePaths(listSpec.title, listSpec.pages);
   } else if (listSpec.chapter_list) {
-    return linkListFromChapterList(listSpec.chapter_list, true);
+    return linkListFromChapterList(listSpec.chapter_list);
   } else if (listSpec.directory) {
-    return linkListFromDirectory(listSpec.title, listSpec.directory, true);
+    return linkListFromDirectory(listSpec.title, listSpec.directory);
   } else {
-    throw new Error(`Unrecognized list spec '${JSON.stringify(listSpec)}'`);
+    throw new Error(
+      `Unrecognized link list spec '${JSON.stringify(listSpec)}'`
+    );
   }
 }
 
 module.exports = {
-  linkListFromChapterList,
-  linkListFromDirectory,
-  linkListFromFilePaths,
   buildLinkList
 };
