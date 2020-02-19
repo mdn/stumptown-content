@@ -16,12 +16,14 @@ function contentFromFile(filePath) {
   const item = matter(fs.readFileSync(filePath, "utf8"));
   return {
     data: item.data,
-    prose: item.content // we want to call this "prose" not "content"
+    // gray-matter calls the Markdown part "content"
+    // but we want to call it "prose"
+    prose: item.content
   };
 }
 
 /**
- * Given an object containing:
+ * Given an object "content" containing:
  *     - "data": the front matter for the page, containing things like title
  *     - "prose": the prose content for the page, containing things like short
  *     description
@@ -43,8 +45,11 @@ function linkFromContent(content) {
 }
 
 /**
- * Given a listSpec that specifies the list using references to front matter items,
- * resolve those references, replacing them with the actual referenced values.
+ * Given:
+ * - an object "listSpec" that specifies the list using references to
+ * front matter items
+ * - an object "data" containing some front matter
+ * ...resolve the references, replacing them with the actual referenced values.
  *
  * It permits the front matter items to be missing. If they are missing it returns
  * null, which means this listSpec will be omitted.
@@ -58,7 +63,7 @@ function resolveListSpec(listSpec, data) {
   } else if (listSpec.directory) {
     listSpec.directory = data[listSpec.directory.front_matter_item];
   }
-  // allow front_matter_item to be optional. If absent, return null.
+  // allow front_matter_item to be optional. If it is absent, return null.
   if (
     (listSpec.pages && listSpec.pages.length > 0) ||
     listSpec.chapter_list ||
@@ -74,8 +79,12 @@ function resolveListSpec(listSpec, data) {
  * Given a directory that should contain content for a single page,
  * extract the things needed for a link:
  *    - title, URL, and short description
+ *
+ * If we were given a "foreach" object, add any link lists they specify in
+ * this link's "content" property.
  */
 function buildLinkItem(foreach, itemDirectory) {
+  // find the single Markdown file containing documentation for an item
   const dirEntries = fs.readdirSync(itemDirectory, { withFileTypes: true });
   const filenames = dirEntries
     .filter(entry => !entry.isDirectory())
@@ -90,6 +99,7 @@ function buildLinkItem(foreach, itemDirectory) {
     );
   }
   const link = linkFromContent(items[0]);
+  // Add any link lists specified in "foreach", if that was supplied
   if (foreach) {
     link.content = [];
     for (let listSpec of foreach) {
