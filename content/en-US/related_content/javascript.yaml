@@ -1,5 +1,20 @@
-# JavaScript sidebar
 - title: Reference
   children:
-  - title: Classes
-    directory: "/content/en-US/javascript/reference/classes"
+  - title: Global objects
+    directory: /content/en-US/javascript/reference/classes
+    foreach:
+      - title: Constructor
+        pages:
+          - front_matter_item: class_constructor
+      - title: Static methods
+        directory:
+          front_matter_item: static_methods
+      - title: Instance methods
+        directory:
+          front_matter_item: instance_methods
+      - title: Static properties
+        directory:
+          front_matter_item: static_properties
+      - title: Instance properties
+        directory:
+          front_matter_item: instance_properties

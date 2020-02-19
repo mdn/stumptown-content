@@ -43,11 +43,39 @@ function linkFromContent(content) {
 }
 
 /**
+ * Given a listSpec that specifies the list using references to front matter items,
+ * resolve those references, replacing them with the actual referenced values.
+ *
+ * It permits the front matter items to be missing. If they are missing it returns
+ * null, which means this listSpec will be omitted.
+ */
+function resolveListSpec(listSpec, data) {
+  if (listSpec.pages) {
+    listSpec.pages = listSpec.pages.map(page => data[page.front_matter_item]);
+    listSpec.pages = listSpec.pages.filter(page => !!page);
+  } else if (listSpec.chapter_list) {
+    listSpec.chapter_list = data[listSpec.chapter_list.front_matter_item];
+  } else if (listSpec.directory) {
+    listSpec.directory = data[listSpec.directory.front_matter_item];
+  }
+  // allow front_matter_item to be optional. If absent, return null.
+  if (
+    (listSpec.pages && listSpec.pages.length > 0) ||
+    listSpec.chapter_list ||
+    listSpec.directory
+  ) {
+    return listSpec;
+  } else {
+    return null;
+  }
+}
+
+/**
  * Given a directory that should contain content for a single page,
  * extract the things needed for a link:
  *    - title, URL, and short description
  */
-function buildLinkItem(itemDirectory) {
+function buildLinkItem(foreach, itemDirectory) {
   const dirEntries = fs.readdirSync(itemDirectory, { withFileTypes: true });
   const filenames = dirEntries
     .filter(entry => !entry.isDirectory())
@@ -61,7 +89,17 @@ function buildLinkItem(itemDirectory) {
       `${itemDirectory} should contain exactly one buildable item (not ${items.length})`
     );
   }
-  return linkFromContent(items[0]);
+  const link = linkFromContent(items[0]);
+  if (foreach) {
+    link.content = [];
+    for (let listSpec of foreach) {
+      listSpec = resolveListSpec(listSpec, items[0].data);
+      if (listSpec) {
+        link.content.push(buildLinkList(listSpec));
+      }
+    }
+  }
+  return link;
 }
 
 /**
@@ -78,7 +116,7 @@ function linkListFromChapterList(chapterListPath) {
   );
   return {
     title: chapterList.title,
-    content: chapterPaths.map(buildLinkItem)
+    content: chapterPaths.map(buildLinkItem.bind(null, false))
   };
 }
 
@@ -89,7 +127,7 @@ function linkListFromChapterList(chapterListPath) {
  *
  * Each of those directories is expected to contain content for a single page.
  */
-function linkListFromDirectory(title, directory) {
+function linkListFromDirectory(title, directory, foreach) {
   const fullPath = path.join(ROOT, directory);
   let itemDirectories = fs
     .readdirSync(fullPath, { withFileTypes: true })
@@ -99,7 +137,7 @@ function linkListFromDirectory(title, directory) {
   );
   return {
     title: title,
-    content: itemDirectories.map(buildLinkItem)
+    content: itemDirectories.map(buildLinkItem.bind(null, foreach))
   };
 }
 
@@ -112,7 +150,7 @@ function linkListFromFilePaths(title, filePaths) {
   const fullFilePaths = filePaths.map(filePath => path.join(ROOT, filePath));
   return {
     title: title,
-    content: fullFilePaths.map(buildLinkItem)
+    content: fullFilePaths.map(buildLinkItem.bind(null, false))
   };
 }
 
@@ -129,7 +167,11 @@ function buildLinkList(listSpec) {
   } else if (listSpec.chapter_list) {
     return linkListFromChapterList(listSpec.chapter_list);
   } else if (listSpec.directory) {
-    return linkListFromDirectory(listSpec.title, listSpec.directory);
+    return linkListFromDirectory(
+      listSpec.title,
+      listSpec.directory,
+      listSpec.foreach
+    );
   } else {
     throw new Error(
       `Unrecognized link list spec '${JSON.stringify(listSpec)}'`
