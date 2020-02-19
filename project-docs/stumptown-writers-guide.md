@@ -578,9 +578,10 @@ Each collection of related content is described in a special YAML file. All "rel
 It's specified as an array of objects. Each object describes a section of the related content. A section has two properties:
 
 * `title`: the name of this section
-* `children` or `directory` or `chapter_list`:
+* `directory` or `chapter_list` or `pages` or `children`:
     * if `directory`, then this section contains links to all pages in the given directory
-    * if `chapter_list` then this section contains links to all pages are specified using a link list or `chapter_list`, then this is a link list, specified using a directory or a chapter list.
+    * if `chapter_list` then this section contains links to all pages as specified in the given chapter list
+    * if `pages` then this section contains links to all pages listed explicitly
     * if `children`, then this section itself contains sections: this enables you to nest groups of links to an arbitrary depth.
 
 So for example, here's a "related content" file for HTML:
