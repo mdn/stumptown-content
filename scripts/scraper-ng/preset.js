@@ -12,6 +12,7 @@ module.exports = {
     //   [require('./rules/rule-name')]
     [require("./rules/file-require-recipe")],
     [require("./rules/html-require-macros"), ["error", requiredMacros]],
-    [require("./rules/html-warn-macros"), allowedMacros]
+    [require("./rules/html-warn-macros"), allowedMacros],
+    [require("./rules/html-require-recipe-ingredients")]
   ]
 };

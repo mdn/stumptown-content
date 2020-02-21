@@ -31,6 +31,7 @@
         "gray-matter": "4.0.2",
         "hast-util-find-and-replace": "^2.0.0",
         "hast-util-has-property": "^1.0.3",
+        "hast-util-select": "^3.0.1",
         "hast-util-to-text": "^1.0.1",
         "js-yaml": "3.13.1",
         "jsdom": "16.2.0",
