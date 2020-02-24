@@ -1,6 +1,7 @@
 ---
 recipe: javascript-method
 title: 'BigInt.asUintN()'
+short_title: asUintN()
 mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt/asUintN
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/js/bigint-asuintn.html

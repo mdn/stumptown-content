@@ -1,6 +1,7 @@
 ---
 recipe: javascript-method
 title: 'BigInt.prototype.valueOf()'
+short_title: valueOf()
 mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt/valueOf
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/js/bigint-valueof.html
