@@ -1,3 +1,12 @@
+- title: Tutorials
+  children:
+  - title: Complete beginners
+    pages:
+      - /content/en-US/learn/getting_started_with_the_web/JavaScript_basics
+      - /content/en-US/learn/javascript/Building_blocks
+      - /content/en-US/learn/javascript/First_steps
+      - /content/en-US/learn/javascript/Objects
+  - chapter_list: /content/en-US/javascript/guide/javascript_guide.yaml
 - title: Reference
   children:
   - title: Global objects
