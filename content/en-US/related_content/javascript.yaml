@@ -5,16 +5,16 @@
     foreach:
       - title: Constructor
         pages:
-          - front_matter_item: class_constructor
+          - from_front_matter_key: class_constructor
       - title: Static methods
         directory:
-          front_matter_item: static_methods
+          from_front_matter_key: static_methods
       - title: Instance methods
         directory:
-          front_matter_item: instance_methods
+          from_front_matter_key: instance_methods
       - title: Static properties
         directory:
-          front_matter_item: static_properties
+          from_front_matter_key: static_properties
       - title: Instance properties
         directory:
-          front_matter_item: instance_properties
+          from_front_matter_key: instance_properties

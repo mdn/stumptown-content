@@ -7,7 +7,7 @@ const proseSlicer = require("./slice-prose");
 const { ROOT } = require("./constants");
 
 /**
- * Given a path to an MD file containing the content for a page,
+ * Given a path to a Markdown file containing the content for a page,
  * return an object containing:
  * - data: the content's front matter as a JSON object
  * - prose: the content's Markdown
@@ -45,28 +45,45 @@ function linkFromContent(content) {
 }
 
 /**
- * Given:
- * - an object "listSpec" that specifies the list using references to
- * front matter items
- * - an object "data" containing some front matter
- * ...resolve the references, replacing them with the actual referenced values.
+ * A list spec is an object that describes a list of pages. It
+ * can take one of three forms:
  *
- * It permits the front matter items to be missing. If they are missing it returns
- * null, which means this listSpec will be omitted.
+ * - a `title` property and a `directory` property, both strings
+ * - a `title` property which is a string, and a `pages` property which is an array of strings
+ * - a `chapter_list` property which is a string
+ *
+ * When writing a list spec, rather than include a string directly,
+ * a writer is sometimes allowed to reference a string indirectly, by providing
+ * the name of a front matter key. This function resolves such a list spec,
+ * replacing such indirect references with the values of the front matter keys
+ * that they reference.
+ *
+ * This function takes as arguments:
+ *
+ * - a `listSpec` that specifies the list using references to front matter keys
+ * - a `data` object containing some front matter
+ *
+ * It then resolves the front matter references in the list spec by replacing
+ * them with the real values from the `data` object.
+ *
+ * It is permissible for the front matter keys to be missing. If they are missing,
+ * this function returns `null`.
  */
 function resolveListSpec(listSpec, data) {
   const resolved = {
     title: listSpec.title
   };
   if (listSpec.pages) {
-    resolved.pages = listSpec.pages.map(page => data[page.front_matter_item]);
+    resolved.pages = listSpec.pages.map(
+      page => data[page.from_front_matter_key]
+    );
     resolved.pages = resolved.pages.filter(page => !!page);
   } else if (listSpec.chapter_list) {
-    resolved.chapter_list = data[listSpec.chapter_list.front_matter_item];
+    resolved.chapter_list = data[listSpec.chapter_list.from_front_matter_key];
   } else if (listSpec.directory) {
-    resolved.directory = data[listSpec.directory.front_matter_item];
+    resolved.directory = data[listSpec.directory.from_front_matter_key];
   }
-  // allow front_matter_item to be optional. If it is absent, return null.
+  // allow from_front_matter_key to be optional. If it is absent, return null.
   if (
     (resolved.pages && resolved.pages.length > 0) ||
     resolved.chapter_list ||
@@ -93,7 +110,7 @@ function buildLinkItem(itemDirectory, foreach) {
     .filter(entry => !entry.isDirectory())
     .filter(entry => entry.name.endsWith(".md"))
     .map(entry => path.join(itemDirectory, entry.name));
-  let items = filenames
+  const items = filenames
     .map(contentFromFile)
     .filter(item => item.data.mdn_url !== undefined);
   if (items.length !== 1) {
