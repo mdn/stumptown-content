@@ -55,21 +55,24 @@ function linkFromContent(content) {
  * null, which means this listSpec will be omitted.
  */
 function resolveListSpec(listSpec, data) {
+  const resolved = {
+    title: listSpec.title
+  };
   if (listSpec.pages) {
-    listSpec.pages = listSpec.pages.map(page => data[page.front_matter_item]);
-    listSpec.pages = listSpec.pages.filter(page => !!page);
+    resolved.pages = listSpec.pages.map(page => data[page.front_matter_item]);
+    resolved.pages = resolved.pages.filter(page => !!page);
   } else if (listSpec.chapter_list) {
-    listSpec.chapter_list = data[listSpec.chapter_list.front_matter_item];
+    resolved.chapter_list = data[listSpec.chapter_list.front_matter_item];
   } else if (listSpec.directory) {
-    listSpec.directory = data[listSpec.directory.front_matter_item];
+    resolved.directory = data[listSpec.directory.front_matter_item];
   }
   // allow front_matter_item to be optional. If it is absent, return null.
   if (
-    (listSpec.pages && listSpec.pages.length > 0) ||
-    listSpec.chapter_list ||
-    listSpec.directory
+    (resolved.pages && resolved.pages.length > 0) ||
+    resolved.chapter_list ||
+    resolved.directory
   ) {
-    return listSpec;
+    return resolved;
   } else {
     return null;
   }
@@ -83,7 +86,7 @@ function resolveListSpec(listSpec, data) {
  * If we were given a "foreach" object, add any link lists they specify in
  * this link's "content" property.
  */
-function buildLinkItem(foreach, itemDirectory) {
+function buildLinkItem(itemDirectory, foreach) {
   // find the single Markdown file containing documentation for an item
   const dirEntries = fs.readdirSync(itemDirectory, { withFileTypes: true });
   const filenames = dirEntries
@@ -99,13 +102,14 @@ function buildLinkItem(foreach, itemDirectory) {
     );
   }
   const link = linkFromContent(items[0]);
+
   // Add any link lists specified in "foreach", if that was supplied
   if (foreach) {
     link.content = [];
-    for (let listSpec of foreach) {
-      listSpec = resolveListSpec(listSpec, items[0].data);
-      if (listSpec) {
-        link.content.push(buildLinkList(listSpec));
+    for (const listSpec of foreach) {
+      const resolvedListSpec = resolveListSpec(listSpec, items[0].data);
+      if (resolvedListSpec) {
+        link.content.push(buildLinkList(resolvedListSpec));
       }
     }
   }
@@ -124,9 +128,15 @@ function linkListFromChapterList(chapterListPath) {
   const chapterPaths = chapterList.chapters.map(chapter =>
     path.join(fullDir, chapter)
   );
+  const listContent = [];
+
+  for (const dirEntry of chapterPaths) {
+    listContent.push(buildLinkItem(dirEntry));
+  }
+
   return {
     title: chapterList.title,
-    content: chapterPaths.map(buildLinkItem.bind(null, false))
+    content: listContent
   };
 }
 
@@ -145,9 +155,15 @@ function linkListFromDirectory(title, directory, foreach) {
   itemDirectories = itemDirectories.map(itemDirectory =>
     path.join(fullPath, itemDirectory.name)
   );
+
+  const listContent = [];
+  for (const dirEntry of itemDirectories) {
+    listContent.push(buildLinkItem(dirEntry, foreach));
+  }
+
   return {
     title: title,
-    content: itemDirectories.map(buildLinkItem.bind(null, foreach))
+    content: listContent
   };
 }
 
@@ -158,9 +174,15 @@ function linkListFromDirectory(title, directory, foreach) {
  */
 function linkListFromFilePaths(title, filePaths) {
   const fullFilePaths = filePaths.map(filePath => path.join(ROOT, filePath));
+
+  const listContent = [];
+  for (const dirEntry of fullFilePaths) {
+    listContent.push(buildLinkItem(dirEntry));
+  }
+
   return {
     title: title,
-    content: fullFilePaths.map(buildLinkItem.bind(null, false))
+    content: listContent
   };
 }
 
