@@ -7,6 +7,7 @@ const limiter = require("./rate-limiter");
 const mdnUrl = require("./mdn-url");
 const summaryReporter = require("./vfile-reporter-summary");
 const toVFile = require("./url-to-vfile");
+const VMessage = require("vfile-message");
 
 const examplePage =
   "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div";
@@ -65,7 +66,15 @@ async function run() {
     const file = await toVFile(url);
     const hasFileErrors = file.messages.length > 0;
     if (!hasFileErrors) {
-      await processor.process(file);
+      try {
+        await processor.process(file);
+      } catch (err) {
+        // If a VMessage gets thrown, then this should not interrupt subsequent
+        // files, but other errors should break everything
+        if (!(err instanceof VMessage)) {
+          throw err;
+        }
+      }
     }
     return file;
   });
