@@ -1,6 +1,7 @@
 ---
 recipe: javascript-constructor
 title: 'Map() constructor'
+short_title: Map()
 mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Map
 examples:
   - examples/simple-example.md

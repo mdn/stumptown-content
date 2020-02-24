@@ -1,6 +1,7 @@
 ---
 recipe: javascript-method
 title: 'Map.prototype.has()'
+short_title: has()
 mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/js/map-prototype-has.html

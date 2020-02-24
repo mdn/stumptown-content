@@ -1,6 +1,7 @@
 ---
 recipe: javascript-method
 title: 'Map.prototype.keys()'
+short_title: keys()
 mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/keys
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/js/map-prototype-keys.html

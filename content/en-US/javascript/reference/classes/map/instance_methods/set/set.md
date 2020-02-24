@@ -1,6 +1,7 @@
 ---
 recipe: javascript-method
 title: 'Map.prototype.set()'
+short_title: set()
 mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/js/map-prototype-set.html

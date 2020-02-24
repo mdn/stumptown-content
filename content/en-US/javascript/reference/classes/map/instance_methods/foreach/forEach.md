@@ -1,6 +1,7 @@
 ---
 recipe: javascript-method
 title: 'Map.prototype.forEach()'
+short_title: forEach()
 mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/forEach
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/js/map-prototype-foreach.html

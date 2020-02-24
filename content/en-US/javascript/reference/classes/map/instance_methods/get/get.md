@@ -1,6 +1,7 @@
 ---
 recipe: javascript-method
 title: 'Map.prototype.get()'
+short_title: get()
 mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/js/map-prototype-get.html

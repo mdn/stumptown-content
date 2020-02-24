@@ -1,6 +1,7 @@
 ---
 recipe: javascript-method
 title: 'Map.prototype.delete()'
+short_title: delete()
 mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/delete
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/js/map-prototype-delete.html
