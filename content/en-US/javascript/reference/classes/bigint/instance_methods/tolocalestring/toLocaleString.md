@@ -4,7 +4,7 @@ title: 'BigInt.prototype.toLocaleString()'
 mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt/toLocaleString
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/js/bigint-tolocalestring.html
-    height: html-standard
+    height: js-standard
 examples:
     - examples/using-tolocalestring.md
     - examples/using-locales.md
