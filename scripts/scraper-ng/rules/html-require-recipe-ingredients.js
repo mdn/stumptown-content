@@ -5,6 +5,51 @@ const { select } = require("hast-util-select");
 const visit = require("unist-util-visit");
 const yaml = require("js-yaml");
 
+/**
+ * A unified plugin that issues an error on pages that are missing ingredients.
+ */
+function requireRecipeIngredientsPlugin() {
+  return function warnOnMissingRecipeIngredients(tree, file) {
+    const recipe = loadRecipe(file.data.recipePath);
+    if (recipe === undefined) {
+      return;
+    }
+    const requiredBody = recipe.body.filter(
+      ingredientName =>
+        !(ingredientName.endsWith("?") || ingredientName.endsWith(".*"))
+    );
+
+    let ok = true;
+    for (const ingredient of requiredBody) {
+      if (ingredient in ingredientHandlers) {
+        ok = ingredientHandlers[ingredient](tree, file) && ok;
+      } else {
+        file.message(`No handler for ingredient ${ingredient}`);
+        ok = false;
+      }
+    }
+
+    if (!ok) {
+      const recipeName = path.basename(file.data.recipePath, ".yaml");
+      const message = file.message(`Page doesn't match recipe ${recipeName}`);
+      message.ruleId = `html-must-match-recipe:${recipeName}`;
+      message.fatal = true;
+    }
+  };
+}
+
+/**
+ * Functions to check for recipe ingredients in Kuma page sources.
+ *
+ * The key is the name of a recipe ingredient (e.g.,
+ * `data.browser_compatbiility` or `prose.syntax`) and the value is a function
+ * to process a tree and file.
+ *
+ * The functions must take two arguments: a hast tree and a VFile. The function
+ * must return `true` if the page contains the recipe ingredient, or `false` if
+ * not. The function may also log messages against the file.
+ *
+ */
 const ingredientHandlers = {
   "data.browser_compatibility": (tree, file) => {
     const id = "Browser_compatibility";
@@ -96,11 +141,13 @@ const ingredientHandlers = {
   "prose.syntax": requireTopLevelHeading("prose.syntax", "Syntax")
 };
 
-function warnMissingIngredient(file, ingredient) {
-  const message = file.message(`Missing ingredient: ${ingredient}`);
-  message.ruleId = `html-require-recipe-ingredient:${ingredient}`;
-}
-
+/**
+ * A convenience function that returns ingredient handlers for checking the existence of a certain H2 in a hast tree.
+ *
+ * @param {String} ingredient - an ingredient name
+ * @param {String} id - an id of an H2 to look for in the hast tree
+ * @returns {Function} a function
+ */
 function requireTopLevelHeading(ingredient, id) {
   return (tree, file) => {
     const heading = select(`h2#${id}`, tree);
@@ -112,6 +159,15 @@ function requireTopLevelHeading(ingredient, id) {
   };
 }
 
+/**
+ * Test if `node` is a macro call and, optionally, whether it calls a specific macro name.
+ *
+ * For use with `unist-util-visit` and similar.
+ *
+ * @param {Object} node - the node to test
+ * @param {string} [macroName] - the name of the macro
+ * @returns {Boolean} `true` or `false`
+ */
 function isMacro(node, macroName) {
   const isMacroType =
     node.type === "text" &&
@@ -125,37 +181,24 @@ function isMacro(node, macroName) {
 }
 
 /**
- * Issue a warning for each missing ingredient.
+ * Log a warning when a file is missing a named ingredient.
+ *
+ * @param {VFile} file - a VFile
+ * @param {String} ingredient - an ingredient name
  */
-function attacher() {
-  return function warnOnMissingRecipeIngredients(tree, file) {
-    const recipe = loadRecipe(file.data.recipePath);
-    if (recipe === undefined) {
-      return;
-    }
-    const requiredBody = recipe.body.filter(isRequired);
-
-    let ok = true;
-    for (const ingredient of requiredBody) {
-      if (ingredient in ingredientHandlers) {
-        ok = ingredientHandlers[ingredient](tree, file) && ok;
-      } else {
-        file.message(`No handler for ingredient ${ingredient}`);
-        ok = false;
-      }
-    }
-
-    if (!ok) {
-      const recipeName = path.basename(file.data.recipePath, ".yaml");
-      const message = file.message(`Page doesn't match recipe ${recipeName}`);
-      message.ruleId = `html-must-match-recipe:${recipeName}`;
-      message.fatal = true;
-    }
-  };
+function warnMissingIngredient(file, ingredient) {
+  const message = file.message(`Missing ingredient: ${ingredient}`);
+  message.ruleId = `html-require-recipe-ingredient:${ingredient}`;
 }
 
 const recipesCache = {};
 
+/**
+ * Load a recipe object from a path.
+ *
+ * @param {String} path - the path to a recipe YAML file
+ * @returns {Object} - the loaded recipe object
+ */
 function loadRecipe(path) {
   if (path === undefined) {
     return undefined;
@@ -168,8 +211,4 @@ function loadRecipe(path) {
   return recipesCache[path];
 }
 
-function isRequired(ingredientName) {
-  return !(ingredientName.endsWith("?") || ingredientName.endsWith(".*"));
-}
-
-module.exports = attacher;
+module.exports = requireRecipeIngredientsPlugin;
