@@ -154,13 +154,18 @@ function attacher() {
   };
 }
 
+const recipesCache = {};
+
 function loadRecipe(path) {
-  // TODO: memoize recipe loads
   if (path === undefined) {
     return undefined;
   }
 
-  return yaml.safeLoad(fs.readFileSync(path));
+  if (recipesCache[path] === undefined) {
+    recipesCache[path] = yaml.safeLoad(fs.readFileSync(path));
+  }
+
+  return recipesCache[path];
 }
 
 function isRequired(ingredientName) {
