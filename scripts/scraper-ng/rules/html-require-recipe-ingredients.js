@@ -11,9 +11,7 @@ const yaml = require("js-yaml");
 function requireRecipeIngredientsPlugin() {
   return function warnOnMissingRecipeIngredients(tree, file) {
     const recipe = loadRecipe(file.data.recipePath);
-    if (recipe === undefined) {
-      return;
-    }
+
     const requiredBody = recipe.body.filter(
       ingredientName =>
         !(ingredientName.endsWith("?") || ingredientName.endsWith(".*"))
