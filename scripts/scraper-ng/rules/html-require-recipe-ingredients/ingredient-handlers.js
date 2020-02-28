@@ -117,13 +117,16 @@ const ingredientHandlers = {
     }
   },
   "prose.description": requireTopLevelHeading("Description"),
+  "prose.error_type": requireTopLevelHeading("Error_type"),
+  "prose.message": requireTopLevelHeading("Message"),
   "prose.see_also": requireTopLevelHeading("See_also"),
   "prose.short_description": (tree, file, context) => {
     if (select("body > p", tree) === null) {
       warnMissingIngredient(file, context);
     }
   },
-  "prose.syntax": requireTopLevelHeading("Syntax")
+  "prose.syntax": requireTopLevelHeading("Syntax"),
+  "prose.what_went_wrong": requireTopLevelHeading("What_went_wrong")
 };
 
 /**
