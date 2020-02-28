@@ -1,6 +1,8 @@
 const { select } = require("hast-util-select");
 const visit = require("unist-util-visit");
 
+const normalizeMacroName = require("../../normalize-macro-name");
+
 const ruleNamespace = "html-require-ingredient";
 
 /**
@@ -51,7 +53,7 @@ const ingredientHandlers = {
     let macroCount = 0;
     visit(
       subTree,
-      node => isMacro(node, "compat"),
+      node => isMacro(node, "Compat"),
       () => {
         macroCount += 1;
       }
@@ -80,7 +82,7 @@ const ingredientHandlers = {
 
     let sectionOk = false;
     visit(subTree, "text", node => {
-      if (isMacro(node) && node.data.macroName === "specname") {
+      if (isMacro(node, "SpecName")) {
         sectionOk = true;
         return visit.SKIP;
       }
@@ -138,7 +140,8 @@ function isMacro(node, macroName) {
 
   return (
     isMacroType &&
-    (macroName === undefined || node.data.macroName === macroName)
+    (macroName === undefined ||
+      node.data.macroName === normalizeMacroName(macroName))
   );
 }
 
