@@ -1,4 +1,6 @@
 const { select } = require("hast-util-select");
+const filter = require("unist-util-filter");
+const toString = require("hast-util-to-string");
 const visit = require("unist-util-visit");
 
 const normalizeMacroName = require("../../normalize-macro-name");
@@ -121,7 +123,16 @@ const ingredientHandlers = {
   "prose.message": requireTopLevelHeading("Message"),
   "prose.see_also": requireTopLevelHeading("See_also"),
   "prose.short_description": (tree, file, context) => {
-    if (select("body > p", tree) === null) {
+    // Get the page body without macro calls
+    const subTree = filter(select("body", tree), node => !isMacro(node));
+
+    // Drop any part of the subtree that's after the first H2
+    const sectionStart = 0;
+    const sectionEnd = subTree.children.indexOf(select("h2", subTree));
+    subTree.children = subTree.children.slice(sectionStart, sectionEnd);
+
+    // See if there's any text remaining
+    if (!toString(subTree).trim().length) {
       logMissingIngredient(file, context);
     }
   },
