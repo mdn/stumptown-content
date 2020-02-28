@@ -14,14 +14,13 @@ const visit = require("unist-util-visit");
  *
  */
 const ingredientHandlers = {
-  "data.browser_compatibility": (tree, file, recipeName) => {
+  "data.browser_compatibility": (tree, file, context) => {
     const id = "Browser_compatibility";
-    const ingredient = "data.browser_compatibility";
     const body = select(`body`, tree);
 
     const heading = select(`h2#${id}`, tree);
     if (heading === null) {
-      warnMissingIngredient(file, recipeName, ingredient);
+      warnMissingIngredient(file, context);
       return false;
     }
 
@@ -46,20 +45,19 @@ const ingredientHandlers = {
     );
 
     if (macroCount !== 1) {
-      warnMissingIngredient(file, ingredient, recipeName);
+      warnMissingIngredient(file, context);
       return false;
     }
     return true;
   },
-  "data.examples": requireTopLevelHeading("data.examples", "Examples"),
-  "data.specifications": (tree, file, recipeName) => {
+  "data.examples": requireTopLevelHeading("Examples"),
+  "data.specifications": (tree, file, context) => {
     const id = "Specifications";
-    const ingredient = "data.specifications";
     const body = select(`body`, tree);
 
     const heading = select(`h2#${id}`, tree);
     if (heading === null) {
-      warnMissingIngredient(file, recipeName, ingredient);
+      warnMissingIngredient(file, context);
       return false;
     }
 
@@ -84,24 +82,21 @@ const ingredientHandlers = {
     });
 
     if (!sectionOk) {
-      warnMissingIngredient(file, recipeName, ingredient);
+      warnMissingIngredient(file, context);
       return false;
     }
     return true;
   },
-  "prose.description": requireTopLevelHeading(
-    "prose.description",
-    "Description"
-  ),
-  "prose.see_also": requireTopLevelHeading("prose.see_also", "See_also"),
-  "prose.short_description": (tree, file, recipeName) => {
+  "prose.description": requireTopLevelHeading("Description"),
+  "prose.see_also": requireTopLevelHeading("See_also"),
+  "prose.short_description": (tree, file, context) => {
     if (select("body > p", tree) === null) {
-      warnMissingIngredient(file, recipeName, "prose.short_description");
+      warnMissingIngredient(file, context);
       return false;
     }
     return true;
   },
-  "prose.syntax": requireTopLevelHeading("prose.syntax", "Syntax")
+  "prose.syntax": requireTopLevelHeading("Syntax")
 };
 
 /**
@@ -111,11 +106,11 @@ const ingredientHandlers = {
  * @param {String} id - an id of an H2 to look for in the hast tree
  * @returns {Function} a function
  */
-function requireTopLevelHeading(ingredient, id) {
-  return (tree, file, recipeName) => {
+function requireTopLevelHeading(id) {
+  return (tree, file, context) => {
     const heading = select(`h2#${id}`, tree);
     if (heading === null) {
-      warnMissingIngredient(file, recipeName, ingredient);
+      warnMissingIngredient(file, context);
       return false;
     }
     return true;
@@ -149,7 +144,8 @@ function isMacro(node, macroName) {
  * @param {VFile} file - a VFile
  * @param {String} ingredient - an ingredient name
  */
-function warnMissingIngredient(file, recipeName, ingredient) {
+function warnMissingIngredient(file, context) {
+  const { recipeName, ingredient } = context;
   const ruleNameSpace = "html-require-ingredient";
   const rule = `${recipeName}/${ingredient}`;
   const origin = `${ruleNameSpace}:${rule}`;

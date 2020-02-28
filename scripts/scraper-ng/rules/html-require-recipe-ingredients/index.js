@@ -21,7 +21,11 @@ function requireRecipeIngredientsPlugin() {
     let ok = true;
     for (const ingredient of requiredBody) {
       if (ingredient in ingredientHandlers) {
-        ok = ingredientHandlers[ingredient](tree, file, recipeName) && ok;
+        const info = {
+          recipeName,
+          ingredient
+        };
+        ok = ingredientHandlers[ingredient](tree, file, info) && ok;
       } else {
         file.message(`No handler for ingredient ${ingredient}`);
         ok = false;
