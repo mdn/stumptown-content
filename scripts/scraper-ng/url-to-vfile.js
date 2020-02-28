@@ -20,7 +20,7 @@ async function toVFile(input) {
   const url = mdnUrl(input);
 
   const f = vfile({
-    path: url.pathname,
+    path: url,
     cwd: null,
     data: { url }
   });
