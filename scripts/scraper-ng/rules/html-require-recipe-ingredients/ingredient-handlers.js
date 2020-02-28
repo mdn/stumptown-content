@@ -1,6 +1,8 @@
 const { select } = require("hast-util-select");
 const visit = require("unist-util-visit");
 
+const ruleNamespace = "html-require-ingredient";
+
 /**
  * Functions to check for recipe ingredients in Kuma page sources.
  *
@@ -14,6 +16,14 @@ const visit = require("unist-util-visit");
  *
  */
 const ingredientHandlers = {
+  default: (tree, file, context) => {
+    const { recipeName, ingredient } = context;
+    const rule = `${recipeName}/${ingredient}`;
+    const origin = `${ruleNamespace}:${rule}`;
+
+    file.message(`Linting ${ingredient} ingredient is unimplemented`, origin);
+    return true;
+  },
   "data.browser_compatibility": (tree, file, context) => {
     const id = "Browser_compatibility";
     const body = select(`body`, tree);
@@ -146,9 +156,8 @@ function isMacro(node, macroName) {
  */
 function warnMissingIngredient(file, context) {
   const { recipeName, ingredient } = context;
-  const ruleNameSpace = "html-require-ingredient";
   const rule = `${recipeName}/${ingredient}`;
-  const origin = `${ruleNameSpace}:${rule}`;
+  const origin = `${ruleNamespace}:${rule}`;
 
   const message = file.message(
     `Missing from ${recipeName}: ${ingredient}`,
