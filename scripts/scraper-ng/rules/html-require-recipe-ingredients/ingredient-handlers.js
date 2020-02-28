@@ -41,7 +41,7 @@ const ingredientHandlers = {
         `${ruleNamespace}:${context.recipeName}/${context.ingredient}/expected-heading`
       );
       message.fatal = true;
-      warnMissingIngredient(file, context);
+      logMissingIngredient(file, context);
       return;
     }
 
@@ -66,7 +66,7 @@ const ingredientHandlers = {
     );
 
     if (macroCount !== 1) {
-      warnMissingIngredient(file, context);
+      logMissingIngredient(file, context);
     }
   },
   "data.examples": requireTopLevelHeading("Examples"),
@@ -82,7 +82,7 @@ const ingredientHandlers = {
         `${ruleNamespace}:${context.recipeName}/${context.ingredient}/expected-heading`
       );
       message.fatal = true;
-      warnMissingIngredient(file, context);
+      logMissingIngredient(file, context);
       return;
     }
 
@@ -113,7 +113,7 @@ const ingredientHandlers = {
         `${ruleNamespace}:${context.recipeName}/${context.ingredient}/expected-macro`
       );
       message.fatal = true;
-      warnMissingIngredient(file, context);
+      logMissingIngredient(file, context);
     }
   },
   "prose.description": requireTopLevelHeading("Description"),
@@ -122,7 +122,7 @@ const ingredientHandlers = {
   "prose.see_also": requireTopLevelHeading("See_also"),
   "prose.short_description": (tree, file, context) => {
     if (select("body > p", tree) === null) {
-      warnMissingIngredient(file, context);
+      logMissingIngredient(file, context);
     }
   },
   "prose.syntax": requireTopLevelHeading("Syntax"),
@@ -140,7 +140,7 @@ function requireTopLevelHeading(id) {
   return (tree, file, context) => {
     const heading = select(`h2#${id}`, tree);
     if (heading === null) {
-      warnMissingIngredient(file, context);
+      logMissingIngredient(file, context);
     }
   };
 }
@@ -168,12 +168,13 @@ function isMacro(node, macroName) {
 }
 
 /**
- * Log a warning when a file is missing a named ingredient.
+ * Log a message when a file is missing an ingredient.
  *
  * @param {VFile} file - a VFile
- * @param {String} ingredient - an ingredient name
+ * @param {Object} context - a context object with recipe name and ingredient
+ * strings
  */
-function warnMissingIngredient(file, context) {
+function logMissingIngredient(file, context) {
   const { recipeName, ingredient } = context;
   const rule = `${recipeName}/${ingredient}`;
   const origin = `${ruleNamespace}:${rule}`;
