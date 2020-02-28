@@ -1,4 +1,4 @@
-const allowedMacros = ["Compat"];
+const allowedMacros = ["Compat", "EmbedInteractiveExample", "SpecName"];
 
 module.exports = {
   settings: {},
