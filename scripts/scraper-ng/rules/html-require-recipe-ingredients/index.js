@@ -18,16 +18,15 @@ function requireRecipeIngredientsPlugin() {
         !(ingredientName.endsWith("?") || ingredientName.endsWith(".*"))
     );
 
-    let ok = true;
     for (const ingredient of requiredBody) {
       const info = {
         recipeName,
         ingredient
       };
       if (ingredient in ingredientHandlers) {
-        ok = ingredientHandlers[ingredient](tree, file, info) && ok;
+        ingredientHandlers[ingredient](tree, file, info);
       } else {
-        ok = ingredientHandlers.default(tree, file, info) && ok;
+        ingredientHandlers.default(tree, file, info);
       }
     }
   };

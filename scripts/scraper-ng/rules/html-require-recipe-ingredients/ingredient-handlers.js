@@ -8,11 +8,15 @@ const ruleNamespace = "html-require-ingredient";
  *
  * The key is the name of a recipe ingredient (e.g.,
  * `data.browser_compatbiility` or `prose.syntax`) and the value is a function
- * to process a tree and file.
+ * to process a tree and file for that.
  *
- * The functions must take two arguments: a hast tree and a VFile. The function
- * must return `true` if the page contains the recipe ingredient, or `false` if
- * not. The function may also log messages against the file.
+ * Handler functions must take three arguments: a hast tree, a VFile, and a
+ * context object. The context object has two entries:
+ *
+ * - `ingredient` - the name of the ingredient
+ * - `recipeName` - the name of the recipe
+ *
+ * Handler functions may log messages against the file.
  *
  */
 const ingredientHandlers = {
@@ -22,7 +26,6 @@ const ingredientHandlers = {
     const origin = `${ruleNamespace}:${rule}`;
 
     file.message(`Linting ${ingredient} ingredient is unimplemented`, origin);
-    return true;
   },
   "data.browser_compatibility": (tree, file, context) => {
     const id = "Browser_compatibility";
@@ -31,7 +34,7 @@ const ingredientHandlers = {
     const heading = select(`h2#${id}`, tree);
     if (heading === null) {
       warnMissingIngredient(file, context);
-      return false;
+      return;
     }
 
     const nextHeading = select(`#${id} ~ h2`, tree);
@@ -56,9 +59,7 @@ const ingredientHandlers = {
 
     if (macroCount !== 1) {
       warnMissingIngredient(file, context);
-      return false;
     }
-    return true;
   },
   "data.examples": requireTopLevelHeading("Examples"),
   "data.specifications": (tree, file, context) => {
@@ -68,7 +69,6 @@ const ingredientHandlers = {
     const heading = select(`h2#${id}`, tree);
     if (heading === null) {
       warnMissingIngredient(file, context);
-      return false;
     }
 
     const sectionStart = body.children.indexOf(heading);
@@ -93,18 +93,14 @@ const ingredientHandlers = {
 
     if (!sectionOk) {
       warnMissingIngredient(file, context);
-      return false;
     }
-    return true;
   },
   "prose.description": requireTopLevelHeading("Description"),
   "prose.see_also": requireTopLevelHeading("See_also"),
   "prose.short_description": (tree, file, context) => {
     if (select("body > p", tree) === null) {
       warnMissingIngredient(file, context);
-      return false;
     }
-    return true;
   },
   "prose.syntax": requireTopLevelHeading("Syntax")
 };
@@ -121,9 +117,7 @@ function requireTopLevelHeading(id) {
     const heading = select(`h2#${id}`, tree);
     if (heading === null) {
       warnMissingIngredient(file, context);
-      return false;
     }
-    return true;
   };
 }
 
