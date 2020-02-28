@@ -35,6 +35,12 @@ const ingredientHandlers = {
 
     const heading = select(`h2#${id}`, tree);
     if (heading === null) {
+      const message = file.message(
+        `Expected h2#${id} for ${context.recipeName}: ${context.ingredient}`,
+        body,
+        `${ruleNamespace}:${context.recipeName}/${context.ingredient}/expected-heading`
+      );
+      message.fatal = true;
       warnMissingIngredient(file, context);
       return;
     }
@@ -70,7 +76,14 @@ const ingredientHandlers = {
 
     const heading = select(`h2#${id}`, tree);
     if (heading === null) {
+      const message = file.message(
+        `Expected h2#${id} ${context.recipeName}: ${context.ingredient}`,
+        body,
+        `${ruleNamespace}:${context.recipeName}/${context.ingredient}/expected-heading`
+      );
+      message.fatal = true;
       warnMissingIngredient(file, context);
+      return;
     }
 
     const sectionStart = body.children.indexOf(heading);
@@ -94,6 +107,12 @@ const ingredientHandlers = {
     });
 
     if (!sectionOk) {
+      const message = file.message(
+        `Expected SpecName macro for ${context.recipeName}: ${context.ingredient}`,
+        heading,
+        `${ruleNamespace}:${context.recipeName}/${context.ingredient}/expected-macro`
+      );
+      message.fatal = true;
       warnMissingIngredient(file, context);
     }
   },
