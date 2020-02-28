@@ -10,6 +10,7 @@ const yaml = require("js-yaml");
  */
 function requireRecipeIngredientsPlugin() {
   return function warnOnMissingRecipeIngredients(tree, file) {
+    const recipeName = path.basename(file.data.recipePath, ".yaml");
     const recipe = loadRecipe(file.data.recipePath);
 
     const requiredBody = recipe.body.filter(
@@ -20,18 +21,11 @@ function requireRecipeIngredientsPlugin() {
     let ok = true;
     for (const ingredient of requiredBody) {
       if (ingredient in ingredientHandlers) {
-        ok = ingredientHandlers[ingredient](tree, file) && ok;
+        ok = ingredientHandlers[ingredient](tree, file, recipeName) && ok;
       } else {
         file.message(`No handler for ingredient ${ingredient}`);
         ok = false;
       }
-    }
-
-    if (!ok) {
-      const recipeName = path.basename(file.data.recipePath, ".yaml");
-      const message = file.message(`Page doesn't match recipe ${recipeName}`);
-      message.ruleId = `html-must-match-recipe:${recipeName}`;
-      message.fatal = true;
     }
   };
 }
@@ -49,14 +43,14 @@ function requireRecipeIngredientsPlugin() {
  *
  */
 const ingredientHandlers = {
-  "data.browser_compatibility": (tree, file) => {
+  "data.browser_compatibility": (tree, file, recipeName) => {
     const id = "Browser_compatibility";
     const ingredient = "data.browser_compatibility";
     const body = select(`body`, tree);
 
     const heading = select(`h2#${id}`, tree);
     if (heading === null) {
-      warnMissingIngredient(file, ingredient);
+      warnMissingIngredient(file, recipeName, ingredient);
       return false;
     }
 
@@ -81,20 +75,20 @@ const ingredientHandlers = {
     );
 
     if (macroCount !== 1) {
-      warnMissingIngredient(file, ingredient);
+      warnMissingIngredient(file, ingredient, recipeName);
       return false;
     }
     return true;
   },
   "data.examples": requireTopLevelHeading("data.examples", "Examples"),
-  "data.specifications": (tree, file) => {
+  "data.specifications": (tree, file, recipeName) => {
     const id = "Specifications";
     const ingredient = "data.specifications";
     const body = select(`body`, tree);
 
     const heading = select(`h2#${id}`, tree);
     if (heading === null) {
-      warnMissingIngredient(file, ingredient);
+      warnMissingIngredient(file, recipeName, ingredient);
       return false;
     }
 
@@ -119,7 +113,7 @@ const ingredientHandlers = {
     });
 
     if (!sectionOk) {
-      warnMissingIngredient(file, ingredient);
+      warnMissingIngredient(file, recipeName, ingredient);
       return false;
     }
     return true;
@@ -129,9 +123,9 @@ const ingredientHandlers = {
     "Description"
   ),
   "prose.see_also": requireTopLevelHeading("prose.see_also", "See_also"),
-  "prose.short_description": (tree, file) => {
+  "prose.short_description": (tree, file, recipeName) => {
     if (select("body > p", tree) === null) {
-      warnMissingIngredient(file, "prose.short_description");
+      warnMissingIngredient(file, recipeName, "prose.short_description");
       return false;
     }
     return true;
@@ -147,10 +141,10 @@ const ingredientHandlers = {
  * @returns {Function} a function
  */
 function requireTopLevelHeading(ingredient, id) {
-  return (tree, file) => {
+  return (tree, file, recipeName) => {
     const heading = select(`h2#${id}`, tree);
     if (heading === null) {
-      warnMissingIngredient(file, ingredient);
+      warnMissingIngredient(file, recipeName, ingredient);
       return false;
     }
     return true;
@@ -184,9 +178,16 @@ function isMacro(node, macroName) {
  * @param {VFile} file - a VFile
  * @param {String} ingredient - an ingredient name
  */
-function warnMissingIngredient(file, ingredient) {
-  const message = file.message(`Missing ingredient: ${ingredient}`);
-  message.ruleId = `html-require-recipe-ingredient:${ingredient}`;
+function warnMissingIngredient(file, recipeName, ingredient) {
+  const ruleNameSpace = "html-require-ingredient";
+  const rule = `${recipeName}/${ingredient}`;
+  const origin = `${ruleNameSpace}:${rule}`;
+
+  const message = file.message(
+    `Missing from ${recipeName}: ${ingredient}`,
+    origin
+  );
+  message.fatal = true;
 }
 
 const recipesCache = {};
