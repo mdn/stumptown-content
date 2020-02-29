@@ -34,8 +34,8 @@ const ingredientHandlers = {
   "data.browser_compatibility": (tree, file, context) => {
     const id = "Browser_compatibility";
     const body = select(`body`, tree);
+    const heading = select(`h2#${id}`, body);
 
-    const heading = select(`h2#${id}`, tree);
     if (heading === null) {
       const message = file.message(
         `Expected h2#${id} for ${context.recipeName}: ${context.ingredient}`,
@@ -47,20 +47,9 @@ const ingredientHandlers = {
       return;
     }
 
-    const nextHeading = select(`#${id} ~ h2`, tree);
-    const sectionStart = body.children.indexOf(heading);
-    const sectionEnd =
-      nextHeading !== null
-        ? body.children.indexOf(nextHeading)
-        : body.children.length;
-    const subTree = {
-      type: "root",
-      children: body.children.slice(sectionStart, sectionEnd)
-    };
-
     let macroCount = 0;
     visit(
-      subTree,
+      sliceSection(heading, body),
       node => isMacro(node, "Compat"),
       () => {
         macroCount += 1;
@@ -76,7 +65,7 @@ const ingredientHandlers = {
     const id = "Specifications";
     const body = select(`body`, tree);
 
-    const heading = select(`h2#${id}`, tree);
+    const heading = select(`h2#${id}`, body);
     if (heading === null) {
       const message = file.message(
         `Expected h2#${id} ${context.recipeName}: ${context.ingredient}`,
@@ -88,15 +77,8 @@ const ingredientHandlers = {
       return;
     }
 
-    const sectionStart = body.children.indexOf(heading);
-    const sectionEnd = body.children.indexOf(select(`#${id} ~ h2`, tree));
-    const subTree = {
-      type: "root",
-      children: body.children.slice(sectionStart, sectionEnd)
-    };
-
     let sectionOk = false;
-    visit(subTree, "text", node => {
+    visit(sliceSection(heading, body), "text", node => {
       if (isMacro(node, "SpecName")) {
         sectionOk = true;
         return visit.SKIP;
@@ -123,16 +105,14 @@ const ingredientHandlers = {
   "prose.message": requireTopLevelHeading("Message"),
   "prose.see_also": requireTopLevelHeading("See_also"),
   "prose.short_description": (tree, file, context) => {
-    // Get the page body without macro calls
-    const subTree = filter(select("body", tree), node => !isMacro(node));
+    // Get the body before the first H2
+    const body = select("body", tree);
+    const introSection = sliceSection(select("*", body), body);
 
-    // Drop any part of the subtree that's after the first H2
-    const sectionStart = 0;
-    const sectionEnd = subTree.children.indexOf(select("h2", subTree));
-    subTree.children = subTree.children.slice(sectionStart, sectionEnd);
+    const filtered = filter(introSection, node => !isMacro(node));
 
     // See if there's any text remaining
-    if (!toString(subTree).trim().length) {
+    if (!toString(filtered).trim().length) {
       logMissingIngredient(file, context);
     }
   },
@@ -154,6 +134,38 @@ function requireTopLevelHeading(id) {
       logMissingIngredient(file, context);
     }
   };
+}
+
+/**
+ * Get a subset of `tree` starting with `startNode` and ending just before the
+ * next H2 element (or the end of the document, if it doesn't exist).
+ *
+ * @param {String} startNode - the starting node (e.g., some section heading)
+ * @param {Object} tree - a hast tree
+ * @returns {Object} a hast tree
+ */
+function sliceSection(startNode, tree) {
+  const newRoot = { type: "root", children: [] };
+
+  let inBounds = false;
+  visit(tree, node => {
+    if (node === startNode) {
+      inBounds = true;
+      newRoot.children.push(node);
+      return visit.SKIP;
+    }
+
+    if (inBounds) {
+      if (node.tagName === "h2") {
+        return visit.EXIT;
+      }
+
+      newRoot.children.push(node);
+      return visit.SKIP;
+    }
+  });
+
+  return newRoot;
 }
 
 /**
