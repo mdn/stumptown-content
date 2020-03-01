@@ -105,14 +105,69 @@ const ingredientHandlers = {
   "prose.message": requireTopLevelHeading("Message"),
   "prose.see_also": requireTopLevelHeading("See_also"),
   "prose.short_description": (tree, file, context) => {
-    // Get the body before the first H2
-    const body = select("body", tree);
-    const introSection = sliceSection(select("*", body), body);
+    // Short descriptions are complicated!
+    //
+    // A short description is understood to be either an seoSummary <span> or
+    // the first <p> that precedes:
+    //
+    // - an interactive example macro
+    // - an <h2>
+    // - the end of the document
+    //
+    // whichever comes first, but excluding <p>'s that are admonitions (warnings
+    // or notes).
 
-    const filtered = filter(introSection, node => !isMacro(node));
+    const body = select("body", tree);
+
+    if (select("span.seoSummary", tree) !== null) {
+      return;
+    }
+
+    // Slice the tree to the nodes between the firt element in <body> and
+    // a terminating node (interactive example or h2) or the end of the
+    // document
+    const introSection = sliceBetween(
+      select(":first-child", body),
+      node => {
+        if (node.tagName === "h2") {
+          return true;
+        }
+
+        let containsInteractiveExample = false;
+        visit(
+          node,
+          node => isMacro(node, "EmbedInteractiveExample"),
+          () => {
+            containsInteractiveExample = true;
+            return visit.EXIT;
+          }
+        );
+        return containsInteractiveExample;
+      },
+      body
+    );
+
+    // Remove admonition paragraphs
+    const isAdmonition = node =>
+      node.tagName === "p" &&
+      node.properties.className &&
+      (node.properties.className.includes("warning") ||
+        node.properties.className.includes("note"));
+    const filtered = filter(introSection, node => !isAdmonition(node));
+
+    // Get the first paragraph left over
+    const shortDescriptionP = select("p", filtered);
+
+    if (shortDescriptionP === null) {
+      logMissingIngredient(file, context);
+      return;
+    }
+
+    // Check if the paragraph actually contains text
+    const shortDescriptionText = toString(shortDescriptionP).trim();
 
     // See if there's any text remaining
-    if (!toString(filtered).trim().length) {
+    if (!shortDescriptionText.length) {
       logMissingIngredient(file, context);
     }
   },
@@ -145,6 +200,21 @@ function requireTopLevelHeading(id) {
  * @returns {Object} a hast tree
  */
 function sliceSection(startNode, tree) {
+  return sliceBetween(startNode, node => node.tagName === "h2", tree);
+}
+
+/**
+ * Get a subset of `tree` starting with `startNode` and ending just before the
+ * first node that passes `endCondition`.
+ *
+ * @param {Object} startNode - the starting node (e.g., some section heading)
+ * @param {Function} endCondition - a function that takes a node as an argument
+ * and returns a boolean (e.g., to stop at a specific node, use `(node) => node
+ * === someNode`)
+ * @param {Object} tree - a hast tree
+ * @returns {Object} a hast tree
+ */
+function sliceBetween(startNode, endCondition, tree) {
   const newRoot = { type: "root", children: [] };
 
   let inBounds = false;
@@ -156,7 +226,7 @@ function sliceSection(startNode, tree) {
     }
 
     if (inBounds) {
-      if (node.tagName === "h2") {
+      if (endCondition(node)) {
         return visit.EXIT;
       }
 
