@@ -1,5 +1,4 @@
-const allowedMacros = ["Compat"];
-const requiredMacros = ["Compat"];
+const allowedMacros = ["Compat", "EmbedInteractiveExample", "SpecName"];
 
 module.exports = {
   settings: {},
@@ -11,7 +10,7 @@ module.exports = {
     // For rules that don't need settings of any kind:
     //   [require('./rules/rule-name')]
     [require("./rules/file-require-recipe")],
-    [require("./rules/html-require-macros"), ["error", requiredMacros]],
-    [require("./rules/html-warn-macros"), allowedMacros]
+    [require("./rules/html-warn-macros"), allowedMacros],
+    [require("./rules/html-require-recipe-ingredients")]
   ]
 };

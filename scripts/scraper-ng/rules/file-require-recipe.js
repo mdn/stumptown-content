@@ -45,7 +45,7 @@ function msg(file, text, ruleId, note) {
   message.fatal = true;
   message.ruleId = ruleId;
   message.note = note;
-  return message;
+  throw message;
 }
 
 module.exports = requireRecipe;
