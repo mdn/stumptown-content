@@ -123,7 +123,7 @@ const ingredientHandlers = {
       return;
     }
 
-    // Slice the tree to the nodes between the firt element in <body> and
+    // Slice the tree to the nodes between the first element in <body> and
     // a terminating node (interactive example or h2) or the end of the
     // document
     const introSection = sliceBetween(
