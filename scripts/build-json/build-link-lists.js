@@ -145,15 +145,10 @@ function linkListFromChapterList(chapterListPath) {
   const chapterPaths = chapterList.chapters.map(chapter =>
     path.join(fullDir, chapter)
   );
-  const listContent = [];
-
-  for (const dirEntry of chapterPaths) {
-    listContent.push(buildLinkItem(dirEntry));
-  }
 
   return {
     title: chapterList.title,
-    content: listContent
+    content: chapterPaths.map(dirEntry => buildLinkItem(dirEntry))
   };
 }
 
@@ -173,14 +168,9 @@ function linkListFromDirectory(title, directory, foreach) {
     path.join(fullPath, itemDirectory.name)
   );
 
-  const listContent = [];
-  for (const dirEntry of itemDirectories) {
-    listContent.push(buildLinkItem(dirEntry, foreach));
-  }
-
   return {
     title: title,
-    content: listContent
+    content: itemDirectories.map(dirEntry => buildLinkItem(dirEntry, foreach))
   };
 }
 
@@ -192,14 +182,9 @@ function linkListFromDirectory(title, directory, foreach) {
 function linkListFromFilePaths(title, filePaths) {
   const fullFilePaths = filePaths.map(filePath => path.join(ROOT, filePath));
 
-  const listContent = [];
-  for (const dirEntry of fullFilePaths) {
-    listContent.push(buildLinkItem(dirEntry));
-  }
-
   return {
     title: title,
-    content: listContent
+    content: fullFilePaths.map(dirEntry => buildLinkItem(dirEntry))
   };
 }
 
