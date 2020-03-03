@@ -1,6 +1,7 @@
 ---
 recipe: javascript-constructor
 title: 'BigInt() constructor'
+short_title: BigInt()
 mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt/BigInt
 examples:
     - examples/construct.md

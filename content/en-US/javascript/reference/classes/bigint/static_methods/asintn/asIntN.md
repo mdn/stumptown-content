@@ -1,10 +1,11 @@
 ---
 recipe: javascript-method
 title: 'BigInt.asIntN()'
+short_title: asIntN()
 mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt/asIntN
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/js/bigint-asintn.html
-    height: html-standard
+    height: js-tall
 examples:
     - examples/64-bit-ranges.md
 specifications: https://tc39.es/ecma262/#sec-bigint.asintn

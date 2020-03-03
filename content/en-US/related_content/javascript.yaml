@@ -1,5 +1,29 @@
-# JavaScript sidebar
+- title: Tutorials
+  children:
+  - title: Complete beginners
+    pages:
+      - /content/en-US/learn/getting_started_with_the_web/JavaScript_basics
+      - /content/en-US/learn/javascript/Building_blocks
+      - /content/en-US/learn/javascript/First_steps
+      - /content/en-US/learn/javascript/Objects
+  - chapter_list: /content/en-US/javascript/guide/javascript_guide.yaml
 - title: Reference
   children:
-  - title: Classes
-    directory: "/content/en-US/javascript/reference/classes"
+  - title: Global objects
+    directory: /content/en-US/javascript/reference/classes
+    foreach:
+      - title: Constructor
+        pages:
+          - from_front_matter_key: class_constructor
+      - title: Static methods
+        directory:
+          from_front_matter_key: static_methods
+      - title: Instance methods
+        directory:
+          from_front_matter_key: instance_methods
+      - title: Static properties
+        directory:
+          from_front_matter_key: static_properties
+      - title: Instance properties
+        directory:
+          from_front_matter_key: instance_properties

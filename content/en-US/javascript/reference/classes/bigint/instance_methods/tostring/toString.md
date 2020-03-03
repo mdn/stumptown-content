@@ -1,10 +1,11 @@
 ---
 recipe: javascript-method
 title: 'BigInt.prototype.toString()'
+short_title: toString()
 mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt/toString
 interactive_example:
     url: https://interactive-examples.mdn.mozilla.net/pages/js/bigint-tostring.html
-    height: html-standard
+    height: js-standard
 examples:
     - examples/using-tostring.md
     - examples/negative-zero-bigint.md
