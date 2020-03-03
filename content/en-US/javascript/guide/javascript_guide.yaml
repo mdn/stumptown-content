@@ -1,6 +1,6 @@
 title: JavaScript Guide
 chapters:
-  - Guide/Grammar_and_Types
+  - Guide/Grammar_and_types
   - Guide/Control_flow_and_error_handling
   - Guide/Functions
   - Guide/Expressions_and_Operators
