@@ -31,6 +31,14 @@ function reporter(files) {
 function summarize(files) {
   const count = countRules(files);
 
+  if (Object.entries(count).length === 0) {
+    return [
+      "",
+      chalk.yellow(chalk.underline("Summary")),
+      "No issues found. Hooray! 🎉"
+    ].join("\n");
+  }
+
   const sortedRules = Object.entries(count)
     .map(([ruleId, details]) => ({
       ruleId,
