@@ -35,7 +35,7 @@ function summarize(files) {
     return [
       "",
       chalk.yellow(chalk.underline("Summary")),
-      "No issues found."
+      "No issues found. Hooray! 🎉"
     ].join("\n");
   }
 
