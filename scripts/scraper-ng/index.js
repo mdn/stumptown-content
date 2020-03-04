@@ -1,5 +1,7 @@
 const fetch = require("node-fetch");
 const fileReporter = require("vfile-reporter");
+const jsonReporter = require("vfile-reporter-json");
+const VMessage = require("vfile-message");
 const yargs = require("yargs");
 
 const kumascriptRehype = require("./plugins/kumascript-rehype-parse");
@@ -7,9 +9,6 @@ const limiter = require("./rate-limiter");
 const mdnUrl = require("./mdn-url");
 const summaryReporter = require("./vfile-reporter-summary");
 const toVFile = require("./url-to-vfile");
-const VMessage = require("vfile-message");
-
-const jsonReporter = require("vfile-reporter-json");
 
 const examplePage =
   "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div";
