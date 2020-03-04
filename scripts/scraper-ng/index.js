@@ -116,7 +116,7 @@ function flattenTree(root) {
  * @param {Array.<VFile>} files - processed files to report on
  * @param {Object} [options={}] - options for report formats. Options are also
  * passed through to the end reporter; see specific reporters for additional options.
- * @param {boolean} [options.summary=false] - print a summary report
+ * @param {boolean} [options.summary=false] - append a summary
  * @returns {String} - a report string
  */
 function report(files, options = {}) {

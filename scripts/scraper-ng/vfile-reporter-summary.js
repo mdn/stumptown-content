@@ -125,7 +125,7 @@ function formatRule({ count, fatal, reason, ruleId }) {
 function formatStats(files, summaryLines) {
   const { fatal, nonfatal, total } = statistics(files);
 
-  const notices = total > 0 ? `${total} notice${plural(total)}` : "";
+  const notices = total > 0 ? `${total} message${plural(total)}` : "";
   const errors =
     fatal > 0 ? `${chalk.red("✖")} ${fatal} error${plural(fatal)}` : "";
   const warnings =
@@ -137,7 +137,7 @@ function formatStats(files, summaryLines) {
   const parenthetical = breakdown ? `(${breakdown})` : "";
 
   return [
-    `${summaryLines.length} notice type${plural(summaryLines.length)}`,
+    `${summaryLines.length} message type${plural(summaryLines.length)}`,
     parenthetical,
     `in ${files.length} file${plural(files.length)}`
   ].join(" ");
