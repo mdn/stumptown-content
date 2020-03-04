@@ -62,12 +62,12 @@ async function run() {
   const root = await fetchTree(argv._[0]);
   const urls = argv.noSubpages ? [root.url] : flattenTree(root);
 
-  console.log(`Preparing to lint ${urls.length} pages…`);
+  console.error(`Preparing to lint ${urls.length} pages…`);
   await new Promise(resolve => setTimeout(resolve, 2000)); // give 2 seconds to gracefully bail out
 
   const files = urls.map(async url => {
     await limiter();
-    if (!argv.quiet) console.log(`Fetching ${url}`);
+    if (!argv.quiet) console.error(`Fetching ${url}`);
     const file = await toVFile(url);
     const hasFileErrors = file.messages.length > 0;
     if (!hasFileErrors) {
