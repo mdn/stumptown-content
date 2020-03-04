@@ -81,14 +81,12 @@ async function run() {
   const processed = await Promise.all(files);
 
   console.log(
-    fileReporter(processed, { quiet: argv.quiet, verbose: argv.verbose })
+    report(processed, {
+      quiet: argv.quiet,
+      verbose: argv.verbose,
+      summary: argv.summary
+    })
   );
-
-  if (argv.summary) {
-    console.log(
-      summaryReporter(processed, { quiet: argv.quiet, verbose: argv.verbose })
-    );
-  }
 }
 
 async function fetchTree(input) {
@@ -110,6 +108,25 @@ function flattenTree(root) {
   }
 
   return urls;
+}
+
+/**
+ * Choose and generate a report.
+ *
+ * @param {Array.<VFile>} files - processed files to report on
+ * @param {Object} [options={}] - options for report formats. Options are also
+ * passed through to the end reporter; see specific reporters for additional options.
+ * @param {boolean} [options.summary=false] - print a summary report
+ * @returns {String} - a report string
+ */
+function report(files, options = {}) {
+  let reporter = fileReporter;
+
+  if (options.summary) {
+    reporter = summaryReporter;
+  }
+
+  return reporter(files, options);
 }
 
 run();

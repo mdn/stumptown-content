@@ -1,13 +1,22 @@
 const chalk = require("chalk");
+const fileReporter = require("vfile-reporter");
 const statistics = require("vfile-statistics");
 
 /**
- * Generate a summary report of VFile messages.
+ * Create a report for one or more vfiles and add a summary.
  *
- * @param {(VFile|Array.<VFile>|Error)} files - `VFile`, `Array.<VFile>`, or `Error`
- * @returns {String} the summary as a string
+ * @param {(VFile|Array.<VFile>|Error)} files - `VFile`, `Array.<VFile>`, or
+ * `Error`
+ * @param {Object} options - settings for `vfile-reporter`
+ * @param {boolean} [options.verbose=false] - Output long form descriptions of
+ * messages
+ * @param {boolean} [options.quiet=false] - Do not output anything for a file
+ * which has no warnings or errors
+ * @param {boolean} [options.silent=false] - Do not output messages without
+ * `fatal` set to `true`. Also sets `quiet` to `true`.
+ * @returns {String} the report as a string
  */
-function reporter(files) {
+function reporter(files, options) {
   // Undefined or `null`
   if (!files) {
     return "";
@@ -24,8 +33,8 @@ function reporter(files) {
     files = [files];
   }
 
-  // Actually generate the summary
-  return summarize(files);
+  // Actually generate the report
+  return [fileReporter(files, options), summarize(files)].join("\n");
 }
 
 function summarize(files) {
