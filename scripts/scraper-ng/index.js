@@ -9,6 +9,8 @@ const summaryReporter = require("./vfile-reporter-summary");
 const toVFile = require("./url-to-vfile");
 const VMessage = require("vfile-message");
 
+const jsonReporter = require("vfile-reporter-json");
+
 const examplePage =
   "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div";
 const exampleShorthand = "/en-US/docs/Web/HTML/Element/div";
@@ -18,6 +20,9 @@ const { argv } = yargs
   .usage("Usage: $0 <url>")
   .example(`$0 ${examplePage}`, "scrape a page and all its subpages")
   .example(`$0 ${exampleShorthand}`, "omit the protocol and domain")
+
+  .describe("json", "Format results as JSON")
+  .example(`$0 --json ${exampleShorthand}`)
 
   .describe("n", "Dry run (lint-only)")
   .alias("n", "dry-run")
@@ -82,9 +87,10 @@ async function run() {
 
   console.log(
     report(processed, {
+      json: argv.json,
       quiet: argv.quiet,
-      verbose: argv.verbose,
-      summary: argv.summary
+      summary: argv.summary,
+      verbose: argv.verbose
     })
   );
 }
@@ -116,13 +122,16 @@ function flattenTree(root) {
  * @param {Array.<VFile>} files - processed files to report on
  * @param {Object} [options={}] - options for report formats. Options are also
  * passed through to the end reporter; see specific reporters for additional options.
- * @param {boolean} [options.summary=false] - append a summary
+ * @param {boolean} [options.json=false] - format the report as JSON
+ * @param {boolean} [options.summary=false] - append a summary (not applicable to JSON reports)
  * @returns {String} - a report string
  */
 function report(files, options = {}) {
   let reporter = fileReporter;
 
-  if (options.summary) {
+  if (options.json) {
+    reporter = jsonReporter;
+  } else if (options.summary) {
     reporter = summaryReporter;
   }
 

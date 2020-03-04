@@ -56,6 +56,7 @@
         "unist-util-visit": "^2.0.2",
         "vfile": "^4.0.3",
         "vfile-reporter": "^6.0.1",
+        "vfile-reporter-json": "^2.0.1",
         "vfile-statistics": "^1.1.4"
     },
     "remarkConfig": {
