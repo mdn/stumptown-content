@@ -54,7 +54,7 @@
         "unified-lint-rule": "^1.0.4",
         "unist-util-filter": "^2.0.2",
         "unist-util-visit": "^2.0.2",
-        "vfile": "^4.0.2",
+        "vfile": "^4.0.3",
         "vfile-reporter": "^6.0.1",
         "vfile-statistics": "^1.1.4"
     },
