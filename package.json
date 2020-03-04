@@ -30,7 +30,7 @@
         "chalk": "^3.0.0",
         "gray-matter": "4.0.2",
         "hast-util-find-and-replace": "^3.0.0",
-        "hast-util-has-property": "^1.0.3",
+        "hast-util-has-property": "^1.0.4",
         "hast-util-select": "^3.0.1",
         "hast-util-to-string": "^1.0.2",
         "hast-util-to-text": "^2.0.0",
