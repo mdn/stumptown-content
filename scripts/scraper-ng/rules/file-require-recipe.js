@@ -1,6 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 
+const source = "file-require-recipe";
+
 /**
  * Check for one and only one valid recipe per file.
  *
@@ -11,7 +13,7 @@ function requireRecipe() {
       msg(
         file,
         "Missing recipe",
-        "file-require-recipe",
+        "recipe-missing",
         `Tags: ${JSON.stringify(file.data.tags)}`
       );
       return;
@@ -21,7 +23,7 @@ function requireRecipe() {
       msg(
         file,
         `One and only one recipe must apply`,
-        "file-require-recipe-unique",
+        "recipe-not-unique",
         `Recipes: ${JSON.stringify(
           file.data.recipePath.map(f => path.basename(f, ".yaml"))
         )}\nTags: ${JSON.stringify(file.data.tags)}`
@@ -32,18 +34,17 @@ function requireRecipe() {
     if (!fs.existsSync(file.data.recipePath)) {
       msg(
         file,
-        `${file.data.recipePath} does not exist`,
-        "file-require-recipe-file-exists",
+        `${path.relative(process.cwd(), file.data.recipePath)} does not exist`,
+        "recipe-file-missing",
         `Tags: ${JSON.stringify(file.data.tags)}`
       );
     }
   };
 }
 
-function msg(file, text, ruleId, note) {
-  const message = file.message(text);
+function msg(file, text, rule, note) {
+  const message = file.message(text, `${source}:${rule}`);
   message.fatal = true;
-  message.ruleId = ruleId;
   message.note = note;
   throw message;
 }
