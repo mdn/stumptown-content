@@ -1,5 +1,7 @@
 const fetch = require("node-fetch");
 const fileReporter = require("vfile-reporter");
+const jsonReporter = require("vfile-reporter-json");
+const VMessage = require("vfile-message");
 const yargs = require("yargs");
 
 const kumascriptRehype = require("./plugins/kumascript-rehype-parse");
@@ -7,7 +9,6 @@ const limiter = require("./rate-limiter");
 const mdnUrl = require("./mdn-url");
 const summaryReporter = require("./vfile-reporter-summary");
 const toVFile = require("./url-to-vfile");
-const VMessage = require("vfile-message");
 
 const examplePage =
   "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div";
@@ -18,6 +19,9 @@ const { argv } = yargs
   .usage("Usage: $0 <url>")
   .example(`$0 ${examplePage}`, "scrape a page and all its subpages")
   .example(`$0 ${exampleShorthand}`, "omit the protocol and domain")
+
+  .describe("json", "Format results as JSON")
+  .example(`$0 --json ${exampleShorthand}`)
 
   .describe("n", "Dry run (lint-only)")
   .alias("n", "dry-run")
@@ -57,12 +61,12 @@ async function run() {
   const root = await fetchTree(argv._[0]);
   const urls = argv.noSubpages ? [root.url] : flattenTree(root);
 
-  console.log(`Preparing to lint ${urls.length} pages…`);
+  console.error(`Preparing to lint ${urls.length} pages…`);
   await new Promise(resolve => setTimeout(resolve, 2000)); // give 2 seconds to gracefully bail out
 
   const files = urls.map(async url => {
     await limiter();
-    if (!argv.quiet) console.log(`Fetching ${url}`);
+    if (!argv.quiet) console.error(`Fetching ${url}`);
     const file = await toVFile(url);
     const hasFileErrors = file.messages.length > 0;
     if (!hasFileErrors) {
@@ -81,14 +85,13 @@ async function run() {
   const processed = await Promise.all(files);
 
   console.log(
-    fileReporter(processed, { quiet: argv.quiet, verbose: argv.verbose })
+    report(processed, {
+      json: argv.json,
+      quiet: argv.quiet,
+      summary: argv.summary,
+      verbose: argv.verbose
+    })
   );
-
-  if (argv.summary) {
-    console.log(
-      summaryReporter(processed, { quiet: argv.quiet, verbose: argv.verbose })
-    );
-  }
 }
 
 async function fetchTree(input) {
@@ -110,6 +113,28 @@ function flattenTree(root) {
   }
 
   return urls;
+}
+
+/**
+ * Choose and generate a report.
+ *
+ * @param {Array.<VFile>} files - processed files to report on
+ * @param {Object} [options={}] - options for report formats. Options are also
+ * passed through to the end reporter; see specific reporters for additional options.
+ * @param {boolean} [options.json=false] - format the report as JSON
+ * @param {boolean} [options.summary=false] - append a summary (not applicable to JSON reports)
+ * @returns {String} - a report string
+ */
+function report(files, options = {}) {
+  let reporter = fileReporter;
+
+  if (options.json) {
+    reporter = jsonReporter;
+  } else if (options.summary) {
+    reporter = summaryReporter;
+  }
+
+  return reporter(files, options);
 }
 
 run();

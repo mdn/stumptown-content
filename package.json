@@ -51,11 +51,12 @@
         "retext-stringify": "^2.0.4",
         "to-vfile": "^6.0.1",
         "unified": "^8.4.2",
-        "unified-lint-rule": "^1.0.4",
         "unist-util-filter": "^2.0.2",
         "unist-util-visit": "^2.0.2",
         "vfile": "^4.0.3",
+        "vfile-message": "^2.0.3",
         "vfile-reporter": "^6.0.1",
+        "vfile-reporter-json": "^2.0.1",
         "vfile-statistics": "^1.1.4"
     },
     "remarkConfig": {
