@@ -38,7 +38,7 @@ const ingredientHandlers = {
 
     if (heading === null) {
       const message = file.message(
-        `Expected h2#${id} for ${context.recipeName}: ${context.ingredient}`,
+        `Expected h2#${id}`,
         body,
         `${ruleNamespace}:${context.recipeName}/${context.ingredient}/expected-heading`
       );
@@ -68,7 +68,7 @@ const ingredientHandlers = {
     const heading = select(`h2#${id}`, body);
     if (heading === null) {
       const message = file.message(
-        `Expected h2#${id} ${context.recipeName}: ${context.ingredient}`,
+        `Expected h2#${id}`,
         body,
         `${ruleNamespace}:${context.recipeName}/${context.ingredient}/expected-heading`
       );
