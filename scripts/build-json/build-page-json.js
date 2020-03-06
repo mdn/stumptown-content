@@ -14,10 +14,12 @@ function writeToFile(json, elementPath) {
   // Like '/path/to/stumptown/content/html/element/video for example.
   const propertyName = path.basename(elementPath);
   const dirName = path.dirname(elementPath);
-  const dest = path.join(
-    dirName.replace(path.join(ROOT, "content"), path.join(ROOT, "packaged")),
-    `${propertyName}.json`
-  );
+  const dest = path
+    .join(
+      dirName.replace(path.join(ROOT, "content"), path.join(ROOT, "packaged")),
+      `${propertyName}.json`
+    )
+    .toLowerCase();
   const destDir = path.dirname(dest);
   if (!fs.existsSync(destDir)) {
     fs.mkdirSync(destDir, { recursive: true });
