@@ -10,7 +10,7 @@ module.exports = {
     // For rules that don't need settings of any kind:
     //   [require('./rules/rule-name')]
     [require("./rules/file-require-recipe")],
-    [require("./rules/html-warn-macros"), allowedMacros],
+    [require("./rules/html-no-macros"), allowedMacros],
     [require("./rules/html-require-recipe-ingredients")]
   ]
 };
