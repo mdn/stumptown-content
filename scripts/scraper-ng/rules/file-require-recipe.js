@@ -12,7 +12,7 @@ function requireRecipe() {
     if (file.data.recipePath === undefined) {
       msg(
         file,
-        "Missing recipe",
+        "Recipe is missing",
         "recipe-missing",
         `Tags: ${JSON.stringify(file.data.tags)}`
       );
@@ -22,7 +22,7 @@ function requireRecipe() {
     if (Array.isArray(file.data.recipePath)) {
       msg(
         file,
-        `One and only one recipe must apply`,
+        `Recipe is not unique`,
         "recipe-not-unique",
         `Recipes: ${JSON.stringify(
           file.data.recipePath.map(f => path.basename(f, ".yaml"))
@@ -34,7 +34,10 @@ function requireRecipe() {
     if (!fs.existsSync(file.data.recipePath)) {
       msg(
         file,
-        `${path.relative(process.cwd(), file.data.recipePath)} does not exist`,
+        `Recipe file (${path.relative(
+          process.cwd(),
+          file.data.recipePath
+        )}) does not exist`,
         "recipe-file-missing",
         `Tags: ${JSON.stringify(file.data.tags)}`
       );
