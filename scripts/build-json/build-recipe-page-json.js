@@ -1,5 +1,6 @@
 const path = require("path");
 
+const { packageStatus } = require("./resolve-status");
 const { packageBCD } = require("./resolve-bcd");
 const { packageExamples } = require("./compose-examples");
 const { packageAttributes } = require("./compose-attributes");
@@ -8,7 +9,19 @@ const { packageProse } = require("./slice-prose");
 const { packageSpecs } = require("./build-specs");
 const { buildLinkList } = require("./build-link-lists");
 
-function processMetaIngredient(elementPath, ingredientName, data) {
+function processGeneratedIngredient(elementPath, ingredientName, data) {
+  switch (ingredientName) {
+    case "status":
+      return packageStatus(
+        data.specifications,
+        packageBCD(data.browser_compatibility)
+      );
+    default:
+      throw new Error(`Unrecognized ingredient: ${ingredientName}`);
+  }
+}
+
+function processDataIngredient(elementPath, ingredientName, data) {
   // If an ingredient is missing in the data, just return null
   // Assume that the linter checks for required ingredients
   if (!data[ingredientName]) {
@@ -78,9 +91,15 @@ function buildRecipePageJSON(elementPath, data, content, recipe) {
     const [ingredientType, ingredientName] = ingredient
       .replace(/\?$/, "")
       .split(".");
-    if (ingredientType === "data") {
-      // non-prose ingredients, which are specified in front matter
-      const value = processMetaIngredient(elementPath, ingredientName, data);
+    if (ingredientType === "generated") {
+      // ingredients whose value is not given explicitly, but derived from other content
+      body.push({
+        type: ingredientName,
+        value: processGeneratedIngredient(elementPath, ingredientName, data)
+      });
+    } else if (ingredientType === "data") {
+      // ingredients which are specified in front matter
+      const value = processDataIngredient(elementPath, ingredientName, data);
       if (value !== null) {
         body.push({
           type: ingredientName,

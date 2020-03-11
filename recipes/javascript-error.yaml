@@ -4,6 +4,7 @@ data:
   - short_title?
   - mdn_url
 body:
+  - generated.status
   - prose.short_description
   - prose.message
   - prose.error_type
