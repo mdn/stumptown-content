@@ -2,7 +2,7 @@ const visit = require("unist-util-visit");
 
 const normalizeMacroName = require("../normalize-macro-name");
 
-const source = "html-warn-macros";
+const source = "html-no-macros";
 
 /**
  * Issue a warning for each macro call (except for the array of macro names in
