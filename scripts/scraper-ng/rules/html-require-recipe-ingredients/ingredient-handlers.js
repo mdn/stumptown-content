@@ -5,7 +5,7 @@ const visit = require("unist-util-visit");
 
 const normalizeMacroName = require("../../normalize-macro-name");
 
-const ruleNamespace = "html-require-ingredient";
+const source = "html-require-ingredient";
 
 /**
  * Functions to check for recipe ingredients in Kuma page sources.
@@ -27,7 +27,7 @@ const ingredientHandlers = {
   default: (tree, file, context) => {
     const { recipeName, ingredient } = context;
     const rule = `${recipeName}/${ingredient}`;
-    const origin = `${ruleNamespace}:${rule}`;
+    const origin = `${source}:${rule}`;
 
     file.message(`Linting ${ingredient} ingredient is unimplemented`, origin);
   },
@@ -40,7 +40,7 @@ const ingredientHandlers = {
       const message = file.message(
         `Expected h2#${id}`,
         body,
-        `${ruleNamespace}:${context.recipeName}/${context.ingredient}/expected-heading`
+        `${source}:${context.recipeName}/${context.ingredient}/expected-heading`
       );
       message.fatal = true;
       logMissingIngredient(file, context);
@@ -70,7 +70,7 @@ const ingredientHandlers = {
       const message = file.message(
         `Expected h2#${id}`,
         body,
-        `${ruleNamespace}:${context.recipeName}/${context.ingredient}/expected-heading`
+        `${source}:${context.recipeName}/${context.ingredient}/expected-heading`
       );
       message.fatal = true;
       logMissingIngredient(file, context);
@@ -94,7 +94,7 @@ const ingredientHandlers = {
       const message = file.message(
         `Expected SpecName macro for ${context.recipeName}: ${context.ingredient}`,
         heading,
-        `${ruleNamespace}:${context.recipeName}/${context.ingredient}/expected-macro`
+        `${source}:${context.recipeName}/${context.ingredient}/expected-macro`
       );
       message.fatal = true;
       logMissingIngredient(file, context);
@@ -270,7 +270,7 @@ function isMacro(node, macroName) {
 function logMissingIngredient(file, context) {
   const { recipeName, ingredient } = context;
   const rule = `${recipeName}/${ingredient}`;
-  const origin = `${ruleNamespace}:${rule}`;
+  const origin = `${source}:${rule}`;
 
   const message = file.message(
     `Missing from ${recipeName}: ${ingredient}`,
