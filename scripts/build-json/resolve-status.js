@@ -1,9 +1,9 @@
 function packageStatus(specifications, bcd) {
+  const hasStatus = bcd.__compat !== undefined && bcd.__compat.status !== undefined;
   return {
     non_standard: specifications === "non-standard",
-    experimental:
-      bcd.__compat !== undefined && bcd.__compat.status.experimental,
-    deprecated: bcd.__compat !== undefined && bcd.__compat.status.deprecated
+    experimental: hasStatus && bcd.__compat.status.experimental,
+    deprecated: hasStatus && bcd.__compat.status.deprecated
   };
 }
 
