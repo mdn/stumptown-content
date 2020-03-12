@@ -1,7 +1,7 @@
 ---
 recipe: javascript-class
 title: 'TestBanners'
-mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/TestBanners
+mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
 class_constructor: /content/en-US/javascript/reference/classes/testbanners/testbanners
 examples:
     - examples/test.md

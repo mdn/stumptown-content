@@ -2,7 +2,7 @@
 recipe: javascript-constructor
 title: 'TestBanners() constructor'
 short_title: TestBanners()
-mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/TestBanners/TestBanners
+mdn_url: /en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Array
 examples:
     - examples/construct.md
 specifications: non-standard
