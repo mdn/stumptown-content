@@ -1,9 +1,10 @@
 const fs = require("fs");
 const path = require("path");
-
 const yaml = require("js-yaml");
 
 const ingredientHandlers = require("./ingredient-handlers");
+
+const source = "html-require-ingredient";
 
 /**
  * A unified plugin that issues an error on pages that are missing ingredients.
@@ -20,6 +21,7 @@ function requireRecipeIngredientsPlugin() {
 
     for (const ingredient of requiredBody) {
       const info = {
+        source,
         recipeName,
         ingredient
       };

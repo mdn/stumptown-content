@@ -3,9 +3,7 @@ const filter = require("unist-util-filter");
 const toString = require("hast-util-to-string");
 const visit = require("unist-util-visit");
 
-const normalizeMacroName = require("../../normalize-macro-name");
-
-const source = "html-require-ingredient";
+const utils = require("./utils.js");
 
 /**
  * Functions to check for recipe ingredients in Kuma page sources.
@@ -25,7 +23,7 @@ const source = "html-require-ingredient";
  */
 const ingredientHandlers = {
   default: (tree, file, context) => {
-    const { recipeName, ingredient } = context;
+    const { recipeName, ingredient, source } = context;
     const rule = `${recipeName}/${ingredient}`;
     const origin = `${source}:${rule}`;
 
@@ -40,24 +38,24 @@ const ingredientHandlers = {
       const message = file.message(
         `Expected h2#${id}`,
         body,
-        `${source}:${context.recipeName}/${context.ingredient}/expected-heading`
+        `${context.source}:${context.recipeName}/${context.ingredient}/expected-heading`
       );
       message.fatal = true;
-      logMissingIngredient(file, context);
+      utils.logMissingIngredient(file, context);
       return;
     }
 
     let macroCount = 0;
     visit(
-      sliceSection(heading, body),
-      node => isMacro(node, "Compat"),
+      utils.sliceSection(heading, body),
+      node => utils.isMacro(node, "Compat"),
       () => {
         macroCount += 1;
       }
     );
 
     if (macroCount !== 1) {
-      logMissingIngredient(file, context);
+      utils.logMissingIngredient(file, context);
     }
   },
   "data.examples": requireTopLevelHeading("Examples"),
@@ -70,16 +68,16 @@ const ingredientHandlers = {
       const message = file.message(
         `Expected h2#${id}`,
         body,
-        `${source}:${context.recipeName}/${context.ingredient}/expected-heading`
+        `${context.source}:${context.recipeName}/${context.ingredient}/expected-heading`
       );
       message.fatal = true;
-      logMissingIngredient(file, context);
+      utils.logMissingIngredient(file, context);
       return;
     }
 
     let sectionOk = false;
-    visit(sliceSection(heading, body), "text", node => {
-      if (isMacro(node, "SpecName")) {
+    visit(utils.sliceSection(heading, body), "text", node => {
+      if (utils.isMacro(node, "SpecName")) {
         sectionOk = true;
         return visit.SKIP;
       }
@@ -94,10 +92,10 @@ const ingredientHandlers = {
       const message = file.message(
         `Expected SpecName macro for ${context.recipeName}: ${context.ingredient}`,
         heading,
-        `${source}:${context.recipeName}/${context.ingredient}/expected-macro`
+        `${context.source}:${context.recipeName}/${context.ingredient}/expected-macro`
       );
       message.fatal = true;
-      logMissingIngredient(file, context);
+      utils.logMissingIngredient(file, context);
     }
   },
   "prose.description": requireTopLevelHeading("Description"),
@@ -126,7 +124,7 @@ const ingredientHandlers = {
     // Slice the tree to the nodes between the first element in <body> and
     // a terminating node (interactive example or h2) or the end of the
     // document
-    const introSection = sliceBetween(
+    const introSection = utils.sliceBetween(
       select(":first-child", body),
       node => {
         if (node.tagName === "h2") {
@@ -136,7 +134,7 @@ const ingredientHandlers = {
         let containsInteractiveExample = false;
         visit(
           node,
-          node => isMacro(node, "EmbedInteractiveExample"),
+          node => utils.isMacro(node, "EmbedInteractiveExample"),
           () => {
             containsInteractiveExample = true;
             return visit.EXIT;
@@ -159,7 +157,7 @@ const ingredientHandlers = {
     const shortDescriptionP = select("p", filtered);
 
     if (shortDescriptionP === null) {
-      logMissingIngredient(file, context);
+      utils.logMissingIngredient(file, context);
       return;
     }
 
@@ -168,7 +166,7 @@ const ingredientHandlers = {
 
     // See if there's any text remaining
     if (!shortDescriptionText.length) {
-      logMissingIngredient(file, context);
+      utils.logMissingIngredient(file, context);
     }
   },
   "prose.syntax": requireTopLevelHeading("Syntax"),
@@ -186,97 +184,9 @@ function requireTopLevelHeading(id) {
   return (tree, file, context) => {
     const heading = select(`h2#${id}`, tree);
     if (heading === null) {
-      logMissingIngredient(file, context);
+      utils.logMissingIngredient(file, context);
     }
   };
-}
-
-/**
- * Get a subset of `tree` starting with `startNode` and ending just before the
- * next H2 element (or the end of the document, if it doesn't exist).
- *
- * @param {String} startNode - the starting node (e.g., some section heading)
- * @param {Object} tree - a hast tree
- * @returns {Object} a hast tree
- */
-function sliceSection(startNode, tree) {
-  return sliceBetween(startNode, node => node.tagName === "h2", tree);
-}
-
-/**
- * Get a subset of `tree` starting with `startNode` and ending just before the
- * first node that passes `endCondition`.
- *
- * @param {Object} startNode - the starting node (e.g., some section heading)
- * @param {Function} endCondition - a function that takes a node as an argument
- * and returns a boolean (e.g., to stop at a specific node, use `(node) => node
- * === someNode`)
- * @param {Object} tree - a hast tree
- * @returns {Object} a hast tree
- */
-function sliceBetween(startNode, endCondition, tree) {
-  const newRoot = { type: "root", children: [] };
-
-  let inBounds = false;
-  visit(tree, node => {
-    if (node === startNode) {
-      inBounds = true;
-      newRoot.children.push(node);
-      return visit.SKIP;
-    }
-
-    if (inBounds) {
-      if (endCondition(node)) {
-        return visit.EXIT;
-      }
-
-      newRoot.children.push(node);
-      return visit.SKIP;
-    }
-  });
-
-  return newRoot;
-}
-
-/**
- * Test if `node` is a macro call and, optionally, whether it calls a specific macro name.
- *
- * For use with `unist-util-visit` and similar.
- *
- * @param {Object} node - the node to test
- * @param {string} [macroName] - the name of the macro
- * @returns {Boolean} `true` or `false`
- */
-function isMacro(node, macroName) {
-  const isMacroType =
-    node.type === "text" &&
-    node.data !== undefined &&
-    node.data.macroName !== undefined;
-
-  return (
-    isMacroType &&
-    (macroName === undefined ||
-      node.data.macroName === normalizeMacroName(macroName))
-  );
-}
-
-/**
- * Log a message when a file is missing an ingredient.
- *
- * @param {VFile} file - a VFile
- * @param {Object} context - a context object with recipe name and ingredient
- * strings
- */
-function logMissingIngredient(file, context) {
-  const { recipeName, ingredient } = context;
-  const rule = `${recipeName}/${ingredient}`;
-  const origin = `${source}:${rule}`;
-
-  const message = file.message(
-    `Missing from ${recipeName}: ${ingredient}`,
-    origin
-  );
-  message.fatal = true;
 }
 
 module.exports = ingredientHandlers;
