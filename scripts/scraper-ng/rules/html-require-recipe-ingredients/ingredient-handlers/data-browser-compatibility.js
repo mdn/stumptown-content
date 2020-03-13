@@ -3,6 +3,9 @@ const visit = require("unist-util-visit");
 
 const utils = require("./utils.js");
 
+/**
+ * Handler for the `data.browser_compatibility` ingredient.
+ */
 function handleDataBrowserCompatibility(tree, file, context) {
   const id = "Browser_compatibility";
   const body = select(`body`, tree);
