@@ -1,7 +1,6 @@
-const { select } = require("hast-util-select");
 const visit = require("unist-util-visit");
 
-const normalizeMacroName = require("../../normalize-macro-name");
+const normalizeMacroName = require("../../../normalize-macro-name");
 
 /**
  * Get a subset of `tree` starting with `startNode` and ending just before the
