@@ -16,7 +16,7 @@ examples:
 The **`transform`** [CSS](/en-US/docs/Web/CSS) property lets you rotate,
 scale, skew, or translate an element.
 
-## Overview
+## Description
 
 This property modifies the coordinate space
 of the CSS [visual formatting
