@@ -17,9 +17,17 @@
 API=$1
 CREATION_PATH='content/en-US/api/'
 
+echo
+echo "Updating current branch"
 git pull
 git checkout -b "$API"
 
-mkdir "$API"
-cd "$CREATION_PATH$API"
-cp ../ov-template.md "$API".md
+mkdir "$CREATION_PATH$API"
+cp ov-template.md "$CREATION_PATH$API"/"$API".md
+git add "$CREATION_PATH$API"/"$API".md
+
+echo
+echo "A new branch has been created named $API with a template file"
+echo "at $CREATION_PATH$API/$API.md."
+echo
+echo "Follow the instructions in that file then commit and push the result."
