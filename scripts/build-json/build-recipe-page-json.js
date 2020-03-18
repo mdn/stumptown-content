@@ -11,11 +11,13 @@ const { buildLinkList } = require("./build-link-lists");
 
 function processGeneratedIngredient(elementPath, ingredientName, data) {
   switch (ingredientName) {
-    case "status":
-      return packageStatus(
+    case "status": {
+      const status = packageStatus(
         data.specifications,
         packageBCD(data.browser_compatibility)
       );
+      return status.length > 0 ? status : null;
+    }
     default:
       throw new Error(`Unrecognized ingredient: ${ingredientName}`);
   }
@@ -93,10 +95,17 @@ function buildRecipePageJSON(elementPath, data, content, recipe) {
       .split(".");
     if (ingredientType === "generated") {
       // ingredients whose value is not given explicitly, but derived from other content
-      body.push({
-        type: ingredientName,
-        value: processGeneratedIngredient(elementPath, ingredientName, data)
-      });
+      const value = processGeneratedIngredient(
+        elementPath,
+        ingredientName,
+        data
+      );
+      if (value !== null) {
+        body.push({
+          type: ingredientName,
+          value: value
+        });
+      }
     } else if (ingredientType === "data") {
       // ingredients which are specified in front matter
       const value = processDataIngredient(elementPath, ingredientName, data);
