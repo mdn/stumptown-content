@@ -1,0 +1,16 @@
+data:
+  - title
+  - short_title?
+  - mdn_url
+body:
+  - data.interactive_example?
+  - prose.h2.description
+  - prose.h2.constructor
+  - prose.h2.properties
+  - prose.h3.eventhandlers
+  - prose.h2.methods
+  - prose.*
+  - data.examples?
+  - data.specifications
+  - data.browser_compatibility
+  - prose.see_also?
