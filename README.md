@@ -69,3 +69,7 @@ npm test
 ## Refresh your fork
 
 Before sending a new pull request, please [refresh your fork and clone](https://help.github.com/en/articles/syncing-a-fork).
+
+# Public domain dedication
+
+The project code is dedicated to the public domain ([CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)). MDN prose content, found in the `content/` directory, is by Mozilla Contributors and is licensed under [CC-BY-SA 2.5](http://creativecommons.org/licenses/by-sa/2.5/). See [`content/LICENSE.md`](https://github.com/mdn/stumptown-content/blob/master/content/LICENSE.md) for details.
