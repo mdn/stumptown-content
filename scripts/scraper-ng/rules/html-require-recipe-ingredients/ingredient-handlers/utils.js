@@ -78,13 +78,13 @@ function isMacro(node, macroName) {
  * @param {Object} context - a context object with recipe name and ingredient
  * strings
  */
-function logMissingIngredient(file, context) {
+function logIngredientError(file, context, problem) {
   const { recipeName, ingredient, source } = context;
   const rule = `${recipeName}/${ingredient}`;
   const origin = `${source}:${rule}`;
 
   const message = file.message(
-    `Missing from ${recipeName}: ${ingredient}`,
+    `${problem} ${ingredient} from: ${recipeName}: `,
     origin
   );
   message.fatal = true;
@@ -94,5 +94,5 @@ module.exports = {
   sliceSection,
   sliceBetween,
   isMacro,
-  logMissingIngredient
+  logIngredientError
 };

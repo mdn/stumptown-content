@@ -16,10 +16,9 @@ function requireRecipeIngredientsPlugin() {
     const recipe = loadRecipe(file.data.recipePath);
 
     const requiredBody = recipe.body.filter(
-      ingredientName =>
-        !(ingredientName.endsWith("?") || ingredientName.endsWith(".*"))
+      ingredientName => !ingredientName.endsWith(".*")
     );
-
+    console.log(requiredBody);
     for (const ingredient of requiredBody) {
       const info = {
         source,

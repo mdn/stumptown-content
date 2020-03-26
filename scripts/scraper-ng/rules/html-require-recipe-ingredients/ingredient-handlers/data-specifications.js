@@ -18,7 +18,7 @@ function handleDataSpecifications(tree, file, context) {
       `${context.source}:${context.recipeName}/${context.ingredient}/expected-heading`
     );
     message.fatal = true;
-    utils.logMissingIngredient(file, context);
+    utils.logIngredientError(file, context, "Missing");
     return;
   }
 
@@ -42,7 +42,7 @@ function handleDataSpecifications(tree, file, context) {
       `${context.source}:${context.recipeName}/${context.ingredient}/expected-macro`
     );
     message.fatal = true;
-    utils.logMissingIngredient(file, context);
+    utils.logIngredientError(file, context, "Missing");
   }
 }
 

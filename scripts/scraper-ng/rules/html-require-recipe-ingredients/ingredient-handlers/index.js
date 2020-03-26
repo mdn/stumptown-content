@@ -3,6 +3,7 @@ const { select } = require("hast-util-select");
 const handleDataSpecifications = require("./data-specifications");
 const handleDataBrowserCompatibility = require("./data-browser-compatibility");
 const handleProseShortDescription = require("./prose-short-description");
+const handleDataStaticMethods = require("./data-static-methods");
 
 const utils = require("./utils.js");
 
@@ -33,7 +34,8 @@ const ingredientHandlers = {
   "prose.see_also": requireTopLevelHeading("See_also"),
   "prose.short_description": handleProseShortDescription,
   "prose.syntax": requireTopLevelHeading("Syntax"),
-  "prose.what_went_wrong": requireTopLevelHeading("What_went_wrong")
+  "prose.what_went_wrong": requireTopLevelHeading("What_went_wrong"),
+  "data.static_methods?": handleDataStaticMethods
 };
 
 /**
@@ -60,7 +62,7 @@ function requireTopLevelHeading(id) {
   return (tree, file, context) => {
     const heading = select(`h2#${id}`, tree);
     if (heading === null) {
-      utils.logMissingIngredient(file, context);
+      utils.logIngredientError(file, context, "Missing");
     }
   };
 }

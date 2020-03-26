@@ -63,7 +63,7 @@ function handleProseShortDescription(tree, file, context) {
   const shortDescriptionP = select("p", filtered);
 
   if (shortDescriptionP === null) {
-    utils.logMissingIngredient(file, context);
+    utils.logIngredientError(file, context, "Missing");
     return;
   }
 
@@ -72,7 +72,7 @@ function handleProseShortDescription(tree, file, context) {
 
   // See if there's any text remaining
   if (!shortDescriptionText.length) {
-    utils.logMissingIngredient(file, context);
+    utils.logIngredientError(file, context, "Missing");
   }
 }
 

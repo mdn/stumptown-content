@@ -18,7 +18,7 @@ function handleDataBrowserCompatibility(tree, file, context) {
       `${context.source}:${context.recipeName}/${context.ingredient}/expected-heading`
     );
     message.fatal = true;
-    utils.logMissingIngredient(file, context);
+    utils.logIngredientError(file, context, "Missing");
     return;
   }
 
@@ -32,7 +32,7 @@ function handleDataBrowserCompatibility(tree, file, context) {
   );
 
   if (macroCount !== 1) {
-    utils.logMissingIngredient(file, context);
+    utils.logIngredientError(file, context, "Missing");
   }
 }
 
