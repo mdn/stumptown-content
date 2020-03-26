@@ -71,12 +71,26 @@ function isMacro(node, macroName) {
   );
 }
 
+function logError(body, file, context) {
+  return function(text, id) {
+    const message = file.message(
+      text,
+      body,
+      `${context.source}:${context.recipeName}/${context.ingredient}/${id}`
+    );
+    message.fatal = true;
+    logIngredientError(file, context, "Invalid");
+  };
+}
+
 /**
- * Log a message when a file is missing an ingredient.
+ * Log a message when a file is missing an ingredient or contains
+ * an incorrectly structured ingredient.
  *
  * @param {VFile} file - a VFile
  * @param {Object} context - a context object with recipe name and ingredient
  * strings
+ * @param {String} problem - a string identifying the general type of problem
  */
 function logIngredientError(file, context, problem) {
   const { recipeName, ingredient, source } = context;
@@ -84,7 +98,7 @@ function logIngredientError(file, context, problem) {
   const origin = `${source}:${rule}`;
 
   const message = file.message(
-    `${problem} ${ingredient} from: ${recipeName}: `,
+    `${problem} ${ingredient} from ${recipeName}`,
     origin
   );
   message.fatal = true;
@@ -94,5 +108,6 @@ module.exports = {
   sliceSection,
   sliceBetween,
   isMacro,
+  logError,
   logIngredientError
 };
