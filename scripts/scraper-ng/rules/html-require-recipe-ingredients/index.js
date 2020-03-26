@@ -18,7 +18,7 @@ function requireRecipeIngredientsPlugin() {
     const requiredBody = recipe.body.filter(
       ingredientName => !ingredientName.endsWith(".*")
     );
-    console.log(requiredBody);
+
     for (const ingredient of requiredBody) {
       const info = {
         source,
