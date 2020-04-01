@@ -71,28 +71,22 @@ function isMacro(node, macroName) {
   );
 }
 
-/**
- * Log a message when a file is missing an ingredient.
- *
- * @param {VFile} file - a VFile
- * @param {Object} context - a context object with recipe name and ingredient
- * strings
- */
-function logMissingIngredient(file, context) {
-  const { recipeName, ingredient, source } = context;
-  const rule = `${recipeName}/${ingredient}`;
-  const origin = `${source}:${rule}`;
-
-  const message = file.message(
-    `Missing from ${recipeName}: ${ingredient}`,
-    origin
-  );
-  message.fatal = true;
+function Logger(file, source, recipeName, ingredient) {
+  return {
+    fail: function(node, text, id) {
+      const message = file.message(
+        text,
+        node,
+        `${source}:${recipeName}/${ingredient}/${id}`
+      );
+      message.fatal = true;
+    }
+  };
 }
 
 module.exports = {
   sliceSection,
   sliceBetween,
   isMacro,
-  logMissingIngredient
+  Logger
 };

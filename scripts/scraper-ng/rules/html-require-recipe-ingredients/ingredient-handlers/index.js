@@ -4,8 +4,6 @@ const handleDataSpecifications = require("./data-specifications");
 const handleDataBrowserCompatibility = require("./data-browser-compatibility");
 const handleProseShortDescription = require("./prose-short-description");
 
-const utils = require("./utils.js");
-
 /**
  * Functions to check for recipe ingredients in Kuma page sources.
  *
@@ -23,7 +21,6 @@ const utils = require("./utils.js");
  *
  */
 const ingredientHandlers = {
-  default: unimplementedHandler,
   "data.browser_compatibility": handleDataBrowserCompatibility,
   "data.examples": requireTopLevelHeading("Examples"),
   "data.specifications": handleDataSpecifications,
@@ -37,18 +34,6 @@ const ingredientHandlers = {
 };
 
 /**
- * The default handler, that's called when we haven't yet implemented a handler
- * for a given ingredient.
- */
-function unimplementedHandler(tree, file, context) {
-  const { recipeName, ingredient, source } = context;
-  const rule = `${recipeName}/${ingredient}`;
-  const origin = `${source}:${rule}`;
-
-  file.message(`Linting ${ingredient} ingredient is unimplemented`, origin);
-}
-
-/**
  * A convenience function that returns ingredient handlers for checking
  * the existence of a certain H2 in a hast tree.
  *
@@ -57,10 +42,10 @@ function unimplementedHandler(tree, file, context) {
  * @returns {Function} a function
  */
 function requireTopLevelHeading(id) {
-  return (tree, file, context) => {
+  return (tree, logger) => {
     const heading = select(`h2#${id}`, tree);
     if (heading === null) {
-      utils.logMissingIngredient(file, context);
+      logger.fail(tree, `Expected h2#${id}`, "expected-heading");
     }
   };
 }

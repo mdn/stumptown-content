@@ -6,19 +6,13 @@ const utils = require("./utils.js");
 /**
  * Handler for the `data.browser_compatibility` ingredient.
  */
-function handleDataBrowserCompatibility(tree, file, context) {
+function handleDataBrowserCompatibility(tree, logger) {
   const id = "Browser_compatibility";
   const body = select(`body`, tree);
   const heading = select(`h2#${id}`, body);
 
   if (heading === null) {
-    const message = file.message(
-      `Expected h2#${id}`,
-      body,
-      `${context.source}:${context.recipeName}/${context.ingredient}/expected-heading`
-    );
-    message.fatal = true;
-    utils.logMissingIngredient(file, context);
+    logger.fail(body, `Expected h2#${id}`, "expected-heading");
     return;
   }
 
@@ -32,7 +26,7 @@ function handleDataBrowserCompatibility(tree, file, context) {
   );
 
   if (macroCount !== 1) {
-    utils.logMissingIngredient(file, context);
+    logger.fail(body, `Expected Compat macro`, "expected-macro");
   }
 }
 

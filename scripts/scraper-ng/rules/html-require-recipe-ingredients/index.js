@@ -4,6 +4,7 @@ const path = require("path");
 const yaml = require("js-yaml");
 
 const ingredientHandlers = require("./ingredient-handlers");
+const { Logger } = require("./ingredient-handlers/utils");
 
 const source = "html-require-ingredient";
 
@@ -21,15 +22,13 @@ function requireRecipeIngredientsPlugin() {
     );
 
     for (const ingredient of requiredBody) {
-      const info = {
-        source,
-        recipeName,
-        ingredient
-      };
       if (ingredient in ingredientHandlers) {
-        ingredientHandlers[ingredient](tree, file, info);
+        const logger = Logger(file, source, recipeName, ingredient);
+        ingredientHandlers[ingredient](tree, logger);
       } else {
-        ingredientHandlers.default(tree, file, info);
+        const rule = `${recipeName}/${ingredient}`;
+        const origin = `${source}:${rule}`;
+        file.message(`Handler for ${ingredient} is unimplemented`, origin);
       }
     }
   };

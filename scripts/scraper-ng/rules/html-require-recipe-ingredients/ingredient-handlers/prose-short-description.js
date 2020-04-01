@@ -8,7 +8,7 @@ const utils = require("./utils.js");
 /**
  * Handler for the `prose.short_description` ingredient.
  */
-function handleProseShortDescription(tree, file, context) {
+function handleProseShortDescription(tree, logger) {
   // Short descriptions are complicated!
   //
   // A short description is understood to be either an seoSummary <span> or
@@ -63,7 +63,7 @@ function handleProseShortDescription(tree, file, context) {
   const shortDescriptionP = select("p", filtered);
 
   if (shortDescriptionP === null) {
-    utils.logMissingIngredient(file, context);
+    logger.fail(body, `Missing short description`, "missing-prose-section");
     return;
   }
 
@@ -72,7 +72,11 @@ function handleProseShortDescription(tree, file, context) {
 
   // See if there's any text remaining
   if (!shortDescriptionText.length) {
-    utils.logMissingIngredient(file, context);
+    logger.fail(
+      shortDescriptionP,
+      `Missing short description`,
+      "missing-prose-section"
+    );
   }
 }
 
