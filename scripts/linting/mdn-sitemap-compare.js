@@ -30,7 +30,7 @@ async function fetchSitemap(url) {
 
 async function getLocs(url) {
   const payload = await fetchSitemap(url);
-  return [...payload.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);
+  return [...payload.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
 }
 
 function getMDNURL(filePath) {
@@ -45,21 +45,21 @@ function checkAll(allPossible, locales) {
   function findFiles(directory) {
     const found = fs
       .readdirSync(directory, { withFileTypes: true })
-      .filter(dirent => dirent.isFile() && dirent.name.endsWith(".md"))
-      .map(dirent => path.join(directory, dirent.name));
+      .filter((dirent) => dirent.isFile() && dirent.name.endsWith(".md"))
+      .map((dirent) => path.join(directory, dirent.name));
 
     fs.readdirSync(directory, { withFileTypes: true })
-      .filter(dirent => dirent.isDirectory())
-      .map(dirent => path.join(directory, dirent.name))
+      .filter((dirent) => dirent.isDirectory())
+      .map((dirent) => path.join(directory, dirent.name))
       .map(findFiles)
-      .forEach(files => found.push(...files));
+      .forEach((files) => found.push(...files));
 
     return found;
   }
   const files = findFiles(path.join(ROOT, "content"));
   // This is an array of every possible `mdn_url:` value in all the
   // front matters of all the .md files. ...filtered by locales.
-  const ownMdnUrls = files.map(getMDNURL).filter(uri => {
+  const ownMdnUrls = files.map(getMDNURL).filter((uri) => {
     if (uri) {
       if (!locales.length) {
         return true;
@@ -77,7 +77,7 @@ function checkAll(allPossible, locales) {
   Object.entries(allPossible).forEach(([uri, locale]) => {
     allPossibleLowercase[uri.toLowerCase()] = locale;
   });
-  ownMdnUrls.forEach(uri => {
+  ownMdnUrls.forEach((uri) => {
     const hasURI = !!allPossible[uri];
     let icon = "✅";
     let note = "";
@@ -108,7 +108,7 @@ async function main(locales) {
     return;
   }
 
-  const allUrls = sitemapUrls.filter(url_ => {
+  const allUrls = sitemapUrls.filter((url_) => {
     return (
       url_.includes("/sitemap.xml") &&
       (!locales.length ||
@@ -118,8 +118,8 @@ async function main(locales) {
   try {
     const values = await Promise.all(allUrls.map(getLocs));
     const allPossible = {};
-    values.forEach(urls => {
-      urls.forEach(url_ => {
+    values.forEach((urls) => {
+      urls.forEach((url_) => {
         const pathname = url.parse(url_).pathname;
         const locale = pathname.split("/")[1];
         allPossible[url.parse(url_).pathname] = locale;

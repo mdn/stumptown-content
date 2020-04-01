@@ -29,7 +29,7 @@ function packageValues(dom) {
   for (let valueHeading of valueHeadings) {
     let value = {
       value: valueHeading.textContent,
-      description: extractFromSiblings(valueHeading, ["H2", "H3"], "html")
+      description: extractFromSiblings(valueHeading, ["H2", "H3"], "html"),
     };
     values.push(value);
   }
@@ -64,13 +64,13 @@ function packageAttribute(attributePath) {
 
 function getAttributePaths(root, attributesKey) {
   if (Array.isArray(attributesKey)) {
-    return attributesKey.map(relative => path.join(root, relative));
+    return attributesKey.map((relative) => path.join(root, relative));
   } else {
     const attributesDirectory = path.join(root, attributesKey);
     if (fs.lstatSync(attributesDirectory).isDirectory()) {
       return fs
         .readdirSync(attributesDirectory)
-        .map(relative => path.join(attributesDirectory, relative));
+        .map((relative) => path.join(attributesDirectory, relative));
     }
   }
 }
@@ -81,5 +81,5 @@ function packageAttributes(root, attributesKey) {
 }
 
 module.exports = {
-  packageAttributes
+  packageAttributes,
 };

@@ -22,7 +22,7 @@ async function toVFile(input) {
   const f = vfile({
     path: url,
     cwd: null,
-    data: { url }
+    data: { url },
   });
 
   try {

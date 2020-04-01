@@ -33,7 +33,7 @@ const ingredientHandlers = {
   "prose.see_also": requireTopLevelHeading("See_also"),
   "prose.short_description": handleProseShortDescription,
   "prose.syntax": requireTopLevelHeading("Syntax"),
-  "prose.what_went_wrong": requireTopLevelHeading("What_went_wrong")
+  "prose.what_went_wrong": requireTopLevelHeading("What_went_wrong"),
 };
 
 /**

@@ -9,7 +9,7 @@ const keywordToPixels = {
   "css-standard": 390,
   "html-short": 375,
   "html-standard": 445,
-  "html-tall": 655
+  "html-tall": 655,
 };
 
 function packageInteractiveExample(interactiveExampleSpec) {
@@ -21,10 +21,10 @@ function packageInteractiveExample(interactiveExampleSpec) {
   }
   return {
     url: interactiveExampleSpec.url,
-    height: heightInPixels
+    height: heightInPixels,
   };
 }
 
 module.exports = {
-  packageInteractiveExample
+  packageInteractiveExample,
 };

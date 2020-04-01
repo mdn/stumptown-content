@@ -20,7 +20,7 @@ function getSampleScope(startNode, dom) {
     H3: ["H1", "H2", "H3"],
     H4: ["H1", "H2", "H3", "H4"],
     H5: ["H1", "H2", "H3", "H4", "H5"],
-    H6: ["H1", "H2", "H3", "H4", "H5", "H6"]
+    H6: ["H1", "H2", "H3", "H4", "H5", "H6"],
   };
 
   const headingTags = ["H1", "H2", "H3", "H4", "H5", "H6"];
@@ -107,7 +107,7 @@ async function extractLiveSample(macroArgs, dom, examplesDir) {
     cssSource: scrapeCodeComponents(container, "css"),
     // The scrapeCodeComponents calls remove code blocks from `container`,
     // so must go *before* this line, which just sweeps up whatever's left.
-    description: String(await toMarkdown(container.innerHTML))
+    description: String(await toMarkdown(container.innerHTML)),
   };
   writeExampleContents(exampleContents, path.join(examplesDir, macroArgs[0]));
   if (container.parentNode) {
@@ -127,7 +127,7 @@ async function processLiveSamples(htmlWithMacroCalls, result, destination) {
   if (macroCalls.length) {
     let lsFrontMatter = "examples:\n";
     lsFrontMatter += macroCalls
-      .map(macroCall => `    - examples/${macroCall[0]}\n`)
+      .map((macroCall) => `    - examples/${macroCall[0]}\n`)
       .join("");
     result.frontMatter += lsFrontMatter;
     if (!fs.existsSync(examplesDir)) {
@@ -141,5 +141,5 @@ async function processLiveSamples(htmlWithMacroCalls, result, destination) {
 }
 
 module.exports = {
-  processLiveSamples
+  processLiveSamples,
 };

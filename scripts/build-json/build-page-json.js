@@ -95,7 +95,7 @@ function buildPageJSON(docsPath) {
       mdn_url: data.mdn_url,
       related_content: related.buildRelatedContent(relatedContentSpec, locale),
       body: body,
-      contributors: contributors
+      contributors: contributors,
     };
 
     destPath = writeToFile(item, docsDirectory);
@@ -105,5 +105,5 @@ function buildPageJSON(docsPath) {
 }
 
 module.exports = {
-  buildPageJSON
+  buildPageJSON,
 };

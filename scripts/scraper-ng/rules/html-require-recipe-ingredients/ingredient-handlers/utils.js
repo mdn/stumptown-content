@@ -11,7 +11,7 @@ const normalizeMacroName = require("../../../normalize-macro-name");
  * @returns {Object} a hast tree
  */
 function sliceSection(startNode, tree) {
-  return sliceBetween(startNode, node => node.tagName === "h2", tree);
+  return sliceBetween(startNode, (node) => node.tagName === "h2", tree);
 }
 
 /**
@@ -29,7 +29,7 @@ function sliceBetween(startNode, endCondition, tree) {
   const newRoot = { type: "root", children: [] };
 
   let inBounds = false;
-  visit(tree, node => {
+  visit(tree, (node) => {
     if (node === startNode) {
       inBounds = true;
       newRoot.children.push(node);
@@ -94,5 +94,5 @@ module.exports = {
   sliceSection,
   sliceBetween,
   isMacro,
-  logMissingIngredient
+  logMissingIngredient,
 };

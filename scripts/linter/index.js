@@ -31,8 +31,8 @@ function main(args) {
     .use(deprecatedSections, {
       sections: {
         "html-element": ["usage_notes", "specifications"],
-        "css-property": ["usage_notes"]
-      }
+        "css-property": ["usage_notes"],
+      },
     })
     .use(missingSections);
 
