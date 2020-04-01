@@ -26,7 +26,7 @@ function requireRecipeIngredientsPlugin() {
         const logger = Logger(file, source, recipeName, ingredient);
         ingredientHandlers[ingredient](tree, logger);
       } else {
-        const rule = `${recipeName}/${ingredient}`;
+        const rule = `${recipeName}/${ingredient}/handler-not-implemented`;
         const origin = `${source}:${rule}`;
         file.message(`Handler for ${ingredient} is unimplemented`, origin);
       }
