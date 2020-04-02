@@ -27,7 +27,7 @@
     },
     "dependencies": {
         "async-sema": "^3.1.0",
-        "chalk": "^3.0.0",
+        "chalk": "^4.0.0",
         "gray-matter": "4.0.2",
         "hast-util-find-and-replace": "^3.0.0",
         "hast-util-has-property": "^1.0.4",
