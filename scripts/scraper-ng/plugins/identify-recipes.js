@@ -4,57 +4,57 @@ const signatures = [
   {
     recipePath: recipe("javascript-namespace"),
     conditions: {
-      tags: ["JavaScript", "Namespace"]
-    }
+      tags: ["JavaScript", "Namespace"],
+    },
   },
   {
     recipePath: recipe("javascript-class"),
     conditions: {
-      tags: ["JavaScript", "Class"]
-    }
+      tags: ["JavaScript", "Class"],
+    },
   },
   {
     recipePath: recipe("javascript-constructor"),
     conditions: {
-      tags: ["JavaScript", "Constructor"]
-    }
+      tags: ["JavaScript", "Constructor"],
+    },
   },
   {
     recipePath: recipe("javascript-error"),
     conditions: {
-      tags: ["JavaScript", "Error"]
-    }
+      tags: ["JavaScript", "Error"],
+    },
   },
   {
     recipePath: recipe("javascript-method"),
     conditions: {
-      tags: ["JavaScript", "Method"]
-    }
+      tags: ["JavaScript", "Method"],
+    },
   },
   {
     recipePath: recipe("javascript-property"),
     conditions: {
-      tags: ["JavaScript", "Property"]
-    }
+      tags: ["JavaScript", "Property"],
+    },
   },
   {
     recipePath: recipe("javascript-language-feature"),
     conditions: {
-      tags: ["JavaScript", "Language feature"]
-    }
+      tags: ["JavaScript", "Language feature"],
+    },
   },
   {
     recipePath: recipe("landing-page"),
     conditions: {
-      tags: ["Landing page"]
-    }
+      tags: ["Landing page"],
+    },
   },
   {
     recipePath: recipe("guide"),
     conditions: {
-      tags: ["Guide"]
-    }
-  }
+      tags: ["Guide"],
+    },
+  },
 ];
 
 /**

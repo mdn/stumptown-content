@@ -16,5 +16,5 @@ function toMarkdown(html) {
 }
 
 module.exports = {
-  toMarkdown
+  toMarkdown,
 };

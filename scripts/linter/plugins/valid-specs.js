@@ -17,7 +17,7 @@ const specURLRegex = new RegExp("^http(s)?://[^#]+#.+");
  */
 function attacher() {
   return function transformer(tree, file) {
-    visit(tree, "yaml", node => {
+    visit(tree, "yaml", (node) => {
       let specs = node.data.yaml.specifications;
       // specifications are optional
       if (specs) {
@@ -25,7 +25,7 @@ function attacher() {
         if (!Array.isArray(specs)) {
           specs = [specs];
         }
-        specs.forEach(spec => {
+        specs.forEach((spec) => {
           // "non-standard" is a special string indicating that there is no spec. Allow this one.
           if (spec === "non-standard") {
             return;
@@ -41,7 +41,7 @@ function attacher() {
           }
           // Spec URLs should be allow-listed, so that we don't list any outdated specs.
           const allowedSpecs = Object.keys(specMap);
-          if (!allowedSpecs.some(key => spec.includes(key))) {
+          if (!allowedSpecs.some((key) => spec.includes(key))) {
             const message = file.message(
               `Domain for "${spec}" not found in data/specifications.yaml`,
               node,

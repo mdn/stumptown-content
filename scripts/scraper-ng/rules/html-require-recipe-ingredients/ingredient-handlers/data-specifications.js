@@ -17,7 +17,7 @@ function handleDataSpecifications(tree, logger) {
   }
 
   let sectionOk = false;
-  visit(utils.sliceSection(heading, body), "text", node => {
+  visit(utils.sliceSection(heading, body), "text", (node) => {
     if (utils.isMacro(node, "SpecName")) {
       sectionOk = true;
       return visit.SKIP;

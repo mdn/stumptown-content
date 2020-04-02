@@ -45,7 +45,7 @@ function packageExample(examplePath) {
 
   return {
     description: data,
-    sources: sources
+    sources: sources,
   };
 }
 
@@ -55,5 +55,5 @@ function packageExamples(paths) {
 
 module.exports = {
   packageExamples,
-  packageExample
+  packageExample,
 };

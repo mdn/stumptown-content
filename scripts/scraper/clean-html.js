@@ -33,7 +33,7 @@ function removeBrowserCompatibility(dom) {
   const hiddenElements = dom.window.document.querySelectorAll(
     "#bcd-section-wrapper .hidden"
   );
-  hiddenElements.forEach(hidden => hidden.remove());
+  hiddenElements.forEach((hidden) => hidden.remove());
 
   if (sectionWrapper.hasChildNodes()) {
     console.error("There's unexpected content in the BCD section.");
@@ -49,5 +49,5 @@ function removeBrowserCompatibility(dom) {
 module.exports = {
   removeBrowserCompatibility,
   removeNode,
-  removeTitleAttributes
+  removeTitleAttributes,
 };

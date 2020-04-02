@@ -8,5 +8,5 @@ function packageContributors(contributorsPath) {
 }
 
 module.exports = {
-  packageContributors
+  packageContributors,
 };
