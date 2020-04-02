@@ -73,14 +73,14 @@ function isMacro(node, macroName) {
 
 function Logger(file, source, recipeName, ingredient) {
   return {
-    fail: function(node, text, id) {
+    fail: function (node, text, id) {
       const message = file.message(
         text,
         node,
         `${source}:${recipeName}/${ingredient}/${id}`
       );
       message.fatal = true;
-    }
+    },
   };
 }
 
