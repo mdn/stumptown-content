@@ -32,7 +32,7 @@ in a document, page, application, or site, which is intended to be
 independently distributable or reusable (e.g., in syndication). Examples
 include: a forum post, a magazine or newspaper article, or a blog entry.
 
-## Overview
+## Description
 
 A given document can have multiple articles in it; for example, on a
 blog that shows the text of each article one after another as the reader

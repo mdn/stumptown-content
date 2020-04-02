@@ -7,7 +7,7 @@ The overall outline of an HTML element reference page on MDN is like this:
 ```
 short description prose
 interactive example
-overview prose
+description prose
 
 H2 Attributes
 attributes prose
@@ -39,21 +39,21 @@ The recipe for an HTML element, as it's currently specified, is like this:
 
 ```yml
 body:
-- prose.short-description
-- meta.interactive-example?
-- prose.overview?
-- prose.attributes-text?
-- meta.attributes
-- prose.usage-notes
-- prose.*
-- prose.accessibility-concerns?
-- meta.examples
-- meta.info-box:
-    - meta.api
-    - meta.permitted-aria-roles
-    - meta.tag_omission
-- meta.browser-compatibility
-- prose.see-also
+  - prose.short-description
+  - meta.interactive-example?
+  - prose.description?
+  - prose.attributes-text?
+  - meta.attributes
+  - prose.usage-notes
+  - prose.*
+  - prose.accessibility-concerns?
+  - meta.examples
+  - meta.info-box:
+      - meta.api
+      - meta.permitted-aria-roles
+      - meta.tag_omission
+  - meta.browser-compatibility
+  - prose.see-also
 ```
 
 Entries in the recipe are either prefixed "prose.", in which case they are bits of the prose.md file and are generally just inserted as Markdown, or they are prefixed "meta." in which case they are bits of the meta.yaml file. Some meta.yaml entries point somewhere else and require special handling.
@@ -67,7 +67,7 @@ Maybe the "recipe" is more like the first block above, that explicitly represent
 ```yml
 - prose.short-description
 - meta.interactive-example?
-- prose.overview?
+- prose.description?
 - H2.Attributes
 - prose.attributes-text?
 - meta.attributes
@@ -110,7 +110,7 @@ The linked page should be embedded in an iframe for inclusion in the page - in K
 
 The way we handle interactive examples here is likely to change in the future, but that's a different conversation.
 
-### prose.overview
+### prose.description
 
 Optional.
 
@@ -136,23 +136,23 @@ For MDN pages we could just handle "global" with some text like "Like all other 
 
 "element-specific": is more complicated. The directory pointed to should contain one or more Markdown files each of which documents an attribute. Each of those files has its own structure:
 
-* front matter which is currently just a BCD reference
+- front matter which is currently just a BCD reference
 
-* H1: this is the name of the attribute (marked up in ``), and is followed by some freeform Markdown describing the attribute.
+- H1: this is the name of the attribute (marked up in ``), and is followed by some freeform Markdown describing the attribute.
 
-* H2 "Values" (optional): If present this contains the values it can take. Each H3 under here is the value's name (marked up in ``), and is followed by some Markdown describing that value.
+- H2 "Values" (optional): If present this contains the values it can take. Each H3 under here is the value's name (marked up in ``), and is followed by some Markdown describing that value.
 
-* H2: "Type" (mandatory (?)): If present this is followed by a string describing the type of the attribute. I think this ought to be an enumerated list of possible types, including "String", "Boolean", "Number", and possibly "URL".
+- H2: "Type" (mandatory (?)): If present this is followed by a string describing the type of the attribute. I think this ought to be an enumerated list of possible types, including "String", "Boolean", "Number", and possibly "URL".
 
 For an example of a relatively complex attribute see [video.crossorigin](https://github.com/mdn/stumptown-content/blob/master/content/html/elements/video/attributes/crossorigin.md).
 
 To render it in an MDN page, we could say:
 
-* element-specific attributes are a `<dl>`
+- element-specific attributes are a `<dl>`
 
-* each attribute is a `<dt><dd>` item, where the `<dt>` is the attribute name and the `<dd>` is the description.
+- each attribute is a `<dt><dd>` item, where the `<dt>` is the attribute name and the `<dd>` is the description.
 
-* the `<dd>` description starts with the type, followed by the description. If values are specified they are given as a `<ul>`, in which each `<li>` consists of the value name followed by the value description.
+- the `<dd>` description starts with the type, followed by the description. If values are specified they are given as a `<ul>`, in which each `<li>` consists of the value name followed by the value description.
 
 This would give us something close to what MDN currently does to render attributes (see for example "referrerpolicy" in https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#Attributes ). We might choose to do something different though, and MDN is currently quite inconsistent here.
 
@@ -164,7 +164,7 @@ This is found as a named section of the prose.md file.
 
 It's a blob of Markdown that should just be converted to HTML and added to the document.
 
-### prose.*
+### prose.\*
 
 Optional.
 
@@ -190,30 +190,30 @@ The meta.examples item does not cover interactive-examples, they are handled sep
 
 There are two cases to handle:
 
-* static examples which are really just a code block and a text description
+- static examples which are really just a code block and a text description
 
-* live examples which are a text description plus some executable code, which need to be made executable in the page (for example in an iframe as [the current live samples do](https://developer.mozilla.org/en-US/docs/MDN/Contribute/Structures/Code_examples#Traditional_live_samples))
+- live examples which are a text description plus some executable code, which need to be made executable in the page (for example in an iframe as [the current live samples do](https://developer.mozilla.org/en-US/docs/MDN/Contribute/Structures/Code_examples#Traditional_live_samples))
 
 So, "meta.examples" is found as a property in the meta.yaml file. It's a list of paths relative to the meta.yaml file. Each item in the list specifies an example, and examples should be rendered in the order given (this is different from the specification of attributes, which just gives you a directory: that's because writers want to present examples in a particular order, while attributes should always be listed alphabetically).
 
 To render each example, look in its directory. I think we probably need to think more about the specification of an example, but it's something like this.
 
-* an example may have any of the following files:
-    * a file called "description.md"
-    * files called "example.js", "example.css", "example.html"
+- an example may have any of the following files:
+  - a file called "description.md"
+  - files called "example.js", "example.css", "example.html"
 
 If "description.md" exists it may have:
 
-* a front matter section that may contain:
-    * "title": if this is present the example gets an H3 heading containing the specified title text
-    * "width" and "height": if these are present then the example is a live sample, and these properties define the width and height of the output iframe in pixels.
-
+- a front matter section that may contain:
+  - "title": if this is present the example gets an H3 heading containing the specified title text
+  - "width" and "height": if these are present then the example is a live sample, and these properties define the width and height of the output iframe in pixels.
 
 * some Markdown text describing what the example does (or sometimes, just referring the reader to a different page where examples could be found, e.g. in [col#Examples](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/col#Examples). If this is present it should be rendered as HTML after the H3 heading, if there was one.
 
-For any example.* files found:
-* they are rendered as code blocks (probably with a heading identifying JS/CSS/HTML?) in some predefined order (maybe HTML, CSS, JS?)
-* if the example is to be treated as a live sample, then that has to be handled in a functionally similar way to that in which Kuma handles live samples now (this is I believe a combination of the [EmbedLiveSample macro](https://github.com/mdn/kumascript/blob/master/macros/EmbedLiveSample.ejs) and some Kuma core code). This gives an output box in which the result of the code is shown.
+For any example.\* files found:
+
+- they are rendered as code blocks (probably with a heading identifying JS/CSS/HTML?) in some predefined order (maybe HTML, CSS, JS?)
+- if the example is to be treated as a live sample, then that has to be handled in a functionally similar way to that in which Kuma handles live samples now (this is I believe a combination of the [EmbedLiveSample macro](https://github.com/mdn/kumascript/blob/master/macros/EmbedLiveSample.ejs) and some Kuma core code). This gives an output box in which the result of the code is shown.
 
 As I say, I think we might want to improve the specification of examples. This is a first effort to try to capture the main ways in which people write examples at the moment. I'd like to find a balance between giving writers flexibility to present examples in the way they want, and keeping the code that handles them from being too complicated.
 
@@ -227,11 +227,11 @@ Mandatory.
 
 This is data for the blue box that shows up in all pages, sometimes under the heading ["Technical summary"](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video#Technical_summary). We're not sure yet exactly which data should be in this box, but that the moment we're listing three things:
 
-* meta.api: identifies the JavaScript interface to the element. Although it's just specified as a string at the moment, it should probably be a link.
+- meta.api: identifies the JavaScript interface to the element. Although it's just specified as a string at the moment, it should probably be a link.
 
-* meta.permitted-aria-roles: get this from the meta.yaml file. It lists, well, permitted ARIA roles. I think it is a bit underspecified at the moment.
+- meta.permitted-aria-roles: get this from the meta.yaml file. It lists, well, permitted ARIA roles. I think it is a bit underspecified at the moment.
 
-* meta.tag_omission: whether you can omit the closing tag. Obviously this should be renamed "meta.tag-omission".
+- meta.tag_omission: whether you can omit the closing tag. Obviously this should be renamed "meta.tag-omission".
 
 All these items can be got from the meta.yaml file, and they should be rendered into a table/box like the blue box that's there now.
 

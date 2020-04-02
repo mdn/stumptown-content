@@ -4,7 +4,7 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const namedSections = [
   "Short description",
-  "Overview",
+  "Description",
   "Attributes",
   "Usage notes",
   "Accessibility concerns",

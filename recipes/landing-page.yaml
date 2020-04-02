@@ -3,5 +3,5 @@ data:
   - short_title?
   - mdn_url
 body:
-  - prose.overview
+  - prose.description?
   - data.link_lists
