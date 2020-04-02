@@ -25,7 +25,7 @@ function handleDataBrowserCompatibility(tree, file, context) {
   let macroCount = 0;
   visit(
     utils.sliceSection(heading, body),
-    node => utils.isMacro(node, "Compat"),
+    (node) => utils.isMacro(node, "Compat"),
     () => {
       macroCount += 1;
     }

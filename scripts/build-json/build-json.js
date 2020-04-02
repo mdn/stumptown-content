@@ -11,7 +11,10 @@ function findItems(directory, searchPaths, filepaths = []) {
     if (fs.statSync(filepath).isDirectory()) {
       findItems(filepath, searchPaths, filepaths);
     } else if (path.extname(filename) === ".md") {
-      if (!searchPaths.length || searchPaths.some(s => filepath.includes(s))) {
+      if (
+        !searchPaths.length ||
+        searchPaths.some((s) => filepath.includes(s))
+      ) {
         filepaths.push(filepath);
       }
     }
@@ -31,7 +34,7 @@ function buildJSON(searchPaths) {
   function printPath(p) {
     return p.replace(cwd, "");
   }
-  items.forEach(item => {
+  items.forEach((item) => {
     let built;
     try {
       built = buildPage.buildPageJSON(item);

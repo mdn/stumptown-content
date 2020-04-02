@@ -18,7 +18,7 @@ function contentFromFile(filePath) {
     data: item.data,
     // gray-matter calls the Markdown part "content"
     // but we want to call it "prose"
-    prose: item.content
+    prose: item.content,
   };
 }
 
@@ -33,14 +33,14 @@ function linkFromContent(content) {
   let shortDescriptions = [];
   const prose = proseSlicer.packageProse(content.prose);
   shortDescriptions = prose.filter(
-    section => section.value.id === "short_description"
+    (section) => section.value.id === "short_description"
   );
   return {
     title: content.data.title,
     short_title: content.data.short_title || null,
     mdn_url: content.data.mdn_url,
     short_description:
-      (shortDescriptions.length && shortDescriptions[0].value.content) || null
+      (shortDescriptions.length && shortDescriptions[0].value.content) || null,
   };
 }
 
@@ -71,13 +71,13 @@ function linkFromContent(content) {
  */
 function resolveListSpec(listSpec, data) {
   const resolved = {
-    title: listSpec.title
+    title: listSpec.title,
   };
   if (listSpec.pages) {
     resolved.pages = listSpec.pages.map(
-      page => data[page.from_front_matter_key]
+      (page) => data[page.from_front_matter_key]
     );
-    resolved.pages = resolved.pages.filter(page => !!page);
+    resolved.pages = resolved.pages.filter((page) => !!page);
   } else if (listSpec.chapter_list) {
     resolved.chapter_list = data[listSpec.chapter_list.from_front_matter_key];
   } else if (listSpec.directory) {
@@ -107,12 +107,12 @@ function buildLinkItem(itemDirectory, foreach) {
   // find the single Markdown file containing documentation for an item
   const dirEntries = fs.readdirSync(itemDirectory, { withFileTypes: true });
   const filenames = dirEntries
-    .filter(entry => !entry.isDirectory())
-    .filter(entry => entry.name.endsWith(".md"))
-    .map(entry => path.join(itemDirectory, entry.name));
+    .filter((entry) => !entry.isDirectory())
+    .filter((entry) => entry.name.endsWith(".md"))
+    .map((entry) => path.join(itemDirectory, entry.name));
   const items = filenames
     .map(contentFromFile)
-    .filter(item => item.data.mdn_url !== undefined);
+    .filter((item) => item.data.mdn_url !== undefined);
   if (items.length !== 1) {
     throw new Error(
       `${itemDirectory} should contain exactly one buildable item (not ${items.length})`
@@ -142,13 +142,13 @@ function linkListFromChapterList(chapterListPath) {
   const fullPath = path.join(ROOT, chapterListPath);
   const fullDir = path.dirname(fullPath);
   const chapterList = yaml.safeLoad(fs.readFileSync(fullPath, "utf8"));
-  const chapterPaths = chapterList.chapters.map(chapter =>
+  const chapterPaths = chapterList.chapters.map((chapter) =>
     path.join(fullDir, chapter)
   );
 
   return {
     title: chapterList.title,
-    content: chapterPaths.map(dirEntry => buildLinkItem(dirEntry))
+    content: chapterPaths.map((dirEntry) => buildLinkItem(dirEntry)),
   };
 }
 
@@ -163,14 +163,16 @@ function linkListFromDirectory(title, directory, foreach) {
   const fullPath = path.join(ROOT, directory);
   let itemDirectories = fs
     .readdirSync(fullPath, { withFileTypes: true })
-    .filter(item => item.isDirectory());
-  itemDirectories = itemDirectories.map(itemDirectory =>
+    .filter((item) => item.isDirectory());
+  itemDirectories = itemDirectories.map((itemDirectory) =>
     path.join(fullPath, itemDirectory.name)
   );
 
   return {
     title: title,
-    content: itemDirectories.map(dirEntry => buildLinkItem(dirEntry, foreach))
+    content: itemDirectories.map((dirEntry) =>
+      buildLinkItem(dirEntry, foreach)
+    ),
   };
 }
 
@@ -180,11 +182,11 @@ function linkListFromDirectory(title, directory, foreach) {
  * Each path is a directory containing content for a single page.
  */
 function linkListFromFilePaths(title, filePaths) {
-  const fullFilePaths = filePaths.map(filePath => path.join(ROOT, filePath));
+  const fullFilePaths = filePaths.map((filePath) => path.join(ROOT, filePath));
 
   return {
     title: title,
-    content: fullFilePaths.map(dirEntry => buildLinkItem(dirEntry))
+    content: fullFilePaths.map((dirEntry) => buildLinkItem(dirEntry)),
   };
 }
 
@@ -214,5 +216,5 @@ function buildLinkList(listSpec) {
 }
 
 module.exports = {
-  buildLinkList
+  buildLinkList,
 };

@@ -33,7 +33,7 @@ const processor = unified()
  */
 function KumaScriptRehypeParser() {
   const originalRehypeParser = this.Parser;
-  this.Parser = function(doc, file) {
+  this.Parser = function (doc, file) {
     findMacros(doc, file);
 
     const ast = originalRehypeParser(removeMacroArgs(doc, file), file);
@@ -50,7 +50,7 @@ function KumaScriptRehypeParser() {
  * @param {VFile} file - a VFile
  */
 function findMacros(doc, file) {
-  const macros = kumaScriptParser.parse(doc).flatMap(item => {
+  const macros = kumaScriptParser.parse(doc).flatMap((item) => {
     if (item.type === "MACRO") {
       item.originalString = doc.substring(
         item.location.start.offset,
@@ -93,7 +93,7 @@ function removeMacroArgs(doc, file) {
  * @returns a hast tree
  */
 function reinstateMacroArgs(ast, file) {
-  const newAst = findAndReplace(ast, /\{\{\s*([^(} ]+\}\})/g, match => {
+  const newAst = findAndReplace(ast, /\{\{\s*([^(} ]+\}\})/g, (match) => {
     const nextMacro = file.data.ksMacroData.shift();
 
     if (match.length !== nextMacro.originalString.length) {
@@ -109,8 +109,8 @@ function reinstateMacroArgs(ast, file) {
       data: {
         macroCall: nextMacro.name,
         macroName: normalizeMacroName(nextMacro.name),
-        macroParams: nextMacro.args
-      }
+        macroParams: nextMacro.args,
+      },
     };
   });
 

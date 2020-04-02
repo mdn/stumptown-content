@@ -4,15 +4,15 @@ const ruleId = "stumptown-linter:frontmatter-required-keys";
  * Extract the keys of required top-level frontmatter from a recipe.
  */
 function required(recipe) {
-  const data = recipe.data.filter(entry => !entry.endsWith("?"));
+  const data = recipe.data.filter((entry) => !entry.endsWith("?"));
   const body = recipe.body
     .filter(
-      entry =>
+      (entry) =>
         typeof entry === "string" &&
         entry.startsWith("data.") &&
         !entry.endsWith("?")
     )
-    .map(entry => entry.match("data.(.*)")[1]);
+    .map((entry) => entry.match("data.(.*)")[1]);
 
   return data.concat(body);
 }

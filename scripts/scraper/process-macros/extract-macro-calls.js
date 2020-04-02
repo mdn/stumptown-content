@@ -21,7 +21,7 @@ function extractMacroCalls(macroName, html) {
     allInvocations.push(
       thisInvocation[1]
         .split(",")
-        .map(piece => piece.replace(/^['" ]+|['" ]+$/g, ""))
+        .map((piece) => piece.replace(/^['" ]+|['" ]+$/g, ""))
     );
   }
 
@@ -29,5 +29,5 @@ function extractMacroCalls(macroName, html) {
 }
 
 module.exports = {
-  extractMacroCalls
+  extractMacroCalls,
 };

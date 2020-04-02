@@ -10,7 +10,7 @@ const namedSections = [
   "Accessibility concerns",
   "See also",
   "Value",
-  "Validation"
+  "Validation",
 ];
 
 function sectionNameToSlug(sectionName) {
@@ -42,12 +42,12 @@ function getSectionValue(node) {
     return {
       title: sectionName,
       id: sectionId,
-      content: sectionContent
+      content: sectionContent,
     };
   } else {
     return {
       title: sectionName,
-      content: sectionContent
+      content: sectionContent,
     };
   }
 }
@@ -62,7 +62,7 @@ function packageProse(proseMD) {
       const sectionValue = getSectionValue(node);
       sections.push({
         type: "prose",
-        value: sectionValue
+        value: sectionValue,
       });
     }
     node = node.nextSibling;
@@ -71,5 +71,5 @@ function packageProse(proseMD) {
 }
 
 module.exports = {
-  packageProse
+  packageProse,
 };

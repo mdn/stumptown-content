@@ -12,17 +12,17 @@ function processDirective(elementPath, directive) {
         type: "examples",
         value: {
           examples: [
-            packageExample(path.join(elementPath, directiveComponents[1]))
-          ]
-        }
+            packageExample(path.join(elementPath, directiveComponents[1])),
+          ],
+        },
       };
     case "embed-compat":
       return {
         type: "browser_compatibility",
         value: {
           query: directiveComponents[1],
-          data: packageBCD(directiveComponents[1])
-        }
+          data: packageBCD(directiveComponents[1]),
+        },
       };
     default:
       throw "Unsupported guide directive";
@@ -33,8 +33,8 @@ function processProse(elementPath, proseMD) {
   return {
     type: "prose",
     value: {
-      content: markdown.markdownToHTML(proseMD)
-    }
+      content: markdown.markdownToHTML(proseMD),
+    },
   };
 }
 
@@ -53,5 +53,5 @@ function buildGuideContentJSON(elementPath, data, content) {
 }
 
 module.exports = {
-  buildGuideContentJSON
+  buildGuideContentJSON,
 };

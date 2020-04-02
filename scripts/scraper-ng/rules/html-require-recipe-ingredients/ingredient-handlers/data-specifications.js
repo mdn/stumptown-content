@@ -23,7 +23,7 @@ function handleDataSpecifications(tree, file, context) {
   }
 
   let sectionOk = false;
-  visit(utils.sliceSection(heading, body), "text", node => {
+  visit(utils.sliceSection(heading, body), "text", (node) => {
     if (utils.isMacro(node, "SpecName")) {
       sectionOk = true;
       return visit.SKIP;
