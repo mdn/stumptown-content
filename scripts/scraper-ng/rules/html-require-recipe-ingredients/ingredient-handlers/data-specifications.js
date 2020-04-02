@@ -12,7 +12,7 @@ function handleDataSpecifications(tree, logger) {
 
   const heading = select(`h2#${id}`, body);
   if (heading === null) {
-    logger.fail(body, `Expected h2#${id}`, "expected-heading");
+    logger.expected(body, `h2#${id}`, "expected-heading");
     return;
   }
 
@@ -30,7 +30,7 @@ function handleDataSpecifications(tree, logger) {
   });
 
   if (!sectionOk) {
-    logger.fail(heading, `Expected SpecName macro`, "expected-macro");
+    logger.expected(heading, `SpecName macro`, "expected-macro");
   }
 }
 

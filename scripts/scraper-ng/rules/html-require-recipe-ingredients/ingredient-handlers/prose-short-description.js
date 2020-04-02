@@ -63,7 +63,7 @@ function handleProseShortDescription(tree, logger) {
   const shortDescriptionP = select("p", filtered);
 
   if (shortDescriptionP === null) {
-    logger.fail(body, `Missing short description`, "missing-prose-section");
+    logger.expected(body, `short description`, "missing-prose-section");
     return;
   }
 
@@ -72,9 +72,9 @@ function handleProseShortDescription(tree, logger) {
 
   // See if there's any text remaining
   if (!shortDescriptionText.length) {
-    logger.fail(
+    logger.expected(
       shortDescriptionP,
-      `Missing short description`,
+      `short description`,
       "missing-prose-section"
     );
   }

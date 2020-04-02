@@ -12,7 +12,7 @@ function handleDataBrowserCompatibility(tree, logger) {
   const heading = select(`h2#${id}`, body);
 
   if (heading === null) {
-    logger.fail(body, `Expected h2#${id}`, "expected-heading");
+    logger.expected(body, `h2#${id}`, "expected-heading");
     return;
   }
 
@@ -26,7 +26,7 @@ function handleDataBrowserCompatibility(tree, logger) {
   );
 
   if (macroCount !== 1) {
-    logger.fail(body, `Expected Compat macro`, "expected-macro");
+    logger.expected(body, `Compat macro`, "expected-macro");
   }
 }
 

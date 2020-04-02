@@ -73,6 +73,10 @@ function isMacro(node, macroName) {
 
 function Logger(file, source, recipeName, ingredient) {
   return {
+    expected: function (node, name, id) {
+      const text = `Expected ${name} for ${ingredient}`;
+      this.fail(node, text, id);
+    },
     fail: function (node, text, id) {
       const message = file.message(
         text,
