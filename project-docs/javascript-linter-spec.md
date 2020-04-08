@@ -96,7 +96,7 @@ This is an optional data ingredient. To satisfy the ingredient, if the page cont
 To satisfy this ingredient, a page must meet the following requirements:
 
 - A section demarcated by `H2#Constructor` that contains only a `<dl>` element.
-- The `<dl>` must contain a single `<dt><dd>` pair.
+- The `<dl>` must contain a single `<dt>` followed by a single `<dd>`.
 - The `<dt>` must contain either:
   - only a single `<code>` element, that contains only a single `<a>` element
   - only a call to the `{{jsxref}}` macro.
