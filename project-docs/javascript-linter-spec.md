@@ -134,7 +134,7 @@ To satisfy this ingredient a page must have a section demarcated by `H2#Examples
 
 Each of these examples may include "code sections". These are marked up as follows:
 
-- HTML code section: `<pre class="brush: html language-html"><code class=" language-html">`
+- HTML code section: `<pre class="brush: html language-html"><code class="language-html">`
 - CSS code section: `<pre class="brush: css language-css"><code class=" language-css">`
 - JavaScript code section: `<pre class="brush: js language-js"><code class=" language-js">`
 
