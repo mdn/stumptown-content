@@ -156,7 +156,7 @@ optional JavaScript section
 
 #### data.specifications
 
-To satisfy this ingredient a page must have a section demarcated by `H2#Specifications`. It must contain either a call to the `{{SpecName}}` macro, or a text node containing the text "Not part of any standard".
+To satisfy this ingredient a page must have a section demarcated by `H2#Specifications`. It must contain either a call to the `{{SpecName}}` macro, or a text node containing the text "Not part of any standard.".
 
 #### data.browser_compatibility
 
