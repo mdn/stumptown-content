@@ -4,7 +4,9 @@ This document describes the structure we want to require for JavaScript referenc
 
 ## Recipes and ingredients overview
 
-It is expected that pages documenting different sorts of thing will need to contain different elements. For example, the page for the JavaScript `BigInt` class will want to contain lists of links to its members, while the page for the JavaScript `BigInt.asUintN()` static method will want to contain a section describing the method syntax.
+A set of documentation - the JavaScript reference documentation, for example - consists of several different page types, where each type describes the same sort of thing. For example, one page type describes classes, a different type describes methods, and another describes properties.
+
+Different page types will need to contain different elements. For example, pages for JavaScript classes will want to contain lists of links to its members, while pages for a JavaScript method will want to contain a section describing the method syntax.
 
 To reflect this, a "recipe" is a short YAML file that describes at a high level the elements that a particular type of page is expected to have. A recipe provides a list of elements, that are expected to appear in the page in the order given. So for each distinct type of page, we define a single recipe.
 
