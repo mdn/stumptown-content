@@ -114,6 +114,7 @@ To satisfy this ingredient, a page must meet the following requirements:
 - The `<dt>` must contain either:
   - only a single `<code>` element, that contains only a single `<a>` element
   - only a call to the `{{jsxref}}` macro.
+- The `<dd>` must contain `Creates a new <code>NameOfTheObject</code> object.` where `NameOfTheObject` is replaced with the actual name.
 
 #### data.constructor_properties?
 
