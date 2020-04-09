@@ -22,6 +22,12 @@ A recipe can mark an ingredient as optional by placing a question mark after it,
 
 Technically, whether an ingredient is optional or not is a separate attribute of the ingredient. This means that a single ingredient may be marked as optional in one recipe, and mandatory in a different recipe. In practice, in the JavaScript documentation, this does not occur: there are currently no ingredients that are optional in some recipes and mandatory in others.
 
+### Page sections
+
+Many, but not all, ingredients correspond to sections of a page. A section of a page is defined as a part of the page beginning with an `<h2>` heading and ending with either another `<h2>` or the end of the page.
+
+Sections are identified by an `id` attribute on the `<h2>`. For example, the `prose.description` section starts with an element whose opening tag is like `<h2 id="Description">`. In this document we'll refer to page sections using a notation like `h2#identifier`: for example, `h2#Description`.
+
 ## JavaScript recipes
 
 We've defined the following recipes for the JS docs:
@@ -69,8 +75,8 @@ All ingredients except two are demarcated in the page using an `<h2>` heading. T
 With three exceptions, all prose ingredients impose the same requirement on the page: it must have an `<h2>` section whose ID attribute maps to the named section. The mapping is simply that `prose.` is removed, and the first letter is capitalized:
 
 ```
-prose.syntax      ->    Syntax
-prose.see_also    ->    See_also
+prose.syntax      ->    h2#Syntax
+prose.see_also    ->    h2#See_also
 ```
 
 The exceptions are `prose.short_description`, `prose.description?`, and `prose.*`.
@@ -85,7 +91,7 @@ This ingredient isn't demarcated by an `<h2>` at all. To satisfy the ingredient,
 
 #### prose.description?
 
-This is an optional prose ingredient. To satisfy the ingredient, if the page contains an `h2#Description`, then it must appear in the place specified by the recipe.
+This is an optional prose ingredient. To satisfy the ingredient, if the page contains an `h2#Description` section, then it must appear in the place specified by the recipe.
 
 #### prose.\*
 
