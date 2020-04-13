@@ -8,9 +8,9 @@ A set of documentation - the JavaScript reference documentation, for example - c
 
 Different page types will need to contain different elements. For example, pages for JavaScript classes will want to contain lists of links to its members, while pages for a JavaScript method will want to contain a section describing the method syntax.
 
-To reflect this, a "recipe" is a short YAML file that describes at a high level the elements that a particular type of page is expected to have. A recipe provides a list of elements, that are expected to appear in the page in the order given. So for each distinct type of page, we define a single recipe.
+To reflect this, a "recipe" is a short YAML file that describes at a high level the elements that a particular type of page must have. A recipe provides a list of elements that must appear in the page in the order given. Each distinct type of page must map to a single recipe.
 
-Each element is called an "ingredient". Ingredients are often shared across recipes. So for example we have an ingredient called `data.browser_compatibility`, which most recipes will contain. Each ingredient may have particular requirements about how it is represented in the page: for example, to satisfy the `data.browser_compatibility` ingredient a page must include the `{{Compat}}` KumaScript macro.
+Each element in a recipe is called an "ingredient". Ingredients are often shared across recipes. So for example we have an ingredient called `data.browser_compatibility`, which most recipes will contain. Each ingredient may have particular requirements about how it is represented in the page: for example, to satisfy the `data.browser_compatibility` ingredient a page must include the `{{Compat}}` KumaScript macro.
 
 So at a high level, compliance to a recipe means:
 
