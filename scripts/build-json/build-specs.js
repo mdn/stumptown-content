@@ -35,10 +35,10 @@ function packageSpecs(specifications) {
   }
 
   let packageSpecs = [];
-  specifications.forEach(specification => {
+  specifications.forEach((specification) => {
     packageSpecs.push({
       url: specification,
-      title: findTitle(specification)
+      title: findTitle(specification),
     });
   });
 
@@ -46,5 +46,5 @@ function packageSpecs(specifications) {
 }
 
 module.exports = {
-  packageSpecs
+  packageSpecs,
 };

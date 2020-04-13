@@ -7,19 +7,14 @@ const visit = require("unist-util-visit");
  * Convert an mdast node to plain text.
  */
 function remarkToText(node) {
-  return unified()
-    .use(remark2retext)
-    .use(stringify)
-    .stringify(node);
+  return unified().use(remark2retext).use(stringify).stringify(node);
 }
 
 /**
  * Convert an mdast node to a section slug.
  */
 function remarkToSlug(node) {
-  return remarkToText(node)
-    .toLowerCase()
-    .replace(" ", "_");
+  return remarkToText(node).toLowerCase().replace(" ", "_");
 }
 
 /**
@@ -35,7 +30,7 @@ function isHeadingLevel2(node) {
 function attacher() {
   return function transformer(tree) {
     if (tree && tree.data && tree.data.recipe !== undefined) {
-      visit(tree, isHeadingLevel2, node => {
+      visit(tree, isHeadingLevel2, (node) => {
         const slug = remarkToSlug(node);
         node.data = { ...node.data, slug };
       });

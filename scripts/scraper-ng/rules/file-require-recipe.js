@@ -25,7 +25,7 @@ function requireRecipe() {
         `Recipe is not unique`,
         "recipe-not-unique",
         `Recipes: ${JSON.stringify(
-          file.data.recipePath.map(f => path.basename(f, ".yaml"))
+          file.data.recipePath.map((f) => path.basename(f, ".yaml"))
         )}\nTags: ${JSON.stringify(file.data.tags)}`
       );
       return;

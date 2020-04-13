@@ -17,7 +17,7 @@ function buildSection(sectionSpec) {
   if (sectionSpec.children) {
     return {
       title: sectionSpec.title,
-      content: sectionSpec.children.map(buildSection)
+      content: sectionSpec.children.map(buildSection),
     };
   } else {
     return links.buildLinkList(sectionSpec);
@@ -44,5 +44,5 @@ function buildRelatedContent(specName, locale) {
 }
 
 module.exports = {
-  buildRelatedContent
+  buildRelatedContent,
 };

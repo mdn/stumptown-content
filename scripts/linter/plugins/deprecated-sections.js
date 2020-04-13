@@ -16,8 +16,8 @@ function attacher(options) {
 
       visit(
         tree,
-        node => node.data && node.data.slug,
-        node => {
+        (node) => node.data && node.data.slug,
+        (node) => {
           if (deprecations.includes(node.data.slug)) {
             file.message(
               `"${node.data.slug}" is a deprecated section`,

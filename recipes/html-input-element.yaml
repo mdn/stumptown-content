@@ -6,7 +6,7 @@ data:
 body:
   - prose.short_description
   - data.interactive_example?
-  - prose.overview
+  - prose.description?
   - prose.value
   - prose.validation
   - prose.attributes_text?

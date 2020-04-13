@@ -44,32 +44,32 @@ function summarize(files) {
     return [
       "",
       chalk.yellow(chalk.underline("Summary")),
-      "No issues found. Hooray! 🎉"
+      "No issues found. Hooray! 🎉",
     ].join("\n");
   }
 
   const sortedRules = Object.entries(count)
     .map(([ruleId, details]) => ({
       ruleId,
-      ...details
+      ...details,
     }))
     .sort((a, b) => b.count - a.count);
 
   const ruleFields = sortedRules.map(formatRule);
 
   const columns = ruleFields[0].length;
-  const widths = ruleFields.map(rule => rule.map(field => field.length));
+  const widths = ruleFields.map((rule) => rule.map((field) => field.length));
   const maxWidths = widths.reduce(
     (prev, curr) => prev.map((number, index) => Math.max(number, curr[index])),
     Array(columns).fill(0)
   );
 
-  const paddedFields = ruleFields.map(rule =>
+  const paddedFields = ruleFields.map((rule) =>
     rule.map((field, columnNumber) => field.padEnd(maxWidths[columnNumber]))
   );
 
   const prologue = ["", chalk.yellow(chalk.underline("Summary"))];
-  const body = paddedFields.map(field => field.join("  "));
+  const body = paddedFields.map((field) => field.join("  "));
   const epilogue = ["", formatStats(files, body)];
 
   return [].concat(prologue, body, epilogue).join("\n");
@@ -94,7 +94,7 @@ function countRules(files) {
         rules[message.ruleId] = {
           reason: message.reason,
           fatal: message.fatal,
-          count: 1
+          count: 1,
         };
       }
     }
@@ -139,7 +139,7 @@ function formatStats(files, summaryLines) {
   return [
     `${summaryLines.length} message type${plural(summaryLines.length)}`,
     parenthetical,
-    `in ${files.length} file${plural(files.length)}`
+    `in ${files.length} file${plural(files.length)}`,
   ].join(" ");
 }
 

@@ -11,7 +11,7 @@ const normalizeMacroName = require("../../../normalize-macro-name");
  * @returns {Object} a hast tree
  */
 function sliceSection(startNode, tree) {
-  return sliceBetween(startNode, node => node.tagName === "h2", tree);
+  return sliceBetween(startNode, (node) => node.tagName === "h2", tree);
 }
 
 /**
@@ -29,7 +29,7 @@ function sliceBetween(startNode, endCondition, tree) {
   const newRoot = { type: "root", children: [] };
 
   let inBounds = false;
-  visit(tree, node => {
+  visit(tree, (node) => {
     if (node === startNode) {
       inBounds = true;
       newRoot.children.push(node);
@@ -71,43 +71,26 @@ function isMacro(node, macroName) {
   );
 }
 
-function logError(body, file, context) {
-  return function(text, id) {
-    const message = file.message(
-      text,
-      body,
-      `${context.source}:${context.recipeName}/${context.ingredient}/${id}`
-    );
-    message.fatal = true;
-    logIngredientError(file, context, "Invalid");
+function Logger(file, source, recipeName, ingredient) {
+  return {
+    expected: function (node, name, id) {
+      const text = `Expected ${name} for ${ingredient}`;
+      this.fail(node, text, id);
+    },
+    fail: function (node, text, id) {
+      const message = file.message(
+        text,
+        node,
+        `${source}:${recipeName}/${ingredient}/${id}`
+      );
+      message.fatal = true;
+    },
   };
-}
-
-/**
- * Log a message when a file is missing an ingredient or contains
- * an incorrectly structured ingredient.
- *
- * @param {VFile} file - a VFile
- * @param {Object} context - a context object with recipe name and ingredient
- * strings
- * @param {String} problem - a string identifying the general type of problem
- */
-function logIngredientError(file, context, problem) {
-  const { recipeName, ingredient, source } = context;
-  const rule = `${recipeName}/${ingredient}`;
-  const origin = `${source}:${rule}`;
-
-  const message = file.message(
-    `${problem} ${ingredient} from ${recipeName}`,
-    origin
-  );
-  message.fatal = true;
 }
 
 module.exports = {
   sliceSection,
   sliceBetween,
   isMacro,
-  logError,
-  logIngredientError
+  Logger,
 };

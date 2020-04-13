@@ -29,10 +29,10 @@ const { toMarkdown } = require("./to-markdown.js");
 const {
   removeBrowserCompatibility,
   removeNode,
-  removeTitleAttributes
+  removeTitleAttributes,
 } = require("./clean-html.js");
 const {
-  processInteractiveExample
+  processInteractiveExample,
 } = require("./process-macros/process-interactive-example");
 const { processCompat } = require("./process-macros/process-compat");
 const { processLiveSamples } = require("./process-macros/process-live-samples");
@@ -52,11 +52,11 @@ function writeDoc(subpath, name, doc) {
 }
 
 function getPageJSON(url) {
-  return fetch(url).then(response => response.json());
+  return fetch(url).then((response) => response.json());
 }
 
 function getPageHTML(url) {
-  return fetch(url).then(response => response.text());
+  return fetch(url).then((response) => response.text());
 }
 
 /**
@@ -72,7 +72,7 @@ async function processMacros(dom, relativeURL, destination) {
   // `result` gets mutated by the functions that process macros
   let result = {
     frontMatter: "",
-    dom: dom
+    dom: dom,
   };
   result = await processInteractiveExample(mdnWithMacroCalls, result);
   result = await processCompat(mdnWithMacroCalls, result);
@@ -112,7 +112,7 @@ async function processDoc(relativeURL, title, destination) {
 async function main(args) {
   if (args.includes("--scrape-children")) {
     const childrenJSON = await getPageJSON(args[0] + "$children");
-    childrenJSON.subpages.map(child => {
+    childrenJSON.subpages.map((child) => {
       // the final component of the parent's URL
       // is used as a subdirectory for the children
       const subpath = args[0].split("/").pop();

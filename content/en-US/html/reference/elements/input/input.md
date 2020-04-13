@@ -28,7 +28,7 @@ recipe: html-element
 
 The **HTML `<input>` element** is used to create interactive controls for web-based forms in order to accept data from the user; a wide variety of types of input data and control widgets are available, depending on the device and [user agent](/en-US/docs/Glossary/user_agent).
 
-## Overview
+## Description
 
 How an `<input>` works varies considerably depending on the value of its `type` attribute, hence the different types are covered in their own separate reference pages. If this attribute is not specified, the default type adopted is `text`.
 

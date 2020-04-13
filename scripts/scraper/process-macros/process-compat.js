@@ -11,5 +11,5 @@ function processCompat(htmlWithMacroCalls, result) {
 }
 
 module.exports = {
-  processCompat
+  processCompat,
 };
