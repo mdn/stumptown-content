@@ -20,7 +20,7 @@ _the items in the page must correspond to the ingredients listed in the recipe, 
 
 A recipe can mark an ingredient as optional by placing a question mark after it, like `prose.description?`. This means that the page does not have to contain a representation of the ingredient, but if it does, the representation must be properly formed according to the ingredient's specification, and the representation must appear in the place specified by the recipe.
 
-Technically, whether an ingredient is optional or not is a separate attribute of the ingredient. This means that a single ingredient may be marked as optional in one recipe, and mandatory in a different recipe. In practice, in the JavaScript documentation, this does not occur: there are currently no ingredients that are optional in some recipes and mandatory in others.
+Technically, whether an ingredient is optional or not is a separate attribute of the ingredient. This means that a single ingredient may be marked as optional in one recipe and mandatory in a different recipe. In practice, in the JavaScript documentation, this does not occur: there are currently no ingredients that are optional in some recipes and mandatory in others.
 
 ### Page sections
 
@@ -95,7 +95,7 @@ This is an optional prose ingredient. To satisfy the ingredient, if the page con
 
 #### prose.\*
 
-This ingredient enables writers to include extra sections, but ensuring that they always appear in the same place in the page. To satisfy this ingredient: if the page contains any `<h2>` headings that are not expected by the recipe, then they must appear at the point in the page that the `prose.*` ingredient is listed in the recipe.
+This ingredient enables writers to include extra sections that are not explicitly listed in the recipe, while ensuring that the extra sections always appear in the same place in the page. To satisfy this ingredient: if the page contains any `<h2>` headings that are not expected by the recipe, then they must appear at the point in the page that the `prose.*` ingredient is listed in the recipe.
 
 ### Data ingredients
 
