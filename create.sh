@@ -22,7 +22,7 @@ echo "Updating current branch"
 git pull
 git checkout -b "$API"
 
-mkdir "$CREATION_PATH$API"
+mkdir -p "$CREATION_PATH$API"
 cp ov-template.md "$CREATION_PATH$API"/"$API".md
 git add "$CREATION_PATH$API"/"$API".md
 
