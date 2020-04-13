@@ -15,11 +15,11 @@
 #!/bin/sh
 
 API=$1
-if [ '$2' = '-r' ]
+if [ "$2" = "-r" ]
 then
-  NEW_BRANCH=true
-else
   NEW_BRANCH=false
+else
+  NEW_BRANCH=true
 fi
 CREATION_PATH='content/en-US/api/'
 
@@ -29,16 +29,20 @@ then
   echo "Updating current branch"
   git pull
   git checkout -b "$API"
-  echo "A new branch has been created named $API."
+  echo
+  echo "A new branch has been created named $API with a template file"
+  echo "at $CREATION_PATH$API/$API.md."
+else
+  echo
+  echo "A new file has been created on the existing branch at"
+  echo "$CREATION_PATH$API/$API.md."
 fi
 
 mkdir -p "$CREATION_PATH$API"
 cp ov-template.md "$CREATION_PATH$API"/"$API".md
-
-echo
-echo "A template file has been created at"
-echo "$CREATION_PATH$API/$API.md."
 echo
 echo "Follow the instructions in that file then commit and push the result."
+echo
 echo "Rerun the script with -r as the last argument to add a new interface to"
 echo "the existing branch."
+echo
