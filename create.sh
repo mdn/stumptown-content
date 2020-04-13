@@ -15,11 +15,22 @@
 #!/bin/sh
 
 API=$1
+if [ $2 = '-r' ]
+then
+  NEW_BRANCH=false
+else
+  NEW_BRANCH=true
+fi
 CREATION_PATH='content/en-US/api/'
 
 echo
 echo "Updating current branch"
 git pull
+if [ "$NEW_BRANCH" ]
+  git checkout -b "$API"
+  echo "A new branch has been created named $API."
+fi
+
 git checkout -b "$API"
 
 mkdir -p "$CREATION_PATH$API"
@@ -27,7 +38,7 @@ cp ov-template.md "$CREATION_PATH$API"/"$API".md
 git add "$CREATION_PATH$API"/"$API".md
 
 echo
-echo "A new branch has been created named $API with a template file"
-echo "at $CREATION_PATH$API/$API.md."
+echo "A template file has been created at"
+echo "$CREATION_PATH$API/$API.md."
 echo
 echo "Follow the instructions in that file then commit and push the result."
