@@ -15,7 +15,7 @@
 #!/bin/sh
 
 API=$1
-if [ $2 = '-r' ]
+if [ '$2' = '-r' ]
 then
   NEW_BRANCH=false
 else
@@ -26,7 +26,8 @@ CREATION_PATH='content/en-US/api/'
 echo
 echo "Updating current branch"
 git pull
-if [ "$NEW_BRANCH" ]
+if [ "$NEW_BRANCH" = true ]
+then
   git checkout -b "$API"
   echo "A new branch has been created named $API."
 fi
