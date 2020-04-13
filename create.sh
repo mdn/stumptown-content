@@ -32,8 +32,6 @@ then
   echo "A new branch has been created named $API."
 fi
 
-git checkout -b "$API"
-
 mkdir -p "$CREATION_PATH$API"
 cp ov-template.md "$CREATION_PATH$API"/"$API".md
 
