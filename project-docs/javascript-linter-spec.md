@@ -103,7 +103,10 @@ Data ingredients typically impose more detailed requirements on pages than prose
 
 #### data.interactive_example?
 
-This is an optional data ingredient. To satisfy the ingredient, if the page contains a call to the `{{EmbedInteractiveExample}}` macro, then the call must appear in the place specified by the recipe.
+This is an optional data ingredient. To satisfy the ingredient, either:
+
+- the page must not contain a `{{EmbedInteractiveExample}}` macro call, or
+- the page must have a `<div>` containing an `{{EmbedInteractiveExample}}` macro call. The `<div>` must be immediately preceded by paragraph that is neither a note nor a warning. The `<div>` must precede any `<h2>`.
 
 #### data.class_constructor
 
