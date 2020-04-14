@@ -1,97 +1,99 @@
-/**
- * Check text nodes at the top level of the static_methods section.
- * Text nodes here may only contain newlines.
- */
-function checkTextNode(node, logger) {
-  const newlinesOnly = /^\n*$/;
-  if (!node.value.match(newlinesOnly)) {
-    logger.fail(
-      node,
-      "Text nodes in section may only contain newlines",
-      "text-nodes-in-section"
-    );
-  }
-}
+const select = require("hast-util-select");
 
-/**
- * Check elements at the top level of the static_methods section.
- * Only `dl` elements are allowed.
- */
-function checkElementNode(node, logger) {
-  if (node.tagName !== "dl") {
+const utils = require("./utils.js");
+
+function checkLinkList(id, tree, logger) {
+  const body = select.select(`body`, tree);
+
+  const heading = select.select(`h2#${id}`, body);
+  // This is an optional ingredient, so if there's no `h2`,
+  // assume that the page intends to omit it.
+  if (heading === null) {
+    return;
+  }
+
+  const section = utils.sliceSection(heading, body);
+  // The first element is always the `h2`, which we are not interested in
+  const children = section.children.slice(1);
+
+  // At the top level a link list must contain exactly one element,
+  // and it must be a <dl>.
+  const elements = children.filter((child) => child.type === "element");
+  if (elements.length !== 1 || elements[0].tagName !== "dl") {
     logger.fail(
-      node,
-      "Section may only contain DL elements",
-      "non-dl-elements-in-section"
+      body,
+      "Link list must contain a single DL element and no other elements",
+      "only-single-dl-element-in-link-list"
     );
     return;
   }
-  checkDL(node, logger);
-}
 
-/**
- * Check the structure of a `dl` element that represents a list of links.
- */
-function checkDL(node, logger) {
-  let title = "";
-  for (const child of node.children) {
-    // We are only going to check `dt` elements, and will tolerate
-    // any others
-    if (child.tagName === "dt") {
-      if (child.children.length !== 1 || child.children[0].tagName !== "a") {
-        logger.fail(
-          child,
-          "DT elements in link lists must contain a single anchor element",
-          "link-list-dt-element-child-is-anchor"
-        );
-        return;
-      }
-      const link = child.children[0];
-      if (link.children.length !== 1 || link.children[0].tagName !== "code") {
-        logger.fail(
-          link,
-          "Anchor elements in link lists must contain a single code element",
-          "link-list-anchor-element-child-is-code"
-        );
-        return;
-      }
-      const code = link.children[0];
-      if (code.children.length !== 1 || code.children[0].type !== "text") {
-        logger.fail(
-          code,
-          "Code elements in link lists must contain a single text node",
-          "link-list-code-element-child-is-text"
-        );
-        return;
-      }
-      if (code.children[0].value.localeCompare(title, "en") <= 0) {
-        logger.fail(
-          code,
-          "Links in link lists must be listed in alphabetical order",
-          "link-list-alpha-order"
-        );
-      }
-      title = code.children[0].value;
+  // At the top level, if a link list contains text nodes,
+  // they may only contain newlines.
+  const textNodes = children.filter((child) => child.type === "text");
+  for (const node of textNodes) {
+    const newlinesOnly = /^\n*$/;
+    if (!node.value.match(newlinesOnly)) {
+      logger.fail(
+        node,
+        "Text nodes in list of links top level may only contain newlines",
+        "text-nodes-in-link-list"
+      );
     }
   }
-}
 
-function checkLinkList(section, logger) {
-  for (const node of section) {
-    switch (node.type) {
-      case "text":
-        checkTextNode(node, logger);
-        break;
-      case "element":
-        checkElementNode(node, logger);
-        break;
-      default:
-        logger.fail(
-          node,
-          "Unexpected node type in link list",
-          "link-list-node-types"
-        );
+  const dl = elements[0];
+
+  // The link list's <dl> must contain at least one <dt>.
+  const dts = select.selectAll("dt", dl);
+  if (dts.length === 0) {
+    logger.fail(
+      body,
+      "Link list dl must contain at least one dt",
+      "dl-must-contain-dt"
+    );
+    return;
+  }
+
+  // Each <dt> must contain only a single <a> element
+  for (const dt of dts) {
+    if (
+      dt.children.length !== 1 ||
+      dt.children[0].type !== "element" ||
+      dt.children[0].tagName !== "a"
+    ) {
+      logger.fail(
+        dt,
+        "dt elements in link lists must contain a single anchor element",
+        "only-single-anchor-element-in-link-list-dt"
+      );
     }
+  }
+
+  // <code> elements in <dt> elements must contain only a single text node
+  const dtCodeContents = select.selectAll("dt>a>code", dl);
+  for (const dtCode of dtCodeContents) {
+    if (dtCode.children.length !== 1 || dtCode.children[0].type !== "text") {
+      logger.fail(
+        dtCode,
+        "code elements in dt elements in link lists must contain a single text node",
+        "only-single-text-node-element-in-link-list-code"
+      );
+    }
+  }
+
+  // <dt><dd> pairs must be ordered by the alphabetical order of
+  // the <dt><a><code> text content
+  let title = "";
+  for (const dtCode of dtCodeContents) {
+    if (dtCode.children[0].value.localeCompare(title, "en") <= 0) {
+      logger.fail(
+        dtCode,
+        "Links in link lists must be listed in alphabetical order",
+        "link-list-alpha-order"
+      );
+    }
+    title = dtCode.children[0].value;
   }
 }
 

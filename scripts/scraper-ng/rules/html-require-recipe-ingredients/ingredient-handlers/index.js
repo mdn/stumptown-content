@@ -3,7 +3,7 @@ const { select } = require("hast-util-select");
 const handleDataSpecifications = require("./data-specifications");
 const handleDataBrowserCompatibility = require("./data-browser-compatibility");
 const handleProseShortDescription = require("./prose-short-description");
-const handleDataStaticMethods = require("./data-static-methods");
+const { handleDataStaticMethods } = require("./data-class-members");
 
 /**
  * Functions to check for recipe ingredients in Kuma page sources.
