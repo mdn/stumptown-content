@@ -10,7 +10,7 @@ function spawnStr(cmd, ...args) {
 
 const foundLines = spawnStr("git", ["grep", "-n", ">>>>>>>"])
   .split(/\n/g)
-  .filter(line => {
+  .filter((line) => {
     return !(line.includes(".travis.yml") || line.includes("scripts/ci/"));
   });
 if (foundLines.length) {

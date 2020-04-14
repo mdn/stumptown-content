@@ -19,5 +19,5 @@ function markdownToHTML(md) {
 }
 
 module.exports = {
-  markdownToHTML
+  markdownToHTML,
 };
