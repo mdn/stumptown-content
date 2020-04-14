@@ -3,7 +3,7 @@ const select = require("hast-util-select");
 const utils = require("./utils.js");
 
 function checkLinkList(id, tree, logger) {
-  const body = select.select(`body`, tree);
+  const body = select.select("body", tree);
 
   const heading = select.select(`h2#${id}`, body);
   // This is an optional ingredient, so if there's no `h2`,
