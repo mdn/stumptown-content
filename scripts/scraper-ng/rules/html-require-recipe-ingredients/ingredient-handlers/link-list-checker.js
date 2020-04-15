@@ -84,16 +84,16 @@ function checkLinkList(id, tree, logger) {
 
   // <dt><dd> pairs must be ordered by the alphabetical order of
   // the <dt><a><code> text content
-  let title = "";
+  let previousTitle = "";
   for (const dtCode of dtCodeContents) {
-    if (dtCode.children[0].value.localeCompare(title, "en") <= 0) {
+    if (dtCode.children[0].value.localeCompare(previousTitle, "en") <= 0) {
       logger.fail(
         dtCode,
         "Links in link lists must be listed in alphabetical order",
         "link-list-alpha-order"
       );
     }
-    title = dtCode.children[0].value;
+    previousTitle = dtCode.children[0].value;
   }
 }
 

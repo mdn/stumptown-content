@@ -1,4 +1,4 @@
-const checkLinkList = require("./link-list-handler.js");
+const checkLinkList = require("./link-list-checker.js");
 
 /**
  * Handler for the `data.static_methods` ingredient.
