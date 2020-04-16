@@ -76,7 +76,10 @@
     },
     "devDependencies": {
         "eslint": "^6.8.0",
+        "eslint-plugin-jest": "^23.8.2",
+        "hastscript": "^5.1.2",
         "husky": "4.2.5",
+        "jest": "^25.3.0",
         "prettier": "2.0.4",
         "pretty-quick": "2.0.1",
         "yargs": "^15.3.1"
