@@ -12,5 +12,6 @@ module.exports = {
     [require("./rules/file-require-recipe")],
     [require("./rules/html-no-macros"), allowedMacros],
     [require("./rules/html-require-recipe-ingredients")],
+    [require("./rules/html-warn-unknown-headings")],
   ],
 };
