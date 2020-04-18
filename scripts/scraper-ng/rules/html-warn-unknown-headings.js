@@ -28,8 +28,8 @@ function warnUnknownHeadings() {
 }
 
 function expectedH2Headings(recipeBody) {
+  // exclude any ingredients that don't map to H2 headings
   const namedProseSections = recipeBody.filter(
-    // exclude any ingredients that don't map to H2 headings
     (ingredient) =>
       ingredient !== "prose.*" &&
       ingredient !== "prose.short_description" &&
