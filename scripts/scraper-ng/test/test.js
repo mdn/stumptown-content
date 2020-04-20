@@ -16,7 +16,7 @@ const processor = kumascriptRehype().use([require("../preset")]);
  */
 function processFromSource(sourceString, recipePath) {
   const file = vfile({ contents: sourceString, data: { recipePath } });
-  file.data.recipePath = processor.processSync(file);
+  processor.processSync(file);
   return file;
 }
 
