@@ -20,6 +20,7 @@ function warnUnknownHeadings() {
       if (!expectedH2.includes(actual.properties.id)) {
         file.message(
           `H2 heading: ${actual.properties.id} was not in recipe`,
+          actual,
           `${source}:${recipeName}/unknown-heading`
         );
       }
