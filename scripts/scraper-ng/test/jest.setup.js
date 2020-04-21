@@ -8,9 +8,15 @@
  * @returns {Boolean} result.pass - whether there was a match or not
  */
 function hasMessageWithId(received, expected) {
-  const regex = expected instanceof RegExp ? expected : new RegExp(expected);
+  let isMatchy;
 
-  const pass = received.messages.some((msg) => regex.test(msg.ruleId));
+  if (expected instanceof RegExp) {
+    isMatchy = (str) => expected.test(str);
+  } else {
+    isMatchy = (str) => str.includes(expected);
+  }
+
+  const pass = received.messages.some((msg) => isMatchy(msg.ruleId));
 
   if (pass) {
     return {
