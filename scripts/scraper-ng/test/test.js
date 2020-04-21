@@ -20,6 +20,47 @@ function processFromSource(sourceString, recipePath) {
   return file;
 }
 
+/**
+ * Matches any `vfile` object with one or more messages with an expected `ruleId`.
+ *
+ * @param {vfile} received - A file to inspect
+ * @param {String|RegExp} expected - A string (or matching regex) expected in one or more `ruleId` values
+ * @returns {Object} result
+ * @returns {function} result.message - returns a message for failures
+ * @returns {Boolean} result.pass - whether there was a match or not
+ */
+function hasMessageWithId(received, expected) {
+  const regex = expected instanceof RegExp ? expected : new RegExp(expected);
+
+  const pass = received.messages.some((msg) => regex.test(msg.ruleId));
+
+  if (pass) {
+    return {
+      message: () =>
+        this.utils.matcherHint("hasMessageId") +
+        "\n\n" +
+        `Expected: not ${this.utils.printExpected(expected)}\n` +
+        `Received: ${this.utils.printReceived(
+          received.messages.map((msg) => msg.ruleId)
+        )}`,
+      pass,
+    };
+  } else {
+    return {
+      message: () =>
+        this.utils.matcherHint("hasMessageId") +
+        "\n\n" +
+        `Expected: ${this.utils.printExpected(expected)}\n` +
+        `Received: ${this.utils.printReceived(
+          received.messages.map((msg) => msg.ruleId)
+        )}`,
+      pass,
+    };
+  }
+}
+
+expect.extend({ hasMessageWithId });
+
 describe("data.browser_compatibility", () => {
   test("valid ingredient", () => {
     const file = processFromSource(
@@ -30,6 +71,7 @@ describe("data.browser_compatibility", () => {
     );
 
     expect(file.messages).toStrictEqual([]);
+    expect(file).not.hasMessageWithId(/expected-heading/);
   });
 
   test("missing heading", () => {
@@ -39,7 +81,7 @@ describe("data.browser_compatibility", () => {
     );
 
     expect(file.messages.length).toBe(1);
-    expect(file.messages[0].ruleId).toMatch(/expected-heading/);
+    expect(file).hasMessageWithId(/expected-heading/);
   });
 
   test("missing compat macro", () => {
@@ -51,6 +93,6 @@ describe("data.browser_compatibility", () => {
     );
 
     expect(file.messages.length).toBe(1);
-    expect(file.messages[0].ruleId).toMatch(/expected-macro/);
+    expect(file).hasMessageWithId(/expected-macro/);
   });
 });
