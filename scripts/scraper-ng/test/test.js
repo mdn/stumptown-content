@@ -1,65 +1,8 @@
 const path = require("path");
 
-const vfile = require("vfile");
+const { processFromSource } = require("./utils");
 
-const kumascriptRehype = require("../plugins/kumascript-rehype-parse");
-
-// This processor skips fetching anything from the wiki
-const processor = kumascriptRehype().use([require("../preset")]);
-
-/**
- * Process a source string as if it were wiki source.
- *
- * @param {String} sourceString - Some Kuma HTML
- * @param {*} recipePath - The path to a file that looks like a recipe YAML file (e.g., has a `body` with valid ingredients)
- * @returns {vfile} a processed vfile
- */
-function processFromSource(sourceString, recipePath) {
-  const file = vfile({ contents: sourceString, data: { recipePath } });
-  processor.processSync(file);
-  return file;
-}
-
-/**
- * Matches any `vfile` object with one or more messages with an expected `ruleId`.
- *
- * @param {vfile} received - A file to inspect
- * @param {String|RegExp} expected - A string (or matching regex) expected in one or more `ruleId` values
- * @returns {Object} result
- * @returns {function} result.message - returns a message for failures
- * @returns {Boolean} result.pass - whether there was a match or not
- */
-function hasMessageWithId(received, expected) {
-  const regex = expected instanceof RegExp ? expected : new RegExp(expected);
-
-  const pass = received.messages.some((msg) => regex.test(msg.ruleId));
-
-  if (pass) {
-    return {
-      message: () =>
-        this.utils.matcherHint("hasMessageId") +
-        "\n\n" +
-        `Expected: not ${this.utils.printExpected(expected)}\n` +
-        `Received: ${this.utils.printReceived(
-          received.messages.map((msg) => msg.ruleId)
-        )}`,
-      pass,
-    };
-  } else {
-    return {
-      message: () =>
-        this.utils.matcherHint("hasMessageId") +
-        "\n\n" +
-        `Expected: ${this.utils.printExpected(expected)}\n` +
-        `Received: ${this.utils.printReceived(
-          received.messages.map((msg) => msg.ruleId)
-        )}`,
-      pass,
-    };
-  }
-}
-
-expect.extend({ hasMessageWithId });
+require("./jest.setup");
 
 describe("data.browser_compatibility", () => {
   test("valid ingredient", () => {
