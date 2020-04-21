@@ -1,7 +1,7 @@
-const path = require("path");
 const fs = require("fs");
+const path = require("path");
 
-const { processFromSource } = require("./utils");
+const { processFromSource, recipePath } = require("./utils");
 
 test.only("javascript-constructor", () => {
   const file = processFromSource(
@@ -9,7 +9,7 @@ test.only("javascript-constructor", () => {
       path.resolve(__dirname, "./javascript-constructor.html"),
       "utf8"
     ),
-    path.resolve(__dirname, "../../../recipes/javascript-constructor.yaml")
+    recipePath("javascript-constructor")
   );
 
   // Allow messages with handler-not-implemented

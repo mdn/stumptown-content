@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 
 const vfile = require("vfile");
 
@@ -33,6 +34,20 @@ function processFromSource(sourceString, recipe) {
   return file;
 }
 
+const recipesDir = path.resolve(__dirname, "../../../recipes");
+
+/**
+ * Given a recipe name, generate a path to a recipe file in `/recipes/`.
+ *
+ * @param {String} recipeName - a recipe name (without file path or extension)
+ * @returns {String} - a normalized path to a recipe file
+ */
+function recipePath(recipeName) {
+  return path.join(recipesDir, recipeName + ".yaml");
+}
+
 module.exports = {
   processFromSource,
+  recipesDir,
+  recipePath,
 };
