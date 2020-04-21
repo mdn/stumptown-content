@@ -58,7 +58,7 @@ prose ingredients:
 data ingredients:
 
 - data.interactive_example?
-- data.class_constructor
+- data.constructor
 - data.constructor_properties?
 - data.static_properties?
 - data.static_methods?
@@ -108,7 +108,7 @@ This is an optional data ingredient. To satisfy the ingredient, either:
 - the page must not contain a `{{EmbedInteractiveExample}}` macro call, or
 - the page must have a `<div>` containing an `{{EmbedInteractiveExample}}` macro call. The `<div>` must be immediately preceded by paragraph that is neither a note nor a warning. The `<div>` must precede any `<h2>`.
 
-#### data.class_constructor
+#### data.constructor
 
 To satisfy this ingredient, a page must meet the following requirements:
 

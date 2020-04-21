@@ -7,7 +7,7 @@ body:
   - prose.short_description
   - data.interactive_example?
   - prose.description?
-  - data.class_constructor
+  - data.constructor
   - data.static_properties?
   - data.static_methods?
   - data.instance_properties?
