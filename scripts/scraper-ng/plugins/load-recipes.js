@@ -25,7 +25,6 @@ const recipesCache = {};
  * @returns {Object} - the loaded recipe object
  */
 function loadRecipe(path) {
-  console.log(path);
   if (path === undefined) {
     return undefined;
   }
