@@ -1,6 +1,5 @@
 const path = require("path");
 
-const { loadRecipe } = require("../utils.js");
 const ingredientHandlers = require("./ingredient-handlers");
 const { Logger } = require("./ingredient-handlers/utils");
 
@@ -12,9 +11,8 @@ const source = "html-require-ingredient";
 function requireRecipeIngredientsPlugin() {
   return function warnOnMissingRecipeIngredients(tree, file) {
     const recipeName = path.basename(file.data.recipePath, ".yaml");
-    const recipe = loadRecipe(file.data.recipePath);
 
-    const requiredBody = recipe.body.filter(
+    const requiredBody = file.data.recipe.body.filter(
       (ingredientName) => !ingredientName.endsWith(".*")
     );
 

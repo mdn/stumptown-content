@@ -2,8 +2,6 @@ const path = require("path");
 
 const { selectAll } = require("hast-util-select");
 
-const { loadRecipe } = require("./utils.js");
-
 const source = "html-warn-unknown-headings";
 
 /**
@@ -13,7 +11,7 @@ const source = "html-warn-unknown-headings";
 function warnUnknownHeadings() {
   return function attacher(tree, file) {
     const recipeName = path.basename(file.data.recipePath, ".yaml");
-    const recipe = loadRecipe(file.data.recipePath);
+    const { recipe } = file.data;
     const expectedH2 = expectedH2Headings(recipe.body);
     const actualH2 = selectAll(`h2`, tree);
     for (const actual of actualH2) {
