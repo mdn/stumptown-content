@@ -3,8 +3,6 @@ const fs = require("fs");
 
 const { processFromSource } = require("./utils");
 
-require("./jest.setup.js");
-
 const recipesDir = path.resolve(__dirname, "../../../recipes");
 const allRecipes = fs
   .readdirSync(recipesDir)

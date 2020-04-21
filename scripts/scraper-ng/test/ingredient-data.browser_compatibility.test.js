@@ -1,7 +1,5 @@
 const { processFromSource } = require("./utils");
 
-require("./jest.setup");
-
 describe("data.browser_compatibility", () => {
   const testRecipe = { body: ["data.browser_compatibility"] };
   const process = (src) => processFromSource(src, testRecipe);

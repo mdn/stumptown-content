@@ -88,5 +88,10 @@
         "hooks": {
             "pre-commit": "pretty-quick --staged"
         }
+    },
+    "jest": {
+        "projects": [
+            "scripts/scraper-ng/test/jest.config.js"
+        ]
     }
 }
