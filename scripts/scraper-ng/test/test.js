@@ -19,9 +19,7 @@ describe("data.browser_compatibility", () => {
   });
 
   test("missing heading", () => {
-    const file = process(
-      "\n" // The KumaScript parser (vendor/parser.js) requires at least a newline, or it'll throw a SyntaxError
-    );
+    const file = process("");
 
     expect(file.messages.length).toBe(1);
     expect(file).hasMessageWithId(/expected-heading/);

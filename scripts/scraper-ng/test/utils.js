@@ -15,6 +15,11 @@ const processor = kumascriptRehype().use([require("../preset")]);
  * @returns {vfile} a processed vfile
  */
 function processFromSource(sourceString, recipe) {
+  // The KumaScript parser (vendor/parser.js) requires at least a newline, or it'll throw a SyntaxError
+  if (!sourceString.endsWith("\n")) {
+    sourceString = sourceString + "\n";
+  }
+
   const file = vfile({ contents: sourceString });
 
   if (fs.existsSync(recipe)) {
