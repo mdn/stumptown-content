@@ -64,9 +64,9 @@ function handleDataExamples(tree, logger) {
   }
 
   const examplesSection = utils.sliceSection(heading, body);
-  const exampleTitles = select.selectAll("h3", examplesSection);
 
   // The "Examples" section must contain at least one H3
+  const exampleTitles = select.selectAll("h3", examplesSection);
   if (exampleTitles.length === 0) {
     logger.fail(
       examplesSection,
