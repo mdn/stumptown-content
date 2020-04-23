@@ -1,4 +1,4 @@
-const { process } = require("./utils");
+const { process } = require("./framework/utils");
 
 describe("data.browser_compatibility", () => {
   const testRecipe = { body: ["data.browser_compatibility"] };

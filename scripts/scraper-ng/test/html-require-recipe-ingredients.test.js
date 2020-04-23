@@ -1,7 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 
-const { process, recipesDir } = require("./utils");
+const { process, recipesDir } = require("./framework/utils");
 
 const allRecipes = fs
   .readdirSync(recipesDir)

@@ -3,10 +3,10 @@ const path = require("path");
 
 const vfile = require("vfile");
 
-const kumascriptRehype = require("../plugins/kumascript-rehype-parse");
+const kumascriptRehype = require("../../plugins/kumascript-rehype-parse");
 
 // A unified processor that skips fetching anything from the wiki
-const processor = kumascriptRehype().use([require("../preset")]);
+const processor = kumascriptRehype().use([require("../../preset")]);
 
 /**
  * Process some source HTML and a recipe, in various forms.
@@ -54,7 +54,7 @@ function process(source, recipe) {
   return file;
 }
 
-const recipesDir = path.resolve(__dirname, "../../../recipes");
+const recipesDir = path.resolve(__dirname, "../../../../recipes");
 
 /**
  * Given a recipe name, generate a path to a recipe file in `/recipes/`.

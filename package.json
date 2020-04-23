@@ -91,7 +91,10 @@
     },
     "jest": {
         "projects": [
-            "scripts/scraper-ng/test/jest.config.js"
+            {
+                "rootDir": "scripts/scraper-ng",
+                "setupFilesAfterEnv": ["<rootDir>/test/framework/jest.setup.js"]
+            }
         ]
     }
 }

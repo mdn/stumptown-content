@@ -1,6 +1,6 @@
 const path = require("path");
 
-const { process } = require("./utils");
+const { process } = require("./framework/utils");
 
 test("javascript-constructor", () => {
   const file = process(
