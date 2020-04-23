@@ -1,15 +1,11 @@
-const fs = require("fs");
 const path = require("path");
 
-const { processFromSource, recipePath } = require("./utils");
+const { process } = require("./utils");
 
 test("javascript-constructor", () => {
-  const file = processFromSource(
-    fs.readFileSync(
-      path.resolve(__dirname, "./javascript-constructor.html"),
-      "utf8"
-    ),
-    recipePath("javascript-constructor")
+  const file = process(
+    path.resolve(__dirname, "./javascript-constructor.html"),
+    "javascript-constructor"
   );
 
   // Allow messages with handler-not-implemented

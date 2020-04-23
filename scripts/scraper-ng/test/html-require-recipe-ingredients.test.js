@@ -1,7 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 
-const { processFromSource, recipesDir } = require("./utils");
+const { process, recipesDir } = require("./utils");
 
 const allRecipes = fs
   .readdirSync(recipesDir)
@@ -11,7 +11,7 @@ describe("html-require-recipe-ingredients", () => {
   test.each(allRecipes)(
     "All recipe ingredients are loggable: %s",
     (recipePath) => {
-      const file = processFromSource("", recipePath);
+      const file = process("", recipePath);
       const ingredients = file.data.recipe.body;
       const required = ingredients.filter(
         (i) => !(i.endsWith("?") || i.endsWith("*"))

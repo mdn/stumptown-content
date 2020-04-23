@@ -11,23 +11,41 @@ const processor = kumascriptRehype().use([require("../preset")]);
 /**
  * Process a source string as if it were wiki source.
  *
- * @param {String} sourceString - Some Kuma HTML
- * @param {String|Object} recipePath - The path to a recipe YAML file or a recipe object
+ * @param {String} source - Kuma HTML or the path to a file containing Kuma HTML
+ * @param {String|Object} recipe - The name of a regular recipe (e.g.,
+ * "javascript-constructor"), the path to a recipe file, or an object
+ * representing a recipe
  * @returns {vfile} a processed vfile
  */
-function processFromSource(sourceString, recipe) {
+function process(source, recipe) {
+  const options = fs.existsSync(source)
+    ? { path: source, contents: fs.readFileSync(source, "utf8") }
+    : { contents: source };
+  const file = vfile(options);
+
   // The KumaScript parser (vendor/parser.js) requires at least a newline, or it'll throw a SyntaxError
-  if (!sourceString.endsWith("\n")) {
-    sourceString = sourceString + "\n";
+  if (!file.contents.endsWith("\n")) {
+    file.contents = file.contents + "\n";
   }
 
-  const file = vfile({ contents: sourceString });
+  if (typeof recipe === "string") {
+    // Assume recipe strings are file paths or the names of real recipes
+    let path;
 
-  if (fs.existsSync(recipe)) {
-    file.data.recipePath = recipe;
-  } else {
-    file.data.recipePath = "mock-test-recipe.yaml";
+    if (fs.existsSync(recipe)) {
+      path = recipe;
+    } else if (fs.existsSync(recipePath(recipe))) {
+      path = recipePath(recipe);
+    } else {
+      throw Error(`${recipe} is not a valid recipe name or recipe path`);
+    }
+    file.data.recipePath = path;
+  } else if (recipe instanceof Object) {
+    // Assume recipe objects are mock recipes
+    file.data.recipePath = "mock-recipe.yaml";
     file.data.recipe = recipe;
+  } else {
+    throw Error(`${recipe} was an unexpected type (${typeof recipe})`);
   }
 
   processor.processSync(file);
@@ -47,7 +65,6 @@ function recipePath(recipeName) {
 }
 
 module.exports = {
-  processFromSource,
+  process,
   recipesDir,
-  recipePath,
 };
