@@ -9,12 +9,14 @@ const kumascriptRehype = require("../plugins/kumascript-rehype-parse");
 const processor = kumascriptRehype().use([require("../preset")]);
 
 /**
- * Process a source string as if it were wiki source.
+ * Process some source HTML and a recipe, in various forms.
  *
- * @param {String} source - Kuma HTML or the path to a file containing Kuma HTML
+ * @param {String} source - HTML string or the path to a file containing some
+ * HTML
  * @param {String|Object} recipe - The name of a regular recipe (e.g.,
- * "javascript-constructor"), the path to a recipe file, or an object
- * representing a recipe
+ * `"javascript-constructor"`), the path to a recipe file (e.g.,
+ * `"/path/to/recipe.yaml"`), or an object representing a recipe (e.g., `{ body:
+ * ['some-ingredient'] }`)
  * @returns {vfile} a processed vfile
  */
 function process(source, recipe) {
