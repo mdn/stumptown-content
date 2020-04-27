@@ -3,9 +3,11 @@ const { process } = require("./framework/utils");
 const sources = {
   valid_single_simple: `<h2 id="Examples">Examples</h2>
 <h3 id="An_example">An examples</h3>`,
+
   valid_multiple_simple: `<h2 id="Examples">Examples</h2>
 <h3 id="An_example">An example</h3>
 <h3 id="Another_example">Another example</h3>`,
+
   valid_multiple_live_samples: `<h2 id="Examples">Examples</h2>
 <h3 id="An_example">An example</h3>
   <p>Some prose description</p>
@@ -17,6 +19,7 @@ const sources = {
   <pre class="brush: html">&lt;h1&gt;A heading&lt;/h1&gt;</pre>
   <pre class="brush: css">h1: { color: red; }</pre>
   {{EmbedLiveSample("Another_example")}}`,
+
   valid_simple_live_mixture: `<h2 id="Examples">Examples</h2>
 <h3 id="An_example">An example</h3>
   <p>Some prose description</p>
@@ -27,14 +30,18 @@ const sources = {
   <p>Some more prose description</p>
   <pre class="brush: html">&lt;h1&gt;A heading&lt;/h1&gt;</pre>
   <pre class="brush: css">h1: { color: red; }</pre>`,
+
   missing_example_h3: `<h2 id="Examples">Examples</h2>
 <p>blah blah</p>`,
+
   nodes_after_live_sample: `<h2 id="Examples">Examples</h2>
 <h3 id="An_example">An example</h3>
   {{EmbedLiveSample("An_example")}}Some more content`,
+
   live_sample_id_mismatch: `<h2 id="Examples">Examples</h2>
 <h3 id="An_example">An example</h3>
   {{EmbedLiveSample("A_different_example")}}`,
+
   empty_source: "",
 };
 
