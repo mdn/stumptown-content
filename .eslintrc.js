@@ -1,7 +1,9 @@
 module.exports = {
+  "plugins": ["jest"],
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "jest/globals": true
   },
   "overrides": [
     {

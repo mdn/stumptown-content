@@ -2,6 +2,20 @@ const fs = require("fs");
 
 const yaml = require("js-yaml");
 
+/**
+ * A plugin that loads `file.data.recipePath` into `file.data.recipe`, if
+ * `recipe` is unset.
+ *
+ * @returns {function} a unified plugin
+ */
+function loadRecipesPlugin() {
+  return function transformer(tree, file) {
+    if (file.data.recipe === undefined) {
+      file.data.recipe = loadRecipe(file.data.recipePath);
+    }
+  };
+}
+
 const recipesCache = {};
 
 /**
@@ -22,6 +36,4 @@ function loadRecipe(path) {
   return recipesCache[path];
 }
 
-module.exports = {
-  loadRecipe,
-};
+module.exports = loadRecipesPlugin;

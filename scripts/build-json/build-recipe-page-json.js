@@ -45,7 +45,7 @@ function processMetaIngredient(elementPath, ingredientName, data) {
     case "link_lists": {
       return data.link_lists.map(buildLinkList);
     }
-    case "class_constructor":
+    case "constructor":
       return buildLinkList({
         title: "Constructor",
         pages: [data.class_constructor],
