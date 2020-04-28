@@ -83,7 +83,7 @@ function handleDataExamples(tree, logger) {
       (node) => node.tagName === "h3",
       examplesSection
     );
-    checkExample(body, exampleSection, logger);
+    checkExample(exampleSection, logger);
   }
 }
 
