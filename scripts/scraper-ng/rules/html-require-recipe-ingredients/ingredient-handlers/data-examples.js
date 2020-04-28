@@ -15,7 +15,7 @@ function isNewlineOnlyTextNode(node) {
  * Checks a single example. This only does any checking for live samples:
  * that is, examples that contain a call to the EmbedLiveSample macro.
  */
-function checkExample(body, exampleNodes, logger) {
+function checkExample(exampleNodes, logger) {
   let liveSampleNode = null;
   visit(exampleNodes, (node) => {
     // If we have already seen an EmbedLiveSample call...
