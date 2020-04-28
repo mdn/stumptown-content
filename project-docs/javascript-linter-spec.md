@@ -148,29 +148,14 @@ This is an optional ingredient. It's just the same as `data.constructor_properti
 
 #### data.examples
 
-To satisfy this ingredient a page must have a section demarcated by `H2#Examples`. It must contain one or more sections demarcated by an H3. Each of these sections represents a single example.
+To satisfy this ingredient a page must have a section demarcated by `H2#Examples`. It must contain one or more sections demarcated by an H3. Each of these H3 sections represents a single example.
 
-Each of these examples may include "code sections". These are marked up as follows:
+Each example may be a simple example or a live sample. If the example contains a call to the `{{EmbedLiveSample}}` macro, it is a live sample. Otherwise it is a simple example.
 
-- HTML code section: `<pre class="brush: html language-html"><code class="language-html">`
-- CSS code section: `<pre class="brush: css language-css"><code class=" language-css">`
-- JavaScript code section: `<pre class="brush: js language-js"><code class=" language-js">`
+Live samples must satisfy certain additional constraints:
 
-Examples must follow some rules about which sections may appear and how they are ordered:
-
-- An example may contain zero or one of each type of section.
-- If an example includes a JavaScript code section, it must be the last element in the section.
-- If an example includes a CSS code section, it may only be followed by a JavaScript section.
-- If an example includes an HTML code section, it may only be followed by a CSS section.
-
-Another way to put this is: each example is structured like:
-
-```
-unstructured prose
-optional HTML section
-optional CSS section
-optional JavaScript section
-```
+- The call to `{{EmbedLiveSample}}` must be the last element in the example (the only exception is that text nodes consisting only of newlines may follow the `{{EmbedLiveSample}}` call). This implies that there may only be one live sample in a given H3 section, and that the iframe showing the output must appear last in the rendered page, after any code or explanatory prose.
+- The ID parameter passed to `{{EmbedLiveSample}}` must match the ID of the example's H3 heading. This implies that the example is not allowed to contain any code blocks that are not included in the live sample.
 
 #### data.specifications
 
