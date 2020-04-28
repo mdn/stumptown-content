@@ -26,6 +26,7 @@ const sources = {
   <pre class="brush: html">&lt;h1&gt;A heading&lt;/h1&gt;</pre>
   <pre class="brush: css">h1: { color: blue; }</pre>
   {{EmbedLiveSample("An_example")}}
+
 <h3 id="Another_example">Another example</h3>
   <p>Some more prose description</p>
   <pre class="brush: html">&lt;h1&gt;A heading&lt;/h1&gt;</pre>
