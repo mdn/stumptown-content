@@ -2,6 +2,21 @@ const select = require("hast-util-select");
 
 const utils = require("./utils.js");
 
+/**
+ * Returns true only if the given node contains a single child,
+ * andthe child is either an A element or a call to the jsxref macro.
+ */
+function containsLinkOrXRef(node) {
+  if (node.children.length === 1) {
+    if (node.children[0].tagName === "a") {
+      return true;
+    } else if (utils.isMacro(node.children[0], "jsxref")) {
+      return true;
+    }
+  }
+  return false;
+}
+
 function checkLinkList(id, tree, logger) {
   const body = select.select("body", tree);
 
@@ -55,17 +70,13 @@ function checkLinkList(id, tree, logger) {
     return;
   }
 
-  // Each <dt> must contain only a single <a> element
+  // Each <dt> must contain only a single <a> element or a call to jsxref.
   for (const dt of dts) {
-    if (
-      dt.children.length !== 1 ||
-      dt.children[0].type !== "element" ||
-      dt.children[0].tagName !== "a"
-    ) {
+    if (!containsLinkOrXRef(dt)) {
       logger.fail(
         dt,
-        "dt elements in link lists must contain a single anchor element",
-        "only-single-anchor-element-in-link-list-dt"
+        "dt elements in link lists must contain a single anchor element or xref macro call",
+        "only-single-anchor-element-or-xref-in-link-list-dt"
       );
     }
   }
