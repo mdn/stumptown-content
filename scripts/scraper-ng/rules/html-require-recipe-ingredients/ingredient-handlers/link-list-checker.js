@@ -4,7 +4,7 @@ const utils = require("./utils.js");
 
 /**
  * Returns true only if the given node contains a single child,
- * andthe child is either an A element or a call to the jsxref macro.
+ * and the child is either an A element or a call to the jsxref macro.
  */
 function containsLinkOrXRef(node) {
   if (node.children.length === 1) {
