@@ -59,7 +59,7 @@ function handleDataInteractiveExample(tree, logger) {
     }
   }
 
-  // check the part of the doc from the first H2 onwards
+  // check the part of the doc up to the first H2
   // it must contain zero or one interactive examples
   const beforeFirstH2 = utils.sliceSection(body.children[0], body);
   const interactiveExamples = getInteractiveExamples(beforeFirstH2);
@@ -70,12 +70,12 @@ function handleDataInteractiveExample(tree, logger) {
       "at-most-one-interactive-example"
     );
   }
-  // if the part of the doc from the first H2 onwards contains
+  // if the part of the doc up to the first H2 contains
   // zero interactive examples, we have no more checks
   if (interactiveExamples.length === 0) {
     return;
   }
-  // if the part of the doc from the first H2 onwards contains
+  // if the part of the doc up to the first H2 contains
   // one interactive example, it must be a DIV
   if (interactiveExamples[0].tagName !== "div") {
     logger.fail(
