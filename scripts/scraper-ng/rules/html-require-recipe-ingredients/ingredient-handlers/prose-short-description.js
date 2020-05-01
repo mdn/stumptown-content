@@ -1,5 +1,4 @@
 const { select } = require("hast-util-select");
-const filter = require("unist-util-filter");
 const toString = require("hast-util-to-string");
 const visit = require("unist-util-visit");
 
@@ -52,16 +51,8 @@ function handleProseShortDescription(tree, logger) {
     body
   );
 
-  // Remove admonition paragraphs
-  const isAdmonition = (node) =>
-    node.tagName === "p" &&
-    node.properties.className &&
-    (node.properties.className.includes("warning") ||
-      node.properties.className.includes("note"));
-  const filtered = filter(introSection, (node) => !isAdmonition(node));
-
-  // Get the first paragraph left over
-  const shortDescriptionP = select("p", filtered);
+  // Get the first paragraph not an admonition
+  const shortDescriptionP = select("p:not(.warning):not(.note)", introSection);
 
   if (shortDescriptionP === null) {
     logger.expected(body, `short description`, "missing-prose-section");
