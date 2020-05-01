@@ -2,6 +2,7 @@ const { select } = require("hast-util-select");
 
 const handleDataSpecifications = require("./data-specifications");
 const handleDataExamples = require("./data-examples");
+const handleDataInteractiveExample = require("./data-interactive-example");
 const handleDataBrowserCompatibility = require("./data-browser-compatibility");
 const handleProseShortDescription = require("./prose-short-description");
 const classMembers = require("./data-class-members");
@@ -23,6 +24,7 @@ const classMembers = require("./data-class-members");
  *
  */
 const ingredientHandlers = {
+  "data.interactive_example?": handleDataInteractiveExample,
   "data.browser_compatibility": handleDataBrowserCompatibility,
   "data.examples": handleDataExamples,
   "data.specifications": handleDataSpecifications,
