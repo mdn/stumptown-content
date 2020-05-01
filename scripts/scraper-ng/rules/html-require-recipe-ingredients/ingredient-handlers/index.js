@@ -4,6 +4,7 @@ const handleDataSpecifications = require("./data-specifications");
 const handleDataExamples = require("./data-examples");
 const handleDataBrowserCompatibility = require("./data-browser-compatibility");
 const handleProseShortDescription = require("./prose-short-description");
+const handleDataConstructor = require("./data-constructor");
 const classMembers = require("./data-class-members");
 
 /**
@@ -34,6 +35,7 @@ const ingredientHandlers = {
   "prose.syntax": requireTopLevelHeading("Syntax"),
   "prose.what_went_wrong": requireTopLevelHeading("What_went_wrong"),
   "data.constructor_properties?": classMembers.handleDataConstructorProperties,
+  "data.constructor": handleDataConstructor,
   "data.static_methods?": classMembers.handleDataStaticMethods,
   "data.static_properties?": classMembers.handleDataStaticProperties,
   "data.instance_methods?": classMembers.handleDataInstanceMethods,
