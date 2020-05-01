@@ -87,4 +87,17 @@ describe("html-require-recipe-ingredients logs recipe positions", () => {
     expect(ingredient).toHaveProperty("position.type", "element");
     expect(ingredient).toHaveProperty("position.tagName", "p");
   });
+
+  test("other prose sections (h2s)", () => {
+    const source = `<h2 id="Syntax">Syntax</h2>`;
+
+    const file = process(source, { body: ["prose.syntax"] });
+
+    expect(file.data.ingredients.length).toBe(1);
+
+    const ingredient = file.data.ingredients[0];
+    expect(ingredient).toHaveProperty("name", "prose.syntax");
+    expect(ingredient).toHaveProperty("position.type", "element");
+    expect(ingredient).toHaveProperty("position.tagName", "h2");
+  });
 });
