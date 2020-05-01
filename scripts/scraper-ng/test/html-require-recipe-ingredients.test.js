@@ -40,4 +40,30 @@ describe("html-require-recipe-ingredients logs recipe positions", () => {
     expect(ingredient).toHaveProperty("position.type", "element");
     expect(ingredient).toHaveProperty("position.tagName", "h2");
   });
+
+  test("data.specifications", () => {
+    const source = `<h2 id="Specifications">Specifications</h2>
+
+    <table class="standard-table">
+     <thead>
+      <tr>
+       <th scope="col">Specification</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>{{SpecName("ESDraft", "#sec-bigint-objects", "<code>BigInt</code> objects")}}</td>
+      </tr>
+     </tbody>
+    </table>`;
+
+    const file = process(source, { body: ["data.specifications"] });
+
+    expect(file.data.ingredients.length).toBe(1);
+
+    const ingredient = file.data.ingredients[0];
+    expect(ingredient).toHaveProperty("name", "data.specifications");
+    expect(ingredient).toHaveProperty("position.type", "element");
+    expect(ingredient).toHaveProperty("position.tagName", "h2");
+  });
 });
