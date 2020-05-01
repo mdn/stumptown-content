@@ -52,12 +52,7 @@ function handleProseShortDescription(tree, logger) {
   );
 
   // Remove admonition paragraphs
-  const isAdmonition = (node) =>
-    node.tagName === "p" &&
-    node.properties.className &&
-    (node.properties.className.includes("warning") ||
-      node.properties.className.includes("note"));
-  const filtered = filter(introSection, (node) => !isAdmonition(node));
+  const filtered = filter(introSection, (node) => !utils.isAdmonition(node));
 
   // Get the first paragraph left over
   const shortDescriptionP = select("p", filtered);

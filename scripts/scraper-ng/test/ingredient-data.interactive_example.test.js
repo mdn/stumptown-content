@@ -7,9 +7,10 @@ const sources = {
 
   two_interactive_examples: `<p>An intro</p>
 <div>{{EmbedInteractiveExample()}}</div>
-<h2 id="A_heading">A heading</h2>
 <p>Some more stuff</p>
-<div>{{EmbedInteractiveExample()}}</div>`,
+<div>{{EmbedInteractiveExample()}}</div>
+<h2 id="A_heading">A heading</h2>
+<p>Some more stuff</p>`,
 
   interactive_example_after_h2: `<p>An intro</p>
 <h2 id="A_heading">A heading</h2>
@@ -18,6 +19,11 @@ const sources = {
 
   interactive_example_not_in_div: `<p>An intro</p>
 <p>{{EmbedInteractiveExample()}}</p>
+<h2 id="A_heading">A heading</h2>
+<p>Some more stuff</p>`,
+
+  interactive_example_not_after_p: `<div>An intro</div>
+<div>{{EmbedInteractiveExample()}}</div>
 <h2 id="A_heading">A heading</h2>
 <p>Some more stuff</p>`,
 
@@ -63,7 +69,17 @@ describe("data.examples", () => {
     expect(file.messages.length).toBe(2);
     expect(file).hasMessageWithId("/unknown-heading");
     expect(file).hasMessageWithId(
-      "data.interactive_example?/interactive-example-in-div"
+      "data.interactive_example?/interactive-example-inside-div"
+    );
+  });
+
+  test("interactive example not after P", () => {
+    const file = process(sources.interactive_example_not_after_p, testRecipe);
+
+    expect(file.messages.length).toBe(2);
+    expect(file).hasMessageWithId("/unknown-heading");
+    expect(file).hasMessageWithId(
+      "data.interactive_example?/interactive-example-preceded-by-p"
     );
   });
 

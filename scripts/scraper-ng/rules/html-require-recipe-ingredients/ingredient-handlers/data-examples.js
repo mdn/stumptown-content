@@ -4,14 +4,6 @@ const visit = require("unist-util-visit");
 const utils = require("./utils.js");
 
 /**
- * Function returning true only if the given node is a text node
- * that contains only newlines.
- */
-function isNewlineOnlyTextNode(node) {
-  return node.type === "text" && node.value.match(/^\n*$/);
-}
-
-/**
  * Checks a single example. This only does any checking for live samples:
  * that is, examples that contain a call to the EmbedLiveSample macro.
  */
@@ -21,7 +13,7 @@ function checkExample(exampleNodes, logger) {
     // If we have already seen an EmbedLiveSample call...
     if (liveSampleNode !== null) {
       // ...then the only nodes allowed after that point are text nodes containing only newlines
-      if (!isNewlineOnlyTextNode(node)) {
+      if (!utils.isNewlineOnlyTextNode(node)) {
         logger.fail(
           node,
           "EmbedLiveSample must be final node",

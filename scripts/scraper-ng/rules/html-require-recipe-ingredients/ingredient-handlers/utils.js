@@ -71,6 +71,23 @@ function isMacro(node, macroName) {
   );
 }
 
+/**
+ * Function returning true only if the given node is a text node
+ * that contains only newlines.
+ */
+function isNewlineOnlyTextNode(node) {
+  return node.type === "text" && node.value.match(/^\n*$/);
+}
+
+function isAdmonition(node) {
+  return (
+    node.tagName === "p" &&
+    node.properties.className &&
+    (node.properties.className.includes("warning") ||
+      node.properties.className.includes("note"))
+  );
+}
+
 function Logger(file, source, recipeName, ingredient) {
   return {
     expected: function (node, name, id) {
@@ -92,5 +109,7 @@ module.exports = {
   sliceSection,
   sliceBetween,
   isMacro,
+  isNewlineOnlyTextNode,
+  isAdmonition,
   Logger,
 };
