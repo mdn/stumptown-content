@@ -23,8 +23,9 @@ function handleProseShortDescription(tree, logger) {
 
   const body = select("body", tree);
 
-  if (select("span.seoSummary", tree) !== null) {
-    return;
+  const seoSummary = select("span.seoSummary", tree);
+  if (seoSummary !== null) {
+    return seoSummary;
   }
 
   // Slice the tree to the nodes between the first element in <body> and
@@ -64,7 +65,7 @@ function handleProseShortDescription(tree, logger) {
 
   if (shortDescriptionP === null) {
     logger.expected(body, `short description`, "missing-prose-section");
-    return;
+    return null;
   }
 
   // Check if the paragraph actually contains text
@@ -77,7 +78,10 @@ function handleProseShortDescription(tree, logger) {
       `short description`,
       "missing-prose-section"
     );
+    return null;
   }
+
+  return shortDescriptionP;
 }
 
 module.exports = handleProseShortDescription;

@@ -66,4 +66,25 @@ describe("html-require-recipe-ingredients logs recipe positions", () => {
     expect(ingredient).toHaveProperty("position.type", "element");
     expect(ingredient).toHaveProperty("position.tagName", "h2");
   });
+
+  test("prose.short_description", () => {
+    const source = `<div>{{JSRef}}</div>
+
+    <p>The <strong><code>BigInt.asIntN</code></strong> static method is used to wrap a BigInt value to a signed integer between -2<sup>width-1</sup> and 2<sup>width-1</sup>-1.</p>
+    
+    <div>{{EmbedInteractiveExample("pages/js/bigint-asintn.html", "taller")}}</div>
+    
+    <div class="hidden">The source for this interactive example is stored in a GitHub repository. If you'd like to contribute to the interactive examples project, please clone <a href="https://github.com/mdn/interactive-examples">https://github.com/mdn/interactive-examples</a> and send us a pull request.</div>
+    
+    <h2 id="Syntax">Syntax</h2>`;
+
+    const file = process(source, { body: ["prose.short_description"] });
+
+    expect(file.data.ingredients.length).toBe(1);
+
+    const ingredient = file.data.ingredients[0];
+    expect(ingredient).toHaveProperty("name", "prose.short_description");
+    expect(ingredient).toHaveProperty("position.type", "element");
+    expect(ingredient).toHaveProperty("position.tagName", "p");
+  });
 });
