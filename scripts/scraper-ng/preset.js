@@ -13,7 +13,7 @@ module.exports = {
     [require("./plugins/load-recipes")],
     [require("./rules/html-no-macros"), allowedMacros],
     [require("./rules/html-require-recipe-ingredients")],
-    [require("./rules/file-require-ingredient-order")],
+    [require("./rules/html-require-ingredient-order")],
     [require("./rules/html-warn-unknown-headings")],
   ],
 };
