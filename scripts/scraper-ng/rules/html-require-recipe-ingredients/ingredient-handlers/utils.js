@@ -79,6 +79,10 @@ function isNewlineOnlyTextNode(node) {
   return node.type === "text" && node.value.match(/^\n*$/);
 }
 
+/**
+ * Function returning true only if the given node is a P node
+ * that isn't a warning or a note.
+ */
 function isAdmonition(node) {
   return (
     node.tagName === "p" &&
