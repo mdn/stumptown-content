@@ -1,10 +1,10 @@
 const { select } = require("hast-util-select");
 
 const handleDataSpecifications = require("./data-specifications");
+const handleDataExamples = require("./data-examples");
 const handleDataBrowserCompatibility = require("./data-browser-compatibility");
 const handleProseShortDescription = require("./prose-short-description");
-
-const utils = require("./utils.js");
+const classMembers = require("./data-class-members");
 
 /**
  * Functions to check for recipe ingredients in Kuma page sources.
@@ -23,9 +23,8 @@ const utils = require("./utils.js");
  *
  */
 const ingredientHandlers = {
-  default: unimplementedHandler,
   "data.browser_compatibility": handleDataBrowserCompatibility,
-  "data.examples": requireTopLevelHeading("Examples"),
+  "data.examples": handleDataExamples,
   "data.specifications": handleDataSpecifications,
   "prose.description": requireTopLevelHeading("Description"),
   "prose.error_type": requireTopLevelHeading("Error_type"),
@@ -33,20 +32,13 @@ const ingredientHandlers = {
   "prose.see_also": requireTopLevelHeading("See_also"),
   "prose.short_description": handleProseShortDescription,
   "prose.syntax": requireTopLevelHeading("Syntax"),
-  "prose.what_went_wrong": requireTopLevelHeading("What_went_wrong")
+  "prose.what_went_wrong": requireTopLevelHeading("What_went_wrong"),
+  "data.constructor_properties?": classMembers.handleDataConstructorProperties,
+  "data.static_methods?": classMembers.handleDataStaticMethods,
+  "data.static_properties?": classMembers.handleDataStaticProperties,
+  "data.instance_methods?": classMembers.handleDataInstanceMethods,
+  "data.instance_properties?": classMembers.handleDataInstanceProperties,
 };
-
-/**
- * The default handler, that's called when we haven't yet implemented a handler
- * for a given ingredient.
- */
-function unimplementedHandler(tree, file, context) {
-  const { recipeName, ingredient, source } = context;
-  const rule = `${recipeName}/${ingredient}`;
-  const origin = `${source}:${rule}`;
-
-  file.message(`Linting ${ingredient} ingredient is unimplemented`, origin);
-}
 
 /**
  * A convenience function that returns ingredient handlers for checking
@@ -57,10 +49,10 @@ function unimplementedHandler(tree, file, context) {
  * @returns {Function} a function
  */
 function requireTopLevelHeading(id) {
-  return (tree, file, context) => {
+  return (tree, logger) => {
     const heading = select(`h2#${id}`, tree);
     if (heading === null) {
-      utils.logMissingIngredient(file, context);
+      logger.expected(tree, `h2#${id}`, "expected-heading");
     }
   };
 }

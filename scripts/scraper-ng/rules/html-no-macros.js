@@ -16,12 +16,12 @@ function attacher(allowedMacros) {
   return function warnOnMacros(tree, file) {
     visit(
       tree,
-      node =>
+      (node) =>
         node.type === "text" &&
         node.data &&
         node.data.macroName &&
         !allowedMacros.includes(node.data.macroName),
-      node => {
+      (node) => {
         const message = file.message(
           `Macro: ${node.data.macroCall}`,
           node,

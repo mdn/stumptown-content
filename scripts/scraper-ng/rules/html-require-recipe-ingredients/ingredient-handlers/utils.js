@@ -11,7 +11,7 @@ const normalizeMacroName = require("../../../normalize-macro-name");
  * @returns {Object} a hast tree
  */
 function sliceSection(startNode, tree) {
-  return sliceBetween(startNode, node => node.tagName === "h2", tree);
+  return sliceBetween(startNode, (node) => node.tagName === "h2", tree);
 }
 
 /**
@@ -29,7 +29,7 @@ function sliceBetween(startNode, endCondition, tree) {
   const newRoot = { type: "root", children: [] };
 
   let inBounds = false;
-  visit(tree, node => {
+  visit(tree, (node) => {
     if (node === startNode) {
       inBounds = true;
       newRoot.children.push(node);
@@ -71,28 +71,26 @@ function isMacro(node, macroName) {
   );
 }
 
-/**
- * Log a message when a file is missing an ingredient.
- *
- * @param {VFile} file - a VFile
- * @param {Object} context - a context object with recipe name and ingredient
- * strings
- */
-function logMissingIngredient(file, context) {
-  const { recipeName, ingredient, source } = context;
-  const rule = `${recipeName}/${ingredient}`;
-  const origin = `${source}:${rule}`;
-
-  const message = file.message(
-    `Missing from ${recipeName}: ${ingredient}`,
-    origin
-  );
-  message.fatal = true;
+function Logger(file, source, recipeName, ingredient) {
+  return {
+    expected: function (node, name, id) {
+      const text = `Expected ${name} for ${ingredient}`;
+      this.fail(node, text, id);
+    },
+    fail: function (node, text, id) {
+      const message = file.message(
+        text,
+        node,
+        `${source}:${recipeName}/${ingredient}/${id}`
+      );
+      message.fatal = true;
+    },
+  };
 }
 
 module.exports = {
   sliceSection,
   sliceBetween,
   isMacro,
-  logMissingIngredient
+  Logger,
 };

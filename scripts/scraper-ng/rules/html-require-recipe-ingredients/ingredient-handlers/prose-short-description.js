@@ -8,7 +8,7 @@ const utils = require("./utils.js");
 /**
  * Handler for the `prose.short_description` ingredient.
  */
-function handleProseShortDescription(tree, file, context) {
+function handleProseShortDescription(tree, logger) {
   // Short descriptions are complicated!
   //
   // A short description is understood to be either an seoSummary <span> or
@@ -32,7 +32,7 @@ function handleProseShortDescription(tree, file, context) {
   // document
   const introSection = utils.sliceBetween(
     select(":first-child", body),
-    node => {
+    (node) => {
       if (node.tagName === "h2") {
         return true;
       }
@@ -40,7 +40,7 @@ function handleProseShortDescription(tree, file, context) {
       let containsInteractiveExample = false;
       visit(
         node,
-        node => utils.isMacro(node, "EmbedInteractiveExample"),
+        (node) => utils.isMacro(node, "EmbedInteractiveExample"),
         () => {
           containsInteractiveExample = true;
           return visit.EXIT;
@@ -52,18 +52,18 @@ function handleProseShortDescription(tree, file, context) {
   );
 
   // Remove admonition paragraphs
-  const isAdmonition = node =>
+  const isAdmonition = (node) =>
     node.tagName === "p" &&
     node.properties.className &&
     (node.properties.className.includes("warning") ||
       node.properties.className.includes("note"));
-  const filtered = filter(introSection, node => !isAdmonition(node));
+  const filtered = filter(introSection, (node) => !isAdmonition(node));
 
   // Get the first paragraph left over
   const shortDescriptionP = select("p", filtered);
 
   if (shortDescriptionP === null) {
-    utils.logMissingIngredient(file, context);
+    logger.expected(body, `short description`, "missing-prose-section");
     return;
   }
 
@@ -72,7 +72,11 @@ function handleProseShortDescription(tree, file, context) {
 
   // See if there's any text remaining
   if (!shortDescriptionText.length) {
-    utils.logMissingIngredient(file, context);
+    logger.expected(
+      shortDescriptionP,
+      `short description`,
+      "missing-prose-section"
+    );
   }
 }
 

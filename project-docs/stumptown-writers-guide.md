@@ -1,16 +1,17 @@
 # Writers' guide to stumptown
 
 **Table of contents:**
-* [stumptown-content and stumptown-renderer](#stumptown-content-and-stumptown-renderer)
-* [The content directory](#the-content-directory)
-* [Recipe files](#recipe-files)
-* [Meta ingredient details](#meta-ingredient-details)
-* [Landing pages](#landing-pages)
-* [Guide pages](#guide-pages)
-* [Related content](#related-content)
-* [Chapter lists](#chapter-lists)
-* [Specifications](#specifications-1)
-* [Contributors](#contributors)
+
+- [stumptown-content and stumptown-renderer](#stumptown-content-and-stumptown-renderer)
+- [The content directory](#the-content-directory)
+- [Recipe files](#recipe-files)
+- [Meta ingredient details](#meta-ingredient-details)
+- [Landing pages](#landing-pages)
+- [Guide pages](#guide-pages)
+- [Related content](#related-content)
+- [Chapter lists](#chapter-lists)
+- [Specifications](#specifications-1)
+- [Contributors](#contributors)
 
 ## stumptown-content and stumptown-renderer
 
@@ -18,9 +19,9 @@ This document describes stumptown from the point of view of a technical writer.
 
 We can think of the MDN documentation landscape like this:
 
--   there are _technical writers_, who are humans skilled in expressing technical concepts. They create content (open Web documentation).
+- there are _technical writers_, who are humans skilled in expressing technical concepts. They create content (open Web documentation).
 
--   there are _consumers_ of this content, which are software components that take this content and present it to human users. A website like developer.mozilla.org is a consumer of this content, but so potentially are devtools or text editors.
+- there are _consumers_ of this content, which are software components that take this content and present it to human users. A website like developer.mozilla.org is a consumer of this content, but so potentially are devtools or text editors.
 
 Accordingly, stumptown is implemented in two Git repositories, ["stumptown-content"](https://github.com/mdn/stumptown-content) and ["stumptown-renderer"](https://github.com/mdn/stumptown-renderer).
 
@@ -61,7 +62,7 @@ The **HTML Bring Attention To element** (**`<b>`**) is used to draw the
 reader's attention to the element's contents, which are not otherwise
 granted special importance.
 
-## Overview
+## Description
 
 This was formerly known as the
 **Boldface element**, and most browsers still draw the text in boldface.
@@ -77,8 +78,8 @@ This was formerly known as the
 
 The file is in 2 main parts:
 
--   a YAML front matter section
--   a Markdown prose section
+- a YAML front matter section
+- a Markdown prose section
 
 The prose section has a number of H2 headings: these divide the document into top-level sections.
 
@@ -90,11 +91,11 @@ All files that can be built as MDN pages contain a `recipe` property, and its va
 
 Recipes are central to stumptown.
 
--   they provide a kind of high-level meta-documentation for writers, explaining concisely what a particular type of page must contain
+- they provide a kind of high-level meta-documentation for writers, explaining concisely what a particular type of page must contain
 
--   they help the linter enforce a particular structure for page types
+- they help the linter enforce a particular structure for page types
 
--   they describe not just what a page contains, but the order in which items should appear in the rendered page.
+- they describe not just what a page contains, but the order in which items should appear in the rendered page.
 
 Let's look at ./recipes/html-element.yaml:
 
@@ -103,7 +104,7 @@ related_content: /content/related_content/html.yaml
 body:
 - prose.short_description
 - meta.interactive_example?
-- prose.overview
+- prose.description?
 - prose.attributes_text?
 - meta.attributes
 - prose.styling?
@@ -124,8 +125,8 @@ The other item, `body`, describes the structure of the page content. Each proper
 
 We said before that a docs file was split into two parts: YAML front matter and Markdown prose. Correspondingly, ingredients in the recipe's `body` have one of two prefixes:
 
--   `meta.` ingredients are supplied by the YAML front matter
--   `prose.` ingredients are supplied by the Markdown prose
+- `meta.` ingredients are supplied by the YAML front matter
+- `prose.` ingredients are supplied by the Markdown prose
 
 Ingredients with a `?` suffix are optional.
 
@@ -151,13 +152,13 @@ short_title: <b>
 mdn_url: /en-US/docs/Web/HTML/Element/b
 specifications: https://html.spec.whatwg.org/multipage/semantics.html#the-b-element
 interactive_example:
-    url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/b.html
-    height: html-short
+  url: https://interactive-examples.mdn.mozilla.net/pages/tabbed/b.html
+  height: html-short
 browser_compatibility: html.elements.b
 examples:
-    - examples/simple-b-example
+  - examples/simple-b-example
 attributes:
-    global: /content/html/global_attributes
+  global: /content/html/global_attributes
 recipe: html-element
 ---
 
@@ -185,7 +186,7 @@ Here are just the prose ingredients from the recipe:
 
 ```
 - prose.short_description
-- prose.overview
+- prose.description
 - prose.attributes_text?
 - prose.styling?
 - prose.accessibility_concerns?
@@ -204,7 +205,7 @@ The **HTML Bring Attention To element** (**`<b>`**) is used to draw the
 reader's attention to the element's contents, which are not otherwise
 granted special importance.
 
-## Overview
+## Description
 
 This was formerly known as the
 **Boldface element**, and most browsers still draw the text in boldface.
@@ -244,15 +245,15 @@ A string that's used by the renderer to set the URL for the docs page to build. 
 
 An object used to specify an interactive example to include in the page. The object contains two properties:
 
--   `url`: URL for the build interactive example, e.g. `https://interactive-examples.mdn.mozilla.net/pages/tabbed/abbr.html`
--   `height`: String determining which height to select for the iframe. This may be any of:
-    -   "js-short"
-    -   "js-standard"
-    -   "js-tall"
-    -   "css-standard"
-    -   "html-short"
-    -   "html-standard"
-    -   "html-tall"
+- `url`: URL for the build interactive example, e.g. `https://interactive-examples.mdn.mozilla.net/pages/tabbed/abbr.html`
+- `height`: String determining which height to select for the iframe. This may be any of:
+  - "js-short"
+  - "js-standard"
+  - "js-tall"
+  - "css-standard"
+  - "html-short"
+  - "html-standard"
+  - "html-tall"
 
 ### attributes
 
@@ -260,27 +261,27 @@ An object that's used to describe which HTML attributes the item supports.
 
 The `attributes` ingredient contains two properties:
 
--   `global`: Mandatory. This is a path to a directory containing the global attributes.
--   `element-specific`: Optional. This may be either:
-    -   a path to a directory containing the element-specific attributes.
-    -   an array of file paths, each of which contains documentation for a single attribute.
+- `global`: Mandatory. This is a path to a directory containing the global attributes.
+- `element-specific`: Optional. This may be either:
+  - a path to a directory containing the element-specific attributes.
+  - an array of file paths, each of which contains documentation for a single attribute.
 
 For example:
 
 ```yaml
 attributes:
-    element_specific: ./attributes
-    global: /content/html/global_attributes
+  element_specific: ./attributes
+  global: /content/html/global_attributes
 ```
 
 In this example, there should be an "attributes" subdirectory of the directory containing this front matter, and it contains files describing the element-specific attributes.
 
 ```yaml
 attributes:
-    element_specific:
-        - ../input/attributes/autocomplete.md
-        - ../input/attributes/name.md
-    global: /content/html/global_attributes
+  element_specific:
+    - ../input/attributes/autocomplete.md
+    - ../input/attributes/name.md
+  global: /content/html/global_attributes
 ```
 
 In this example, there are two element-specific attributes, found at "../input/attributes/autocomplete.md" and "../input/attributes/name.md", relative to the directory containing this front matter.
@@ -322,8 +323,8 @@ String
 
 The file may contain some YAML front matter, with the following two properties, both optional:
 
--   `browser_compatibility`: syntax is the same as the `browser_compatibility` ingredient
--   `specifications`: syntax is the same as the `specifications` ingredient.
+- `browser_compatibility`: syntax is the same as the `browser_compatibility` ingredient
+- `specifications`: syntax is the same as the `specifications` ingredient.
 
 The H1 heading must be in `code format` and its content must be the name of the attribute:
 
@@ -365,9 +366,9 @@ It is given as an array of paths to directories. Each directory contains a singl
 
 ```yaml
 examples:
-    - examples/simple-example
-    - examples/audio-element-with-video-element
-    - examples/multiple-source-elements
+  - examples/simple-example
+  - examples/audio-element-with-video-element
+  - examples/multiple-source-elements
 ```
 
 **Note: it looks like this is using a different path convention from attributes. We should be consistent here. Filed as https://github.com/mdn/stumptown-content/issues/204.**
@@ -376,10 +377,10 @@ Examples will be included in the rendered output in the order given here: so for
 
 Each example is specified as a directory containing four files, one mandatory and three optional:
 
--   "description.md" - the only mandatory one
--   "example.html"
--   "example.css"
--   "example.js"
+- "description.md" - the only mandatory one
+- "example.html"
+- "example.css"
+- "example.js"
 
 **Note: we don't yet support "hidden" sources One suggestion was just to call them "hidden.css" etc. Filed as https://github.com/mdn/stumptown-content/issues/205.**
 
@@ -416,9 +417,9 @@ This property lists specifications for the item.
 
 This is given as one of:
 
--   the string "non-standard"
--   a single URL
--   an array of URLs
+- the string "non-standard"
+- a single URL
+- an array of URLs
 
 URLs must match one of the URLs listed in "specifications.yaml" (see the "Specifications" section), where "match" means they fully contain it, although they may add additional path or hash items. For example:
 
@@ -460,11 +461,11 @@ This is specified as an array of "link list" objects. Each of these objects will
 
 Each "link list" object may be specified in one of three ways:
 
--   as a directory. An object that consists of two properties: `title`, which is a string that will be used as the list title, and `directory`, which is a path to a directory. Stumptown will look for all pages immediately inside the given directory, and make links to them. For example, if you give it "/content/html/reference/elements" it will make a list of all the HTML elements.
+- as a directory. An object that consists of two properties: `title`, which is a string that will be used as the list title, and `directory`, which is a path to a directory. Stumptown will look for all pages immediately inside the given directory, and make links to them. For example, if you give it "/content/html/reference/elements" it will make a list of all the HTML elements.
 
--   as an explicit list of pages. An object that consists of two properties: `title`, which is a string that will be used as the list title, and `pages`, which is an array of paths to pages. Stumptown will make links to all the pages listed.
+- as an explicit list of pages. An object that consists of two properties: `title`, which is a string that will be used as the list title, and `pages`, which is an array of paths to pages. Stumptown will make links to all the pages listed.
 
--   as a `chapter_list`. An object that consists of one property: `chapter_list`, which is a path to a "Chapter list" YAML file. Stumptown will make links to all the pages listed in the chapter_list. This is really just a reusable version of the explicit list of pages.
+- as a `chapter_list`. An object that consists of one property: `chapter_list`, which is a path to a "Chapter list" YAML file. Stumptown will make links to all the pages listed in the chapter_list. This is really just a reusable version of the explicit list of pages.
 
 For example:
 
@@ -481,9 +482,9 @@ link_lists:
 
 This specifies three link lists.
 
--   The first has the title "Index of HTML elements" and contains links to all the pages under "/content/html/reference/elements".
--   The second has the title "Some guide pages", and contains links to the two pages listed.
--   the third as the title and link list that's given in the referenced chapter list.
+- The first has the title "Index of HTML elements" and contains links to all the pages under "/content/html/reference/elements".
+- The second has the title "Some guide pages", and contains links to the two pages listed.
+- the third as the title and link list that's given in the referenced chapter list.
 
 ## Landing pages
 
@@ -507,12 +508,12 @@ specifications: https://html.spec.whatwg.org/multipage/
 recipe: landing-page
 related_content: /content/related_content/html.yaml
 link_lists:
-    - title: Learn HTML
-      pages:
-          - "/content/learn/html/Introduction_to_HTML"
-    - title: Reference
-      pages:
-          - "/content/html/reference/elements"
+  - title: Learn HTML
+    pages:
+      - "/content/learn/html/Introduction_to_HTML"
+  - title: Reference
+    pages:
+      - "/content/html/reference/elements"
 ---
 
 ```
@@ -555,9 +556,9 @@ The Markdown part is of course the guide's prose. To support the "special conten
 
 We currently support two directives:
 
-* "embed-example": this tells stumptown that the guide wants to embed a live sample at this point. Its argument is "examples/specifying-colors-in-stylesheets", which is a path to a directory containing an example. The content of this directory is just the same as the directories references by the `examples` front matter property, with a mandatory "description.md" and optional "example.[html|css|js]" files.
+- "embed-example": this tells stumptown that the guide wants to embed a live sample at this point. Its argument is "examples/specifying-colors-in-stylesheets", which is a path to a directory containing an example. The content of this directory is just the same as the directories references by the `examples` front matter property, with a mandatory "description.md" and optional "example.[html|css|js]" files.
 
-* "embed-compat": this tells stumptown that the guide wants to embed a BCD table at this point. Its argument is a BCD query string like "html.elements.audio".
+- "embed-compat": this tells stumptown that the guide wants to embed a BCD table at this point. Its argument is a BCD query string like "html.elements.audio".
 
 We will probably add support for more directives in future, not too many. One likely candidate would be "embed-link-list".
 
@@ -577,54 +578,54 @@ Each collection of related content is described in a special YAML file. All "rel
 
 It's specified as an array of objects. Each object describes a section of the related content. A section has two properties:
 
-* `title`: the name of this section
-* `directory` or `chapter_list` or `pages` or `children`:
-    * if `directory`, then this section contains links to all pages in the given directory
-    * if `chapter_list` then this section contains links to all pages as specified in the given chapter list
-    * if `pages` then this section contains links to all pages listed explicitly
-    * if `children`, then this section itself contains sections: this enables you to nest groups of links to an arbitrary depth.
+- `title`: the name of this section
+- `directory` or `chapter_list` or `pages` or `children`:
+  - if `directory`, then this section contains links to all pages in the given directory
+  - if `chapter_list` then this section contains links to all pages as specified in the given chapter list
+  - if `pages` then this section contains links to all pages listed explicitly
+  - if `children`, then this section itself contains sections: this enables you to nest groups of links to an arbitrary depth.
 
 So for example, here's a "related content" file for HTML:
 
 ```yaml
 - title: Learn HTML
   children:
-  - chapter_list: "/content/learn/html/Introduction_to_HTML.yaml"
-  - chapter_list: "/content/learn/html/Multimedia_and_embedding.yaml"
+    - chapter_list: "/content/learn/html/Introduction_to_HTML.yaml"
+    - chapter_list: "/content/learn/html/Multimedia_and_embedding.yaml"
 - title: Guides
   children:
-  - chapter_list: "/content/html/guides/Guides.yaml"
+    - chapter_list: "/content/html/guides/Guides.yaml"
 - title: Reference
   children:
-  - title: Elements
-    directory: "/content/html/reference/elements"
-  - title: Global attributes
-    directory: "/content/html/reference/attributes"
+    - title: Elements
+      directory: "/content/html/reference/elements"
+    - title: Global attributes
+      directory: "/content/html/reference/attributes"
 ```
 
 It consists of three top-level sections.
 
-* The first section "Learn HTML" consists of two subsections, each specified using a chapter list ("Introduction_to_HTML.yaml" and "Multimedia_and_embedding.yaml").
+- The first section "Learn HTML" consists of two subsections, each specified using a chapter list ("Introduction_to_HTML.yaml" and "Multimedia_and_embedding.yaml").
 
-* The second section "Guides" consists of one subsection, specified using a chapter list ("Guides.yaml").
+- The second section "Guides" consists of one subsection, specified using a chapter list ("Guides.yaml").
 
-* The third section "Reference" consists of two subsections, each specified using a directory ("/content/html/reference/elements" and "/content/html/reference/attributes").
+- The third section "Reference" consists of two subsections, each specified using a directory ("/content/html/reference/elements" and "/content/html/reference/attributes").
 
 The resulting structure looks like:
 
-* Learn HTML
-    * Introduction to HTML
-        * ... all Introduction to HTML chapters
-    * Multimedia and embedding
-        * ... all Multumedia and embedding chapters
-* Guides
-    * HTML guides
-        * ...all HTML guide pages
-* Reference
-    * Elements
-        * ...all HTML element pages
-    * Global attributes
-        * ...all HTML global attribute pages
+- Learn HTML
+  - Introduction to HTML
+    - ... all Introduction to HTML chapters
+  - Multimedia and embedding
+    - ... all Multumedia and embedding chapters
+- Guides
+  - HTML guides
+    - ...all HTML guide pages
+- Reference
+  - Elements
+    - ...all HTML element pages
+  - Global attributes
+    - ...all HTML global attribute pages
 
 These related content files are referenced using the `related_content` property. This may appear either in recipes (for page types that all want the same related content collection), or in the front matter section of individual pages (for page types, like guides and landing pages, that don't all want the same related content collection).
 
@@ -638,8 +639,8 @@ A "chapter list" is just a way to provide a reusable list of links to pages, pre
 
 A chapter list is a YAML file with the following contents:
 
--   `title`: a mandatory property whose value is a string. This provides a title for the list.
--   `chapters`: an array of paths to pages to include, relative to the location of the chapter list itself.
+- `title`: a mandatory property whose value is a string. This provides a title for the list.
+- `chapters`: an array of paths to pages to include, relative to the location of the chapter list itself.
 
 For example, the chapter list for HTML guides, which is at content/html/guides:
 
@@ -672,10 +673,10 @@ Here's an example:
 # Allowed specification domains and their titles
 # Never add historical specfications to this allow list
 
-html.spec.whatwg.org: 'WHATWG HTML Living Standard'
-w3c.github.io/webappsec-cspee: 'Content Security Policy: Embedded Enforcement'
-w3c.github.io/webappsec-feature-policy: 'Feature Policy'
-wicg.github.io/priority-hints: 'Priority Hints'
+html.spec.whatwg.org: "WHATWG HTML Living Standard"
+w3c.github.io/webappsec-cspee: "Content Security Policy: Embedded Enforcement"
+w3c.github.io/webappsec-feature-policy: "Feature Policy"
+wicg.github.io/priority-hints: "Priority Hints"
 ```
 
 Items listed in the `specifications` front matter property must match one of the URLs in this file. They may add extra path elements and fragments, to point to individual items within a specification:

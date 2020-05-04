@@ -26,7 +26,7 @@ recipe: html-input-element
 
 [`<input>`](/en-US/docs/Web/HTML/Element/input) elements of type **`button`** are rendered as simple push buttons, which can be programmed to control custom functionality anywhere on a webpage as required when assigned an event handler function (typically for the `click` event).
 
-## Overview
+## Description
 
 While `<input>` elements of type `button` are still perfectly valid HTML, the newer [`<button>`](/en-US/docs/Web/HTML/Element/button) element is now the favored way to create buttons. Given that a [`<button>`](/en-US/docs/Web/HTML/Element/button)’s label text is inserted between the opening and closing tags, you can include HTML in the label, even images.
 

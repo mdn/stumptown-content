@@ -1,9 +1,7 @@
-const fs = require("fs");
 const path = require("path");
 
-const yaml = require("js-yaml");
-
 const ingredientHandlers = require("./ingredient-handlers");
+const { Logger } = require("./ingredient-handlers/utils");
 
 const source = "html-require-ingredient";
 
@@ -13,46 +11,22 @@ const source = "html-require-ingredient";
 function requireRecipeIngredientsPlugin() {
   return function warnOnMissingRecipeIngredients(tree, file) {
     const recipeName = path.basename(file.data.recipePath, ".yaml");
-    const recipe = loadRecipe(file.data.recipePath);
 
-    const requiredBody = recipe.body.filter(
-      ingredientName =>
-        !(ingredientName.endsWith("?") || ingredientName.endsWith(".*"))
+    const requiredBody = file.data.recipe.body.filter(
+      (ingredientName) => !ingredientName.endsWith(".*")
     );
 
     for (const ingredient of requiredBody) {
-      const info = {
-        source,
-        recipeName,
-        ingredient
-      };
       if (ingredient in ingredientHandlers) {
-        ingredientHandlers[ingredient](tree, file, info);
+        const logger = Logger(file, source, recipeName, ingredient);
+        ingredientHandlers[ingredient](tree, logger);
       } else {
-        ingredientHandlers.default(tree, file, info);
+        const rule = `${recipeName}/${ingredient}/handler-not-implemented`;
+        const origin = `${source}:${rule}`;
+        file.message(`Handler for ${ingredient} is unimplemented`, origin);
       }
     }
   };
-}
-
-const recipesCache = {};
-
-/**
- * Load a recipe object from a path.
- *
- * @param {String} path - the path to a recipe YAML file
- * @returns {Object} - the loaded recipe object
- */
-function loadRecipe(path) {
-  if (path === undefined) {
-    return undefined;
-  }
-
-  if (recipesCache[path] === undefined) {
-    recipesCache[path] = yaml.safeLoad(fs.readFileSync(path));
-  }
-
-  return recipesCache[path];
 }
 
 module.exports = requireRecipeIngredientsPlugin;

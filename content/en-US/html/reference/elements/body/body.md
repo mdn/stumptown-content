@@ -21,7 +21,7 @@ recipe: html-element
 The **HTML `<body>` Element** represents the content of an HTML
 document.
 
-## Overview
+## Description
 
 There can be only one `<body>` element in a document.
 

@@ -9,6 +9,10 @@ const source = "file-require-recipe";
  */
 function requireRecipe() {
   return function attacher(tree, file) {
+    if (file.data.recipe !== undefined) {
+      return; // Don't worry about recipePath, if the recipe object has been set directly (i.e., for testing)
+    }
+
     if (file.data.recipePath === undefined) {
       msg(
         file,
@@ -25,7 +29,7 @@ function requireRecipe() {
         `Recipe is not unique`,
         "recipe-not-unique",
         `Recipes: ${JSON.stringify(
-          file.data.recipePath.map(f => path.basename(f, ".yaml"))
+          file.data.recipePath.map((f) => path.basename(f, ".yaml"))
         )}\nTags: ${JSON.stringify(file.data.tags)}`
       );
       return;

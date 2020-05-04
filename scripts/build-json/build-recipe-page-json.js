@@ -24,7 +24,7 @@ function processMetaIngredient(elementPath, ingredientName, data) {
         title: "Browser compatibility",
         id: "browser_compatibility",
         query: data.browser_compatibility,
-        data: packageBCD(data.browser_compatibility)
+        data: packageBCD(data.browser_compatibility),
       };
     case "attributes":
       if (data.attributes.element_specific) {
@@ -33,32 +33,32 @@ function processMetaIngredient(elementPath, ingredientName, data) {
         return [];
       }
     case "examples": {
-      const examplesPaths = data.examples.map(relativePath =>
+      const examplesPaths = data.examples.map((relativePath) =>
         path.join(elementPath, relativePath)
       );
       return {
         title: "Examples",
         id: "examples",
-        examples: packageExamples(examplesPaths)
+        examples: packageExamples(examplesPaths),
       };
     }
     case "link_lists": {
       return data.link_lists.map(buildLinkList);
     }
-    case "class_constructor":
+    case "constructor":
       return buildLinkList({
         title: "Constructor",
-        pages: [data.class_constructor]
+        pages: [data.class_constructor],
       });
     case "static_methods":
       return buildLinkList({
         title: "Static methods",
-        directory: data.static_methods
+        directory: data.static_methods,
       });
     case "instance_methods":
       return buildLinkList({
         title: "Instance methods",
-        directory: data.instance_methods
+        directory: data.instance_methods,
       });
     case "info_box":
       // TODO: implement packaging for info boxes
@@ -84,19 +84,19 @@ function buildRecipePageJSON(elementPath, data, content, recipe) {
       if (value !== null) {
         body.push({
           type: ingredientName,
-          value: value
+          value: value,
         });
       }
     } else if (ingredientType === "prose" && ingredientName === "*") {
       // additional (unnamed) prose sections
       const additionalProse = proseSections.filter(
-        section => !section.value.id
+        (section) => !section.value.id
       );
       body.push(...additionalProse);
     } else if (ingredientType === "prose") {
       // named prose sections
       const matches = proseSections.filter(
-        section => section.value.id === ingredientName
+        (section) => section.value.id === ingredientName
       );
       body.push(...matches);
     } else {
@@ -110,5 +110,5 @@ function buildRecipePageJSON(elementPath, data, content, recipe) {
 }
 
 module.exports = {
-  buildRecipePageJSON
+  buildRecipePageJSON,
 };

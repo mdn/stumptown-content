@@ -32,5 +32,5 @@ function processInteractiveExample(htmlWithMacroCalls, result) {
 }
 
 module.exports = {
-  processInteractiveExample
+  processInteractiveExample,
 };

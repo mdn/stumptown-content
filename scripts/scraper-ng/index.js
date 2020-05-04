@@ -52,7 +52,7 @@ const { argv } = yargs
 const processor = kumascriptRehype()
   .use([
     require("./plugins/kuma-metadata"),
-    require("./plugins/identify-recipes")
+    require("./plugins/identify-recipes"),
   ])
   .use([require("./preset")]);
 // TODO: add YAML frontmatter insertion
@@ -62,9 +62,9 @@ async function run() {
   const urls = argv.noSubpages ? [root.url] : flattenTree(root);
 
   console.error(`Preparing to lint ${urls.length} pages…`);
-  await new Promise(resolve => setTimeout(resolve, 2000)); // give 2 seconds to gracefully bail out
+  await new Promise((resolve) => setTimeout(resolve, 2000)); // give 2 seconds to gracefully bail out
 
-  const files = urls.map(async url => {
+  const files = urls.map(async (url) => {
     await limiter();
     if (!argv.quiet) console.error(`Fetching ${url}`);
     const file = await toVFile(url);
@@ -89,7 +89,7 @@ async function run() {
       json: argv.json,
       quiet: argv.quiet,
       summary: argv.summary,
-      verbose: argv.verbose
+      verbose: argv.verbose,
     })
   );
 }
