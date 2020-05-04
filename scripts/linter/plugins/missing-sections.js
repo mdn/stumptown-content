@@ -7,14 +7,14 @@ const ruleId = "stumptown-linter:missing-section";
  */
 function requiredSections(recipe) {
   const proseRequiredIngredients = recipe.body.filter(
-    (ingredient) =>
+    ingredient =>
       typeof ingredient === "string" &&
       ingredient.startsWith("prose.") &&
       !ingredient.endsWith("?") &&
       !ingredient.endsWith("*")
   );
   const slugs = proseRequiredIngredients.map(
-    (ingredient) => ingredient.split("prose.")[1]
+    ingredient => ingredient.split("prose.")[1]
   );
   return slugs;
 }
@@ -30,9 +30,9 @@ function attacher() {
 
       visit(
         tree,
-        (node) => node.data && node.data.slug,
-        (node) => {
-          actualSections.push(`h${node.depth}.` + node.data.slug);
+        node => node.data && node.data.slug,
+        node => {
+          actualSections.push(node.data.slug);
         }
       );
 
