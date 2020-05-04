@@ -18,7 +18,7 @@ The `[[APIName]]` interface of the [[SpecName]] provides
 // Copy the next two lines as needed for all properties on the interface.
 // If there are none, delete this section.
 
-**`[[APIName]].[[propertyName]]()`**
+**`[[APIName]].[[propertyName]]`**
 
 Returns // Describe what the property returns.
 
@@ -27,7 +27,7 @@ Returns // Describe what the property returns.
 // Copy the next two lines as needed for all event handlers on the interface.
 // If there are none, delete this section.
 
-**`[[APIName]].[[eventHandlerName]]()`**
+**`[[APIName]].[[eventHandlerName]]`**
 
 called when // Describe what the event handler does.
 
