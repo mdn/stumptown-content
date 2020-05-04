@@ -26,7 +26,7 @@ Returns the time of the most recent user input.
 
 **`LayoutShift.sources`**
 
-Returns an array of the elements that were shifted.
+Returns an array of `LayoutShiftAttribution` objects with information on the elements that were shifted.
 
 ## Methods
 
