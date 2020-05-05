@@ -16,16 +16,16 @@ function handleDataBrowserCompatibility(tree, logger) {
     return null;
   }
 
-  let macroNodes = [];
+  let macroCount = 0;
   visit(
     utils.sliceSection(heading, body),
     (node) => utils.isMacro(node, "Compat"),
-    (node) => {
-      macroNodes.push(node);
+    () => {
+      macroCount += 1;
     }
   );
 
-  if (macroNodes.length !== 1) {
+  if (macroCount !== 1) {
     logger.expected(body, `Compat macro`, "expected-macro");
     return null;
   }
