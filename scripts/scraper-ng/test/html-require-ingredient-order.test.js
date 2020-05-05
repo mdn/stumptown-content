@@ -11,6 +11,18 @@ test("ingredient order", () => {
   expect(file).not.hasMessageWithId("ingredient-out-of-order");
 });
 
+test("missing optional ingredient is OK", () => {
+  const file = process(
+    `<h2 id="Syntax">Syntax</h2>
+     <h2 id="Error_type">Error type</h2>`,
+    {
+      body: ["prose.syntax", "data.static_methods?", "prose.error_type"],
+    }
+  );
+
+  expect(file).not.hasMessageWithId("ingredient-out-of-order");
+});
+
 test("ingredient disorder", () => {
   const file = process(
     `<h2 id="Error_type">Error type</h2>
