@@ -15,15 +15,15 @@ function checkTag(node, tag) {
  * Handler for the `data.constructor` ingredient.
  */
 function handleDataConstructor(tree, logger) {
-  // Check common link list structure
-  checkLinkList("Constructor", tree, logger);
-
   // Constructor is a mandatory property
   const heading = select.select(`h2#Constructor`, tree);
   if (heading === null) {
     logger.expected(tree, `h2#Constructor`, "expected-heading");
-    return;
+    return null;
   }
+
+  // Check common link list structure
+  let ok = checkLinkList("Constructor", tree, logger);
 
   // This link list is only allowed one entry
   const section = utils.sliceSection(heading, tree);
@@ -34,6 +34,7 @@ function handleDataConstructor(tree, logger) {
       "Constructor section may only contain one DT item",
       "only-single-constructor-dt"
     );
+    ok = false;
   }
   const dds = select.selectAll("dd", section);
   if (dds.length !== 1) {
@@ -42,7 +43,7 @@ function handleDataConstructor(tree, logger) {
       "Constructor section may only contain one DD item",
       "only-single-constructor-dd"
     );
-    return;
+    return null;
   }
 
   // The dd must be of the form: "Creates a new <a>...</a> object."
@@ -53,7 +54,7 @@ function handleDataConstructor(tree, logger) {
       "Constructor description must contain three nodes",
       "constructor-description-three-nodes"
     );
-    return;
+    return null;
   }
 
   if (!checkText(dd.children[0], "Creates a new ")) {
@@ -62,6 +63,7 @@ function handleDataConstructor(tree, logger) {
       "Constructor description first node is incorrect",
       "constructor-description-first-node"
     );
+    ok = false;
   }
 
   if (!checkTag(dd.children[1], "a")) {
@@ -70,6 +72,7 @@ function handleDataConstructor(tree, logger) {
       "Constructor description second node is incorrect",
       "constructor-description-second-node"
     );
+    ok = false;
   }
 
   if (!checkText(dd.children[2], " object.")) {
@@ -78,6 +81,13 @@ function handleDataConstructor(tree, logger) {
       "Constructor description third node is incorrect",
       "constructor-description-third-node"
     );
+    ok = false;
+  }
+
+  if (ok) {
+    return heading;
+  } else {
+    return null;
   }
 }
 
