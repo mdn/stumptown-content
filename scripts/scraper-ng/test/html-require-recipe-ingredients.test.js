@@ -28,7 +28,12 @@ describe("html-require-recipe-ingredients", () => {
 
 describe("html-require-recipe-ingredients logs recipe positions", () => {
   test("data class members", () => {
-    const source = `<h2 id="Static_methods">Static methods</h2><dl><dt><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt/asIntN"><code>BigInt.asIntN()</code></a></dt><dd>Wraps a <code>BigInt</code> value to a signed integer between <code>-2<var><sup>width</sup></var><sup>-1</sup></code> and <code>2<var><sup>width</sup></var><sup>-1</sup> - 1</code>.</dd><dt><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt/asUintN"><code>BigInt.asUintN()</code></a></dt><dd>Wraps a <code>BigInt</code> value to an unsigned integer between <code>0</code> and <code>2<var><sup>width</sup></var> - 1</code>.</dd></dl>`;
+    const source = `<h2 id="Static_methods">Static methods</h2>\n\n<dl>
+     <dt><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt/asIntN"><code>BigInt.asIntN()</code></a></dt>
+     <dd>Wraps a <code>BigInt</code> value to a signed integer between <code>-2<var><sup>width</sup></var><sup>-1</sup></code> and <code>2<var><sup>width</sup></var><sup>-1</sup>&nbsp;-&nbsp;1</code>.</dd>
+     <dt><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt/asUintN"><code>BigInt.asUintN()</code></a></dt>
+     <dd>Wraps a <code>BigInt</code> value to an unsigned integer between <code>0</code> and <code>2<var><sup>width</sup></var>&nbsp;-&nbsp;1</code>.</dd>
+    </dl>`;
 
     const file = process(source, { body: ["data.static_methods?"] });
 
