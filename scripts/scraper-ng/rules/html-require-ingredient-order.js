@@ -7,8 +7,7 @@ const source = "html-require-ingredient-order";
  */
 function attacher() {
   return function lintIngredientOrder(tree, file) {
-    // Ingredients without positions are unknowably sorted (and there's a
-    // message about the ingredient anyway)
+    // If an ingredient's position is `null`, then we can't check its order
     const checkableIngredients = file.data.ingredients.filter(
       (i) => i.position !== null
     );
