@@ -11,6 +11,7 @@ module.exports = {
     //   [require('./rules/rule-name')]
     [require("./rules/file-require-recipe")],
     [require("./plugins/load-recipes")],
+    [require("./plugins/index-tree")],
     [require("./rules/html-no-macros"), allowedMacros],
     [require("./rules/html-require-recipe-ingredients")],
     [require("./rules/html-require-ingredient-order")],
