@@ -7,23 +7,24 @@ const source = "html-require-ingredient-order";
  */
 function attacher() {
   return function lintIngredientOrder(tree, file) {
-    // If an ingredient's position is `null`, then we can't check its order
-    const checkableIngredients = file.data.ingredients.filter(
-      (i) => i.position !== null
+    const pageIngredients = file.data.ingredients
+      .filter((i) => i.position !== null) // Skip checking the order of ingredients that weren't found
+      .sort((a, b) => a.position.data.pageIndex - b.position.data.pageIndex); // Sort found ingredients by their order on the page
+
+    // Filter the recipe's sequence of ingredients to only the ingredients found
+    // in the page
+    const pageIngredientNames = pageIngredients.map(
+      (ingredient) => ingredient.name
+    );
+    const recipeIngredientNames = file.data.recipe.body.filter((ingredient) =>
+      pageIngredientNames.includes(ingredient)
     );
 
-    // Since the ingredients are logged in the order of the recipe, the nodes as
-    // they appear in the page should be in the same order
-    const indices = checkableIngredients.map((i) => i.position.data.pageIndex);
-    const sortedIndices = indices.sort((a, b) => a - b);
+    for (let i = 0; i < pageIngredients.length; i++) {
+      const currentIngredient = pageIngredients[i];
+      const expectedIngredient = recipeIngredientNames[i];
 
-    for (let i = 0; i < checkableIngredients.length; i++) {
-      const currentIngredient = checkableIngredients[i];
-
-      const expectedIndex = sortedIndices[i];
-      const actualIndex = currentIngredient.position.data.pageIndex;
-
-      if (expectedIndex !== actualIndex) {
+      if (currentIngredient.name !== expectedIngredient) {
         const message = file.message(
           `${currentIngredient.name} not expected in this order`,
           currentIngredient.position,
