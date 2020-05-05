@@ -14,6 +14,10 @@ describe("data.browser_compatibility", () => {
 
     expect(file.messages).toStrictEqual([]);
     expect(file).not.hasMessageWithId(/expected-heading/);
+
+    expect(file.data.ingredients).not.toBe(undefined);
+    expect(file.data.ingredients[0]).toHaveProperty("name");
+    expect(file.data.ingredients[0]).toHaveProperty("position");
   });
 
   test("missing heading", () => {
@@ -21,6 +25,10 @@ describe("data.browser_compatibility", () => {
 
     expect(file.messages.length).toBe(1);
     expect(file).hasMessageWithId(/expected-heading/);
+
+    expect(file.data.ingredients).not.toBe(undefined);
+    expect(file.data.ingredients[0]).toHaveProperty("name");
+    expect(file.data.ingredients[0]).toHaveProperty("position", null);
   });
 
   test("missing compat macro", () => {

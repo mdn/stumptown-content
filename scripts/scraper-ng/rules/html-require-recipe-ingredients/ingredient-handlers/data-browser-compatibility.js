@@ -13,7 +13,7 @@ function handleDataBrowserCompatibility(tree, logger) {
 
   if (heading === null) {
     logger.expected(body, `h2#${id}`, "expected-heading");
-    return;
+    return null;
   }
 
   let macroCount = 0;
@@ -27,7 +27,10 @@ function handleDataBrowserCompatibility(tree, logger) {
 
   if (macroCount !== 1) {
     logger.expected(body, `Compat macro`, "expected-macro");
+    return null;
   }
+
+  return heading;
 }
 
 module.exports = handleDataBrowserCompatibility;

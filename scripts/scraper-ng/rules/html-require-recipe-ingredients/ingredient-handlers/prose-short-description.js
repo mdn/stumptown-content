@@ -1,5 +1,4 @@
 const { select } = require("hast-util-select");
-const filter = require("unist-util-filter");
 const toString = require("hast-util-to-string");
 const visit = require("unist-util-visit");
 
@@ -23,8 +22,9 @@ function handleProseShortDescription(tree, logger) {
 
   const body = select("body", tree);
 
-  if (select("span.seoSummary", tree) !== null) {
-    return;
+  const seoSummary = select("span.seoSummary", tree);
+  if (seoSummary !== null) {
+    return seoSummary;
   }
 
   // Slice the tree to the nodes between the first element in <body> and
@@ -51,20 +51,12 @@ function handleProseShortDescription(tree, logger) {
     body
   );
 
-  // Remove admonition paragraphs
-  const isAdmonition = (node) =>
-    node.tagName === "p" &&
-    node.properties.className &&
-    (node.properties.className.includes("warning") ||
-      node.properties.className.includes("note"));
-  const filtered = filter(introSection, (node) => !isAdmonition(node));
-
-  // Get the first paragraph left over
-  const shortDescriptionP = select("p", filtered);
+  // Get the first paragraph not an admonition
+  const shortDescriptionP = select("p:not(.warning):not(.note)", introSection);
 
   if (shortDescriptionP === null) {
     logger.expected(body, `short description`, "missing-prose-section");
-    return;
+    return null;
   }
 
   // Check if the paragraph actually contains text
@@ -77,7 +69,10 @@ function handleProseShortDescription(tree, logger) {
       `short description`,
       "missing-prose-section"
     );
+    return null;
   }
+
+  return shortDescriptionP;
 }
 
 module.exports = handleProseShortDescription;

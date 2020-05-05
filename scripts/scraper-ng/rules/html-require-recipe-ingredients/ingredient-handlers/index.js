@@ -53,7 +53,9 @@ function requireTopLevelHeading(id) {
     const heading = select(`h2#${id}`, tree);
     if (heading === null) {
       logger.expected(tree, `h2#${id}`, "expected-heading");
+      return null;
     }
+    return heading;
   };
 }
 

@@ -51,7 +51,6 @@
         "retext-stringify": "^2.0.4",
         "to-vfile": "^6.1.0",
         "unified": "^9.0.0",
-        "unist-util-filter": "^2.0.2",
         "unist-util-visit": "^2.0.2",
         "vfile": "^4.1.0",
         "vfile-message": "^2.0.4",
@@ -93,7 +92,9 @@
         "projects": [
             {
                 "rootDir": "scripts/scraper-ng",
-                "setupFilesAfterEnv": ["<rootDir>/test/framework/jest.setup.js"]
+                "setupFilesAfterEnv": [
+                    "<rootDir>/test/framework/jest.setup.js"
+                ]
             }
         ]
     }
