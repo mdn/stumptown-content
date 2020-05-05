@@ -11,8 +11,10 @@ module.exports = {
     //   [require('./rules/rule-name')]
     [require("./rules/file-require-recipe")],
     [require("./plugins/load-recipes")],
+    [require("./plugins/index-tree")], // Required for html-require-recipe-ingredients and html-require-ingredient-order
     [require("./rules/html-no-macros"), allowedMacros],
     [require("./rules/html-require-recipe-ingredients")],
+    [require("./rules/html-require-ingredient-order")], // Must be after html-require-recipe-ingredients
     [require("./rules/html-warn-unknown-headings")],
   ],
 };

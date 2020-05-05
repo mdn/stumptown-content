@@ -2,6 +2,21 @@ const select = require("hast-util-select");
 
 const utils = require("./utils.js");
 
+/**
+ * Returns true only if the given node contains a single child,
+ * and the child is either an A element or a call to the jsxref macro.
+ */
+function containsLinkOrXRef(node) {
+  if (node.children.length === 1) {
+    if (node.children[0].tagName === "a") {
+      return true;
+    } else if (utils.isMacro(node.children[0], "jsxref")) {
+      return true;
+    }
+  }
+  return false;
+}
+
 function checkLinkList(id, tree, logger) {
   const body = select.select("body", tree);
 
@@ -9,7 +24,7 @@ function checkLinkList(id, tree, logger) {
   // This is an optional ingredient, so if there's no `h2`,
   // assume that the page intends to omit it.
   if (heading === null) {
-    return;
+    return null;
   }
 
   const section = utils.sliceSection(heading, body);
@@ -25,7 +40,7 @@ function checkLinkList(id, tree, logger) {
       "Link list must contain a single DL element and no other elements",
       "only-single-dl-element-in-link-list"
     );
-    return;
+    return null;
   }
 
   // At the top level, if a link list contains text nodes,
@@ -39,6 +54,7 @@ function checkLinkList(id, tree, logger) {
         "Text nodes in list of links top level may only contain newlines",
         "text-nodes-in-link-list"
       );
+      return null;
     }
   }
 
@@ -52,21 +68,18 @@ function checkLinkList(id, tree, logger) {
       "Link list dl must contain at least one dt",
       "dl-must-contain-dt"
     );
-    return;
+    return null;
   }
 
-  // Each <dt> must contain only a single <a> element
+  // Each <dt> must contain only a single <a> element or a call to jsxref.
   for (const dt of dts) {
-    if (
-      dt.children.length !== 1 ||
-      dt.children[0].type !== "element" ||
-      dt.children[0].tagName !== "a"
-    ) {
+    if (!containsLinkOrXRef(dt)) {
       logger.fail(
         dt,
-        "dt elements in link lists must contain a single anchor element",
-        "only-single-anchor-element-in-link-list-dt"
+        "dt elements in link lists must contain a single anchor element or xref macro call",
+        "only-single-anchor-element-or-xref-in-link-list-dt"
       );
+      return null;
     }
   }
 
@@ -79,6 +92,7 @@ function checkLinkList(id, tree, logger) {
         "code elements in dt elements in link lists must contain a single text node",
         "only-single-text-node-element-in-link-list-code"
       );
+      return null;
     }
   }
 
@@ -95,6 +109,8 @@ function checkLinkList(id, tree, logger) {
     }
     previousTitle = dtCode.children[0].value;
   }
+
+  return heading;
 }
 
 module.exports = checkLinkList;

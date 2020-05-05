@@ -16,10 +16,17 @@ function requireRecipeIngredientsPlugin() {
       (ingredientName) => !ingredientName.endsWith(".*")
     );
 
+    file.data.ingredients = [];
+
     for (const ingredient of requiredBody) {
       if (ingredient in ingredientHandlers) {
         const logger = Logger(file, source, recipeName, ingredient);
-        ingredientHandlers[ingredient](tree, logger);
+        const position = ingredientHandlers[ingredient](tree, logger);
+
+        file.data.ingredients.push({
+          name: ingredient,
+          position,
+        });
       } else {
         const rule = `${recipeName}/${ingredient}/handler-not-implemented`;
         const origin = `${source}:${rule}`;
