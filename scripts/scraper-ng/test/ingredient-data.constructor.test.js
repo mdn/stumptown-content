@@ -1,4 +1,8 @@
-const { process } = require("./framework/utils");
+const {
+  process,
+  expectPositionElement,
+  expectNullPosition,
+} = require("./framework/utils");
 
 const sources = {
   valid_constructor: `<h2 id="Constructor">Constructor</h2>
@@ -37,6 +41,7 @@ describe("data.constructor", () => {
     const file = process(sources.valid_constructor, testRecipe);
 
     expect(file.messages).toStrictEqual([]);
+    expectPositionElement(file.data.ingredients[0], "data.constructor", "h2");
   });
 
   test("constructor section missing", () => {
@@ -47,6 +52,7 @@ describe("data.constructor", () => {
 
     expect(file.messages.length).toBe(1);
     expect(file).hasMessageWithId("data.constructor/expected-heading");
+    expectNullPosition(file.data.ingredients[0], "data.constructor");
   });
 
   test("multiple constructors", () => {
@@ -68,6 +74,7 @@ describe("data.constructor", () => {
     expect(file).hasMessageWithId(
       "data.constructor/constructor-description-three-nodes"
     );
+    expectNullPosition(file.data.ingredients[0], "data.constructor");
   });
 
   test("invalid dd content", () => {
@@ -77,5 +84,6 @@ describe("data.constructor", () => {
     expect(file).hasMessageWithId(
       "data.constructor/constructor-description-first-node"
     );
+    expectNullPosition(file.data.ingredients[0], "data.constructor");
   });
 });
