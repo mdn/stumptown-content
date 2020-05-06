@@ -60,7 +60,7 @@ function handleDataConstructor(tree, logger) {
   if (!checkText(dd.children[0], "Creates a new ")) {
     logger.fail(
       section,
-      "Constructor description must be in the form `Creates a new <a>...</a> object.`",
+      "Constructor description must be in the form 'Creates a new <a>...</a> object.'",
       "constructor-description-first-node"
     );
     ok = false;
@@ -69,7 +69,7 @@ function handleDataConstructor(tree, logger) {
   if (!checkTag(dd.children[1], "a")) {
     logger.fail(
       section,
-      "Constructor description must contain a link after `Creates a new`",
+      "Constructor description must contain a link after 'Creates a new'",
       "constructor-description-second-node"
     );
     ok = false;
@@ -78,7 +78,7 @@ function handleDataConstructor(tree, logger) {
   if (!checkText(dd.children[2], " object.")) {
     logger.fail(
       section,
-      "Constructor description must end with " object.",
+      "Constructor description must end with ' object.'",
       "constructor-description-third-node"
     );
     ok = false;
