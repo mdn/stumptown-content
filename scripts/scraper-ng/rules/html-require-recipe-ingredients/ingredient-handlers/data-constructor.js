@@ -51,7 +51,7 @@ function handleDataConstructor(tree, logger) {
   if (dd.children.length !== 3) {
     logger.fail(
       section,
-      "Constructor description must contain three nodes",
+      "Constructor description must be in the form `Creates a new <a>...</a> object.`",
       "constructor-description-three-nodes"
     );
     return null;
