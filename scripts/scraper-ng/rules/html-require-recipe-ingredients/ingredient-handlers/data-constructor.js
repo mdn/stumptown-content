@@ -78,7 +78,7 @@ function handleDataConstructor(tree, logger) {
   if (!checkText(dd.children[2], " object.")) {
     logger.fail(
       section,
-      "Constructor description third node is incorrect",
+      "Constructor description must end with " object.",
       "constructor-description-third-node"
     );
     ok = false;
