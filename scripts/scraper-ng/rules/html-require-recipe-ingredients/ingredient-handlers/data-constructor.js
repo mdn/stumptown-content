@@ -60,7 +60,7 @@ function handleDataConstructor(tree, logger) {
   if (!checkText(dd.children[0], "Creates a new ")) {
     logger.fail(
       section,
-      "Constructor description first node is incorrect",
+      "Constructor description must be in the form `Creates a new <a>...</a> object.`",
       "constructor-description-first-node"
     );
     ok = false;
