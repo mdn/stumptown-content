@@ -79,19 +79,6 @@ function isNewlineOnlyTextNode(node) {
   return node.type === "text" && node.value.match(/^\n*$/);
 }
 
-/**
- * Function returning true only if the given node is a P node
- * that isn't a warning or a note.
- */
-function isAdmonition(node) {
-  return (
-    node.tagName === "p" &&
-    node.properties.className &&
-    (node.properties.className.includes("warning") ||
-      node.properties.className.includes("note"))
-  );
-}
-
 function Logger(file, source, recipeName, ingredient) {
   return {
     expected: function (node, name, id) {
@@ -114,6 +101,5 @@ module.exports = {
   sliceBetween,
   isMacro,
   isNewlineOnlyTextNode,
-  isAdmonition,
   Logger,
 };

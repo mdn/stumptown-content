@@ -32,16 +32,30 @@ function isInteractiveExampleNode(node) {
 }
 
 /**
+ * Function returning true only if the given node is a P node
+ * that isn't a warning or a note.
+ */
+function isAdmonition(node) {
+  return (
+    node.tagName === "p" &&
+    node.properties.className &&
+    (node.properties.className.includes("warning") ||
+      node.properties.className.includes("note"))
+  );
+}
+
+/**
  * Test whether the given node is a paragraph and not an admonition.
  */
 function isParagraph(node) {
-  return node && node.tagName === "p" && !utils.isAdmonition(node);
+  return node && node.tagName === "p" && !isAdmonition(node);
 }
 
 /**
  * Handler for the `data.interactive_example?` ingredient.
  */
 function handleDataInteractiveExample(tree, logger) {
+  let ok = true;
   const body = select("body", tree);
 
   // check the part of the doc from the first H2 onwards
@@ -56,6 +70,7 @@ function handleDataInteractiveExample(tree, logger) {
         "Interactive examples must be before first H2",
         "interactive-example-before-first-h2"
       );
+      ok = false;
     }
   }
 
@@ -69,11 +84,12 @@ function handleDataInteractiveExample(tree, logger) {
       "Only one interactive example may be included",
       "at-most-one-interactive-example"
     );
+    ok = false;
   }
   // if the part of the doc up to the first H2 contains
   // zero interactive examples, we have no more checks
   if (interactiveExamples.length === 0) {
-    return;
+    return null;
   }
   // if the part of the doc up to the first H2 contains
   // one interactive example, it must be a DIV
@@ -83,6 +99,7 @@ function handleDataInteractiveExample(tree, logger) {
       "Interactive example must be in a DIV",
       "interactive-example-inside-div"
     );
+    ok = false;
   }
 
   // finally check where it is in the "beforeFirstH2" section
@@ -101,9 +118,16 @@ function handleDataInteractiveExample(tree, logger) {
           "Interactive example must be preceded by a P node",
           "interactive-example-preceded-by-p"
         );
+        ok = false;
       }
     }
     previous = node;
+  }
+
+  if (ok) {
+    return interactiveExamples[0];
+  } else {
+    return null;
   }
 }
 
