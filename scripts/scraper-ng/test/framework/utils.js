@@ -72,7 +72,7 @@ function recipePath(recipeName) {
  * * the ingredient name matches the name given
  * * the ingredient's position node is an element and its tag matches the given tag.
  *
- * @param {String} ingredient - an ingredient including a name and a position node
+ * @param {Object} ingredient - an object representing an ingredient found in a page, including a name and a position node
  * @param {String} ingredientName - the expected name of the ingredient
  * @param {String} tagName - the expected tagName of the ingredient's position node
  */
@@ -89,7 +89,7 @@ function expectPositionElement(ingredient, ingredientName, tagName) {
  * * the ingredient exists
  * * the ingredient name matches the name given
  *
- * @param {String} ingredient - an ingredient including a name and a position node
+ * @param {Object} ingredient - an object representing an ingredient found in a page, including a name and a position node
  * @param {String} ingredientName - the expected name of the ingredient
  */
 function expectPositionNode(ingredient, ingredientName) {
@@ -104,7 +104,7 @@ function expectPositionNode(ingredient, ingredientName) {
  * * the ingredient name matches the name given
  * * the ingredient's position node is null.
  *
- * @param {String} ingredient - an ingredient including a name and a position node
+ * @param {Object} ingredient - an object representing an ingredient found in a page, including a name and a position node
  * @param {String} ingredientName - the expected name of the ingredient
  */
 function expectNullPosition(ingredient, ingredientName) {
