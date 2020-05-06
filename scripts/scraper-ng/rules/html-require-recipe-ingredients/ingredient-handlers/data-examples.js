@@ -8,6 +8,7 @@ const utils = require("./utils.js");
  * that is, examples that contain a call to the EmbedLiveSample macro.
  */
 function checkExample(exampleNodes, logger) {
+  let ok = true;
   let liveSampleNode = null;
   visit(exampleNodes, (node) => {
     // If we have already seen an EmbedLiveSample call...
@@ -19,6 +20,7 @@ function checkExample(exampleNodes, logger) {
           "EmbedLiveSample must be final node",
           "nodes-after-live-sample"
         );
+        ok = false;
       }
     }
     if (utils.isMacro(node, "EmbedLiveSample")) {
@@ -27,7 +29,7 @@ function checkExample(exampleNodes, logger) {
   });
   // If this example didn't contain a call to EmbedLiveSample, there are no further checks
   if (!liveSampleNode) {
-    return;
+    return ok;
   }
   // The first child of `exampleNodes` is the title
   const exampleTitle = exampleNodes.children[0];
@@ -38,7 +40,10 @@ function checkExample(exampleNodes, logger) {
       "EmbedLiveSample ID argument must match H3 heading ID",
       "embedlivesample-id-mismatch"
     );
+    ok = false;
   }
+
+  return ok;
 }
 
 /**
@@ -52,7 +57,7 @@ function handleDataExamples(tree, logger) {
   // The document must have an H2 section "Examples"
   if (heading === null) {
     logger.expected(body, `h2#${id}`, "expected-heading");
-    return;
+    return null;
   }
 
   const examplesSection = utils.sliceSection(heading, body);
@@ -65,7 +70,7 @@ function handleDataExamples(tree, logger) {
       "No H3-demarcated examples found",
       "missing-example-h3"
     );
-    return;
+    return null;
   }
 
   for (const exampleTitle of exampleTitles) {
@@ -75,8 +80,12 @@ function handleDataExamples(tree, logger) {
       (node) => node.tagName === "h3",
       examplesSection
     );
-    checkExample(exampleSection, logger);
+    if (!checkExample(exampleSection, logger)) {
+      return null;
+    }
   }
+
+  return heading;
 }
 
 module.exports = handleDataExamples;

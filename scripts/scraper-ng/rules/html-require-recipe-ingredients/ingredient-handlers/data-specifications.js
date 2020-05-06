@@ -13,7 +13,7 @@ function handleDataSpecifications(tree, logger) {
   const heading = select(`h2#${id}`, body);
   if (heading === null) {
     logger.expected(body, `h2#${id}`, "expected-heading");
-    return;
+    return null;
   }
 
   let sectionOk = false;
@@ -31,7 +31,10 @@ function handleDataSpecifications(tree, logger) {
 
   if (!sectionOk) {
     logger.expected(heading, `SpecName macro`, "expected-macro");
+    return null;
   }
+
+  return heading;
 }
 
 module.exports = handleDataSpecifications;
