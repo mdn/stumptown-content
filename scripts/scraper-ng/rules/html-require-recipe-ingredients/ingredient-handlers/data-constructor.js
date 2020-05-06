@@ -69,7 +69,7 @@ function handleDataConstructor(tree, logger) {
   if (!checkTag(dd.children[1], "a")) {
     logger.fail(
       section,
-      "Constructor description second node is incorrect",
+      "Constructor description must contain a link after `Creates a new`",
       "constructor-description-second-node"
     );
     ok = false;
