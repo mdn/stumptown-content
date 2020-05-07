@@ -66,7 +66,57 @@ function recipePath(recipeName) {
   return path.join(recipesDir, recipeName + ".yaml");
 }
 
+/**
+ * Given an ingredient, an ingredient name and a tag name, check that:
+ * * the ingredient exists
+ * * the ingredient name matches the name given
+ * * the ingredient's position node is an element and its tag matches the given tag.
+ *
+ * @param {Object} ingredient - an object representing an ingredient found in a page, including a name and a position node
+ * @param {String} ingredientName - the expected name of the ingredient
+ * @param {String} tagName - the expected tagName of the ingredient's position node
+ */
+function expectPositionElement(ingredient, ingredientName, tagName) {
+  expect(ingredient).toBeDefined();
+  expect(ingredient).toHaveProperty("name", ingredientName);
+  expect(ingredient.position).not.toBeNull();
+  expect(ingredient).toHaveProperty("position.type", "element");
+  expect(ingredient).toHaveProperty("position.tagName", tagName);
+}
+
+/**
+ * Given an ingredient and an ingredient name check that:
+ * * the ingredient exists
+ * * the ingredient name matches the name given
+ *
+ * @param {Object} ingredient - an object representing an ingredient found in a page, including a name and a position node
+ * @param {String} ingredientName - the expected name of the ingredient
+ */
+function expectPositionNode(ingredient, ingredientName) {
+  expect(ingredient).toBeDefined();
+  expect(ingredient).toHaveProperty("name", ingredientName);
+  expect(ingredient.position).not.toBeNull();
+}
+
+/**
+ * Given an ingredient and an ingredient name, check that:
+ * * the ingredient exists
+ * * the ingredient name matches the name given
+ * * the ingredient's position node is null.
+ *
+ * @param {Object} ingredient - an object representing an ingredient found in a page, including a name and a position node
+ * @param {String} ingredientName - the expected name of the ingredient
+ */
+function expectNullPosition(ingredient, ingredientName) {
+  expect(ingredient).toBeDefined();
+  expect(ingredient).toHaveProperty("name", ingredientName);
+  expect(ingredient).toHaveProperty("position", null);
+}
+
 module.exports = {
   process,
   recipesDir,
+  expectPositionElement,
+  expectNullPosition,
+  expectPositionNode,
 };
