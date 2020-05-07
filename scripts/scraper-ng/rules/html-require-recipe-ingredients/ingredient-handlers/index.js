@@ -5,6 +5,7 @@ const handleDataExamples = require("./data-examples");
 const handleDataInteractiveExample = require("./data-interactive-example");
 const handleDataBrowserCompatibility = require("./data-browser-compatibility");
 const handleProseShortDescription = require("./prose-short-description");
+const handleDataConstructor = require("./data-constructor");
 const classMembers = require("./data-class-members");
 
 /**
@@ -25,6 +26,7 @@ const classMembers = require("./data-class-members");
  */
 const ingredientHandlers = {
   "data.browser_compatibility": handleDataBrowserCompatibility,
+  "data.constructor": handleDataConstructor,
   "data.constructor_properties?": classMembers.handleDataConstructorProperties,
   "data.examples": handleDataExamples,
   "data.instance_methods?": classMembers.handleDataInstanceMethods,
