@@ -24,10 +24,15 @@ const classMembers = require("./data-class-members");
  *
  */
 const ingredientHandlers = {
-  "data.interactive_example?": handleDataInteractiveExample,
   "data.browser_compatibility": handleDataBrowserCompatibility,
+  "data.constructor_properties?": classMembers.handleDataConstructorProperties,
   "data.examples": handleDataExamples,
+  "data.instance_methods?": classMembers.handleDataInstanceMethods,
+  "data.instance_properties?": classMembers.handleDataInstanceProperties,
+  "data.interactive_example?": handleDataInteractiveExample,
   "data.specifications": handleDataSpecifications,
+  "data.static_methods?": classMembers.handleDataStaticMethods,
+  "data.static_properties?": classMembers.handleDataStaticProperties,
   "prose.description": requireTopLevelHeading("Description"),
   "prose.error_type": requireTopLevelHeading("Error_type"),
   "prose.message": requireTopLevelHeading("Message"),
@@ -35,11 +40,6 @@ const ingredientHandlers = {
   "prose.short_description": handleProseShortDescription,
   "prose.syntax": requireTopLevelHeading("Syntax"),
   "prose.what_went_wrong": requireTopLevelHeading("What_went_wrong"),
-  "data.constructor_properties?": classMembers.handleDataConstructorProperties,
-  "data.static_methods?": classMembers.handleDataStaticMethods,
-  "data.static_properties?": classMembers.handleDataStaticProperties,
-  "data.instance_methods?": classMembers.handleDataInstanceMethods,
-  "data.instance_properties?": classMembers.handleDataInstanceProperties,
 };
 
 /**
