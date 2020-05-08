@@ -8,7 +8,7 @@ const sources = {
   valid_constructor: `<h2 id="Constructor">Constructor</h2>
 <dl>
   <dt><a><code>Thing</code></a></dt>
-  <dd>Creates a new <a>Thing</a> object.</dd>
+  <dd>Creates a new <code>Thing</code> object.</dd>
 </dl>`,
 
   invalid_constructor_section_missing: `<p>Some content</p>`,
@@ -16,9 +16,9 @@ const sources = {
   invalid_multiple_constructors: `<h2 id="Constructor">Constructor</h2>
 <dl>
   <dt><a><code>Thing</code></a></dt>
-  <dd>Creates a new <a>Thing</a> object.</dd>
+  <dd>Creates a new <code>Thing</code> object.</dd>
   <dt><a><code>Thing2</code></a></dt>
-  <dd>Creates a new <a>Thing2</a> object.</dd>
+  <dd>Creates a new <code>Thing2</code> object.</dd>
 </dl>`,
 
   invalid_dd_structure: `<h2 id="Constructor">Constructor</h2>
@@ -30,7 +30,7 @@ const sources = {
   invalid_dd_content: `<h2 id="Constructor">Constructor</h2>
 <dl>
   <dt><a><code>Thing</code></a></dt>
-  <dd>Create a <a>Thing</a> object.</dd>
+  <dd>Create a <code>Thing</code> object.</dd>
 </dl>`,
 };
 

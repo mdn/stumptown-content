@@ -46,12 +46,12 @@ function handleDataConstructor(tree, logger) {
     return null;
   }
 
-  // The dd must be of the form: "Creates a new <a>...</a> object."
+  // The dd must be of the form: "Creates a new <code>...</code> object."
   const dd = dds[0];
   if (dd.children.length !== 3) {
     logger.fail(
       dd,
-      "Constructor description must be in the form `Creates a new <a>...</a> object.`",
+      "Constructor description must be in the form `Creates a new <code>...</code> object.`",
       "constructor-description-three-nodes"
     );
     return null;
@@ -60,16 +60,16 @@ function handleDataConstructor(tree, logger) {
   if (!checkText(dd.children[0], "Creates a new ")) {
     logger.fail(
       section,
-      "Constructor description must be in the form 'Creates a new <a>...</a> object.'",
+      "Constructor description must be in the form 'Creates a new <code>...</code> object.'",
       "constructor-description-first-node"
     );
     ok = false;
   }
 
-  if (!checkTag(dd.children[1], "a")) {
+  if (!checkTag(dd.children[1], "code")) {
     logger.fail(
       section,
-      "Constructor description must contain a link after 'Creates a new'",
+      "Constructor description must contain <code>Object</code> after 'Creates a new'",
       "constructor-description-second-node"
     );
     ok = false;
