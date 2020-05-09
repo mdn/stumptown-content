@@ -11,6 +11,10 @@ function checkTag(node, tag) {
   return node.type === "element" && node.tagName === tag;
 }
 
+function containsText(node, text) {
+  return node.type === "text" && node.value.includes(text);
+}
+
 /**
  * Handler for the `data.constructor` ingredient.
  */
@@ -48,11 +52,11 @@ function handleDataConstructor(tree, logger) {
 
   // The dd must be of the form: "Creates a new <code>...</code> object."
   const dd = dds[0];
-  if (dd.children.length !== 3) {
+  if (dd.children.length < 3) {
     logger.fail(
       dd,
       "Constructor description must be in the form `Creates a new <code>...</code> object.`",
-      "constructor-description-three-nodes"
+      "constructor-description-at-least-three-nodes"
     );
     return null;
   }
@@ -75,10 +79,10 @@ function handleDataConstructor(tree, logger) {
     ok = false;
   }
 
-  if (!checkText(dd.children[2], " object.")) {
+  if (!containsText(dd.children[2], " object.")) {
     logger.fail(
       section,
-      "Constructor description must end with ' object.'",
+      "Constructor description must end first sentence with ' object.'",
       "constructor-description-third-node"
     );
     ok = false;
