@@ -8,7 +8,7 @@ const sources = {
   valid_constructor: `<h2 id="Constructor">Constructor</h2>
 <dl>
   <dt><a><code>Thing</code></a></dt>
-  <dd>Creates a new <code>Thing</code> object.</dd>
+  <dd>Creates a new <code>Thing</code> object. Some additional explanation.</dd>
 </dl>`,
 
   invalid_constructor_section_missing: `<p>Some content</p>`,
@@ -72,7 +72,7 @@ describe("data.constructor", () => {
 
     expect(file.messages.length).toBe(1);
     expect(file).hasMessageWithId(
-      "data.constructor/constructor-description-three-nodes"
+      "data.constructor/constructor-description-at-least-three-nodes"
     );
     expectNullPosition(file.data.ingredients[0], "data.constructor");
   });
