@@ -11,8 +11,8 @@ function checkTag(node, tag) {
   return node.type === "element" && node.tagName === tag;
 }
 
-function containsText(node, text) {
-  return node.type === "text" && node.value.includes(text);
+function startsWithText(node, text) {
+  return node.type === "text" && node.value.startsWith(text);
 }
 
 /**
@@ -79,7 +79,7 @@ function handleDataConstructor(tree, logger) {
     ok = false;
   }
 
-  if (!containsText(dd.children[2], " object.")) {
+  if (!startsWithText(dd.children[2], " object.")) {
     logger.fail(
       section,
       "Constructor description must end first sentence with ' object.'",
