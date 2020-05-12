@@ -30,7 +30,7 @@ describe("html-require-ingredient-order", () => {
        <h2 id="Something_else">Something else</h2>
        <h2 id="Description">Description</h2>`,
       {
-        body: ["prose.description", "prose.*", "prose.error_type"],
+        body: ["prose.description?", "prose.*", "prose.error_type"],
       }
     );
 
