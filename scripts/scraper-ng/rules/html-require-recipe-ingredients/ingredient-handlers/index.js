@@ -35,7 +35,7 @@ const ingredientHandlers = {
   "data.specifications": handleDataSpecifications,
   "data.static_methods?": classMembers.handleDataStaticMethods,
   "data.static_properties?": classMembers.handleDataStaticProperties,
-  "prose.description": requireTopLevelHeading("Description"),
+  "prose.description?": optionalTopLevelHeading("Description"),
   "prose.error_type": requireTopLevelHeading("Error_type"),
   "prose.message": requireTopLevelHeading("Message"),
   "prose.see_also": requireTopLevelHeading("See_also"),
@@ -46,9 +46,25 @@ const ingredientHandlers = {
 
 /**
  * A convenience function that returns ingredient handlers for checking
+ * the existence of an optional H2 in a hast tree.
+ *
+ * @param {String} id - an id of an H2 to look for in the hast tree
+ * @returns {Function} a function
+ */
+function optionalTopLevelHeading(id) {
+  return (tree) => {
+    const heading = select(`h2#${id}`, tree);
+    if (heading !== null) {
+      return heading;
+    }
+    return null;
+  };
+}
+
+/**
+ * A convenience function that returns ingredient handlers for checking
  * the existence of a certain H2 in a hast tree.
  *
- * @param {String} ingredient - an ingredient name
  * @param {String} id - an id of an H2 to look for in the hast tree
  * @returns {Function} a function
  */

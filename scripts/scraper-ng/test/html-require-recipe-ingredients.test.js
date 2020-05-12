@@ -72,6 +72,21 @@ describe("html-require-recipe-ingredients logs recipe positions", () => {
     expect(ingredient).toHaveProperty("position.tagName", "h2");
   });
 
+  test("prose.description?", () => {
+    const ingredientName = "prose.description?";
+    const source = '<h2 id="Description">Description</h2>';
+    const file = process(source, { body: [ingredientName] });
+
+    expect(file).not.hasMessageWithId(ingredientName);
+
+    expect(file.data.ingredients.length).toBe(1);
+
+    const ingredient = file.data.ingredients[0];
+    expect(ingredient).toHaveProperty("name", ingredientName);
+    expect(ingredient).toHaveProperty("position.type", "element");
+    expect(ingredient).toHaveProperty("position.tagName", "h2");
+  });
+
   test("prose.short_description", () => {
     const source = `<div>{{JSRef}}</div>
 
@@ -105,4 +120,10 @@ describe("html-require-recipe-ingredients logs recipe positions", () => {
     expect(ingredient).toHaveProperty("position.type", "element");
     expect(ingredient).toHaveProperty("position.tagName", "h2");
   });
+});
+
+test("html-require-recipe-ingredients optional ingredients don't error when missing", () => {
+  const source = "<p>Nothing to see here.</p>";
+  const file = process(source, { body: ["prose.description?"] });
+  expect(file).not.hasMessageWithId("prose.description?");
 });
