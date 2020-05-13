@@ -22,7 +22,7 @@ function attacher() {
       pageIngredientNames.has(i)
     );
 
-    // Pad the sequence of expected ingredients with additioanl `prose.*`
+    // Pad the sequence of expected ingredients with additional `prose.*`
     // entries to cover all such ingredients
     if (recipeIngredientNames.includes("prose.*")) {
       const padCount = pageIngredients.reduce(
