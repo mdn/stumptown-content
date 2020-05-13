@@ -29,6 +29,8 @@ function requireRecipeIngredientsPlugin() {
       } else {
         const rule = `${recipeName}/${ingredient}/handler-not-implemented`;
         const origin = `${source}:${rule}`;
+        // TODO: we now have handlers for all specified ingredients, so this
+        // should be file.fail
         file.message(`Handler for ${ingredient} is unimplemented`, origin);
       }
     }
