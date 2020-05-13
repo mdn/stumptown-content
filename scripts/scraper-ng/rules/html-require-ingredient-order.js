@@ -40,11 +40,7 @@ function attacher() {
       );
     }
 
-    for (
-      let index = 0;
-      index < Math.max(recipeIngredientNames.length, pageIngredients.length);
-      index++
-    ) {
+    for (let index = 0; index < recipeIngredientNames.length; index++) {
       const expectedIngredientName = recipeIngredientNames[index];
       const currentIngredient = pageIngredients[index];
 
