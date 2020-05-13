@@ -83,42 +83,48 @@ function attacher() {
   };
 }
 
-const ingredientsWithoutDefinedH2s = [
+// Ingredients that do not have a corresponding H2 element
+const ingredientsWithoutH2s = [
   "prose.*",
   "prose.short_descriptions",
   "data.interactive_example",
 ];
 
+/**
+ * Collect H2s not otherwise expected in an ingredient.
+ *
+ * @param {Object} tree - A hast tree
+ * @param {vfile} file - A vfile with a `file.data.ingredients` array and a `file.data.recipe` object
+ * @returns {Array} an array of `file.data.ingredients` member-like objects with `name` and `position` properties
+ */
 function collectProseStar(tree, file) {
-  const reservedIds = [];
-  for (const ingredient of file.data.recipe.body) {
-    if (!ingredientsWithoutDefinedH2s.includes(ingredient)) {
-      const { name } = ingredient.match(/[.](?<name>\w+)/).groups;
-      const id = `#${name.charAt(0).toUpperCase() + name.slice(1)}`;
-      reservedIds.push(id);
-    }
-  }
+  const reservedIds = file.data.recipe.body
+    .filter((i) => !ingredientsWithoutH2s.includes(i))
+    .map(ingredientToSelector);
 
-  const h2s = selectAll(`h2:not(${reservedIds.join()})`, tree);
-  const ingredientNodes = file.data.ingredients.reduce((arr, curr) => {
-    if (curr.position !== null) {
-      arr.push(curr.position);
-    }
-    return arr;
-  }, []);
-
-  // Collect all H2 nodes that are not known to represent an existing ingredient or have a reserved ID
-  let proseStars = [];
-  for (const h2 of h2s) {
-    if (!ingredientNodes.includes(h2)) {
-      proseStars.push({
-        name: "prose.*",
-        position: h2,
-      });
-    }
+  const proseStars = [];
+  for (const h2 of selectAll(`h2:not(${reservedIds.join()})`, tree)) {
+    proseStars.push({
+      name: "prose.*",
+      position: h2,
+    });
   }
 
   return proseStars;
+}
+
+/**
+ * Convert an ingredient identifier to an ID selector.
+ *
+ * For example, `ingredientToSelector("prose.syntax")`  returns `"#Syntax"`.
+ *
+ * @param {string} ingredient - an ingredient identifier, such as `prose.description?` or `data.browser_compatibility`
+ * @returns {string} an ID selector string
+ */
+function ingredientToSelector(ingredient) {
+  const { name } = ingredient.match(/[.](?<name>\w+)/).groups;
+  const id = name.charAt(0).toUpperCase() + name.slice(1);
+  return `#${id}`;
 }
 
 module.exports = attacher;
