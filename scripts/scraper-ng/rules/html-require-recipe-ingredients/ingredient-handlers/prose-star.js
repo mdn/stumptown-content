@@ -3,7 +3,7 @@ const { selectAll } = require("hast-util-select");
 // Ingredients that do not have a corresponding H2 element
 const ingredientsWithoutH2s = [
   "prose.*",
-  "prose.short_descriptions",
+  "prose.short_description",
   "data.interactive_example",
 ];
 
