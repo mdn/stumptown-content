@@ -41,8 +41,12 @@ function attacher() {
       const currentIngredient = pageIngredients[index];
 
       if (currentIngredient.name !== expectedIngredientName) {
+        const extraInfoForProseStar =
+          currentIngredient.name === "prose.*"
+            ? ` (#${currentIngredient.position.properties.id})`
+            : "";
         const message = file.message(
-          `${currentIngredient.name} not expected in this order`,
+          `${currentIngredient.name}${extraInfoForProseStar} not expected in this order`,
           currentIngredient.position,
           `${source}:${path.basename(
             file.data.recipePath,
