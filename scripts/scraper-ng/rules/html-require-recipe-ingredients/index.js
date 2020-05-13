@@ -1,6 +1,7 @@
 const path = require("path");
 
 const ingredientHandlers = require("./ingredient-handlers");
+const collectProseStar = require("./ingredient-handlers/prose-star");
 const { Logger } = require("./ingredient-handlers/utils");
 
 const source = "html-require-ingredient";
@@ -12,14 +13,12 @@ function requireRecipeIngredientsPlugin() {
   return function warnOnMissingRecipeIngredients(tree, file) {
     const recipeName = path.basename(file.data.recipePath, ".yaml");
 
-    const requiredBody = file.data.recipe.body.filter(
-      (ingredientName) => !ingredientName.endsWith(".*")
-    );
-
     file.data.ingredients = [];
 
-    for (const ingredient of requiredBody) {
-      if (ingredient in ingredientHandlers) {
+    for (const ingredient of file.data.recipe.body) {
+      if (ingredient === "prose.*") {
+        file.data.ingredients.push(...collectProseStar(tree, file));
+      } else if (ingredient in ingredientHandlers) {
         const logger = Logger(file, source, recipeName, ingredient);
         const position = ingredientHandlers[ingredient](tree, logger);
 
