@@ -90,16 +90,16 @@ const ingredientsWithoutDefinedH2s = [
 ];
 
 function collectProseStar(tree, file) {
-  const reservedH2s = [];
+  const reservedIds = [];
   for (const ingredient of file.data.recipe.body) {
     if (!ingredientsWithoutDefinedH2s.includes(ingredient)) {
       const { name } = ingredient.match(/[.](?<name>\w+)/).groups;
-      const id = name.charAt(0).toUpperCase() + name.slice(1);
-      reservedH2s.push(id);
+      const id = `#${name.charAt(0).toUpperCase() + name.slice(1)}`;
+      reservedIds.push(id);
     }
   }
 
-  const h2s = selectAll("h2", tree);
+  const h2s = selectAll(`h2:not(${reservedIds.join()})`, tree);
   const ingredientNodes = file.data.ingredients.reduce((arr, curr) => {
     if (curr.position !== null) {
       arr.push(curr.position);
@@ -110,10 +110,7 @@ function collectProseStar(tree, file) {
   // Collect all H2 nodes that are not known to represent an existing ingredient or have a reserved ID
   let proseStars = [];
   for (const h2 of h2s) {
-    if (
-      !ingredientNodes.includes(h2) &&
-      !reservedH2s.includes(h2.properties.id)
-    ) {
+    if (!ingredientNodes.includes(h2)) {
       proseStars.push({
         name: "prose.*",
         position: h2,
