@@ -37,16 +37,41 @@ describe("html-require-ingredient-order", () => {
     expect(file).hasMessageWithId("ingredient-out-of-order");
   });
 
-  // test("prose.* ingredient disorder", () => {
-  //   const file = process(
-  //     `<h2 id="Description">Description</h2>
-  //      <h2 id="Error_type">Error type</h2>
-  //      <h2 id="Something_else">Something else</h2>`,
-  //     {
-  //       body: ["prose.description", "prose.*", "prose.error_type"],
-  //     }
-  //   );
+  test("optional ingredient disorder causes message", () => {
+    const file = process(
+      `<h2 id="Error_type">Error type</h2>
+       <h2 id="Description">Description</h2>`,
+      {
+        body: ["prose.description?", "prose.error_type"],
+      }
+    );
 
-  //   expect(file).hasMessageWithId("ingredient-out-of-order");
-  // });
+    expect(file).hasMessageWithId("ingredient-out-of-order");
+  });
+
+  test("prose.* ingredient order is OK", () => {
+    const file = process(
+      `<h2 id="Description">Description</h2>
+       <h2 id="Something_else">Something else</h2>
+       <h2 id="Error_type">Error type</h2>`,
+      {
+        body: ["prose.description?", "prose.*", "prose.error_type"],
+      }
+    );
+
+    expect(file).not.hasMessageWithId("ingredient-out-of-order");
+  });
+
+  test("prose.* ingredient disorder causes message", () => {
+    const file = process(
+      `<h2 id="Description">Description</h2>
+       <h2 id="Error_type">Error type</h2>
+       <h2 id="Something_else">Something else</h2>`,
+      {
+        body: ["prose.description?", "prose.*", "prose.error_type"],
+      }
+    );
+
+    expect(file).hasMessageWithId("ingredient-out-of-order");
+  });
 });
