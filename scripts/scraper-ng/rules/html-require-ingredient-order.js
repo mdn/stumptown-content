@@ -26,7 +26,7 @@ function attacher() {
     // entries to cover all such ingredients
     if (recipeIngredientNames.includes("prose.*")) {
       const padCount = pageIngredients.reduce(
-        (sum, ingredient) => sum + (ingredient.name == "prose.*" ? 1 : 0),
+        (sum, ingredient) => sum + (ingredient.name === "prose.*" ? 1 : 0),
         0
       );
       recipeIngredientNames.splice(
