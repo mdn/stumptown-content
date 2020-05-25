@@ -48,27 +48,27 @@ In total these recipes use the following ingredients:
 
 prose ingredients:
 
-- prose.short_description
-- prose.description?
-- prose.see_also
-- prose.syntax
-- prose.message
-- prose.error_type
-- prose.what_went_wrong
 - prose.\*
+- prose.description?
+- prose.error_type
+- prose.message
+- prose.see_also
+- prose.short_description
+- prose.syntax
+- prose.what_went_wrong
 
 data ingredients:
 
-- data.interactive_example?
+- data.browser_compatibility
 - data.constructor
 - data.constructor_properties?
-- data.static_properties?
-- data.static_methods?
-- data.instance_properties?
-- data.instance_methods?
 - data.examples
+- data.instance_methods?
+- data.instance_properties?
+- data.interactive_example?
 - data.specifications
-- data.browser_compatibility
+- data.static_methods?
+- data.static_properties?
 
 All ingredients except two are demarcated in the page using an `<h2>` heading. The exceptions are `prose.short_description` and `data.interactive_example`.
 
@@ -83,6 +83,10 @@ prose.see_also    ->    h2#See_also
 
 The exceptions are `prose.short_description`, `prose.description?`, and `prose.*`.
 
+#### prose.description?
+
+This is an optional prose ingredient. To satisfy the ingredient, if the page contains an `h2#Description` section, then it must appear in the place specified by the recipe.
+
 #### prose.short_description
 
 This ingredient isn't demarcated by an `<h2>` at all. To satisfy the ingredient, a page must:
@@ -90,10 +94,6 @@ This ingredient isn't demarcated by an `<h2>` at all. To satisfy the ingredient,
 - contain a `<p>` element
 - that is not a note or a warning
 - before the interactive example or the first `<h2>`, whichever comes first
-
-#### prose.description?
-
-This is an optional prose ingredient. To satisfy the ingredient, if the page contains an `h2#Description` section, then it must appear in the place specified by the recipe.
 
 #### prose.\*
 
@@ -103,12 +103,9 @@ This ingredient enables writers to include extra sections that are not explicitl
 
 Data ingredients typically impose more detailed requirements on pages than prose ingredients.
 
-#### data.interactive_example?
+#### data.browser_compatibility
 
-This is an optional data ingredient. To satisfy the ingredient, either:
-
-- the page must not contain a `{{EmbedInteractiveExample}}` macro call, or
-- the page must have a `<div>` containing an `{{EmbedInteractiveExample}}` macro call. The `<div>` must be immediately preceded by paragraph that is neither a note nor a warning. The `<div>` must precede any `<h2>`.
+To satisfy this ingredient a page must have a section demarcated by `H2#Browser_compatibility`. It must contain a call to the `{{Compat}}` macro.
 
 #### data.constructor
 
@@ -132,22 +129,6 @@ This is an optional ingredient. If a page contains a section demarcated by `H2#C
   - only a call to the `{{jsxref}}` macro.
 - `<dt><dd>` pairs must be ordered by the alphabetical order of the `<dt><code><a>` text content, or by the display name given in the `{{jsxref}}` macro call.
 
-#### data.static_properties?
-
-This is an optional ingredient. It's just the same as `data.constructor_properties?`, except the section is demarcated by `H2#Static_properties`.
-
-#### data.static_methods?
-
-This is an optional ingredient. It's just the same as `data.constructor_properties?`, except the section is demarcated by `H2#Static_methods`.
-
-#### data.instance_properties?
-
-This is an optional ingredient. It's just the same as `data.constructor_properties?`, except the section is demarcated by `H2#Instance_properties`.
-
-#### data.instance_methods?
-
-This is an optional ingredient. It's just the same as `data.constructor_properties?`, except the section is demarcated by `H2#Instance_methods`.
-
 #### data.examples
 
 To satisfy this ingredient a page must have a section demarcated by `H2#Examples`. It must contain one or more sections demarcated by an H3. Each of these H3 sections represents a single example.
@@ -159,10 +140,29 @@ Live samples must satisfy certain additional constraints:
 - The call to `{{EmbedLiveSample}}` must be the last element in the example (the only exception is that text nodes consisting only of newlines may follow the `{{EmbedLiveSample}}` call). This implies that there may only be one live sample in a given H3 section, and that the iframe showing the output must appear last in the rendered page, after any code or explanatory prose.
 - The ID parameter passed to `{{EmbedLiveSample}}` must match the ID of the example's H3 heading. This implies that the example is not allowed to contain any code blocks that are not included in the live sample.
 
+#### data.instance_methods?
+
+This is an optional ingredient. It's just the same as `data.constructor_properties?`, except the section is demarcated by `H2#Instance_methods`.
+
+#### data.instance_properties?
+
+This is an optional ingredient. It's just the same as `data.constructor_properties?`, except the section is demarcated by `H2#Instance_properties`.
+
+#### data.interactive_example?
+
+This is an optional data ingredient. To satisfy the ingredient, either:
+
+- the page must not contain a `{{EmbedInteractiveExample}}` macro call, or
+- the page must have a `<div>` containing an `{{EmbedInteractiveExample}}` macro call. The `<div>` must be immediately preceded by paragraph that is neither a note nor a warning. The `<div>` must precede any `<h2>`.
+
 #### data.specifications
 
 To satisfy this ingredient a page must have a section demarcated by `H2#Specifications`. It must contain either a call to the `{{SpecName}}` macro, or a text node containing the text "Not part of any standard.".
 
-#### data.browser_compatibility
+#### data.static_methods?
 
-To satisfy this ingredient a page must have a section demarcated by `H2#Browser_compatibility`. It must contain a call to the `{{Compat}}` macro.
+This is an optional ingredient. It's just the same as `data.constructor_properties?`, except the section is demarcated by `H2#Static_methods`.
+
+#### data.static_properties?
+
+This is an optional ingredient. It's just the same as `data.constructor_properties?`, except the section is demarcated by `H2#Static_properties`.
