@@ -1,6 +1,6 @@
-# JavaScript reference docs structure specification
+# MDN linter specification
 
-This document describes the structure we want to require for JavaScript reference documentation.
+This document describes the structure that individual MDN reference documentation pages should have, and how the linter should check that the documentation follows the defined structure.
 
 ## Recipes and ingredients overview
 
@@ -20,7 +20,7 @@ _the items in the page must correspond to the ingredients listed in the recipe, 
 
 A recipe can mark an ingredient as optional by placing a question mark after it, like `prose.description?`. This means that the page does not have to contain a representation of the ingredient, but if it does, the representation must be properly formed according to the ingredient's specification, and the representation must appear in the place specified by the recipe.
 
-Technically, whether an ingredient is optional or not is a separate attribute of the ingredient. This means that a single ingredient may be marked as optional in one recipe and mandatory in a different recipe. In practice, in the JavaScript documentation, this does not occur: there are currently no ingredients that are optional in some recipes and mandatory in others.
+Technically, whether an ingredient is optional or not is a separate attribute of the ingredient. This means that a single ingredient may be marked as optional in one recipe and mandatory in a different recipe. In practice, in the our documentation, this does not occur: there are currently no ingredients that are optional in some recipes and mandatory in others.
 
 ### Page sections
 
@@ -28,7 +28,9 @@ Many, but not all, ingredients correspond to sections of a page. A section of a 
 
 Sections are identified by an `id` attribute on the `<h2>`. For example, the `prose.description` section starts with an element whose opening tag is like `<h2 id="Description">`. In this document we'll refer to page sections using a notation like `h2#identifier`: for example, `h2#Description`.
 
-## JavaScript recipes
+## Recipes
+
+### JavaScript recipes
 
 We've defined the following recipes for the JS docs:
 
@@ -40,7 +42,7 @@ We've defined the following recipes for the JS docs:
 - [javascript-error](https://github.com/mdn/stumptown-content/blob/master/recipes/javascript-error.yaml)
 - [javascript-language-feature](https://github.com/mdn/stumptown-content/blob/master/recipes/javascript-language-feature.yaml)
 
-## JavaScript recipe ingredients
+## Recipe ingredients
 
 In total these recipes use the following ingredients:
 
