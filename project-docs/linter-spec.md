@@ -60,9 +60,12 @@ prose ingredients:
 data ingredients:
 
 - data.browser_compatibility
+- data.constituent_properties
 - data.constructor
 - data.constructor_properties?
 - data.examples
+- data.formal_definition
+- data.formal_syntax
 - data.instance_methods?
 - data.instance_properties?
 - data.interactive_example?
@@ -107,6 +110,13 @@ Data ingredients typically impose more detailed requirements on pages than prose
 
 To satisfy this ingredient a page must have a section demarcated by `H2#Browser_compatibility`. It must contain a call to the `{{Compat}}` macro.
 
+#### data.constituent_properties
+
+To satisfy this ingredient a page must have a section demarcated by `H2#Constituent_properties`. This section must contain the following elements, in the order given below:
+
+- a `<p>` element containing the following text: "This property is a shorthand for the following CSS properties:"
+- a `<ul>` element containing two or more `<li>` elements, each of which contains a single `<a><code>` element.
+
 #### data.constructor
 
 To satisfy this ingredient, a page must meet the following requirements:
@@ -139,6 +149,14 @@ Live samples must satisfy certain additional constraints:
 
 - The call to `{{EmbedLiveSample}}` must be the last element in the example (the only exception is that text nodes consisting only of newlines may follow the `{{EmbedLiveSample}}` call). This implies that there may only be one live sample in a given H3 section, and that the iframe showing the output must appear last in the rendered page, after any code or explanatory prose.
 - The ID parameter passed to `{{EmbedLiveSample}}` must match the ID of the example's H3 heading. This implies that the example is not allowed to contain any code blocks that are not included in the live sample.
+
+#### data.formal_definition
+
+To satisfy this ingredient a page must contain a heading at any level with the ID "formal_definition" and the text content "Formal definition". The section demarcated by this heading may contain only a call to the `{{CSSInfo}}` macro.
+
+#### data.formal_syntax
+
+To satisfy this ingredient a page must contain a heading at any level with the ID "formal_syntax" and the text content "Formal syntax". The section demarcated by this heading may contain only a call to the `{{CSSSyntax}}` macro.
 
 #### data.instance_methods?
 
