@@ -152,11 +152,11 @@ Live samples must satisfy certain additional constraints:
 
 #### data.formal_definition
 
-To satisfy this ingredient a page must contain a heading at any level with the ID "formal_definition" and the text content "Formal definition". The section demarcated by this heading may contain only a call to the `{{CSSInfo}}` macro.
+To satisfy this ingredient a page must have a section demarcated by `H2#Formal_definition`.It must contain only a call to the `{{CSSInfo}}` macro.
 
 #### data.formal_syntax
 
-To satisfy this ingredient a page must contain a heading at any level with the ID "formal_syntax" and the text content "Formal syntax". The section demarcated by this heading may contain only a call to the `{{CSSSyntax}}` macro.
+To satisfy this ingredient a page must have a section demarcated by `H2#Formal_syntax`.It must contain only a call to the `{{CSSSyntax}}` macro.
 
 #### data.instance_methods?
 
