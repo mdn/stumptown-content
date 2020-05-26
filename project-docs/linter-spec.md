@@ -156,7 +156,7 @@ To satisfy this ingredient a page must have a section demarcated by `H2#Formal_d
 
 #### data.formal_syntax
 
-To satisfy this ingredient a page must have a section demarcated by `H2#Formal_syntax`.It must contain only a call to the `{{CSSSyntax}}` macro.
+To satisfy this ingredient a page must have a section demarcated by `H2#Formal_syntax`. It must contain only a call to the `{{CSSSyntax}}` macro.
 
 #### data.instance_methods?
 
