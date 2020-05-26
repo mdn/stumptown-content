@@ -152,7 +152,7 @@ Live samples must satisfy certain additional constraints:
 
 #### data.formal_definition
 
-To satisfy this ingredient a page must have a section demarcated by `H2#Formal_definition`.It must contain only a call to the `{{CSSInfo}}` macro.
+To satisfy this ingredient a page must have a section demarcated by `H2#Formal_definition`. It must contain only a call to the `{{CSSInfo}}` macro.
 
 #### data.formal_syntax
 
