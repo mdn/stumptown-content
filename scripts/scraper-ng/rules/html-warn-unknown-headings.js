@@ -11,6 +11,11 @@ const source = "html-warn-unknown-headings";
 function warnUnknownHeadings() {
   return function attacher(tree, file) {
     const recipeName = path.basename(file.data.recipePath, ".yaml");
+    if (recipeName === "guide") {
+      // Skip this check for guide pages
+      return;
+    }
+
     const { recipe } = file.data;
     const expectedH2 = expectedH2Headings(recipe.body);
     const actualH2 = selectAll(`h2`, tree);
