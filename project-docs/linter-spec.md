@@ -124,14 +124,16 @@ To satisfy this ingredient a page must have a section demarcated by `H2#Constitu
 
 #### data.constructor
 
-To satisfy this ingredient, a page must meet the following requirements:
+To satisfy this ingredient, a page must contain a section demarcated by `H2#Constructor` that contains one of the following:
 
-- A section demarcated by `H2#Constructor` that contains only a `<dl>` element.
-- The `<dl>` must contain a single `<dt>` followed by a single `<dd>`.
-- The `<dt>` must contain either:
-  - only a single `<code>` element, that contains only a single `<a>` element
-  - only a call to the `{{jsxref}}` macro.
-- The `<dd>` must contain `Creates a new <code>NameOfTheObject</code> object.` where `NameOfTheObject` is replaced with the actual name.
+1. Only a `<dl>` element.
+   - The `<dl>` must contain a single `<dt>` followed by a single `<dd>`.
+   - The `<dt>` must contain either:
+     - only a single `<code>` element, that contains only a single `<a>` element
+     - only a call to the `{{jsxref}}` macro.
+   - The `<dd>` must contain `Creates a new <code>NameOfTheObject</code> object.` where `NameOfTheObject` is replaced with the actual name.
+
+2) A `<p>` element that starts with the text "This object cannot be instantiated directly.".
 
 #### data.constructor_properties?
 

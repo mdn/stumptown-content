@@ -3,6 +3,8 @@ const select = require("hast-util-select");
 const utils = require("./utils.js");
 const checkLinkList = require("./link-list-checker.js");
 
+const noConstructor = "This object cannot be instantiated directly.";
+
 function checkText(node, text) {
   return node.type === "text" && node.value === text;
 }
@@ -13,6 +15,19 @@ function checkTag(node, tag) {
 
 function startsWithText(node, text) {
   return node.type === "text" && node.value.startsWith(text);
+}
+
+function checkNoConstructor(elements) {
+  const topLevelElements = elements.filter((node) => node.type === "element");
+  if (
+    topLevelElements.length > 1 &&
+    topLevelElements[1].tagName === "p" &&
+    topLevelElements[1].children.length > 0 &&
+    startsWithText(topLevelElements[1].children[0], noConstructor)
+  ) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -26,11 +41,20 @@ function handleDataConstructor(tree, logger) {
     return null;
   }
 
+  const section = utils.sliceSection(heading, tree);
+
+  // Constructor sections are allowed to have no actual links
+  // to constructors, if they explicitly record this fact
+  let ok = checkNoConstructor(section.children);
+  if (ok) {
+    return heading;
+  }
+  // Otherwise they must include a link to a constructor
+
   // Check common link list structure
-  let ok = checkLinkList("Constructor", tree, logger);
+  ok = checkLinkList("Constructor", tree, logger);
 
   // This link list is only allowed one entry
-  const section = utils.sliceSection(heading, tree);
   const dts = select.selectAll("dt", section);
   if (dts.length !== 1) {
     logger.fail(
