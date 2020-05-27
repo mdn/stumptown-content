@@ -42,6 +42,11 @@ We've defined the following recipes for the JS docs:
 - [javascript-error](https://github.com/mdn/stumptown-content/blob/master/recipes/javascript-error.yaml)
 - [javascript-language-feature](https://github.com/mdn/stumptown-content/blob/master/recipes/javascript-language-feature.yaml)
 
+### CSS recipes
+
+- [css-property](https://github.com/mdn/stumptown-content/blob/master/recipes/css-property.yaml)
+- [css-shorthand-property](https://github.com/mdn/stumptown-content/blob/master/recipes/css-shorthand-property.yaml)
+
 ## Recipe ingredients
 
 In total these recipes use the following ingredients:
