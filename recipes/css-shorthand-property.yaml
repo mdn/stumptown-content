@@ -5,6 +5,7 @@ data:
 body:
   - prose.short_description
   - data.interactive_example?
+  - data.constituent_properties
   - prose.syntax
   - prose.description?
   - prose.accessibility_concerns?
