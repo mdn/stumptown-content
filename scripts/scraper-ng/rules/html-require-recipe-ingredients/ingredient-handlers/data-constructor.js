@@ -45,14 +45,13 @@ function handleDataConstructor(tree, logger) {
 
   // Constructor sections are allowed to have no actual links
   // to constructors, if they explicitly record this fact
-  let ok = checkNoConstructor(section.children);
-  if (ok) {
+  if (checkNoConstructor(section.children)) {
     return heading;
   }
   // Otherwise they must include a link to a constructor
 
   // Check common link list structure
-  ok = checkLinkList("Constructor", tree, logger);
+  let ok = checkLinkList("Constructor", tree, logger);
 
   // This link list is only allowed one entry
   const dts = select.selectAll("dt", section);
