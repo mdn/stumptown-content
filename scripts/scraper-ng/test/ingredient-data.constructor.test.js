@@ -11,6 +11,10 @@ const sources = {
   <dd>Creates a new <code>Thing</code> object. Some additional explanation.</dd>
 </dl>`,
 
+  valid_constructor_link_omitted: `<h2 id="Constructor">Constructor</h2>
+<p>This object cannot be instantiated directly.</p>
+<ul><li>Some more random content is allowed here</li></ul>`,
+
   invalid_constructor_section_missing: `<p>Some content</p>`,
 
   invalid_multiple_constructors: `<h2 id="Constructor">Constructor</h2>
@@ -39,6 +43,13 @@ describe("data.constructor", () => {
 
   test("valid constructor", () => {
     const file = process(sources.valid_constructor, testRecipe);
+
+    expect(file.messages).toStrictEqual([]);
+    expectPositionElement(file.data.ingredients[0], "data.constructor", "h2");
+  });
+
+  test("valid constructor with no link", () => {
+    const file = process(sources.valid_constructor_link_omitted, testRecipe);
 
     expect(file.messages).toStrictEqual([]);
     expectPositionElement(file.data.ingredients[0], "data.constructor", "h2");
