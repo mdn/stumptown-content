@@ -102,10 +102,15 @@ function handleDataConstructor(tree, logger) {
     ok = false;
   }
 
-  if (!startsWithText(dd.children[2], " object.")) {
+  if (
+    !(
+      startsWithText(dd.children[2], " object.") ||
+      startsWithText(dd.children[2], " value.")
+    )
+  ) {
     logger.fail(
       section,
-      "Constructor description must end first sentence with ' object.'",
+      "Constructor description must end first sentence with ' object.' or ' value.'",
       "constructor-description-third-node"
     );
     ok = false;
