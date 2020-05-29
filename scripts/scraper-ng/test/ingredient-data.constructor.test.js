@@ -5,10 +5,16 @@ const {
 } = require("./framework/utils");
 
 const sources = {
-  valid_constructor: `<h2 id="Constructor">Constructor</h2>
+  valid_constructor_with_object: `<h2 id="Constructor">Constructor</h2>
 <dl>
   <dt><a><code>Thing</code></a></dt>
   <dd>Creates a new <code>Thing</code> object. Some additional explanation.</dd>
+</dl>`,
+
+  valid_constructor_with_value: `<h2 id="Constructor">Constructor</h2>
+<dl>
+<dt><a><code>Thing</code></a></dt>
+<dd>Creates a new <code>Thing</code> value. Some additional explanation.</dd>
 </dl>`,
 
   valid_constructor_link_omitted: `<h2 id="Constructor">Constructor</h2>
@@ -41,8 +47,15 @@ const sources = {
 describe("data.constructor", () => {
   const testRecipe = { body: ["data.constructor"] };
 
-  test("valid constructor", () => {
-    const file = process(sources.valid_constructor, testRecipe);
+  test("valid constructor using 'object'", () => {
+    const file = process(sources.valid_constructor_with_object, testRecipe);
+
+    expect(file.messages).toStrictEqual([]);
+    expectPositionElement(file.data.ingredients[0], "data.constructor", "h2");
+  });
+
+  test("valid constructor using 'value'", () => {
+    const file = process(sources.valid_constructor_with_value, testRecipe);
 
     expect(file.messages).toStrictEqual([]);
     expectPositionElement(file.data.ingredients[0], "data.constructor", "h2");

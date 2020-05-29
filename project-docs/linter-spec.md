@@ -131,9 +131,9 @@ To satisfy this ingredient, a page must contain a section demarcated by `H2#Cons
    - The `<dt>` must contain either:
      - only a single `<code>` element, that contains only a single `<a>` element
      - only a call to the `{{jsxref}}` macro.
-   - The `<dd>` must contain `Creates a new <code>NameOfTheObject</code> object.` where `NameOfTheObject` is replaced with the actual name.
+   - The `<dd>` must contain either `Creates a new <code>NameOfTheObject</code> object.` or `Creates a new <code>NameOfTheObject</code> value.` where `NameOfTheObject` is replaced with the actual name.
 
-2. A `<p>` element that starts with the text "This object cannot be instantiated directly.".
+2) A `<p>` element that starts with the text "This object cannot be instantiated directly.".
 
 #### data.constructor_properties?
 
