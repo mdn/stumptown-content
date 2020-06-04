@@ -36,27 +36,64 @@ function attacher() {
       );
     }
 
+    let failed = false;
+    const results = [];
     for (let index = 0; index < recipeIngredientNames.length; index++) {
       const expectedIngredientName = recipeIngredientNames[index];
       const currentIngredient = pageIngredients[index];
 
-      if (currentIngredient.name !== expectedIngredientName) {
-        const extraInfoForProseStar =
-          currentIngredient.name === "prose.*"
-            ? ` (#${currentIngredient.position.properties.id})`
-            : "";
-        const message = file.message(
-          `${currentIngredient.name}${extraInfoForProseStar} not expected in this order`,
-          currentIngredient.position,
-          `${source}:${path.basename(
-            file.data.recipePath,
-            ".yaml"
-          )}/ingredient-out-of-order/${currentIngredient.name}`
-        );
-        message.fatal = true;
+      results.push({
+        ok: currentIngredient.name === expectedIngredientName,
+        expected: expectedIngredientName,
+        got: currentIngredient,
+      });
+
+      if (!results[index].ok) {
+        failed = true;
       }
     }
+
+    if (failed) {
+      const firstProblem = results.find((r) => !r.ok).got;
+      const message = file.message(
+        `${firstProblem.name} not expected in this order`,
+        firstProblem.position,
+        `${source}:${path.basename(
+          file.data.recipePath,
+          ".yaml"
+        )}/ingredient-out-of-order/${firstProblem.name}`
+      );
+      message.note = formatVerbose(results);
+      message.fatal = true;
+    }
   };
+}
+
+/**
+ * Format results into a table to compare the expected and actual page outline.
+ *
+ * @param {Array.<{ok: Boolean, expected: String, got: Object}>} results
+ * @returns {String} the results as a table
+ */
+function formatVerbose(results) {
+  const expectedWidth = Math.max(...results.map((r) => r.expected.length));
+  const lines = [
+    `  ${"Expected".padEnd(expectedWidth)} Got`,
+    `  ${"--------".padEnd(expectedWidth)} ---`,
+  ];
+
+  for (const { ok, expected, got } of results) {
+    const status = ok ? "✓" : "✕";
+    const gotDetail =
+      got.name !== "prose.*"
+        ? got.name
+        : `prose.* (h2#${got.position.properties.id})`;
+    lines.push(`${status} ${expected.padEnd(expectedWidth)} ${gotDetail}`);
+  }
+
+  const indented = lines.map((l) => `\t\t${l}`);
+
+  return indented.join("\n");
 }
 
 module.exports = attacher;
