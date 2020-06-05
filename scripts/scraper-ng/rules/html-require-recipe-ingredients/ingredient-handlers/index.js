@@ -1,13 +1,13 @@
 const { select } = require("hast-util-select");
 
-const handleDataSpecifications = require("./data-specifications");
-const handleDataExamples = require("./data-examples");
-const handleDataInteractiveExample = require("./data-interactive-example");
-const handleDataBrowserCompatibility = require("./data-browser-compatibility");
-const handleDataFormalSyntax = require("./data-formal-syntax");
-const handleProseShortDescription = require("./prose-short-description");
-const handleDataConstructor = require("./data-constructor");
 const classMembers = require("./data-class-members");
+const handleDataBrowserCompatibility = require("./data-browser-compatibility");
+const handleDataConstructor = require("./data-constructor");
+const handleDataExamples = require("./data-examples");
+const handleDataFormalSyntax = require("./data-formal-syntax");
+const handleDataInteractiveExample = require("./data-interactive-example");
+const handleDataSpecifications = require("./data-specifications");
+const handleProseShortDescription = require("./prose-short-description");
 
 /**
  * Functions to check for recipe ingredients in Kuma page sources.
@@ -27,8 +27,8 @@ const classMembers = require("./data-class-members");
  */
 const ingredientHandlers = {
   "data.browser_compatibility": handleDataBrowserCompatibility,
-  "data.constructor": handleDataConstructor,
   "data.constructor_properties?": classMembers.handleDataConstructorProperties,
+  "data.constructor": handleDataConstructor,
   "data.examples": handleDataExamples,
   "data.formal_syntax": handleDataFormalSyntax,
   "data.instance_methods?": classMembers.handleDataInstanceMethods,
