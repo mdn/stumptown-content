@@ -21,7 +21,7 @@ describe("data.formal_syntax", () => {
     expectPositionElement(file.data.ingredients[0], ingredientName, "h2");
   });
 
-  test.skip("missing h2", () => {
+  test("missing h2", () => {
     const file = process("", recipe);
 
     expect(file.messages.length).toBeGreaterThan(0);
