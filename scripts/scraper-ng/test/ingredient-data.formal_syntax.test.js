@@ -26,6 +26,7 @@ describe("data.formal_syntax", () => {
 
     expect(file.messages.length).toBeGreaterThan(0);
     expect(file).hasMessageWithId(/data.formal_syntax\/expected-heading/);
+
     expectNullPosition(file.data.ingredients[0], ingredientName);
   });
 
@@ -35,6 +36,8 @@ describe("data.formal_syntax", () => {
     const file = process(missingPre, recipe);
 
     expect(file.messages.length).toBeGreaterThan(0);
+    expect(file).hasMessageWithId(/data.formal_syntax\/expected-pre/);
+
     expectNullPosition(file.data.ingredients[0], ingredientName);
   });
 
@@ -44,6 +47,8 @@ describe("data.formal_syntax", () => {
     const file = process(missingMacro, recipe);
 
     expect(file.messages.length).toBeGreaterThan(0);
+    expect(file).hasMessageWithId(/data.formal_syntax\/expected-macro/);
+
     expectNullPosition(file.data.ingredients[0], ingredientName);
   });
 });
