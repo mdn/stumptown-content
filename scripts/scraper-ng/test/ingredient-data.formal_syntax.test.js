@@ -17,7 +17,7 @@ describe("data.formal_syntax", () => {
                  <pre class="syntaxbox notranslate">{{ csssyntax("display") }}</pre>`;
     const file = process(valid, recipe);
 
-    expect(file.messages).toStrictEqual([]);
+    expect(file).not.hasMessageWithId(ingredientName);
     expectPositionElement(file.data.ingredients[0], ingredientName, "h2");
   });
 
