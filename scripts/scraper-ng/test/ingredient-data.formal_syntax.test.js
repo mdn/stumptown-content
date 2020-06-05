@@ -51,4 +51,16 @@ describe("data.formal_syntax", () => {
 
     expectNullPosition(file.data.ingredients[0], ingredientName);
   });
+
+  test("unexpected elements", () => {
+    const extraneousElements = `<h2 id="Formal_syntax">Formal syntax</h2>
+                                <pre class="syntaxbox notranslate">{{ csssyntax("display") }}</pre>
+                                <p>Some notes about this that don't belong here.</p>`;
+    const file = process(extraneousElements, recipe);
+
+    expect(file.messages.length).toBeGreaterThan(0);
+    expect(file).hasMessageWithId(/data.formal_syntax\/syntax-only/);
+
+    expectNullPosition(file.data.ingredients[0], ingredientName);
+  });
 });
