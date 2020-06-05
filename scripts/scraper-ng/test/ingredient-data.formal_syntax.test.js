@@ -14,7 +14,7 @@ describe("data.formal_syntax", () => {
 
   test("valid", () => {
     const valid = `<h2 id="Formal_syntax">Formal syntax</h2>
-                 <pre class="syntaxbox notranslate">{{ csssyntax("display") }}</pre>`;
+                   <pre class="syntaxbox notranslate">{{ csssyntax("display") }}</pre>`;
     const file = process(valid, recipe);
 
     expect(file).not.hasMessageWithId(ingredientName);
@@ -30,9 +30,9 @@ describe("data.formal_syntax", () => {
     expectNullPosition(file.data.ingredients[0], ingredientName);
   });
 
-  test.skip("missing pre", () => {
+  test("missing pre", () => {
     const missingPre = `<h2 id="Formal_syntax">Formal syntax</h2>
-                   {{ csssyntax("display") }}`;
+                        {{ csssyntax("display") }}`;
     const file = process(missingPre, recipe);
 
     expect(file.messages.length).toBeGreaterThan(0);
@@ -41,9 +41,9 @@ describe("data.formal_syntax", () => {
     expectNullPosition(file.data.ingredients[0], ingredientName);
   });
 
-  test.skip("missing macro", () => {
+  test("missing macro", () => {
     const missingMacro = `<h2 id="Formal_syntax">Formal syntax</h2>
-                          <h2 id="Next_heading>Next heading</h2>`;
+                          <pre class="syntaxbox notranslate"></pre>`;
     const file = process(missingMacro, recipe);
 
     expect(file.messages.length).toBeGreaterThan(0);
