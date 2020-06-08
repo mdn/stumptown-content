@@ -2,9 +2,21 @@ const path = require("path");
 
 const signatures = [
   {
-    recipePath: recipe("javascript-namespace"),
+    recipePath: recipe("css-property"),
     conditions: {
-      tags: ["JavaScript", "Namespace"],
+      tags: ["CSS", "Property"],
+    },
+  },
+  {
+    recipePath: recipe("css-shorthand-property"),
+    conditions: {
+      tags: ["CSS", "Shorthand property"],
+    },
+  },
+  {
+    recipePath: recipe("guide"),
+    conditions: {
+      tags: ["Guide"],
     },
   },
   {
@@ -26,9 +38,21 @@ const signatures = [
     },
   },
   {
+    recipePath: recipe("javascript-language-feature"),
+    conditions: {
+      tags: ["JavaScript", "Language feature"],
+    },
+  },
+  {
     recipePath: recipe("javascript-method"),
     conditions: {
       tags: ["JavaScript", "Method"],
+    },
+  },
+  {
+    recipePath: recipe("javascript-namespace"),
+    conditions: {
+      tags: ["JavaScript", "Namespace"],
     },
   },
   {
@@ -38,33 +62,9 @@ const signatures = [
     },
   },
   {
-    recipePath: recipe("javascript-language-feature"),
-    conditions: {
-      tags: ["JavaScript", "Language feature"],
-    },
-  },
-  {
     recipePath: recipe("landing-page"),
     conditions: {
       tags: ["Landing page"],
-    },
-  },
-  {
-    recipePath: recipe("guide"),
-    conditions: {
-      tags: ["Guide"],
-    },
-  },
-  {
-    recipePath: recipe("css-shorthand-property"),
-    conditions: {
-      tags: ["CSS", "Shorthand property"],
-    },
-  },
-  {
-    recipePath: recipe("css-property"),
-    conditions: {
-      tags: ["CSS", "Property"],
     },
   },
 ];
