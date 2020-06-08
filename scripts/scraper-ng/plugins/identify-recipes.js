@@ -55,6 +55,18 @@ const signatures = [
       tags: ["Guide"],
     },
   },
+  {
+    recipePath: recipe("css-shorthand-property"),
+    conditions: {
+      tags: ["CSS", "Shorthand property"],
+    },
+  },
+  {
+    recipePath: recipe("css-property"),
+    conditions: {
+      tags: ["CSS", "Property"],
+    },
+  },
 ];
 
 /**
