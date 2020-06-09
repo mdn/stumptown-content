@@ -5,10 +5,6 @@ const {
 } = require("./framework/utils");
 
 describe("data.formal_syntax", () => {
-  /*
-  TODO: update the specification for the formal syntax
-  */
-
   const ingredientName = "data.formal_syntax";
   const recipe = { body: [ingredientName] };
 
