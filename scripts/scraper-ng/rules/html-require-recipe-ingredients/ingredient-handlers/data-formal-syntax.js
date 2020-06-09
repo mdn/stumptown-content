@@ -13,49 +13,51 @@ function handleDataFormalSyntax(tree, logger) {
     return null;
   }
 
-  // The first non-whitespace node after the `h2` must be pre.syntaxbox
-  const relevantChildren = section.children.filter(
-    (child) => child.tagName !== "h2" && !isWhiteSpaceTextNode(child)
+  // Section must contain pre.syntaxbox
+  const expectedSyntaxBox = select("pre.syntaxbox", section);
+  if (expectedSyntaxBox === null) {
+    logger.expected(tree, section, "expected-pre.syntaxbox");
+    return null;
+  }
+
+  // pre.syntaxbox must contain CSSSyntax macro
+  let expectedMacro = null;
+  visit(
+    expectedSyntaxBox,
+    (node) => !isWhiteSpaceTextNode(node),
+    (node) => {
+      if (isMacro(node, "CSSSyntax")) {
+        expectedMacro = node;
+        return visit.EXIT;
+      }
+    }
   );
-  const expectedPre = relevantChildren.length > 0 ? relevantChildren[0] : null;
-  if (
-    expectedPre === null ||
-    expectedPre.type !== "element" ||
-    expectedPre.tagName !== "pre" ||
-    !Array.isArray(expectedPre.properties.className) ||
-    !expectedPre.properties.className.includes("syntaxbox")
-  ) {
-    logger.expected(tree, expectedPre, "expected-pre.syntaxbox");
+  if (expectedMacro === null) {
+    logger.expected(tree, expectedSyntaxBox, "expected-macro");
     return null;
   }
 
-  // The `pre` tag's first child must be a macro node
-  const expectedMacro =
-    expectedPre.children.length > 0 ? expectedPre.children[0] : null;
-  if (expectedMacro === null || !isMacro(expectedMacro, "CSSSyntax")) {
-    logger.expected(tree, expectedPre, "expected-macro");
-    return null;
-  }
+  // Section must only contain `<pre>{{macro}}</pre>` and space
+  const isExpected = (node) => {
+    return (
+      isWhiteSpaceTextNode(node) ||
+      [expectedSyntaxBox, expectedMacro].includes(node)
+    );
+  };
 
-  // Do not allow any nodes other than the expected `<h2/><pre>{{macro}}</pre>`
   let extraneousNode = null;
   visit(
     section,
     (node) => node.type !== "root",
     (node) => {
       if (node === heading) {
-        return visit.SKIP; // ignore the heading text
-      }
-      if (
-        isWhiteSpaceTextNode(node) ||
-        node === expectedPre ||
-        node === expectedMacro
-      ) {
+        return visit.SKIP; // skip over heading text
+      } else if (isExpected(node)) {
         return visit.CONTINUE;
+      } else {
+        extraneousNode = node;
+        return visit.EXIT;
       }
-
-      extraneousNode = node;
-      return visit.EXIT;
     }
   );
   if (extraneousNode !== null) {
