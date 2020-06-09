@@ -39,7 +39,7 @@ describe("data.formal_syntax", () => {
 
   test("missing syntaxbox class", () => {
     const missingClass = `<h2 id="Formal_syntax">Formal syntax</h2>
-                   <pre>{{ csssyntax("display") }}</pre>`;
+                          <pre>{{ csssyntax("display") }}</pre>`;
     const file = process(missingClass, recipe);
 
     expect(file.messages.length).toBeGreaterThan(1);
