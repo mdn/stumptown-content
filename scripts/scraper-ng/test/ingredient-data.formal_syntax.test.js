@@ -36,7 +36,18 @@ describe("data.formal_syntax", () => {
     const file = process(missingPre, recipe);
 
     expect(file.messages.length).toBeGreaterThan(0);
-    expect(file).hasMessageWithId(/data.formal_syntax\/expected-pre/);
+    expect(file).hasMessageWithId(/data.formal_syntax\/expected-pre.syntaxbox/);
+
+    expectNullPosition(file.data.ingredients[0], ingredientName);
+  });
+
+  test("missing syntaxbox class", () => {
+    const missingClass = `<h2 id="Formal_syntax">Formal syntax</h2>
+                   <pre>{{ csssyntax("display") }}</pre>`;
+    const file = process(missingClass, recipe);
+
+    expect(file.messages.length).toBeGreaterThan(1);
+    expect(file).hasMessageWithId(/data.formal_syntax\/expected-pre.syntaxbox/);
 
     expectNullPosition(file.data.ingredients[0], ingredientName);
   });
