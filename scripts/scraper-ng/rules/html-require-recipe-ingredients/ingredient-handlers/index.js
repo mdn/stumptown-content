@@ -27,9 +27,13 @@ const handleProseShortDescription = require("./prose-short-description");
  */
 const ingredientHandlers = {
   "data.browser_compatibility": handleDataBrowserCompatibility,
+  "data.constituent_properties": requireTopLevelHeading(
+    "Constituent properties"
+  ),
   "data.constructor_properties?": classMembers.handleDataConstructorProperties,
   "data.constructor": handleDataConstructor,
   "data.examples": handleDataExamples,
+  "data.formal_definition": requireTopLevelHeading("Formal definition"),
   "data.formal_syntax": handleDataFormalSyntax,
   "data.instance_methods?": classMembers.handleDataInstanceMethods,
   "data.instance_properties?": classMembers.handleDataInstanceProperties,
