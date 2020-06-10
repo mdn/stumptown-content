@@ -20,9 +20,7 @@ describe("data.formal_syntax", () => {
   test("missing h2", () => {
     const file = process("", recipe);
 
-    expect(file.messages.length).toBeGreaterThan(0);
     expect(file).hasMessageWithId(/data.formal_syntax\/expected-heading/);
-
     expectNullPosition(file.data.ingredients[0], ingredientName);
   });
 
@@ -31,9 +29,7 @@ describe("data.formal_syntax", () => {
                         {{ csssyntax("display") }}`;
     const file = process(missingPre, recipe);
 
-    expect(file.messages.length).toBeGreaterThan(0);
     expect(file).hasMessageWithId(/data.formal_syntax\/expected-pre.syntaxbox/);
-
     expectNullPosition(file.data.ingredients[0], ingredientName);
   });
 
@@ -42,9 +38,7 @@ describe("data.formal_syntax", () => {
                           <pre>{{ csssyntax("display") }}</pre>`;
     const file = process(missingClass, recipe);
 
-    expect(file.messages.length).toBeGreaterThan(1);
     expect(file).hasMessageWithId(/data.formal_syntax\/expected-pre.syntaxbox/);
-
     expectNullPosition(file.data.ingredients[0], ingredientName);
   });
 
@@ -53,9 +47,7 @@ describe("data.formal_syntax", () => {
                           <pre class="syntaxbox notranslate"></pre>`;
     const file = process(missingMacro, recipe);
 
-    expect(file.messages.length).toBeGreaterThan(0);
     expect(file).hasMessageWithId(/data.formal_syntax\/expected-macro/);
-
     expectNullPosition(file.data.ingredients[0], ingredientName);
   });
 
@@ -65,9 +57,7 @@ describe("data.formal_syntax", () => {
                                 <p>Some notes about this that don't belong here.</p>`;
     const file = process(extraneousElements, recipe);
 
-    expect(file.messages.length).toBeGreaterThan(0);
     expect(file).hasMessageWithId(/data.formal_syntax\/syntax-only/);
-
     expectNullPosition(file.data.ingredients[0], ingredientName);
   });
 });
