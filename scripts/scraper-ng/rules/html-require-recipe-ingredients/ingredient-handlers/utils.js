@@ -79,6 +79,17 @@ function isNewlineOnlyTextNode(node) {
   return node.type === "text" && node.value.match(/^\n*$/);
 }
 
+/**
+ * Check if a node's type is `"text"` and that contains only white space
+ * characters.
+ *
+ * @param {Object} node - An unist node
+ * @returns {Boolean} `true` for white space, `false` for anything else
+ */
+function isWhiteSpaceTextNode(node) {
+  return node.type === "text" && !/\S/.test(node.value);
+}
+
 function Logger(file, source, recipeName, ingredient) {
   return {
     expected: function (node, name, id) {
@@ -97,9 +108,10 @@ function Logger(file, source, recipeName, ingredient) {
 }
 
 module.exports = {
-  sliceSection,
-  sliceBetween,
   isMacro,
   isNewlineOnlyTextNode,
+  isWhiteSpaceTextNode,
   Logger,
+  sliceBetween,
+  sliceSection,
 };

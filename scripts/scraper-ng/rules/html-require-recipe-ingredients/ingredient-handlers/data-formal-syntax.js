@@ -1,4 +1,4 @@
-const { isMacro, sliceSection } = require("./utils");
+const { isMacro, isWhiteSpaceTextNode, sliceSection } = require("./utils");
 const { select } = require("hast-util-select");
 const visit = require("unist-util-visit");
 
@@ -70,10 +70,6 @@ function handleDataFormalSyntax(tree, logger) {
   }
 
   return heading;
-}
-
-function isWhiteSpaceTextNode(node) {
-  return node.type === "text" && !/\S/.test(node.value);
 }
 
 module.exports = handleDataFormalSyntax;
