@@ -6,7 +6,6 @@ function handleDataFormalSyntax(tree, logger) {
   const id = "Formal_syntax";
   const body = select(`body`, tree);
   const heading = select(`h2#${id}`, body);
-  const section = sliceSection(heading, body);
 
   if (heading === null) {
     logger.expected(body, `h2#${id}`, "expected-heading");
@@ -14,6 +13,7 @@ function handleDataFormalSyntax(tree, logger) {
   }
 
   // Section must contain pre.syntaxbox
+  const section = sliceSection(heading, body);
   const expectedSyntaxBox = select("pre.syntaxbox", section);
   if (expectedSyntaxBox === null) {
     logger.expected(tree, section, "expected-pre.syntaxbox");
