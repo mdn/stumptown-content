@@ -4,6 +4,7 @@ const classMembers = require("./data-class-members");
 const handleDataBrowserCompatibility = require("./data-browser-compatibility");
 const handleDataConstructor = require("./data-constructor");
 const handleDataExamples = require("./data-examples");
+const handleDataFormalDefinition = require("./data-formal-definition");
 const handleDataFormalSyntax = require("./data-formal-syntax");
 const handleDataInteractiveExample = require("./data-interactive-example");
 const handleDataSpecifications = require("./data-specifications");
@@ -33,7 +34,7 @@ const ingredientHandlers = {
   "data.constructor_properties?": classMembers.handleDataConstructorProperties,
   "data.constructor": handleDataConstructor,
   "data.examples": handleDataExamples,
-  "data.formal_definition": requireTopLevelHeading("Formal definition"),
+  "data.formal_definition": handleDataFormalDefinition,
   "data.formal_syntax": handleDataFormalSyntax,
   "data.instance_methods?": classMembers.handleDataInstanceMethods,
   "data.instance_properties?": classMembers.handleDataInstanceProperties,
