@@ -4,13 +4,13 @@ const signatures = [
   {
     recipePath: recipe("css-property"),
     conditions: {
-      tags: ["CSS", "Property"],
+      tags: ["recipe:css-property"],
     },
   },
   {
     recipePath: recipe("css-shorthand-property"),
     conditions: {
-      tags: ["CSS", "Shorthand property"],
+      tags: ["recipe:css-shorthand-property"],
     },
   },
   {
