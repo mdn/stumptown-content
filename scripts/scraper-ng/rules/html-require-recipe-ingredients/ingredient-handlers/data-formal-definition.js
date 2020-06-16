@@ -3,8 +3,6 @@ const visit = require("unist-util-visit");
 
 const { isMacro, isWhiteSpaceTextNode, sliceSection } = require("./utils");
 
-const isCSSInfo = (node) => isMacro(node, "CSSInfo");
-
 function handleDataFormalDefinition(tree, logger) {
   const id = "Formal_definition";
   const body = select(`body`, tree);
@@ -26,7 +24,7 @@ function handleDataFormalDefinition(tree, logger) {
     }
 
     // Get first CSSInfo child node, if it exists
-    expectedMacro = node.children.find(isCSSInfo);
+    expectedMacro = node.children.find((node) => isMacro(node, "CSSInfo"));
     if (expectedMacro !== undefined) {
       return true;
     }
