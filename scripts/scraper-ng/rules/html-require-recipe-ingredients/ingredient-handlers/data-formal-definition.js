@@ -19,16 +19,13 @@ function handleDataFormalDefinition(tree, logger) {
   // Find the first P with a CSSInfo macro as one of its children
   let expectedMacro;
   let expectedP = section.children.find((node) => {
-    if (node.tagName !== "p" || !node.children) {
-      return false;
+    if (node.tagName === "p" && node.children) {
+      // Get first CSSInfo child node, if it exists
+      expectedMacro = node.children.find((node) => isMacro(node, "CSSInfo"));
+      if (expectedMacro) {
+        return true;
+      }
     }
-
-    // Get first CSSInfo child node, if it exists
-    expectedMacro = node.children.find((node) => isMacro(node, "CSSInfo"));
-    if (expectedMacro !== undefined) {
-      return true;
-    }
-
     return false;
   });
 
