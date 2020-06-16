@@ -32,11 +32,13 @@ function handleDataFormalDefinition(tree, logger) {
     return false;
   });
 
-  for (const exp of [expectedMacro, expectedP]) {
-    if (!exp) {
-      logger.expected(exp, "CSSInfo macro paragraph", "expected-cssinfo-macro");
-      return null;
-    }
+  if (!expectedP) {
+    logger.expected(
+      section,
+      "CSSInfo macro paragraph",
+      "expected-cssinfo-macro"
+    );
+    return null;
   }
 
   // After the H2, the section must only contain `<p>{{CSSInfo}}</p>` (and
