@@ -49,7 +49,7 @@ function handleDataFormalDefinition(tree, logger) {
     node === expectedP ||
     node === expectedMacro;
 
-  let extraneousNode = null;
+  let extraneousNode;
   visit(section, (node) => {
     if (node === heading) {
       return visit.SKIP;
@@ -61,7 +61,7 @@ function handleDataFormalDefinition(tree, logger) {
     }
   });
 
-  if (extraneousNode !== null) {
+  if (extraneousNode) {
     logger.fail(
       extraneousNode,
       "No other elements allowed in formal definition",
