@@ -127,6 +127,7 @@ To satisfy this ingredient a page must have a section demarcated by `H2#Constitu
 To satisfy this ingredient, a page must contain a section demarcated by `H2#Constructor` that contains one of the following:
 
 1. Only a `<dl>` element.
+
    - The `<dl>` must contain a single `<dt>` followed by a single `<dd>`.
    - The `<dt>` must contain either:
      - only a single `<code>` element, that contains only a single `<a>` element
@@ -159,7 +160,7 @@ Live samples must satisfy certain additional constraints:
 
 #### data.formal_definition
 
-To satisfy this ingredient a page must have a section demarcated by `H2#Formal_definition`. It must contain only a call to the `{{CSSInfo}}` macro.
+To satisfy this ingredient a page must have a section demarcated by `H2#Formal_definition`. It must contain only a single `<p>`, itself containing a single `{{CSSInfo}}` macro call.
 
 #### data.formal_syntax
 
