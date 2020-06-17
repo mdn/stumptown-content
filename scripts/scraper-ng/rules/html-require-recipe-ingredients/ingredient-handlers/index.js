@@ -29,7 +29,7 @@ const handleProseShortDescription = require("./prose-short-description");
 const ingredientHandlers = {
   "data.browser_compatibility": handleDataBrowserCompatibility,
   "data.constituent_properties": requireTopLevelHeading(
-    "Constituent properties"
+    "Constituent_properties"
   ),
   "data.constructor_properties?": classMembers.handleDataConstructorProperties,
   "data.constructor": handleDataConstructor,
