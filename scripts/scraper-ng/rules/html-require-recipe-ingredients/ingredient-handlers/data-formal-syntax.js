@@ -16,7 +16,7 @@ function handleDataFormalSyntax(tree, logger) {
   const section = sliceSection(heading, body);
   const expectedSyntaxBox = select("pre.syntaxbox", section);
   if (expectedSyntaxBox === null) {
-    logger.expected(tree, section, "expected-pre.syntaxbox");
+    logger.expected(section, "pre.syntaxbox", "expected-pre.syntaxbox");
     return null;
   }
 
@@ -33,7 +33,7 @@ function handleDataFormalSyntax(tree, logger) {
     }
   );
   if (expectedMacro === null) {
-    logger.expected(tree, expectedSyntaxBox, "expected-macro");
+    logger.expected(section, "CSSSyntax macro", "expected-macro");
     return null;
   }
 
