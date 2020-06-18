@@ -1,7 +1,7 @@
 const {
-  process,
-  expectPositionElement,
   expectNullPosition,
+  expectPositionElement,
+  process,
 } = require("./framework/utils");
 
 describe("data.constituent_properties", () => {
@@ -11,7 +11,8 @@ describe("data.constituent_properties", () => {
     missingHeading: /data.constituent_properties\/expected-heading/,
     missingText: /data.constituent_properties\/expected-intro-p/,
     missingUl: /data.constituent_properties\/expected-ul/,
-    missingLis: /data.constituent_properties\/expected-li-a-code/,
+    missingLis: /data.constituent_properties\/expected-more-lis/,
+    malformedLi: /data.constituent_properties\/expected-li-a-code/,
     hasExtraContent: /data.constituent_properties\/unexpected-content/,
   };
 
@@ -57,13 +58,38 @@ describe("data.constituent_properties", () => {
     const missingListItems = `<h2 id="Constituent_properties">Constituent properties</h2>
                               <p>This property is a shorthand for the following CSS properties:</p>
                               <ul>
-                                <li><a><code>property-one</code></a></li>
-                                <li><a><code>property-two</code></a></li>
-                                <li><a><code>property-three</code></a></li>
                               </ul>`;
     const file = process(missingListItems, recipe);
 
     expect(file).hasMessageWithId(errorIds.missingLis);
+    expectNullPosition(file.data.ingredients[0], ingredientName);
+  });
+
+  test("malformed-list-items-incomplete", () => {
+    const malformedListItems = `<h2 id="Constituent_properties">Constituent properties</h2>
+                                <p>This property is a shorthand for the following CSS properties:</p>
+                                <ul>
+                                  <li><a>property-one</a></li>
+                                  <li><a><code>property-two</code></a></li>
+                                  <li><a><code>property-three</code></a></li>
+                                </ul>`;
+    const file = process(malformedListItems, recipe);
+
+    expect(file).hasMessageWithId(errorIds.malformedLi);
+    expectNullPosition(file.data.ingredients[0], ingredientName);
+  });
+
+  test("malformed-list-items-extra", () => {
+    const malformedListItems = `<h2 id="Constituent_properties">Constituent properties</h2>
+                                <p>This property is a shorthand for the following CSS properties:</p>
+                                <ul>
+                                  <li><a><code>property-one</code></a><br/></li>
+                                  <li><a><code>property-two</code></a></li>
+                                  <li><a><code>property-three</code></a></li>
+                                </ul>`;
+    const file = process(malformedListItems, recipe);
+
+    expect(file).hasMessageWithId(errorIds.malformedLi);
     expectNullPosition(file.data.ingredients[0], ingredientName);
   });
 
