@@ -50,6 +50,39 @@ function sliceBetween(startNode, endCondition, tree) {
 }
 
 /**
+ * Find the first node that you didn't expect to find, or return `null`.
+ *
+ * @param {Object} tree - the tree to search for unexpected nodes
+ * @param {Array} expectedTrees - An array of nodes such that each node itself
+ *   and all of its descendants are permited. An expected tree's descendants are
+ *   never visited.
+ * @param {Array} expectedNodes - An array of nodes such that each node is
+ *   permitted. An expected node's descendants are visited, if they exist. The
+ *   starting node and white space are always expected.
+ * @returns {Object|null} a node or `null`
+ */
+function findExtraneousNode(tree, expectedTrees, expectedNodes) {
+  let extraneousNode = null;
+
+  visit(
+    tree,
+    (node) => node !== tree,
+    (node) => {
+      if (expectedTrees.includes(node)) {
+        return visit.SKIP;
+      }
+      if (expectedNodes.includes(node) || isWhiteSpaceTextNode(node)) {
+        return visit.CONTINUE;
+      }
+      extraneousNode = node;
+      return visit.EXIT;
+    }
+  );
+
+  return extraneousNode;
+}
+
+/**
  * Test if `node` is a macro call and, optionally, whether it calls a specific macro name.
  *
  * For use with `unist-util-visit` and similar.
@@ -108,6 +141,7 @@ function Logger(file, source, recipeName, ingredient) {
 }
 
 module.exports = {
+  findExtraneousNode,
   isMacro,
   isNewlineOnlyTextNode,
   isWhiteSpaceTextNode,

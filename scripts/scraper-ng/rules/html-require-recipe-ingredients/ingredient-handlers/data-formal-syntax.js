@@ -1,6 +1,12 @@
-const { isMacro, isWhiteSpaceTextNode, sliceSection } = require("./utils");
 const { select } = require("hast-util-select");
 const visit = require("unist-util-visit");
+
+const {
+  findExtraneousNode,
+  isMacro,
+  isWhiteSpaceTextNode,
+  sliceSection,
+} = require("./utils");
 
 function handleDataFormalSyntax(tree, logger) {
   const id = "Formal_syntax";
@@ -37,33 +43,16 @@ function handleDataFormalSyntax(tree, logger) {
     return null;
   }
 
-  // Section must only contain `<pre>{{macro}}</pre>` and space
-  const isExpected = (node) => {
-    return (
-      isWhiteSpaceTextNode(node) ||
-      [expectedSyntaxBox, expectedMacro].includes(node)
-    );
-  };
-
-  let extraneousNode = null;
-  visit(
+  // The section must contain only the `h2`, `pre.syntaxbox`, and macro call
+  const extraneousNode = findExtraneousNode(
     section,
-    (node) => node.type !== "root",
-    (node) => {
-      if (node === heading) {
-        return visit.SKIP; // skip over heading text
-      } else if (isExpected(node)) {
-        return visit.CONTINUE;
-      } else {
-        extraneousNode = node;
-        return visit.EXIT;
-      }
-    }
+    [heading],
+    [expectedSyntaxBox, expectedMacro]
   );
   if (extraneousNode !== null) {
     logger.fail(
       extraneousNode,
-      "No other elements allowed in formal syntax",
+      "No other elements allowed in data.formal_syntax",
       "syntax-only"
     );
     return null;

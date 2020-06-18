@@ -1,7 +1,6 @@
 const { select } = require("hast-util-select");
-const visit = require("unist-util-visit");
 
-const { isMacro, isWhiteSpaceTextNode, sliceSection } = require("./utils");
+const { isMacro, sliceSection, findExtraneousNode } = require("./utils");
 
 function handleDataFormalDefinition(tree, logger) {
   const id = "Formal_definition";
@@ -38,30 +37,16 @@ function handleDataFormalDefinition(tree, logger) {
     return null;
   }
 
-  // After the H2, the section must only contain `<p>{{CSSInfo}}</p>` (and
-  // space)
-  const isExpected = (node) =>
-    node.type === "root" ||
-    isWhiteSpaceTextNode(node) ||
-    node === expectedP ||
-    node === expectedMacro;
-
-  let extraneousNode;
-  visit(section, (node) => {
-    if (node === heading) {
-      return visit.SKIP;
-    } else if (isExpected(node)) {
-      return visit.CONTINUE;
-    } else {
-      extraneousNode = node;
-      return visit.EXIT;
-    }
-  });
-
-  if (extraneousNode) {
+  // The section must contain only a heading and `<p>{{CSSInfo}}</p>`
+  const extraneousNode = findExtraneousNode(
+    section,
+    [heading],
+    [expectedP, expectedMacro]
+  );
+  if (extraneousNode !== null) {
     logger.fail(
       extraneousNode,
-      "No other elements allowed in formal definition",
+      "No other elements allowed in data.formal_definition",
       "expected-macro-only"
     );
     return null;
