@@ -1,20 +1,15 @@
-const { select } = require("hast-util-select");
+const {
+  findUnexpectedNode,
+  isMacro,
+  requiredSectionHandler,
+} = require("./utils");
 
-const { findUnexpectedNode, isMacro, sliceSection } = require("./utils");
+const handleDataFormalDefinition = requiredSectionHandler(
+  "Formal_definition",
+  handle
+);
 
-function handleDataFormalDefinition(tree, logger) {
-  const id = "Formal_definition";
-  const body = select(`body`, tree);
-  const heading = select(`h2#${id}`, body);
-
-  if (heading === null) {
-    logger.expected(body, `h2#${id}`, "expected-heading");
-    return null;
-  }
-
-  // Section must have an immediate child P element containing the CSSInfo macro
-  const section = sliceSection(heading, body);
-
+function handle(tree, logger, section, heading) {
   // Find the first P with a CSSInfo macro as one of its children
   let expectedMacro;
   let expectedP = section.children.find((node) => {
