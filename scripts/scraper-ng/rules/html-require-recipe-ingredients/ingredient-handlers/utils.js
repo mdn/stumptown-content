@@ -61,7 +61,7 @@ function sliceBetween(startNode, endCondition, tree) {
  *   starting node and white space are always expected.
  * @returns {Object|null} a node or `null`
  */
-function findExtraneousNode(tree, expectedTrees, expectedNodes) {
+function findUnexpectedNode(tree, expectedTrees, expectedNodes) {
   let extraneousNode = null;
 
   visit(
@@ -141,7 +141,7 @@ function Logger(file, source, recipeName, ingredient) {
 }
 
 module.exports = {
-  findExtraneousNode,
+  findUnexpectedNode,
   isMacro,
   isNewlineOnlyTextNode,
   isWhiteSpaceTextNode,

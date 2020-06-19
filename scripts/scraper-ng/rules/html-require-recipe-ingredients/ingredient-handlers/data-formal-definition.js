@@ -1,6 +1,6 @@
 const { select } = require("hast-util-select");
 
-const { isMacro, sliceSection, findExtraneousNode } = require("./utils");
+const { findUnexpectedNode, isMacro, sliceSection } = require("./utils");
 
 function handleDataFormalDefinition(tree, logger) {
   const id = "Formal_definition";
@@ -38,7 +38,7 @@ function handleDataFormalDefinition(tree, logger) {
   }
 
   // The section must contain only a heading and `<p>{{CSSInfo}}</p>`
-  const extraneousNode = findExtraneousNode(
+  const extraneousNode = findUnexpectedNode(
     section,
     [heading],
     [expectedP, expectedMacro]

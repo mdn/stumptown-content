@@ -2,7 +2,7 @@ const { select } = require("hast-util-select");
 const visit = require("unist-util-visit");
 
 const {
-  findExtraneousNode,
+  findUnexpectedNode,
   isMacro,
   isWhiteSpaceTextNode,
   sliceSection,
@@ -44,7 +44,7 @@ function handleDataFormalSyntax(tree, logger) {
   }
 
   // The section must contain only the `h2`, `pre.syntaxbox`, and macro call
-  const extraneousNode = findExtraneousNode(
+  const extraneousNode = findUnexpectedNode(
     section,
     [heading],
     [expectedSyntaxBox, expectedMacro]
