@@ -1,0 +1,15 @@
+data:
+  - title
+  - short_title?
+  - mdn_url
+body:
+  - prose.short_description
+  - prose.syntax
+  - prose.description?
+  - prose.accessibility_concerns?
+  - prose.*
+  - data.formal_syntax
+  - data.examples
+  - data.specifications
+  - data.browser_compatibility
+  - prose.see_also

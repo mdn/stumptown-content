@@ -2,6 +2,12 @@ const path = require("path");
 
 const signatures = [
   {
+    recipePath: recipe("css-at-rule"),
+    conditions: {
+      tags: ["CSS", "At-rule"],
+    },
+  },
+  {
     recipePath: recipe("css-property"),
     conditions: {
       tags: ["recipe:css-property"],
