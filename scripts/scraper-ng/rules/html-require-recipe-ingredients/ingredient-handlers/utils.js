@@ -143,11 +143,9 @@ function Logger(file, source, recipeName, ingredient) {
 
 /**
  * @callback handleSectionFn
- * @param {Object} tree - the page tree to search for a section (the tree must
- * be an ancestor of the page's BODY)
+ * @param {Object} section - the tree for the section
  * @param {Logger} logger - the logger from the ingredient handler
- * @param {heading} heading - the matched H2
- * @param {section} section - the tree for the section
+ * @returns {Object|null} - the node marking the position of the ingredient or `null`
  */
 
 /**
@@ -156,24 +154,27 @@ function Logger(file, source, recipeName, ingredient) {
  * This is a convenience wrapper for finding an H2 by its ID, slicing the corresponding section, and doing further checks on that section.
  *
  * @param {String} id - the ID for an H2
- * @param {handleSectionFn} fn - an ingredient handler with extra `heading` and `section` parameters
+ * @param {handleSectionFn} handleSectionFn - an ingredient handler with extra `heading` and `section` parameters
+ * @param {Boolean} [optional] - whether this section is optional
  * @returns {Function} an ingredient handler
  */
-function requiredSectionHandler(id, fn) {
+function sectionHandler(id, handleSectionFn, optional = false) {
   return (tree, logger) => {
     // Extract the section and heading
     const body = select("body", tree);
+    const heading = select(`h2#${id}`, tree);
 
-    const heading = select(`h2#${id}`, body);
     if (heading === null) {
-      logger.expected(body, `h2#${id}`, "expected-heading");
+      if (!optional) {
+        logger.expected(body, `h2#${id}`, "expected-heading");
+      }
       return null;
     }
 
     const section = sliceSection(heading, body);
 
     // Pass section details into actual handler
-    return fn(tree, logger, section, heading);
+    return handleSectionFn(section, logger);
   };
 }
 
@@ -183,7 +184,7 @@ module.exports = {
   isNewlineOnlyTextNode,
   isWhiteSpaceTextNode,
   Logger,
-  requiredSectionHandler,
+  sectionHandler,
   sliceBetween,
   sliceSection,
 };

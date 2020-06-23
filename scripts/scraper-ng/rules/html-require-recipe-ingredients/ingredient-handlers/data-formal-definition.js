@@ -1,15 +1,10 @@
-const {
-  findUnexpectedNode,
-  isMacro,
-  requiredSectionHandler,
-} = require("./utils");
+const { findUnexpectedNode, isMacro, sectionHandler } = require("./utils");
 
-const handleDataFormalDefinition = requiredSectionHandler(
-  "Formal_definition",
-  handle
-);
+const handleDataFormalDefinition = sectionHandler("Formal_definition", handle);
 
-function handle(tree, logger, section, heading) {
+function handle(section, logger) {
+  const heading = section.children[0];
+
   // Find the first P with a CSSInfo macro as one of its children
   let expectedMacro;
   let expectedP = section.children.find((node) => {
