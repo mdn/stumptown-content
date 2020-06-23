@@ -5,16 +5,24 @@ const {
   findUnexpectedNode,
   isMacro,
   isWhiteSpaceTextNode,
-  requiredSectionHandler,
+  sliceSection,
 } = require("./utils");
 
-const handleDataFormalSyntax = requiredSectionHandler("Formal_syntax", handle);
+function handleDataFormalSyntax(tree, logger) {
+  const id = "Formal_syntax";
+  const body = select(`body`, tree);
+  const heading = select(`h2#${id}`, body);
 
-function handle(tree, logger, section, heading) {
+  if (heading === null) {
+    logger.expected(body, `h2#${id}`, "expected-heading");
+    return null;
+  }
+
   // Section must contain pre.syntaxbox
+  const section = sliceSection(heading, body);
   const expectedSyntaxBox = select("pre.syntaxbox", section);
   if (expectedSyntaxBox === null) {
-    logger.expected(section, "pre.syntaxbox", "expected-pre.syntaxbox");
+    logger.expected(tree, section, "expected-pre.syntaxbox");
     return null;
   }
 

@@ -1,3 +1,4 @@
+const { select } = require("hast-util-select");
 const visit = require("unist-util-visit");
 
 const utils = require("./utils.js");
@@ -5,22 +6,19 @@ const utils = require("./utils.js");
 /**
  * Handler for the `data.browser_compatibility` ingredient.
  */
-const handleDataBrowserCompatibility = utils.requiredSectionHandler(
-  "Browser_compatibility",
-  handle
-);
-
-function handle(tree, logger, section, heading) {
+function handleDataBrowserCompatibility(tree, logger) {
   const id = "Browser_compatibility";
+  const body = select(`body`, tree);
+  const heading = select(`h2#${id}`, body);
 
   if (heading === null) {
-    logger.expected(section, `h2#${id}`, "expected-heading");
+    logger.expected(body, `h2#${id}`, "expected-heading");
     return null;
   }
 
   let macroCount = 0;
   visit(
-    section,
+    utils.sliceSection(heading, body),
     (node) => utils.isMacro(node, "Compat"),
     () => {
       macroCount += 1;
@@ -28,7 +26,7 @@ function handle(tree, logger, section, heading) {
   );
 
   if (macroCount !== 1) {
-    logger.expected(section, "Compat macro", "expected-macro");
+    logger.expected(body, `Compat macro`, "expected-macro");
     return null;
   }
 

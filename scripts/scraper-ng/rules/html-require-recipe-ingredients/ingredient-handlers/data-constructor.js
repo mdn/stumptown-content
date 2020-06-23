@@ -33,12 +33,16 @@ function checkNoConstructor(elements) {
 /**
  * Handler for the `data.constructor` ingredient.
  */
-const handleDataConstructor = utils.requiredSectionHandler(
-  "Constructor",
-  handle
-);
+function handleDataConstructor(tree, logger) {
+  // Constructor is a mandatory property
+  const heading = select.select(`h2#Constructor`, tree);
+  if (heading === null) {
+    logger.expected(tree, `h2#Constructor`, "expected-heading");
+    return null;
+  }
 
-function handle(tree, logger, section, heading) {
+  const section = utils.sliceSection(heading, tree);
+
   // Constructor sections are allowed to have no actual links
   // to constructors, if they explicitly record this fact
   if (checkNoConstructor(section.children)) {

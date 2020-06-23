@@ -49,9 +49,19 @@ function checkExample(exampleNodes, logger) {
 /**
  * Handler for the `data.examples` ingredient.
  */
-const handleDataExamples = utils.requiredSectionHandler("Examples", handle);
+function handleDataExamples(tree, logger) {
+  const id = "Examples";
+  const body = select.select(`body`, tree);
+  const heading = select.select(`h2#${id}`, body);
 
-function handle(tree, logger, examplesSection, heading) {
+  // The document must have an H2 section "Examples"
+  if (heading === null) {
+    logger.expected(body, `h2#${id}`, "expected-heading");
+    return null;
+  }
+
+  const examplesSection = utils.sliceSection(heading, body);
+
   // The "Examples" section must contain at least one H3
   const exampleTitles = select.selectAll("h3", examplesSection);
   if (exampleTitles.length === 0) {

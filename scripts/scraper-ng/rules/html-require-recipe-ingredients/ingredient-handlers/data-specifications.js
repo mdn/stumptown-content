@@ -1,3 +1,4 @@
+const { select } = require("hast-util-select");
 const visit = require("unist-util-visit");
 
 const utils = require("./utils.js");
@@ -5,14 +6,18 @@ const utils = require("./utils.js");
 /**
  * Handler for the `data.specifications` ingredient.
  */
-const handleDataSpecifications = utils.requiredSectionHandler(
-  "Specifications",
-  handle
-);
+function handleDataSpecifications(tree, logger) {
+  const id = "Specifications";
+  const body = select(`body`, tree);
 
-function handle(tree, logger, section, heading) {
+  const heading = select(`h2#${id}`, body);
+  if (heading === null) {
+    logger.expected(body, `h2#${id}`, "expected-heading");
+    return null;
+  }
+
   let sectionOk = false;
-  visit(section, "text", (node) => {
+  visit(utils.sliceSection(heading, body), "text", (node) => {
     if (utils.isMacro(node, "SpecName")) {
       sectionOk = true;
       return visit.SKIP;
