@@ -8,6 +8,12 @@ const signatures = [
     },
   },
   {
+    recipePath: recipe("css-at-rule-descriptor"),
+    conditions: {
+      tags: ["CSS", "At-rule descriptor"],
+    },
+  },
+  {
     recipePath: recipe("css-property"),
     conditions: {
       tags: ["recipe:css-property"],
