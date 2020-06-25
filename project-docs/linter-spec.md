@@ -117,10 +117,13 @@ To satisfy this ingredient a page must have a section demarcated by `H2#Browser_
 
 #### data.constituent_properties
 
-To satisfy this ingredient a page must have a section demarcated by `H2#Constituent_properties`. This section must contain the following elements, in the order given below:
+To satisfy this ingredient a page must have a section demarcated by `H2#Constituent_properties`. The section must contain only the following elements:
 
-- a `<p>` element containing the following text: "This property is a shorthand for the following CSS properties:"
-- a `<ul>` element containing two or more `<li>` elements, each of which contains a single `<a><code>` element.
+1. A `<p>` element consisting of the text:
+
+   > This property is a shorthand for the following CSS properties:
+
+2. An unordered list (a `<ul>` element) of two or more CSS property names. Each property name must be in the form `<li><a><code>p</code></a></li>`, where _p_ is the name of a property. The `<li>` elements must be in alphabetical order.
 
 #### data.constructor
 
