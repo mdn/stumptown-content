@@ -14,6 +14,7 @@ describe("data.constituent_properties", () => {
     missingLis: /data.constituent_properties\/expected-more-lis/,
     malformedLi: /data.constituent_properties\/expected-li-a-code/,
     hasExtraContent: /data.constituent_properties\/unexpected-content/,
+    outOfOrder: /data.constituent_properties\/expected-alpha-sorted-properties/,
   };
 
   test("valid", () => {
@@ -102,6 +103,20 @@ describe("data.constituent_properties", () => {
     const file = process(insufficientListItems, recipe);
 
     expect(file).hasMessageWithId(errorIds.missingLis);
+    expectNullPosition(file.data.ingredients[0], ingredientName);
+  });
+
+  test("out-of-order-list-items", () => {
+    const outOfOrder = `<h2 id="Constituent_properties">Constituent properties</h2>
+                        <p>This property is a shorthand for the following CSS properties:</p>
+                        <ul>
+                          <li><a><code>property-a</code></a></li>
+                          <li><a><code>property-x</code></a></li>
+                          <li><a><code>property-b</code></a></li>
+                        </ul>`;
+    const file = process(outOfOrder, recipe);
+
+    expect(file).hasMessageWithId(errorIds.outOfOrder);
     expectNullPosition(file.data.ingredients[0], ingredientName);
   });
 
