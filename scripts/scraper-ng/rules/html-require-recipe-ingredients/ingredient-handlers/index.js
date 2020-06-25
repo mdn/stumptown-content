@@ -2,8 +2,10 @@ const { select } = require("hast-util-select");
 
 const classMembers = require("./data-class-members");
 const handleDataBrowserCompatibility = require("./data-browser-compatibility");
+const handleDataConstituentProperties = require("./data-constituent-properties");
 const handleDataConstructor = require("./data-constructor");
 const handleDataExamples = require("./data-examples");
+const handleDataFormalDefinition = require("./data-formal-definition");
 const handleDataFormalSyntax = require("./data-formal-syntax");
 const handleDataInteractiveExample = require("./data-interactive-example");
 const handleDataSpecifications = require("./data-specifications");
@@ -27,13 +29,11 @@ const handleProseShortDescription = require("./prose-short-description");
  */
 const ingredientHandlers = {
   "data.browser_compatibility": handleDataBrowserCompatibility,
-  "data.constituent_properties": requireTopLevelHeading(
-    "Constituent_properties"
-  ),
+  "data.constituent_properties": handleDataConstituentProperties,
   "data.constructor_properties?": classMembers.handleDataConstructorProperties,
   "data.constructor": handleDataConstructor,
   "data.examples": handleDataExamples,
-  "data.formal_definition": requireTopLevelHeading("Formal_definition"),
+  "data.formal_definition": handleDataFormalDefinition,
   "data.formal_syntax": handleDataFormalSyntax,
   "data.instance_methods?": classMembers.handleDataInstanceMethods,
   "data.instance_properties?": classMembers.handleDataInstanceProperties,
@@ -41,6 +41,9 @@ const ingredientHandlers = {
   "data.specifications": handleDataSpecifications,
   "data.static_methods?": classMembers.handleDataStaticMethods,
   "data.static_properties?": classMembers.handleDataStaticProperties,
+  "prose.accessibility_concerns?": optionalTopLevelHeading(
+    "Accessibility_concerns"
+  ),
   "prose.description?": optionalTopLevelHeading("Description"),
   "prose.error_type": requireTopLevelHeading("Error_type"),
   "prose.message": requireTopLevelHeading("Message"),
