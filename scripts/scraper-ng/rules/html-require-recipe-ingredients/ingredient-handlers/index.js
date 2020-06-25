@@ -42,6 +42,9 @@ const ingredientHandlers = {
   "data.specifications": handleDataSpecifications,
   "data.static_methods?": classMembers.handleDataStaticMethods,
   "data.static_properties?": classMembers.handleDataStaticProperties,
+  "prose.accessibility_concerns?": optionalTopLevelHeading(
+    "Accessibility_concerns"
+  ),
   "prose.description?": optionalTopLevelHeading("Description"),
   "prose.error_type": requireTopLevelHeading("Error_type"),
   "prose.message": requireTopLevelHeading("Message"),

@@ -54,6 +54,7 @@ In total these recipes use the following ingredients:
 prose ingredients:
 
 - prose.\*
+- prose.accessibility_concerns?
 - prose.description?
 - prose.error_type
 - prose.message
