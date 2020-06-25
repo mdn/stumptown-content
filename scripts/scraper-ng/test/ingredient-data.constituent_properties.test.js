@@ -8,12 +8,12 @@ describe("data.constituent_properties", () => {
   const ingredientName = "data.constituent_properties";
   const recipe = { body: [ingredientName] };
   const errorIds = {
+    hasExtraContent: /data.constituent_properties\/unexpected-content/,
+    malformedLi: /data.constituent_properties\/expected-li-a-code/,
     missingHeading: /data.constituent_properties\/expected-heading/,
+    missingLis: /data.constituent_properties\/expected-more-lis/,
     missingText: /data.constituent_properties\/expected-intro-p/,
     missingUl: /data.constituent_properties\/expected-ul/,
-    missingLis: /data.constituent_properties\/expected-more-lis/,
-    malformedLi: /data.constituent_properties\/expected-li-a-code/,
-    hasExtraContent: /data.constituent_properties\/unexpected-content/,
     outOfOrder: /data.constituent_properties\/expected-alpha-sorted-properties/,
   };
 
