@@ -21,9 +21,9 @@ describe("data.constituent_properties", () => {
     const valid = `<h2 id="Constituent_properties">Constituent properties</h2>
                    <p>This property is a shorthand for the following CSS properties:</p>
                    <ul>
-                    <li><a><code>property-one</code></a></li>
-                    <li><a><code>property-two</code></a></li>
-                    <li><a><code>property-three</code></a></li>
+                    <li><a><code>property-a</code></a></li>
+                    <li><a><code>property-b</code></a></li>
+                    <li><a><code>property-c</code></a></li>
                    </ul>`;
     const file = process(valid, recipe);
 
