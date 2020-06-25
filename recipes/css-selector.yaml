@@ -6,7 +6,7 @@ body:
   - prose.short_description
   - prose.syntax
   - prose.description?
-  - prose.applicable_properties?
+  - data.permitted_properties?
   - prose.accessibility_concerns?
   - prose.*
   - data.examples
