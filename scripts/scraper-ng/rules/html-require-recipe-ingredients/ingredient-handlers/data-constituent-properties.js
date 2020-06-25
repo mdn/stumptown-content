@@ -54,6 +54,16 @@ const handleDataConstituentProperties = sectionHandler(
       }
     }
 
+    const unsorted = findUnsortedProperty(lis);
+    if (unsorted !== null) {
+      logger.fail(
+        unsorted,
+        "Constituent property list is not in alphabetical order",
+        "expected-alpha-sorted-properties"
+      );
+      return null;
+    }
+
     let unexpectedNode = findUnexpectedNode(
       section,
       [heading, expectedIntroTextP, ...lis],
@@ -138,6 +148,25 @@ function isWellFormedProperty(node) {
     }
   );
   return ok;
+}
+
+/**
+ * From an array of well-formed property list entries, get the first list item
+ * out of order, or return `null`.
+ *
+ * @param {Array<Object>} lis - An array of LI nodes
+ * @returns {Object|null} - A node that's out of order or `null`
+ */
+function findUnsortedProperty(lis) {
+  let previous = "";
+  for (const li of lis) {
+    const literalText = li.children[0].children[0].children[0].value;
+    if (previous.localeCompare(literalText) > 0) {
+      return li;
+    }
+    previous = literalText;
+  }
+  return null;
 }
 
 module.exports = handleDataConstituentProperties;
