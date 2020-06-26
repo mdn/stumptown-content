@@ -66,6 +66,7 @@ prose ingredients:
 data ingredients:
 
 - data.browser_compatibility
+- data.permitted_properties?
 - data.constituent_properties
 - data.constructor
 - data.constructor_properties?
@@ -115,6 +116,16 @@ Data ingredients typically impose more detailed requirements on pages than prose
 #### data.browser_compatibility
 
 To satisfy this ingredient a page must have a section demarcated by `H2#Browser_compatibility`. It must contain a call to the `{{Compat}}` macro.
+
+#### data.permitted_properties?
+
+This is an optional ingredient. It is present if the page has a section demarcated by `H2#Permitted_properties`. The section must contain only the following elements:
+
+1. A `<p>` element consisting of the text:
+
+   > Rules whose selectors include this element may only use the following CSS properties:
+
+2. An unordered list (a `<ul>` element) of two or more CSS property names. Each property name must be in the form `<li><a><code>p</code></a></li>`, where _p_ is the name of a property. The `<li>` elements must be in alphabetical order.
 
 #### data.constituent_properties
 
