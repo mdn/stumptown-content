@@ -20,6 +20,12 @@ const signatures = [
     },
   },
   {
+    recipePath: recipe("css-function"),
+    conditions: {
+      tags: ["CSS", "Function"],
+    },
+  },
+  {
     recipePath: recipe("css-media-feature"),
     conditions: {
       tags: ["CSS", "Media feature"],
