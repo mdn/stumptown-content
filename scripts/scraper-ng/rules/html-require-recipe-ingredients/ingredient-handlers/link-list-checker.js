@@ -103,6 +103,7 @@ function checkLinkList(section, logger) {
         "Links in link lists must be listed in alphabetical order",
         "link-list-alpha-order"
       );
+      return false;
     }
     previousTitle = dtCode.children[0].value;
   }
