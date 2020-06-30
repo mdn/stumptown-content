@@ -145,16 +145,19 @@ function Logger(file, source, recipeName, ingredient) {
  * @callback handleSectionFn
  * @param {Object} section - the tree for the section
  * @param {Logger} logger - the logger from the ingredient handler
- * @returns {Object|null} - the node marking the position of the ingredient or `null`
+ * @returns {Boolean} - whether the section passed all checks
  */
 
 /**
  * Create an ingredient handler that expects an H2 section.
  *
- * This is a convenience wrapper for finding an H2 by its ID, slicing the corresponding section, and doing further checks on that section.
+ * This is a convenience wrapper for finding an H2 by its ID, slicing the
+ * corresponding section, and doing further checks on that section.
  *
  * @param {String} id - the ID for an H2
- * @param {handleSectionFn} handleSectionFn - an ingredient handler with extra `heading` and `section` parameters
+ * @param {handleSectionFn} handleSectionFn - an ingredient handler with extra
+ * `heading` and `section` parameters; it should return a truthy or fasly value
+ * for success or failure
  * @param {Boolean} [optional] - whether this section is optional
  * @returns {Function} an ingredient handler
  */
@@ -173,8 +176,10 @@ function sectionHandler(id, handleSectionFn, optional = false) {
 
     const section = sliceSection(heading, body);
 
-    // Pass section details into actual handler
-    return handleSectionFn(section, logger);
+    if (!handleSectionFn(section, logger)) {
+      return null;
+    }
+    return heading;
   };
 }
 
