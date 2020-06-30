@@ -49,43 +49,34 @@ function checkExample(exampleNodes, logger) {
 /**
  * Handler for the `data.examples` ingredient.
  */
-function handleDataExamples(tree, logger) {
-  const id = "Examples";
-  const body = select.select(`body`, tree);
-  const heading = select.select(`h2#${id}`, body);
-
-  // The document must have an H2 section "Examples"
-  if (heading === null) {
-    logger.expected(body, `h2#${id}`, "expected-heading");
-    return null;
-  }
-
-  const examplesSection = utils.sliceSection(heading, body);
-
-  // The "Examples" section must contain at least one H3
-  const exampleTitles = select.selectAll("h3", examplesSection);
-  if (exampleTitles.length === 0) {
-    logger.fail(
-      examplesSection,
-      "No H3-demarcated examples found",
-      "missing-example-h3"
-    );
-    return null;
-  }
-
-  for (const exampleTitle of exampleTitles) {
-    // Extract and check each example
-    const exampleSection = utils.sliceBetween(
-      exampleTitle,
-      (node) => node.tagName === "h3",
-      examplesSection
-    );
-    if (!checkExample(exampleSection, logger)) {
-      return null;
+const handleDataExamples = utils.sectionHandler(
+  "Examples",
+  (section, logger) => {
+    // The "Examples" section must contain at least one H3
+    const exampleTitles = select.selectAll("h3", section);
+    if (exampleTitles.length === 0) {
+      logger.fail(
+        section,
+        "No H3-demarcated examples found",
+        "missing-example-h3"
+      );
+      return false;
     }
-  }
 
-  return heading;
-}
+    for (const exampleTitle of exampleTitles) {
+      // Extract and check each example
+      const exampleSection = utils.sliceBetween(
+        exampleTitle,
+        (node) => node.tagName === "h3",
+        section
+      );
+      if (!checkExample(exampleSection, logger)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+);
 
 module.exports = handleDataExamples;
