@@ -1,4 +1,8 @@
-const { process } = require("./framework/utils");
+const {
+  process,
+  expectNullPosition,
+  expectPositionElement,
+} = require("./framework/utils");
 
 const sources = {
   no_static_methods: `<p>Some content.</p>
@@ -80,6 +84,11 @@ describe("data.static_methods", () => {
 
     expect(file.messages.length).toBe(1);
     expect(file.messages[0].ruleId).toEqual("jsxref");
+    expectPositionElement(
+      file.data.ingredients[0],
+      "data.static_methods?",
+      "h2"
+    );
   });
 
   test("invalid static methods with empty heading", () => {
@@ -92,6 +101,7 @@ describe("data.static_methods", () => {
     expect(file).hasMessageWithId(
       "data.static_methods?/only-single-dl-element-in-link-list"
     );
+    expectNullPosition(file.data.ingredients[0], "data.static_methods?");
   });
 
   test("invalid static methods with empty dl", () => {
@@ -99,6 +109,7 @@ describe("data.static_methods", () => {
 
     expect(file.messages.length).toBe(1);
     expect(file).hasMessageWithId("data.static_methods?/dl-must-contain-dt");
+    expectNullPosition(file.data.ingredients[0], "data.static_methods?");
   });
 
   test("invalid static methods with extra non-dl", () => {
@@ -111,6 +122,7 @@ describe("data.static_methods", () => {
     expect(file).hasMessageWithId(
       "data.static_methods?/only-single-dl-element-in-link-list"
     );
+    expectNullPosition(file.data.ingredients[0], "data.static_methods?");
   });
 
   test("invalid static methods with multiple dl", () => {
@@ -123,6 +135,7 @@ describe("data.static_methods", () => {
     expect(file).hasMessageWithId(
       "data.static_methods?/only-single-dl-element-in-link-list"
     );
+    expectNullPosition(file.data.ingredients[0], "data.static_methods?");
   });
 
   test("invalid static methods with invalid dt", () => {
@@ -135,6 +148,7 @@ describe("data.static_methods", () => {
     expect(file).hasMessageWithId(
       "data.static_methods?/only-single-anchor-element-or-xref-in-link-list-dt"
     );
+    expectNullPosition(file.data.ingredients[0], "data.static_methods?");
   });
 
   test("invalid static methods with unordered dl", () => {
@@ -145,5 +159,6 @@ describe("data.static_methods", () => {
 
     expect(file.messages.length).toBe(1);
     expect(file).hasMessageWithId("data.static_methods?/link-list-alpha-order");
+    expectNullPosition(file.data.ingredients[0], "data.static_methods?");
   });
 });
