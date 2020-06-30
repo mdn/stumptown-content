@@ -51,7 +51,7 @@ function handleDataConstructor(tree, logger) {
   // Otherwise they must include a link to a constructor
 
   // Check common link list structure
-  let ok = checkLinkList("Constructor", tree, logger);
+  let ok = checkLinkList(section, logger);
 
   // This link list is only allowed one entry
   const dts = select.selectAll("dt", section);
