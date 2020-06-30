@@ -33,94 +33,84 @@ function checkNoConstructor(elements) {
 /**
  * Handler for the `data.constructor` ingredient.
  */
-function handleDataConstructor(tree, logger) {
-  // Constructor is a mandatory property
-  const heading = select.select(`h2#Constructor`, tree);
-  if (heading === null) {
-    logger.expected(tree, `h2#Constructor`, "expected-heading");
-    return null;
-  }
+const handleDataConstructor = utils.sectionHandler(
+  "Constructor",
+  (section, logger) => {
+    // Constructor sections are allowed to have no actual links
+    // to constructors, if they explicitly record this fact
+    if (checkNoConstructor(section.children)) {
+      return true;
+    }
+    // Otherwise they must include a link to a constructor
 
-  const section = utils.sliceSection(heading, tree);
+    // Check common link list structure
+    let ok = checkLinkList(section, logger);
 
-  // Constructor sections are allowed to have no actual links
-  // to constructors, if they explicitly record this fact
-  if (checkNoConstructor(section.children)) {
-    return heading;
-  }
-  // Otherwise they must include a link to a constructor
+    // This link list is only allowed one entry
+    const dts = select.selectAll("dt", section);
+    if (dts.length !== 1) {
+      logger.fail(
+        section,
+        "Constructor section may only contain one DT item",
+        "only-single-constructor-dt"
+      );
+      ok = false;
+    }
+    const dds = select.selectAll("dd", section);
+    if (dds.length !== 1) {
+      logger.fail(
+        section,
+        "Constructor section may only contain one DD item",
+        "only-single-constructor-dd"
+      );
+      return false;
+    }
 
-  // Check common link list structure
-  let ok = checkLinkList(section, logger);
+    // The dd must be of the form: "Creates a new <code>...</code> object."
+    const dd = dds[0];
+    if (dd.children.length < 3) {
+      logger.fail(
+        dd,
+        "Constructor description must be in the form `Creates a new <code>...</code> object.`",
+        "constructor-description-at-least-three-nodes"
+      );
+      return false;
+    }
 
-  // This link list is only allowed one entry
-  const dts = select.selectAll("dt", section);
-  if (dts.length !== 1) {
-    logger.fail(
-      section,
-      "Constructor section may only contain one DT item",
-      "only-single-constructor-dt"
-    );
-    ok = false;
-  }
-  const dds = select.selectAll("dd", section);
-  if (dds.length !== 1) {
-    logger.fail(
-      section,
-      "Constructor section may only contain one DD item",
-      "only-single-constructor-dd"
-    );
-    return null;
-  }
+    if (!checkText(dd.children[0], "Creates a new ")) {
+      logger.fail(
+        section,
+        "Constructor description must be in the form 'Creates a new <code>...</code> object.'",
+        "constructor-description-first-node"
+      );
+      ok = false;
+    }
 
-  // The dd must be of the form: "Creates a new <code>...</code> object."
-  const dd = dds[0];
-  if (dd.children.length < 3) {
-    logger.fail(
-      dd,
-      "Constructor description must be in the form `Creates a new <code>...</code> object.`",
-      "constructor-description-at-least-three-nodes"
-    );
-    return null;
-  }
+    if (!checkTag(dd.children[1], "code")) {
+      logger.fail(
+        section,
+        "Constructor description must contain <code>Object</code> after 'Creates a new'",
+        "constructor-description-second-node"
+      );
+      ok = false;
+    }
 
-  if (!checkText(dd.children[0], "Creates a new ")) {
-    logger.fail(
-      section,
-      "Constructor description must be in the form 'Creates a new <code>...</code> object.'",
-      "constructor-description-first-node"
-    );
-    ok = false;
-  }
+    if (
+      !(
+        startsWithText(dd.children[2], " object.") ||
+        startsWithText(dd.children[2], " value.")
+      )
+    ) {
+      logger.fail(
+        section,
+        "Constructor description must end first sentence with ' object.' or ' value.'",
+        "constructor-description-third-node"
+      );
+      ok = false;
+    }
 
-  if (!checkTag(dd.children[1], "code")) {
-    logger.fail(
-      section,
-      "Constructor description must contain <code>Object</code> after 'Creates a new'",
-      "constructor-description-second-node"
-    );
-    ok = false;
+    return ok;
   }
-
-  if (
-    !(
-      startsWithText(dd.children[2], " object.") ||
-      startsWithText(dd.children[2], " value.")
-    )
-  ) {
-    logger.fail(
-      section,
-      "Constructor description must end first sentence with ' object.' or ' value.'",
-      "constructor-description-third-node"
-    );
-    ok = false;
-  }
-
-  if (ok) {
-    return heading;
-  } else {
-    return null;
-  }
-}
+);
 
 module.exports = handleDataConstructor;
