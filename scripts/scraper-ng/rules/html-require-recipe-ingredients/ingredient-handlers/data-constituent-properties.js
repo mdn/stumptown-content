@@ -7,18 +7,22 @@ const {
   sliceBetween,
 } = require("./utils");
 
-const id = "Constituent_properties";
-const introText =
-  "This property is a shorthand for the following CSS properties:";
-const minimumListItems = 2;
+const handleDataConstituentProperties = propertyListHandler({
+  id: "Constituent_properties",
+  introText: "This property is a shorthand for the following CSS properties:",
+  minimumListItems: 2,
+});
 
-const handleDataConstituentProperties = sectionHandler(
-  id,
-  (section, logger) => {
-    const expectedIntroTextP = findIntroTextP(section, introText);
+function propertyListHandler(details) {
+  return sectionHandler(details.id, (section, logger) => {
+    const expectedIntroTextP = findIntroTextP(section, details.introText);
 
     if (expectedIntroTextP === null) {
-      logger.expected(section, `"${introText}" paragraph`, "expected-intro-p");
+      logger.expected(
+        section,
+        `"${details.introText}" paragraph`,
+        "expected-intro-p"
+      );
       return null;
     }
 
@@ -34,7 +38,7 @@ const handleDataConstituentProperties = sectionHandler(
 
     const lis = findLis(expectedUl);
 
-    if (lis.length < minimumListItems) {
+    if (lis.length < details.minimumListItems) {
       logger.expected(
         expectedUl,
         "two or more LIs in property list",
@@ -72,15 +76,15 @@ const handleDataConstituentProperties = sectionHandler(
     if (unexpectedNode !== null) {
       logger.fail(
         unexpectedNode,
-        `No other elements allowed in section h2#${id}`,
+        `No other elements allowed in section h2#${details.id}`,
         "unexpected-content"
       );
       return false;
     }
 
     return true;
-  }
-);
+  });
+}
 
 function findIntroTextP(section, text) {
   return (
