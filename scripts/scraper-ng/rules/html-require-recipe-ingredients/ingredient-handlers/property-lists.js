@@ -13,6 +13,13 @@ const handleDataConstituentProperties = propertyListHandler({
   minimumListItems: 2,
 });
 
+const handleDataPermittedProperties = propertyListHandler({
+  id: "Permitted_properties",
+  introText:
+    "Rules whose selectors include this element may only use the following CSS properties:",
+  minimumListItems: 1,
+});
+
 function propertyListHandler(details) {
   return sectionHandler(details.id, (section, logger) => {
     const expectedIntroTextP = findIntroTextP(section, details.introText);
@@ -172,4 +179,7 @@ function findUnsortedProperty(lis) {
   return null;
 }
 
-module.exports = handleDataConstituentProperties;
+module.exports = {
+  handleDataConstituentProperties,
+  handleDataPermittedProperties,
+};

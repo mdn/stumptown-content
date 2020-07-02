@@ -2,7 +2,10 @@ const { select } = require("hast-util-select");
 
 const classMembers = require("./data-class-members");
 const handleDataBrowserCompatibility = require("./data-browser-compatibility");
-const handleDataConstituentProperties = require("./data-constituent-properties");
+const {
+  handleDataConstituentProperties,
+  handleDataPermittedProperties,
+} = require("./property-lists");
 const handleDataConstructor = require("./data-constructor");
 const handleDataExamples = require("./data-examples");
 const handleDataFormalDefinition = require("./data-formal-definition");
@@ -38,6 +41,7 @@ const ingredientHandlers = {
   "data.instance_methods?": classMembers.handleDataInstanceMethods,
   "data.instance_properties?": classMembers.handleDataInstanceProperties,
   "data.interactive_example?": handleDataInteractiveExample,
+  "data.permitted_properties": handleDataPermittedProperties,
   "data.specifications": handleDataSpecifications,
   "data.static_methods?": classMembers.handleDataStaticMethods,
   "data.static_properties?": classMembers.handleDataStaticProperties,
