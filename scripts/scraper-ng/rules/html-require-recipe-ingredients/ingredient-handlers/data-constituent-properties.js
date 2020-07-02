@@ -7,11 +7,13 @@ const {
   sliceBetween,
 } = require("./utils");
 
+const id = "Constituent_properties";
+const introText =
+  "This property is a shorthand for the following CSS properties:";
+
 const handleDataConstituentProperties = sectionHandler(
-  "Constituent_properties",
+  id,
   (section, logger) => {
-    const introText =
-      "This property is a shorthand for the following CSS properties:";
     const expectedIntroTextP = findIntroTextP(section, introText);
 
     if (expectedIntroTextP === null) {
@@ -23,7 +25,7 @@ const handleDataConstituentProperties = sectionHandler(
     if (expectedUl === null) {
       logger.expected(
         expectedIntroTextP,
-        "constituent property list UL after intro text",
+        "property list UL after intro text",
         "expected-ul"
       );
       return null;
@@ -34,7 +36,7 @@ const handleDataConstituentProperties = sectionHandler(
     if (lis.length < 2) {
       logger.expected(
         expectedUl,
-        "two or more LIs in constituent property list",
+        "two or more LIs in property list",
         "expected-more-lis"
       );
       return null;
@@ -44,7 +46,7 @@ const handleDataConstituentProperties = sectionHandler(
       if (!isWellFormedProperty(li)) {
         logger.fail(
           li,
-          "Constituent property list entry is malformed",
+          "Property list entry is malformed",
           "expected-li-a-code"
         );
         return null;
@@ -55,7 +57,7 @@ const handleDataConstituentProperties = sectionHandler(
     if (unsorted !== null) {
       logger.fail(
         unsorted,
-        "Constituent property list is not in alphabetical order",
+        "Property list is not in alphabetical order",
         "expected-alpha-sorted-properties"
       );
       return null;
@@ -69,7 +71,7 @@ const handleDataConstituentProperties = sectionHandler(
     if (unexpectedNode !== null) {
       logger.fail(
         unexpectedNode,
-        "No other elements allowed in constituent properties",
+        `No other elements allowed in section h2#${id}`,
         "unexpected-content"
       );
       return false;
