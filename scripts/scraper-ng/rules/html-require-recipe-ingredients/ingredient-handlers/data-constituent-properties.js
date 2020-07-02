@@ -10,6 +10,7 @@ const {
 const id = "Constituent_properties";
 const introText =
   "This property is a shorthand for the following CSS properties:";
+const minimumListItems = 2;
 
 const handleDataConstituentProperties = sectionHandler(
   id,
@@ -33,7 +34,7 @@ const handleDataConstituentProperties = sectionHandler(
 
     const lis = findLis(expectedUl);
 
-    if (lis.length < 2) {
+    if (lis.length < minimumListItems) {
       logger.expected(
         expectedUl,
         "two or more LIs in property list",
