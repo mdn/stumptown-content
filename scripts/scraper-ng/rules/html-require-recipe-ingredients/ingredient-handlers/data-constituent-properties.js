@@ -10,14 +10,12 @@ const {
 const handleDataConstituentProperties = sectionHandler(
   "Constituent_properties",
   (section, logger) => {
-    const expectedIntroTextP = findIntroTextP(section);
+    const introText =
+      "This property is a shorthand for the following CSS properties:";
+    const expectedIntroTextP = findIntroTextP(section, introText);
 
     if (expectedIntroTextP === null) {
-      logger.expected(
-        section,
-        '"This property is a shorthand for the following CSS properties:" paragraph',
-        "expected-intro-p"
-      );
+      logger.expected(section, `"${introText}" paragraph`, "expected-intro-p");
       return null;
     }
 
@@ -81,14 +79,13 @@ const handleDataConstituentProperties = sectionHandler(
   }
 );
 
-function findIntroTextP(section) {
+function findIntroTextP(section, text) {
   return (
     section.children.find((node) => {
       return (
         node.tagName === "p" &&
         node.children.length === 1 &&
-        node.children[0].value.trim() ===
-          "This property is a shorthand for the following CSS properties:"
+        node.children[0].value.trim() === text
       );
     }) || null
   );
