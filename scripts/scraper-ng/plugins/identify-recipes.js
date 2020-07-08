@@ -112,7 +112,7 @@ const signatures = [
  */
 function identifyRecipesPlugin() {
   return function transformer(tree, file) {
-    const tagSet = new Set(file.data.tags);
+    const tagSet = new Set(file.data.tags.map((tag) => tag.toLowerCase()));
     const recipes = [];
 
     for (const { recipePath, conditions } of signatures) {
@@ -148,7 +148,7 @@ function recipe(name) {
  */
 function hasAll(set, subset) {
   for (let elem of subset) {
-    if (!set.has(elem)) {
+    if (!set.has(elem.toLowerCase())) {
       return false;
     }
   }
