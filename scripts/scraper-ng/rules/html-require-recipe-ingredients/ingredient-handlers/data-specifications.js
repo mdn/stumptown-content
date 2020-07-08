@@ -1,4 +1,3 @@
-const { select } = require("hast-util-select");
 const visit = require("unist-util-visit");
 
 const utils = require("./utils.js");
@@ -6,35 +5,29 @@ const utils = require("./utils.js");
 /**
  * Handler for the `data.specifications` ingredient.
  */
-function handleDataSpecifications(tree, logger) {
-  const id = "Specifications";
-  const body = select(`body`, tree);
+const handleDataSpecifications = utils.sectionHandler(
+  "Specifications",
+  (section, logger) => {
+    let sectionOk = false;
+    visit(section, "text", (node) => {
+      if (utils.isMacro(node, "SpecName")) {
+        sectionOk = true;
+        return visit.SKIP;
+      }
 
-  const heading = select(`h2#${id}`, body);
-  if (heading === null) {
-    logger.expected(body, `h2#${id}`, "expected-heading");
-    return null;
-  }
+      if (node.value.includes("Not part of any standard")) {
+        sectionOk = true;
+        return visit.SKIP;
+      }
+    });
 
-  let sectionOk = false;
-  visit(utils.sliceSection(heading, body), "text", (node) => {
-    if (utils.isMacro(node, "SpecName")) {
-      sectionOk = true;
-      return visit.SKIP;
+    if (!sectionOk) {
+      logger.expected(section.children[0], "SpecName macro", "expected-macro");
+      return false;
     }
 
-    if (node.value.includes("Not part of any standard")) {
-      sectionOk = true;
-      return visit.SKIP;
-    }
-  });
-
-  if (!sectionOk) {
-    logger.expected(heading, `SpecName macro`, "expected-macro");
-    return null;
+    return true;
   }
-
-  return heading;
-}
+);
 
 module.exports = handleDataSpecifications;

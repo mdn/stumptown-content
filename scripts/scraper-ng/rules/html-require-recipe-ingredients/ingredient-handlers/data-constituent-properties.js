@@ -10,7 +10,6 @@ const {
 const handleDataConstituentProperties = sectionHandler(
   "Constituent_properties",
   (section, logger) => {
-    const heading = section.children[0];
     const expectedIntroTextP = findIntroTextP(section);
 
     if (expectedIntroTextP === null) {
@@ -66,7 +65,7 @@ const handleDataConstituentProperties = sectionHandler(
 
     let unexpectedNode = findUnexpectedNode(
       section,
-      [heading, expectedIntroTextP, ...lis],
+      [section.children[0], expectedIntroTextP, ...lis],
       [expectedUl]
     );
     if (unexpectedNode !== null) {
@@ -75,10 +74,10 @@ const handleDataConstituentProperties = sectionHandler(
         "No other elements allowed in constituent properties",
         "unexpected-content"
       );
-      return null;
+      return false;
     }
 
-    return heading;
+    return true;
   }
 );
 

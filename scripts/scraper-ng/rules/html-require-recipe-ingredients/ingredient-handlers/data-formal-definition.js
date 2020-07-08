@@ -3,8 +3,6 @@ const { findUnexpectedNode, isMacro, sectionHandler } = require("./utils");
 const handleDataFormalDefinition = sectionHandler(
   "Formal_definition",
   (section, logger) => {
-    const heading = section.children[0];
-
     // Find the first P with a CSSInfo macro as one of its children
     let expectedMacro;
     let expectedP = section.children.find((node) => {
@@ -24,13 +22,13 @@ const handleDataFormalDefinition = sectionHandler(
         "CSSInfo macro paragraph",
         "expected-cssinfo-macro"
       );
-      return null;
+      return false;
     }
 
     // The section must contain only a heading and `<p>{{CSSInfo}}</p>`
     const extraneousNode = findUnexpectedNode(
       section,
-      [heading],
+      [section.children[0]],
       [expectedP, expectedMacro]
     );
     if (extraneousNode !== null) {
@@ -39,10 +37,10 @@ const handleDataFormalDefinition = sectionHandler(
         "No other elements allowed in data.formal_definition",
         "expected-macro-only"
       );
-      return null;
+      return false;
     }
 
-    return heading;
+    return true;
   }
 );
 
