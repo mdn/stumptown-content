@@ -7,22 +7,6 @@ const {
   sliceBetween,
 } = require("./utils");
 
-const handleDataConstituentProperties = listSectionHandler({
-  id: "Constituent_properties",
-  introText: "This property is a shorthand for the following CSS properties:",
-  minimumListItems: 2,
-});
-
-const handleDataPermittedProperties = listSectionHandler(
-  {
-    id: "Permitted_properties",
-    introText:
-      "Rules whose selectors include this element may only use the following CSS properties:",
-    minimumListItems: 1,
-  },
-  true
-);
-
 /**
  * Create a handler for an ingredient that expects a named section, with
  * introductory text, and a sorted UL of code links.
@@ -193,7 +177,4 @@ function findUnsortedProperty(lis) {
   return null;
 }
 
-module.exports = {
-  handleDataConstituentProperties,
-  handleDataPermittedProperties,
-};
+module.exports = listSectionHandler;

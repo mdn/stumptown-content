@@ -2,15 +2,13 @@ const { select } = require("hast-util-select");
 
 const classMembers = require("./data-class-members");
 const handleDataBrowserCompatibility = require("./data-browser-compatibility");
-const {
-  handleDataConstituentProperties,
-  handleDataPermittedProperties,
-} = require("./property-lists");
+const handleDataConstituentProperties = require("./data-constituent-properties");
 const handleDataConstructor = require("./data-constructor");
 const handleDataExamples = require("./data-examples");
 const handleDataFormalDefinition = require("./data-formal-definition");
 const handleDataFormalSyntax = require("./data-formal-syntax");
 const handleDataInteractiveExample = require("./data-interactive-example");
+const handleDataPermittedProperties = require("./data-permitted-properties");
 const handleDataSpecifications = require("./data-specifications");
 const handleProseShortDescription = require("./prose-short-description");
 
