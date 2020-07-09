@@ -1,4 +1,4 @@
-const listSectionHandler = require("./property-lists");
+const listSectionHandler = require("./list-sections");
 
 const handleDataConstituentProperties = listSectionHandler({
   id: "Constituent_properties",
