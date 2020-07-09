@@ -7,20 +7,34 @@ const {
   sliceBetween,
 } = require("./utils");
 
-const handleDataConstituentProperties = propertyListHandler({
+const handleDataConstituentProperties = listSectionHandler({
   id: "Constituent_properties",
   introText: "This property is a shorthand for the following CSS properties:",
   minimumListItems: 2,
 });
 
-const handleDataPermittedProperties = propertyListHandler({
-  id: "Permitted_properties",
-  introText:
-    "Rules whose selectors include this element may only use the following CSS properties:",
-  minimumListItems: 1,
-});
+const handleDataPermittedProperties = listSectionHandler(
+  {
+    id: "Permitted_properties",
+    introText:
+      "Rules whose selectors include this element may only use the following CSS properties:",
+    minimumListItems: 1,
+  },
+  true
+);
 
-function propertyListHandler(details) {
+/**
+ * Create a handler for an ingredient that expects a named section, with
+ * introductory text, and a sorted UL of code links.
+ *
+ * @param {Object} details - expectations for the section
+ * @param {String} details.id - a section's expected H2 ID
+ * @param {String} details.introText - the text of the first paragraph in the
+ * section
+ * @param {Number} details.minimumListItems - the minimum number of
+ * @returns {Function} an ingredient handler function
+ */
+function listSectionHandler(details) {
   return sectionHandler(details.id, (section, logger) => {
     const expectedIntroTextP = findIntroTextP(section, details.introText);
 
