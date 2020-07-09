@@ -39,7 +39,7 @@ const ingredientHandlers = {
   "data.instance_methods?": classMembers.handleDataInstanceMethods,
   "data.instance_properties?": classMembers.handleDataInstanceProperties,
   "data.interactive_example?": handleDataInteractiveExample,
-  "data.permitted_properties": handleDataPermittedProperties,
+  "data.permitted_properties?": handleDataPermittedProperties,
   "data.specifications": handleDataSpecifications,
   "data.static_methods?": classMembers.handleDataStaticMethods,
   "data.static_properties?": classMembers.handleDataStaticProperties,

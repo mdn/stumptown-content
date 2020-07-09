@@ -16,80 +16,85 @@ const {
  * @param {String} details.introText - the text of the first paragraph in the
  * section
  * @param {Number} details.minimumListItems - the minimum number of
+ * @param {Boolean} [optional=false] - whether the ingredient is optional
  * @returns {Function} an ingredient handler function
  */
-function listSectionHandler(details) {
-  return sectionHandler(details.id, (section, logger) => {
-    const expectedIntroTextP = findIntroTextP(section, details.introText);
+function listSectionHandler(details, optional = false) {
+  return sectionHandler(
+    details.id,
+    (section, logger) => {
+      const expectedIntroTextP = findIntroTextP(section, details.introText);
 
-    if (expectedIntroTextP === null) {
-      logger.expected(
-        section,
-        "Introductory paragraph",
-        "expected-intro-p",
-        `Expected text: ${details.introText}`
-      );
-      return null;
-    }
-
-    const expectedUl = findNextUl(expectedIntroTextP, section);
-    if (expectedUl === null) {
-      logger.expected(
-        expectedIntroTextP,
-        "property list UL after intro text",
-        "expected-ul"
-      );
-      return null;
-    }
-
-    const lis = findLis(expectedUl);
-
-    if (lis.length < details.minimumListItems) {
-      logger.expected(
-        expectedUl,
-        "two or more LIs in property list",
-        "expected-more-lis"
-      );
-      return null;
-    }
-
-    for (const li of lis) {
-      if (!isWellFormedProperty(li)) {
-        logger.fail(
-          li,
-          "Property list entry is malformed",
-          "expected-li-a-code"
+      if (expectedIntroTextP === null) {
+        logger.expected(
+          section,
+          "Introductory paragraph",
+          "expected-intro-p",
+          `Expected text: ${details.introText}`
         );
         return null;
       }
-    }
 
-    const unsorted = findUnsortedProperty(lis);
-    if (unsorted !== null) {
-      logger.fail(
-        unsorted,
-        "Property list is not in alphabetical order",
-        "expected-alpha-sorted-properties"
+      const expectedUl = findNextUl(expectedIntroTextP, section);
+      if (expectedUl === null) {
+        logger.expected(
+          expectedIntroTextP,
+          "property list UL after intro text",
+          "expected-ul"
+        );
+        return null;
+      }
+
+      const lis = findLis(expectedUl);
+
+      if (lis.length < details.minimumListItems) {
+        logger.expected(
+          expectedUl,
+          "two or more LIs in property list",
+          "expected-more-lis"
+        );
+        return null;
+      }
+
+      for (const li of lis) {
+        if (!isWellFormedProperty(li)) {
+          logger.fail(
+            li,
+            "Property list entry is malformed",
+            "expected-li-a-code"
+          );
+          return null;
+        }
+      }
+
+      const unsorted = findUnsortedProperty(lis);
+      if (unsorted !== null) {
+        logger.fail(
+          unsorted,
+          "Property list is not in alphabetical order",
+          "expected-alpha-sorted-properties"
+        );
+        return null;
+      }
+
+      let unexpectedNode = findUnexpectedNode(
+        section,
+        [section.children[0], expectedIntroTextP, ...lis],
+        [expectedUl]
       );
-      return null;
-    }
+      if (unexpectedNode !== null) {
+        logger.fail(
+          unexpectedNode,
+          `No other elements allowed in section h2#${details.id}`,
+          "unexpected-content"
+        );
+        return false;
+      }
 
-    let unexpectedNode = findUnexpectedNode(
-      section,
-      [section.children[0], expectedIntroTextP, ...lis],
-      [expectedUl]
-    );
-    if (unexpectedNode !== null) {
-      logger.fail(
-        unexpectedNode,
-        `No other elements allowed in section h2#${details.id}`,
-        "unexpected-content"
-      );
-      return false;
-    }
-
-    return true;
-  });
+      return true;
+    },
+    optional
+  );
 }
 
 function findIntroTextP(section, text) {
