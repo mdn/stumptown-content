@@ -5,16 +5,15 @@ const {
 } = require("./framework/utils");
 
 describe("data.permitted_properties", () => {
-  const ingredientName = "data.permitted_properties";
+  const ingredientName = "data.permitted_properties?";
   const recipe = { body: [ingredientName] };
   const errorIds = {
-    hasExtraContent: /data.permitted_properties\/unexpected-content/,
-    malformedLi: /data.permitted_properties\/expected-li-a-code/,
-    missingHeading: /data.permitted_properties\/expected-heading/,
-    missingLis: /data.permitted_properties\/expected-more-lis/,
-    missingText: /data.permitted_properties\/expected-intro-p/,
-    missingUl: /data.permitted_properties\/expected-ul/,
-    outOfOrder: /data.permitted_properties\/expected-alpha-sorted-properties/,
+    hasExtraContent: /data.permitted_properties\?\/unexpected-content/,
+    malformedLi: /data.permitted_properties\?\/expected-li-a-code/,
+    missingLis: /data.permitted_properties\?\/expected-more-lis/,
+    missingText: /data.permitted_properties\?\/expected-intro-p/,
+    missingUl: /data.permitted_properties\?\/expected-ul/,
+    outOfOrder: /data.permitted_properties\?\/expected-alpha-sorted-properties/,
   };
 
   test("valid", () => {
@@ -32,11 +31,11 @@ describe("data.permitted_properties", () => {
     expectPositionElement(file.data.ingredients[0], ingredientName, "h2");
   });
 
-  test("h2-missing", () => {
+  test("h2-optional", () => {
     const missingH2 = "";
     const file = process(missingH2, recipe);
 
-    expect(file).hasMessageWithId(errorIds.missingHeading);
+    expect(file).not.hasMessageWithId(ingredientName);
     expectNullPosition(file.data.ingredients[0], ingredientName);
   });
 
