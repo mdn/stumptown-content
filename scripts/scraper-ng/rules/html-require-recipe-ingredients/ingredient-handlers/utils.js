@@ -126,9 +126,12 @@ function isWhiteSpaceTextNode(node) {
 
 function Logger(file, source, recipeName, ingredient) {
   return {
-    expected: function (node, name, id) {
+    expected: function (node, name, id, note) {
       const text = `Expected ${name} for ${ingredient}`;
-      this.fail(node, text, id);
+      const message = this.fail(node, text, id);
+      if (note) {
+        message.note = note;
+      }
     },
     fail: function (node, text, id) {
       const message = file.message(
@@ -137,6 +140,7 @@ function Logger(file, source, recipeName, ingredient) {
         `${source}:${recipeName}/${ingredient}/${id}`
       );
       message.fatal = true;
+      return message;
     },
   };
 }

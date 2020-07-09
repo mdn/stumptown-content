@@ -25,8 +25,9 @@ function listSectionHandler(details) {
     if (expectedIntroTextP === null) {
       logger.expected(
         section,
-        `"${details.introText}" paragraph`,
-        "expected-intro-p"
+        "Introductory paragraph",
+        "expected-intro-p",
+        `Expected text: ${details.introText}`
       );
       return null;
     }
