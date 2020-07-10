@@ -1,6 +1,7 @@
 const select = require("hast-util-select");
 
 const utils = require("./utils.js");
+const { sectionHandler } = require("./utils.js");
 
 /**
  * Returns true only if the given node contains a single child,
@@ -111,4 +112,14 @@ function checkLinkList(section, logger) {
   return true;
 }
 
-module.exports = checkLinkList;
+/**
+ * Create a handler for a section that contains a well-formed definition list.
+ *
+ * @param {String} id
+ * @returns {Function} a handler function
+ */
+function linkListHandler(id) {
+  return sectionHandler(id, checkLinkList, true);
+}
+
+module.exports = { checkLinkList, linkListHandler };
