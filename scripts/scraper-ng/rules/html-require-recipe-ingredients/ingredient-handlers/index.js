@@ -1,4 +1,4 @@
-const { sectionHandler } = require("./utils");
+const { optionalSectionHandler, requiredSectionHandler } = require("./utils");
 
 /**
  * Functions to check for recipe ingredients in Kuma page sources.
@@ -42,27 +42,5 @@ const ingredientHandlers = {
   "prose.syntax": requiredSectionHandler("Syntax"),
   "prose.what_went_wrong": requiredSectionHandler("What_went_wrong"),
 };
-
-/**
- * A convenience function that returns ingredient handlers for checking
- * the existence of an optional H2 in a hast tree.
- *
- * @param {String} id - an id of an H2 to look for in the hast tree
- * @returns {Function} a function
- */
-function optionalSectionHandler(id) {
-  return sectionHandler(id, () => true, true);
-}
-
-/**
- * A convenience function that returns ingredient handlers for checking
- * the existence of a certain H2 in a hast tree.
- *
- * @param {String} id - an id of an H2 to look for in the hast tree
- * @returns {Function} a function
- */
-function requiredSectionHandler(id) {
-  return sectionHandler(id, () => true);
-}
 
 module.exports = ingredientHandlers;
