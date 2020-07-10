@@ -1,16 +1,5 @@
 const { select } = require("hast-util-select");
 
-const handleDataBrowserCompatibility = require("./data-browser-compatibility");
-const handleDataConstituentProperties = require("./data-constituent-properties");
-const handleDataConstructor = require("./data-constructor");
-const handleDataExamples = require("./data-examples");
-const handleDataFormalDefinition = require("./data-formal-definition");
-const handleDataFormalSyntax = require("./data-formal-syntax");
-const handleDataInteractiveExample = require("./data-interactive-example");
-const handleDataPermittedProperties = require("./data-permitted-properties");
-const handleDataSpecifications = require("./data-specifications");
-const handleProseShortDescription = require("./prose-short-description");
-
 /**
  * Functions to check for recipe ingredients in Kuma page sources.
  *
@@ -28,18 +17,18 @@ const handleProseShortDescription = require("./prose-short-description");
  *
  */
 const ingredientHandlers = {
-  "data.browser_compatibility": handleDataBrowserCompatibility,
-  "data.constituent_properties": handleDataConstituentProperties,
+  "data.browser_compatibility": require("./data-browser-compatibility"),
+  "data.constituent_properties": require("./data-constituent-properties"),
   "data.constructor_properties?": require("./data-constructor-properties"),
-  "data.constructor": handleDataConstructor,
-  "data.examples": handleDataExamples,
-  "data.formal_definition": handleDataFormalDefinition,
-  "data.formal_syntax": handleDataFormalSyntax,
+  "data.constructor": require("./data-constructor"),
+  "data.examples": require("./data-examples"),
+  "data.formal_definition": require("./data-formal-definition"),
+  "data.formal_syntax": require("./data-formal-syntax"),
   "data.instance_methods?": require("./data-instance-methods"),
   "data.instance_properties?": require("./data-instance-properties"),
-  "data.interactive_example?": handleDataInteractiveExample,
-  "data.permitted_properties?": handleDataPermittedProperties,
-  "data.specifications": handleDataSpecifications,
+  "data.interactive_example?": require("./data-interactive-example"),
+  "data.permitted_properties?": require("./data-permitted-properties"),
+  "data.specifications": require("./data-specifications"),
   "data.static_methods?": require("./data-static-methods"),
   "data.static_properties?": require("./data-static-properties"),
   "prose.accessibility_concerns?": optionalTopLevelHeading(
@@ -49,7 +38,7 @@ const ingredientHandlers = {
   "prose.error_type": requireTopLevelHeading("Error_type"),
   "prose.message": requireTopLevelHeading("Message"),
   "prose.see_also": requireTopLevelHeading("See_also"),
-  "prose.short_description": handleProseShortDescription,
+  "prose.short_description": require("./prose-short-description"),
   "prose.syntax": requireTopLevelHeading("Syntax"),
   "prose.what_went_wrong": requireTopLevelHeading("What_went_wrong"),
 };
