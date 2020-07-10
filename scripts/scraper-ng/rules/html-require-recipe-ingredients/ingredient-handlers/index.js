@@ -1,4 +1,4 @@
-const { select } = require("hast-util-select");
+const { sectionHandler } = require("./utils");
 
 /**
  * Functions to check for recipe ingredients in Kuma page sources.
@@ -31,16 +31,16 @@ const ingredientHandlers = {
   "data.specifications": require("./data-specifications"),
   "data.static_methods?": require("./data-static-methods"),
   "data.static_properties?": require("./data-static-properties"),
-  "prose.accessibility_concerns?": optionalTopLevelHeading(
+  "prose.accessibility_concerns?": optionalSectionHandler(
     "Accessibility_concerns"
   ),
-  "prose.description?": optionalTopLevelHeading("Description"),
-  "prose.error_type": requireTopLevelHeading("Error_type"),
-  "prose.message": requireTopLevelHeading("Message"),
-  "prose.see_also": requireTopLevelHeading("See_also"),
+  "prose.description?": optionalSectionHandler("Description"),
+  "prose.error_type": requiredSectionHandler("Error_type"),
+  "prose.message": requiredSectionHandler("Message"),
+  "prose.see_also": requiredSectionHandler("See_also"),
   "prose.short_description": require("./prose-short-description"),
-  "prose.syntax": requireTopLevelHeading("Syntax"),
-  "prose.what_went_wrong": requireTopLevelHeading("What_went_wrong"),
+  "prose.syntax": requiredSectionHandler("Syntax"),
+  "prose.what_went_wrong": requiredSectionHandler("What_went_wrong"),
 };
 
 /**
@@ -50,14 +50,8 @@ const ingredientHandlers = {
  * @param {String} id - an id of an H2 to look for in the hast tree
  * @returns {Function} a function
  */
-function optionalTopLevelHeading(id) {
-  return (tree) => {
-    const heading = select(`h2#${id}`, tree);
-    if (heading !== null) {
-      return heading;
-    }
-    return null;
-  };
+function optionalSectionHandler(id) {
+  return sectionHandler(id, () => true, true);
 }
 
 /**
@@ -67,15 +61,8 @@ function optionalTopLevelHeading(id) {
  * @param {String} id - an id of an H2 to look for in the hast tree
  * @returns {Function} a function
  */
-function requireTopLevelHeading(id) {
-  return (tree, logger) => {
-    const heading = select(`h2#${id}`, tree);
-    if (heading === null) {
-      logger.expected(tree, `h2#${id}`, "expected-heading");
-      return null;
-    }
-    return heading;
-  };
+function requiredSectionHandler(id) {
+  return sectionHandler(id, () => true);
 }
 
 module.exports = ingredientHandlers;
