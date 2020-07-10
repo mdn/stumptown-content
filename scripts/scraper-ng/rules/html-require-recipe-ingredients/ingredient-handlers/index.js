@@ -8,6 +8,7 @@ const handleDataExamples = require("./data-examples");
 const handleDataFormalDefinition = require("./data-formal-definition");
 const handleDataFormalSyntax = require("./data-formal-syntax");
 const handleDataInteractiveExample = require("./data-interactive-example");
+const handleDataPermittedProperties = require("./data-permitted-properties");
 const handleDataSpecifications = require("./data-specifications");
 const handleProseShortDescription = require("./prose-short-description");
 
@@ -38,6 +39,7 @@ const ingredientHandlers = {
   "data.instance_methods?": classMembers.handleDataInstanceMethods,
   "data.instance_properties?": classMembers.handleDataInstanceProperties,
   "data.interactive_example?": handleDataInteractiveExample,
+  "data.permitted_properties?": handleDataPermittedProperties,
   "data.specifications": handleDataSpecifications,
   "data.static_methods?": classMembers.handleDataStaticMethods,
   "data.static_properties?": classMembers.handleDataStaticProperties,
