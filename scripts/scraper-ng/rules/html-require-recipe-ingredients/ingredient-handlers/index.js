@@ -1,6 +1,5 @@
 const { select } = require("hast-util-select");
 
-const classMembers = require("./data-class-members");
 const handleDataBrowserCompatibility = require("./data-browser-compatibility");
 const handleDataConstituentProperties = require("./data-constituent-properties");
 const handleDataConstructor = require("./data-constructor");
@@ -31,18 +30,18 @@ const handleProseShortDescription = require("./prose-short-description");
 const ingredientHandlers = {
   "data.browser_compatibility": handleDataBrowserCompatibility,
   "data.constituent_properties": handleDataConstituentProperties,
-  "data.constructor_properties?": classMembers.handleDataConstructorProperties,
+  "data.constructor_properties?": require("./data-constructor-properties"),
   "data.constructor": handleDataConstructor,
   "data.examples": handleDataExamples,
   "data.formal_definition": handleDataFormalDefinition,
   "data.formal_syntax": handleDataFormalSyntax,
-  "data.instance_methods?": classMembers.handleDataInstanceMethods,
-  "data.instance_properties?": classMembers.handleDataInstanceProperties,
+  "data.instance_methods?": require("./data-instance-methods"),
+  "data.instance_properties?": require("./data-instance-properties"),
   "data.interactive_example?": handleDataInteractiveExample,
   "data.permitted_properties?": handleDataPermittedProperties,
   "data.specifications": handleDataSpecifications,
-  "data.static_methods?": classMembers.handleDataStaticMethods,
-  "data.static_properties?": classMembers.handleDataStaticProperties,
+  "data.static_methods?": require("./data-static-methods"),
+  "data.static_properties?": require("./data-static-properties"),
   "prose.accessibility_concerns?": optionalTopLevelHeading(
     "Accessibility_concerns"
   ),
