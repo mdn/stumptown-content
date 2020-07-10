@@ -28,7 +28,7 @@ function listSectionHandler(details, optional = false) {
       if (expectedIntroTextP === null) {
         logger.expected(
           section,
-          "Introductory paragraph",
+          "introductory paragraph",
           "expected-intro-p",
           `Expected text: ${details.introText}`
         );
@@ -39,7 +39,7 @@ function listSectionHandler(details, optional = false) {
       if (expectedUl === null) {
         logger.expected(
           expectedIntroTextP,
-          "property list UL after intro text",
+          "UL after intro text",
           "expected-ul"
         );
         return null;
@@ -58,11 +58,7 @@ function listSectionHandler(details, optional = false) {
 
       for (const li of lis) {
         if (!isWellFormedProperty(li)) {
-          logger.fail(
-            li,
-            "Property list entry is malformed",
-            "expected-li-a-code"
-          );
+          logger.fail(li, "List entry is malformed", "expected-li-a-code");
           return null;
         }
       }
@@ -71,7 +67,7 @@ function listSectionHandler(details, optional = false) {
       if (unsorted !== null) {
         logger.fail(
           unsorted,
-          "Property list is not in alphabetical order",
+          "List is not in alphabetical order",
           "expected-alpha-sorted-properties"
         );
         return null;
