@@ -42,7 +42,8 @@ const sources = {
 
   nodes_after_live_sample: `<h2 id="Examples">Examples</h2>
 <h3 id="An_example">An example</h3>
-  {{EmbedLiveSample("An_example")}}Some more content`,
+  {{EmbedLiveSample("An_example")}}
+  <p>Some more <em>emphatic</em> content</p>`,
 
   live_sample_id_mismatch: `<h2 id="Examples">Examples</h2>
 <h3 id="An_example">An example</h3>
