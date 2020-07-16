@@ -21,6 +21,7 @@ function checkExample(exampleNodes, logger) {
           "nodes-after-live-sample"
         );
         ok = false;
+        return visit.EXIT;
       }
     }
     if (utils.isMacro(node, "EmbedLiveSample")) {
