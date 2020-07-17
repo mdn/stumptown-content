@@ -44,7 +44,7 @@
         "rehype-remark": "8.0.0",
         "rehype-stringify": "8.0.0",
         "remark-frontmatter": "^2.0.0",
-        "remark-parse": "8.0.2",
+        "remark-parse": "8.0.3",
         "remark-rehype": "7.0.0",
         "remark-retext": "^4.0.0",
         "remark-stringify": "8.1.0",
