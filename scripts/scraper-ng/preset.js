@@ -16,5 +16,6 @@ module.exports = {
     [require("./rules/html-require-recipe-ingredients")],
     [require("./rules/html-require-ingredient-order")], // Must be after html-require-recipe-ingredients
     [require("./rules/html-warn-unknown-headings")],
+    [require("./rules/html-h2-avoid-name-attribute-mismatch")],
   ],
 };
