@@ -1,7 +1,7 @@
 const select = require("hast-util-select");
 
+const { checkLinkList } = require("./link-list-checker.js");
 const utils = require("./utils.js");
-const checkLinkList = require("./link-list-checker.js");
 
 const noConstructor = "This object cannot be instantiated directly.";
 
