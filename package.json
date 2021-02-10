@@ -29,7 +29,7 @@
         "async-sema": "^3.1.0",
         "chalk": "^4.1.0",
         "gray-matter": "4.0.2",
-        "hast-util-find-and-replace": "^3.0.0",
+        "hast-util-find-and-replace": "^3.2.1",
         "hast-util-has-property": "^1.0.4",
         "hast-util-select": "^4.0.0",
         "hast-util-to-string": "^1.0.4",
